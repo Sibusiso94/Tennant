@@ -9,6 +9,7 @@ struct TennantLandingView: View {
     var body: some View {
         VStack {
             Spacer()
+                .frame(height: 80)
             GeometryReader { geometry in
                 LazyVGrid(columns: columns) {
                     ForEach(0..<4) { item in
