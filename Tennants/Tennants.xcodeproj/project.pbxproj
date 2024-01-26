@@ -17,6 +17,7 @@
 		5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47344E2B62656E0040A0AA /* TennantTabView.swift */; };
 		5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734512B6265AE0040A0AA /* TabViewModel.swift */; };
 		5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734552B6269640040A0AA /* TennantLandingView.swift */; };
+		5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47345A2B6377D40040A0AA /* Tennant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		5C47344E2B62656E0040A0AA /* TennantTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
 		5C4734512B6265AE0040A0AA /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C4734552B6269640040A0AA /* TennantLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantLandingView.swift; sourceTree = "<group>"; };
+		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,8 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C47345C2B6384A90040A0AA /* Interfaces */,
+				5C4734592B6375C30040A0AA /* Models */,
 				5C47344D2B6262880040A0AA /* Views */,
 				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
 				5C4734252B6261C10040A0AA /* ContentView.swift */,
@@ -166,6 +170,21 @@
 				5C4734552B6269640040A0AA /* TennantLandingView.swift */,
 			);
 			path = "Landing View";
+			sourceTree = "<group>";
+		};
+		5C4734592B6375C30040A0AA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C47345A2B6377D40040A0AA /* Tennant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C47345C2B6384A90040A0AA /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
