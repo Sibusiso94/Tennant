@@ -18,6 +18,10 @@
 		5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734512B6265AE0040A0AA /* TabViewModel.swift */; };
 		5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734552B6269640040A0AA /* TennantLandingView.swift */; };
 		5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47345A2B6377D40040A0AA /* Tennant.swift */; };
+		5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Flat.swift */; };
+		5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */; };
+		5CAF47AE2B64E4B500CE486B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AD2B64E4B500CE486B /* RealmSwift */; };
+		5CAF47B02B64E4BE00CE486B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AF2B64E4BE00CE486B /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,8 @@
 		5C4734512B6265AE0040A0AA /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C4734552B6269640040A0AA /* TennantLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantLandingView.swift; sourceTree = "<group>"; };
 		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		5CAF47A62B64DEB200CE486B /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
+		5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAF47B02B64E4BE00CE486B /* Realm in Frameworks */,
+				5CAF47AE2B64E4B500CE486B /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +94,7 @@
 				5C4734332B6261C50040A0AA /* TennantsTests */,
 				5C47343D2B6261C50040A0AA /* TennantsUITests */,
 				5C4734212B6261C00040A0AA /* Products */,
+				5CAF47AC2B64E4B500CE486B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +111,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5CAF47A92B64E43200CE486B /* Realm */,
 				5C47345C2B6384A90040A0AA /* Interfaces */,
 				5C4734592B6375C30040A0AA /* Models */,
 				5C47344D2B6262880040A0AA /* Views */,
@@ -176,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				5C47345A2B6377D40040A0AA /* Tennant.swift */,
+				5CAF47A62B64DEB200CE486B /* Flat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +196,21 @@
 			children = (
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		5CAF47A92B64E43200CE486B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		5CAF47AC2B64E4B500CE486B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +229,10 @@
 			dependencies = (
 			);
 			name = Tennants;
+			packageProductDependencies = (
+				5CAF47AD2B64E4B500CE486B /* RealmSwift */,
+				5CAF47AF2B64E4BE00CE486B /* Realm */,
+			);
 			productName = Tennants;
 			productReference = 5C4734202B6261C00040A0AA /* Tennants.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 5C4734172B6261C00040A0AA;
+			packageReferences = (
+				5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -318,9 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
+				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
+				5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 			);
@@ -652,6 +687,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift/";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CAF47AD2B64E4B500CE486B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		5CAF47AF2B64E4BE00CE486B /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5C4734182B6261C00040A0AA /* Project object */;
 }
