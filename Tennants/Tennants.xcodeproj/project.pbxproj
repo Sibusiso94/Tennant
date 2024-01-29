@@ -27,6 +27,7 @@
 		5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */; };
 		5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */; };
 		5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */; };
+		5CAF480C2B67F21C00CE486B /* UpdateTennantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF480B2B67F21C00CE486B /* UpdateTennantView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewViewModel.swift; sourceTree = "<group>"; };
 		5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantUseCaseProtocols.swift; sourceTree = "<group>"; };
 		5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUseCaseProtocols.swift; sourceTree = "<group>"; };
+		5CAF480B2B67F21C00CE486B /* UpdateTennantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 				5CAF47D42B676E4000CE486B /* CalculateView.swift */,
 				5CAF48012B67A9DA00CE486B /* AlertButtons.swift */,
 				5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */,
+				5CAF480B2B67F21C00CE486B /* UpdateTennantView.swift */,
 			);
 			path = CalculateView;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAF480C2B67F21C00CE486B /* UpdateTennantView.swift in Sources */,
 				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,

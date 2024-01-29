@@ -1,8 +1,13 @@
 import SwiftUI
 
 struct CalculateView: View {
-    @StateObject var viewModel = CalculateViewViewModel()
+    @StateObject var viewModel: CalculateViewViewModel
     @Binding var selectedTab: TennantTabItem
+    
+    init(selectedTab: Binding<TennantTabItem>) {
+        _viewModel = StateObject(wrappedValue: CalculateViewViewModel())
+        self._selectedTab = selectedTab
+    }
     
     var body: some View {
         VStack {

@@ -6,8 +6,18 @@ enum CalculateViewStates {
 }
 
 class CalculateViewViewModel: ObservableObject, AmountPayableRepository {
-    @Published var showAlert: Bool = false
-    @Published var showCalculateView: CalculateViewStates = .updateTennant
+    var rentAmount: Int
+    
+    @Published var showAlert: Bool
+    @Published var showCalculateView: CalculateViewStates
+    
+    init(rentAmount: Int = 1500,
+         showAlert: Bool = false,
+         showCalculateView: CalculateViewStates = .updateTennant) {
+        self.rentAmount = rentAmount
+        self.showAlert = showAlert
+        self.showCalculateView = showCalculateView
+    }
     
     func paidInFull() {
         //

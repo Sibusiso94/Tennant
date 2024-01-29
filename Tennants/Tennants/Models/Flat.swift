@@ -9,6 +9,7 @@ class Flat: Object, Identifiable {
     convenience init(flatID: String = UUID().uuidString,
                      buildingNumber: Int,
                      flatNumber: Int) {
+        self.init()
         self.buildingID = buildingID
         self.flatNumber = flatNumber
     }
