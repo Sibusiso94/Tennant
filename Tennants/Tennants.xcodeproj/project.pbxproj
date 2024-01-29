@@ -23,6 +23,10 @@
 		5CAF47AE2B64E4B500CE486B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AD2B64E4B500CE486B /* RealmSwift */; };
 		5CAF47B02B64E4BE00CE486B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AF2B64E4BE00CE486B /* Realm */; };
 		5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47D42B676E4000CE486B /* CalculateView.swift */; };
+		5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48012B67A9DA00CE486B /* AlertButtons.swift */; };
+		5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */; };
+		5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */; };
+		5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		5CAF47A62B64DEB200CE486B /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
 		5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		5CAF47D42B676E4000CE486B /* CalculateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateView.swift; sourceTree = "<group>"; };
+		5CAF48012B67A9DA00CE486B /* AlertButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButtons.swift; sourceTree = "<group>"; };
+		5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewViewModel.swift; sourceTree = "<group>"; };
+		5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantUseCaseProtocols.swift; sourceTree = "<group>"; };
+		5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUseCaseProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +164,7 @@
 				5C4734542B6269310040A0AA /* Landing View */,
 				5C4734532B6268E90040A0AA /* FlatsView */,
 				5C4734502B6265860040A0AA /* Tab View */,
-				5CAF47D42B676E4000CE486B /* CalculateView.swift */,
+				5CAF48002B67A9B200CE486B /* CalculateView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +205,8 @@
 		5C47345C2B6384A90040A0AA /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */,
+				5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -214,6 +224,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5CAF48002B67A9B200CE486B /* CalculateView */ = {
+			isa = PBXGroup;
+			children = (
+				5CAF47D42B676E4000CE486B /* CalculateView.swift */,
+				5CAF48012B67A9DA00CE486B /* AlertButtons.swift */,
+				5CAF48032B67ACDA00CE486B /* CalculateViewViewModel.swift */,
+			);
+			path = CalculateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,11 +375,15 @@
 			files = (
 				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
+				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
+				5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */,
+				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
 				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */,
+				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 			);
