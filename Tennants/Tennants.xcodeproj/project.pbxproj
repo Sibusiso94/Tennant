@@ -22,6 +22,7 @@
 		5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */; };
 		5CAF47AE2B64E4B500CE486B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AD2B64E4B500CE486B /* RealmSwift */; };
 		5CAF47B02B64E4BE00CE486B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AF2B64E4BE00CE486B /* Realm */; };
+		5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47D42B676E4000CE486B /* CalculateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
 		5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		5CAF47D42B676E4000CE486B /* CalculateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				5C4734542B6269310040A0AA /* Landing View */,
 				5C4734532B6268E90040A0AA /* FlatsView */,
 				5C4734502B6265860040A0AA /* Tab View */,
+				5CAF47D42B676E4000CE486B /* CalculateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
+				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,

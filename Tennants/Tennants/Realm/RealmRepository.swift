@@ -56,8 +56,7 @@ class RealmRepository: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
-    // MARK: Generic functions
+
     public func object<T: Object>(_ type: T.Type) -> T? {
         return objects(type).first
     }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TennantTabView: View {
-    @State var selectedTab = TennantTabItem.flats
+    @State var selectedTab = TennantTabItem.home
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -10,14 +10,14 @@ struct TennantTabView: View {
                     Image(systemName: "house.fill")
                     Text("Flats")
                 }
-                .tag(TennantTabItem.flats)
+                .tag(TennantTabItem.home)
             
-            Text("Tennants")
+            CalculateView(selectedTab: $selectedTab)
                 .tabItem {
-                    Image(systemName: "person")
-                    Text("Tennants")
+                    Image(systemName: "folder.fill")
+                    Text("Update")
                 }
-                .tag(TennantTabItem.tennants)
+                .tag(TennantTabItem.update)
         }
     }
 }

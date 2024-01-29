@@ -7,7 +7,7 @@ struct TennantLandingView: View {
     ]
     
     var body: some View {
-        VStack {
+        NavigationStack {
             Spacer()
                 .frame(height: 80)
             GeometryReader { geometry in
@@ -16,7 +16,6 @@ struct TennantLandingView: View {
                         Text("Placeholder")
                             .frame(maxWidth: .infinity)
                             .frame(height: geometry.size.height / 2.5)
-                            .background(Color.red)
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                     }
                 }
