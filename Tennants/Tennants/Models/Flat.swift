@@ -1,7 +1,15 @@
 import Foundation
+import RealmSwift
 
-struct Flat {
-    var flatID: String
-    var buildingID: Int
-    var FlatNumber: Int
+class Flat: Object, Identifiable {
+    @Persisted(primaryKey: true) var flatID: String
+    @Persisted var buildingID: Int
+    @Persisted var flatNumber: Int
+    
+    convenience init(flatID: String = UUID().uuidString,
+                     buildingNumber: Int,
+                     flatNumber: Int) {
+        self.buildingID = buildingID
+        self.flatNumber = flatNumber
+    }
 }
