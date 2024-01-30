@@ -18,6 +18,7 @@
 		5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734512B6265AE0040A0AA /* TabViewModel.swift */; };
 		5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734552B6269640040A0AA /* TennantLandingView.swift */; };
 		5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47345A2B6377D40040A0AA /* Tennant.swift */; };
+		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Flat.swift */; };
 		5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */; };
 		5CAF47AE2B64E4B500CE486B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAF47AD2B64E4B500CE486B /* RealmSwift */; };
@@ -65,6 +66,7 @@
 		5C4734512B6265AE0040A0AA /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C4734552B6269640040A0AA /* TennantLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantLandingView.swift; sourceTree = "<group>"; };
 		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
 		5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		5CAF47D42B676E4000CE486B /* CalculateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				5CAF480B2B67F21C00CE486B /* UpdateTennantView.swift */,
 				5CAF480E2B6826A700CE486B /* UpdateTennantTopCardView.swift */,
 				5CAF48162B68314300CE486B /* CircularProgressView.swift */,
+				5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */,
 			);
 			path = UpdateTennant;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */,
 				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
+				5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */,
 				5CAF48152B68276900CE486B /* HorizontalAlignment.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,

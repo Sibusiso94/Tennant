@@ -3,39 +3,45 @@ import RealmSwift
 
 class Tennant: Object, Identifiable {
     @Persisted(primaryKey: true) var id: String
-    @Persisted var flatID: String
+    @Persisted var buildingNumber: String
+    @Persisted var flatNumber: String
     @Persisted var name: String
     @Persisted var surname: String
     @Persisted var company : String
     @Persisted var position: String
-    @Persisted var annualIncome: Int
-    @Persisted var balance: Int
-    @Persisted var amountDue: Int
+    @Persisted var monthlyIncome: Int
+    @Persisted var balance: Double
+    @Persisted var amountDue: Double
     @Persisted var startDate: String
     @Persisted var endDate: String
+    @Persisted var fullPayments: Int
     
     convenience init(id: String = UUID().uuidString, 
-                     flatID: String,
+                     buildingNumber: String,
+                     flatNumber: String,
                      name: String,
                      surname: String,
                      company : String,
                      position: String,
-                     annualIncome: Int,
-                     balance: Int, 
-                     amountDue: Int,
+                     monthlyIncome: Int,
+                     balance: Double,
+                     amountDue: Double,
                      startDate: String,
-                     endDate: String) {
+                     endDate: String,
+                     fullPayments: Int) {
         self.init()
-        self.flatID = flatID
+        self.buildingNumber = buildingNumber
+        self.flatNumber = flatNumber
         self.name = name
         self.surname = surname
         self.company = company
         self.position = position
-        self.annualIncome = annualIncome
+        self.monthlyIncome = monthlyIncome
         self.balance = balance
         self.amountDue = amountDue
         self.startDate = startDate
         self.endDate = endDate
+        self.fullPayments = fullPayments
     }
 }
 
@@ -46,8 +52,8 @@ class TennantBuilder {
         TennantJobBuilder(tennant)
     }
     
-    func earns(annualIncome: Int) -> TennantBuilder {
-        tennant.annualIncome = annualIncome
+    func earns(monthlyIncome: Int) -> TennantBuilder {
+        tennant.monthlyIncome = monthlyIncome
         return self
     }
     

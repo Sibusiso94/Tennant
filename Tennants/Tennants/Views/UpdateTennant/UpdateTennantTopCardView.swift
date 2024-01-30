@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct UpdateTennantTopCardView: View {
+    var tennant: Tennant
+    
     var body: some View {
         HStack {
-            Image(systemName: "9.square")
+            Image(systemName: "\(tennant.flatNumber).square")
                 .resizable()
                 .frame(width: 100, height: 100, alignment: .leading)
                 .padding()
@@ -11,15 +13,15 @@ struct UpdateTennantTopCardView: View {
             Spacer()
                 .frame(width: 16)
             VStack(alignment: .leading) {
-                Text("Name Surname")
+                Text("\(tennant.name) \(tennant.surname)")
                 HStack {
                     Text("Balance:")
-                    Text("-260")
+                    Text("\(tennant.balance)")
                 }
                 
                 HStack {
                     Text("Amount Due:")
-                    Text("230")
+                    Text("\(tennant.amountDue)")
                 }
             }
             
@@ -36,5 +38,5 @@ struct UpdateTennantTopCardView: View {
 }
 
 #Preview {
-    UpdateTennantTopCardView()
+    UpdateTennantTopCardView(tennant: Tennant())
 }

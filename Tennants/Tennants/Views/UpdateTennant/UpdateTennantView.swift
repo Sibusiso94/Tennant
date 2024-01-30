@@ -1,44 +1,70 @@
 import SwiftUI
 
 struct UpdateTennantView: View {
-    @State var amountAdded: String = ""
+    @FocusState var isInputActive: Bool
+    @StateObject var viewModel = UpdateTennantViewModel()
+    
+    init() {
+    }
     
     var body: some View {
-        VStack {
-            UpdateTennantTopCardView()
-            
-            CircularProgressView(progress: 0.8)
-                .frame(width: 200, height: 200)
-            
-            // Add done button and tap to dismiss
-            TextField("Amount paid", text: $amountAdded)
-                .frame(height: 50)
+        NavigationStack {
+            VStack {
+                UpdateTennantTopCardView(tennant: viewModel.selectedTennant)
+                
+                CircularProgressView(progress: 0.8)
+                    .frame(width: 200, height: 200)
+                
+                // Add done button and tap to dismiss
+                TextField(" Amount paid", text: $viewModel.amountAdded)
+                    .frame(height: 50)
+                    .buttonHorizontalPadding()
+                    .padding(.top)
+                    .keyboardType(.numberPad)
+                    .focused($isInputActive)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+
+                            Button("Done") {
+                                isInputActive = false
+                            }
+                        }
+                    }
+                    .foregroundStyle(Color.black)
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Text("Paid in full")
+                        .padding()
+                }
                 .buttonHorizontalPadding()
-                .padding(.top)
-                .keyboardType(.numberPad)
-            
-            Spacer()
-            
-            Button {
                 
-            } label: {
-                Text("Paid in full")
-                    .padding()
+                Button {
+                    
+                } label: {
+                    Text("Add payment")
+                        .padding()
+                }
+                .buttonHorizontalPadding()
+                .disabled(viewModel.amountAdded == "")
             }
-            .buttonHorizontalPadding()
-            
-            Button {
-                
-            } label: {
-                Text("Add payment")
-                    .padding()
+            .background {
+                Color("PastelGrey")
+                    .ignoresSafeArea()
             }
-            .buttonHorizontalPadding()
-            .disabled(amountAdded == "")
-        }
-        .background {
-            Color("PastelGrey")
-                .ignoresSafeArea()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+                }
+            }
         }
     }
 }

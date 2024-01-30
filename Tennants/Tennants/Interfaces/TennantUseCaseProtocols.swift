@@ -19,4 +19,6 @@ protocol TennantByMostDebtable {
 protocol TennantRepository: TennantAddable,
                                 TennantUpdatable,
                                 TennantDeletable,
-                                TennantByMostDebtable { }
+                                TennantByMostDebtable {
+    var realmRepository: RealmRepository { get }
+}
