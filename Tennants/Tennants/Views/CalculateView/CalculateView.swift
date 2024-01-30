@@ -13,7 +13,7 @@ struct CalculateView: View {
         VStack {
             switch viewModel.showCalculateView {
             case .updateTennant:
-                Text("Update Tennant")
+                UpdateTennantView()
             case .uploadFile:
                 Text("Upload Statement")
             }

@@ -8,26 +8,38 @@ struct TennantLandingView: View {
     
     var body: some View {
         NavigationStack {
-//            VStack {
+            VStack {
                 Spacer()
                     .frame(height: 80)
                 GeometryReader { geometry in
                     LazyVGrid(columns: columns) {
                         ForEach(0..<4) { item in
-                            Text("Placeholder")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: geometry.size.height / 2.5)
-                                .clipShape(RoundedRectangle(cornerRadius: 25))
-                                .background(Color.white)
+                            PlaceholderView(geometry: geometry)
                         }
                     }
                     .padding(.horizontal)
                 }
-//            }
             }
-        .background {
-            Color("PastelGrey")
+            .background {
+                Color("PastelGrey")
+                    .ignoresSafeArea()
+            }
         }
+    }
+}
+
+struct PlaceholderView: View {
+    var geometry: GeometryProxy
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            Text("Placeholder")
+                .foregroundStyle(Color.black)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: geometry.size.height / 2.5)
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
