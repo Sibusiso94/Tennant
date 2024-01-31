@@ -4,13 +4,13 @@ struct UpdateTennantView: View {
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
     
-    init() {
-    }
+    init() { }
     
     var body: some View {
         NavigationStack {
             VStack {
                 UpdateTennantTopCardView(tennant: viewModel.selectedTennant)
+                    .padding(.top)
                 
                 CircularProgressView(progress: 0.8)
                     .frame(width: 200, height: 200)

@@ -13,12 +13,14 @@ fileprivate func getConfiguration(fileName: String) -> Realm.Configuration {
 
 class RealmRepository: ObservableObject {
     private var configuration: Realm.Configuration
+    @ObservedResults(Tennant.self) var tennants
     
     public init() {
         let configuration = getConfiguration(fileName: "tennant.realm")
         Realm.Configuration.defaultConfiguration = configuration
         
         self.configuration = configuration
+        
         initializeRealm()
     }
     
@@ -65,6 +67,19 @@ class RealmRepository: ObservableObject {
         return Array(realm.objects(type))
     }
     
+    public func add(_ tennant: Tennant) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                $tennants.append(tennant)
+                realm.add(tennants, update: .modified)
+            }
+        } catch {
+            print("Failed to add wish list item: \(error)")
+        }
+    }
+    
     public func deleteAll(_ objects: [AnyObject]) throws {
         try transaction { realm in
             let deletions = objects.compactMap {
@@ -82,17 +97,12 @@ class RealmRepository: ObservableObject {
         }
     }
     
-    public func update(deletions: [AnyClass] = [], insertions: [AnyObject] = []) throws {
+    public func update(insertions: [AnyObject] = []) throws {
         try transaction { realm in
-            let deletions = deletions.compactMap {
-                $0 as? Object.Type
-            }
             let insertions = insertions.compactMap {
                 $0 as? Object
             }
-            deletions.forEach {
-                realm.delete(realm.objects($0))
-            }
+            
             realm.add(insertions, update: .modified)
         }
     }

@@ -1,8 +1,25 @@
 import Foundation
 import RealmSwift
 
-class Tennant: Object, Identifiable {
+class AllTennants: Object, Identifiable {
     @Persisted(primaryKey: true) var id: String
+    @Persisted var tennants: List<Tennant>
+   
+    func saveUser() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(self, update: .modified)
+            }
+        } catch {
+            // add a completion to handle error
+            print("Failed to add user: \(error)")
+        }
+    }
+}
+
+class Tennant: Object, Identifiable {
+    @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var buildingNumber: String
     @Persisted var flatNumber: String
     @Persisted var name: String
@@ -42,6 +59,10 @@ class Tennant: Object, Identifiable {
         self.startDate = startDate
         self.endDate = endDate
         self.fullPayments = fullPayments
+    }
+    
+    override class func primaryKey() -> String? {
+        "id"
     }
 }
 
