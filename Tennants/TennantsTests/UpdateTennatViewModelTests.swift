@@ -2,16 +2,59 @@ import XCTest
 @testable import Tennants
 
 final class UpdateTennatViewModelTests: XCTestCase {
+    var sut: UpdateTennantViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        sut = UpdateTennantViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+    }
+    
+    func testGetNumberOfMonthsPassedStartValueIs0Succeeded() {
+        XCTAssertEqual(sut.numberOfMonthsPassed, 0) 
     }
 
-    func test_getNumberOfMonthsPassed_succeeded() {
+    func testGetNumberOfMonthsPassedDidSucceeded() {
+        // Given
+        let startDate = "2023-04-19"
+        let endDate = "2023-11-19"
         
+        // When
+        sut.getNumberOfMonthsPassed(startDate: startDate, endDate: endDate.getStringAsDate())
+        
+        // Then
+        XCTAssertEqual(sut.numberOfMonthsPassed, 7)
+    }
+    
+    func testGetNumberOfMonthsPassedDidFail() {
+        // Given
+        let startDate = "2023-04-19"
+        let endDate = "2023-11-19"
+        
+        // When
+        sut.getNumberOfMonthsPassed(startDate: startDate, endDate: endDate.getStringAsDate())
+        
+        // Then
+        XCTAssertNotEqual(sut.numberOfMonthsPassed, 2)
+    }
+    
+    func testGetPaymentHistoryPercentageDidSucceed() {
+        let numberOfMonthsPassed = 10
+        let numberOfFullPayments = 6
+        
+        let result = sut.getPaymentHistoryPercentage(numberOfMonthsPassed: numberOfMonthsPassed, numberOfFullPayments: numberOfFullPayments)
+        
+        XCTAssertEqual(result, 0.6)
+    }
+    
+    func testGetPaymentHistoryPercentageDidFail() {
+        let numberOfMonthsPassed = 6
+        let numberOfFullPayments = 10
+        
+        let result = sut.getPaymentHistoryPercentage(numberOfMonthsPassed: numberOfMonthsPassed, numberOfFullPayments: numberOfFullPayments)
+        
+        XCTAssertNotEqual(result, 0.6)
     }
 }

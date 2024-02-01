@@ -69,7 +69,7 @@ struct UpdateTennantView: View {
                 }
             }
             .onAppear {
-                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate)
+                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
                 paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
                                                                                  numberOfFullPayments: viewModel.selectedTennant.fullPayments)
             }

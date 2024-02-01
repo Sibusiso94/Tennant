@@ -8,9 +8,11 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     @Published var amountAdded: String = ""
     @Published var selectedTennant = Tennant()
     @Published var numberOfMonthsPassed: Int = 0
+    @Published var endDate: Date
     
     init(realmRepository: RealmRepository = RealmRepository()) {
         self.realmRepository = realmRepository
+        self.endDate = Date.now
         mapTennantsToArray()
         getTennantByMostDebt()
     }
@@ -52,8 +54,7 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
         realmRepository.add(selectedTennant)
     }
     
-    func getNumberOfMonthsPassed(startDate: String) {
-        let endDate = Date.now
+    func getNumberOfMonthsPassed(startDate: String, endDate: Date) {
         let calandar = Calendar.current
         let components = calandar.dateComponents([.month], from: startDate.getStringAsDate(), to: endDate)
         guard let monthsPassed = components.month else { return }
