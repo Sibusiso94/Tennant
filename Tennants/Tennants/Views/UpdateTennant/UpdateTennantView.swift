@@ -12,7 +12,7 @@ struct UpdateTennantView: View {
                 UpdateTennantTopCardView(tennant: viewModel.selectedTennant)
                     .padding(.top)
                 
-                CircularProgressView(progress: 0.8)
+                CircularProgressView(progress: viewModel.getPaymentHistoryPercentage())
                     .frame(width: 200, height: 200)
                 
                 // Add done button and tap to dismiss
@@ -51,6 +51,8 @@ struct UpdateTennantView: View {
                 }
                 .buttonHorizontalPadding()
                 .disabled(viewModel.amountAdded == "")
+                
+                Spacer()
             }
             .background {
                 Color("PastelGrey")

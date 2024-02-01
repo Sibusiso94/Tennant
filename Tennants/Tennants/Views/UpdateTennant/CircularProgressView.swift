@@ -1,10 +1,3 @@
-//
-//  CircularProgressView.swift
-//  Tennants
-//
-//  Created by Sibusiso Mbonani on 2024/01/29.
-//
-
 import SwiftUI
 
 struct CircularProgressView: View {
@@ -27,6 +20,9 @@ struct CircularProgressView: View {
                     )
                 )
                 .rotationEffect(.degrees(-90))
+            Text("50%")
+                .font(.title)
+                .bold()
         }
         .padding(.vertical)
     }
