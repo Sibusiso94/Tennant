@@ -50,4 +50,31 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     func addTennant() {
         realmRepository.add(selectedTennant)
     }
+    
+    func getNumberOfMonthsPassed() -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let startDate = dateFormatter.date(from: selectedTennant.startDate) else { return 0 }
+        let endDate = Date.now
+        let calandar = Calendar.current
+        let components = calandar.dateComponents([.month], from: startDate, to: endDate)
+        
+        guard let numberOfMonthsPassed = components.month else { return 0 }
+        
+        return numberOfMonthsPassed
+    }
+    
+    func getPaymentHistoryPercentage() -> Double {
+        let numberOfMonthsPassed = getNumberOfMonthsPassed()
+        let paymentHistoryPercentage = Double(selectedTennant.fullPayments) / Double(numberOfMonthsPassed)
+        let roundedPaymentHistoryPercentage = (round(10 * paymentHistoryPercentage) / 10)
+        return roundedPaymentHistoryPercentage
+    }
+    
+    func getPercentage() -> String {
+        let percentageDouble = getPaymentHistoryPercentage()
+        let percentageString = Int(percentageDouble * 100)
+        return "\(percentageString)%"
+    }
 }

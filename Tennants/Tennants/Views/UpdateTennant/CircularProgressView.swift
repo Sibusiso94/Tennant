@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CircularProgressView: View {
     let progress: Double
+    let percentageString: String
     
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct CircularProgressView: View {
                     )
                 )
                 .rotationEffect(.degrees(-90))
-            Text("50%")
+            Text(percentageString)
                 .font(.title)
                 .bold()
         }
@@ -29,5 +30,5 @@ struct CircularProgressView: View {
 }
 
 #Preview {
-    CircularProgressView(progress: 0.8)
+    CircularProgressView(progress: 0.8, percentageString: "80%")
 }

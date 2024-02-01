@@ -12,7 +12,8 @@ struct UpdateTennantView: View {
                 UpdateTennantTopCardView(tennant: viewModel.selectedTennant)
                     .padding(.top)
                 
-                CircularProgressView(progress: viewModel.getPaymentHistoryPercentage())
+                CircularProgressView(progress: viewModel.getPaymentHistoryPercentage(), 
+                                     percentageString: viewModel.getPercentage())
                     .frame(width: 200, height: 200)
                 
                 // Add done button and tap to dismiss
