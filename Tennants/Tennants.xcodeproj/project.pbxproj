@@ -18,6 +18,8 @@
 		5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734512B6265AE0040A0AA /* TabViewModel.swift */; };
 		5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734552B6269640040A0AA /* TennantLandingView.swift */; };
 		5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47345A2B6377D40040A0AA /* Tennant.swift */; };
+		5C664DF92B6B8436000AE276 /* UpdateTennatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C664DF82B6B8436000AE276 /* UpdateTennatViewModelTests.swift */; };
+		5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C664DFA2B6B86B8000AE276 /* Extension+String.swift */; };
 		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Flat.swift */; };
 		5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */; };
@@ -66,6 +68,8 @@
 		5C4734512B6265AE0040A0AA /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C4734552B6269640040A0AA /* TennantLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantLandingView.swift; sourceTree = "<group>"; };
 		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		5C664DF82B6B8436000AE276 /* UpdateTennatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennatViewModelTests.swift; sourceTree = "<group>"; };
+		5C664DFA2B6B86B8000AE276 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
 		5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				5C4734342B6261C50040A0AA /* TennantsTests.swift */,
+				5C664DF82B6B8436000AE276 /* UpdateTennatViewModelTests.swift */,
 			);
 			path = TennantsTests;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAF48142B68276900CE486B /* HorizontalAlignment.swift */,
+				5C664DFA2B6B86B8000AE276 /* Extension+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
+				5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */,
 				5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */,
@@ -421,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C664DF92B6B8436000AE276 /* UpdateTennatViewModelTests.swift in Sources */,
 				5C4734352B6261C50040A0AA /* TennantsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

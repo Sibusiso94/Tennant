@@ -3,6 +3,7 @@ import SwiftUI
 struct UpdateTennantView: View {
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
+    @State var paymentHistoryPercentage = 0.0
     
     init() { }
     
@@ -12,11 +13,10 @@ struct UpdateTennantView: View {
                 UpdateTennantTopCardView(tennant: viewModel.selectedTennant)
                     .padding(.top)
                 
-                CircularProgressView(progress: viewModel.getPaymentHistoryPercentage(), 
-                                     percentageString: viewModel.getPercentage())
+                CircularProgressView(progress: paymentHistoryPercentage,
+                                     percentageString: viewModel.getPercentage(percentageDouble: paymentHistoryPercentage))
                     .frame(width: 200, height: 200)
                 
-                // Add done button and tap to dismiss
                 TextField(" Amount paid", text: $viewModel.amountAdded)
                     .frame(height: 50)
                     .buttonHorizontalPadding()
@@ -67,6 +67,11 @@ struct UpdateTennantView: View {
                         Image(systemName: "ellipsis")
                     }
                 }
+            }
+            .onAppear {
+                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate)
+                paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
+                                                                                 numberOfFullPayments: viewModel.selectedTennant.fullPayments)
             }
         }
     }

@@ -7,6 +7,7 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     
     @Published var amountAdded: String = ""
     @Published var selectedTennant = Tennant()
+    @Published var numberOfMonthsPassed: Int = 0
     
     init(realmRepository: RealmRepository = RealmRepository()) {
         self.realmRepository = realmRepository
@@ -51,29 +52,21 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
         realmRepository.add(selectedTennant)
     }
     
-    func getNumberOfMonthsPassed() -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let startDate = dateFormatter.date(from: selectedTennant.startDate) else { return 0 }
+    func getNumberOfMonthsPassed(startDate: String) {
         let endDate = Date.now
         let calandar = Calendar.current
-        let components = calandar.dateComponents([.month], from: startDate, to: endDate)
-        
-        guard let numberOfMonthsPassed = components.month else { return 0 }
-        
-        return numberOfMonthsPassed
+        let components = calandar.dateComponents([.month], from: startDate.getStringAsDate(), to: endDate)
+        guard let monthsPassed = components.month else { return }
+        numberOfMonthsPassed = monthsPassed
     }
     
-    func getPaymentHistoryPercentage() -> Double {
-        let numberOfMonthsPassed = getNumberOfMonthsPassed()
-        let paymentHistoryPercentage = Double(selectedTennant.fullPayments) / Double(numberOfMonthsPassed)
+    func getPaymentHistoryPercentage(numberOfMonthsPassed: Int, numberOfFullPayments: Int) -> Double {
+        let paymentHistoryPercentage = Double(numberOfFullPayments) / Double(numberOfMonthsPassed)
         let roundedPaymentHistoryPercentage = (round(10 * paymentHistoryPercentage) / 10)
         return roundedPaymentHistoryPercentage
     }
     
-    func getPercentage() -> String {
-        let percentageDouble = getPaymentHistoryPercentage()
+    func getPercentage(percentageDouble: Double) -> String {
         let percentageString = Int(percentageDouble * 100)
         return "\(percentageString)%"
     }
