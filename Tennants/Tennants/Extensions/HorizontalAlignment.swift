@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct CustomButtonHorizontalAlignment: ViewModifier {
+    var isButton: Bool
+    
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
             .background {
-                Color.white
+                isButton ? Color("DarkPastelBlue") : Color.white
             }
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .padding(.horizontal)
@@ -13,7 +15,7 @@ struct CustomButtonHorizontalAlignment: ViewModifier {
 }
 
 extension View {
-    func buttonHorizontalPadding() -> some View {
-        modifier(CustomButtonHorizontalAlignment())
+    func customHorizontalPadding(isButton: Bool) -> some View {
+        modifier(CustomButtonHorizontalAlignment(isButton: isButton))
     }
 }

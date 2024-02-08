@@ -19,6 +19,14 @@ protocol TennantByMostDebtable {
 protocol TennantRepository: TennantAddable,
                                 TennantUpdatable,
                                 TennantDeletable,
-                                TennantByMostDebtable {
+                                TennantByMostDebtable,
+                                PaymentHistoryCalculatable,
+                                AmountPayableRepository {
     var realmRepository: RealmRepository { get }
+}
+
+protocol PaymentHistoryCalculatable {
+    func getNumberOfMonthsPassed(startDate: String, endDate: Date)
+    func getPaymentHistoryPercentage(numberOfMonthsPassed: Int, numberOfFullPayments: Int) -> Double
+    func getPercentage(percentageDouble: Double) -> String
 }

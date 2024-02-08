@@ -6,7 +6,7 @@ protocol FullAmountPayable {
 }
 
 protocol FullAmountNotPayable {
-    func notPaidInFull(with amount: Int)
+    func notPaidInFull(with amount: Double)
 }
 
 protocol AmountPayableRepository: FullAmountPayable, FullAmountNotPayable { }

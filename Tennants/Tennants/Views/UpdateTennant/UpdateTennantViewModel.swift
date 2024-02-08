@@ -1,9 +1,10 @@
 import Foundation
 import RealmSwift
 
-class UpdateTennantViewModel: ObservableObject, TennantRepository {
+class UpdateTennantViewModel: ObservableObject, TennantRepository, PaymentHistoryCalculatable, AmountPayableRepository {
     var realmRepository: RealmRepository
     var newTennants = [Tennant]()
+    var rentAmount: Int = 1500
     
     @Published var amountAdded: String = ""
     @Published var selectedTennant = Tennant()
@@ -30,6 +31,7 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
                                                             startDate: $0.startDate,
                                                             endDate: $0.endDate,
                                                             fullPayments: $0.fullPayments) })
+        print(newTennants)
     }
     
     func updateTennant() {
@@ -40,7 +42,11 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     }
     
     func deleteTennant() {
-        try? realmRepository.delete(selectedTennant)
+        if let tennatToDelete = newTennants.first(where: { tennant in
+            tennant.id == selectedTennant
+        }) {
+            try? realmRepository.delete(tennatToDelete)
+        }
     }
     
     func getTennantByMostDebt() {
@@ -51,14 +57,25 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     }
     
     func addTennant() {
-        realmRepository.add(selectedTennant)
+//        realmRepository.add(selectedTennant, to: realmRepository.realm)
+        try! realmRepository.update(insertions: [selectedTennant])
     }
     
     func getNumberOfMonthsPassed(startDate: String, endDate: Date) {
         let calandar = Calendar.current
+        #warning("Make sure start date is not ahead of current date")
         let components = calandar.dateComponents([.month], from: startDate.getStringAsDate(), to: endDate)
         guard let monthsPassed = components.month else { return }
         numberOfMonthsPassed = monthsPassed
+    }
+    
+    #warning("Add and create tests")
+    func isAFutureDate(startDate: Date, endDate: Date) -> Bool {
+        if startDate > endDate {
+            return true
+        } else {
+            return false
+        }
     }
     
     func getPaymentHistoryPercentage(numberOfMonthsPassed: Int, numberOfFullPayments: Int) -> Double {
@@ -70,5 +87,13 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository {
     func getPercentage(percentageDouble: Double) -> String {
         let percentageString = Int(percentageDouble * 100)
         return "\(percentageString)%"
+    }
+    
+    func paidInFull() {
+        selectedTennant.fullPayments += 1
+    }
+    
+    func notPaidInFull(with amount: Double) {
+        selectedTennant.amountDue += amount
     }
 }

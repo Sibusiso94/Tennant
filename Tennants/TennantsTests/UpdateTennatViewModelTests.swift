@@ -16,6 +16,7 @@ final class UpdateTennatViewModelTests: XCTestCase {
         XCTAssertEqual(sut.numberOfMonthsPassed, 0) 
     }
 
+    #warning("test for future dates")
     func testGetNumberOfMonthsPassedDidSucceeded() {
         // Given
         let startDate = "2023-04-19"
@@ -56,5 +57,23 @@ final class UpdateTennatViewModelTests: XCTestCase {
         let result = sut.getPaymentHistoryPercentage(numberOfMonthsPassed: numberOfMonthsPassed, numberOfFullPayments: numberOfFullPayments)
         
         XCTAssertNotEqual(result, 0.6)
+    }
+    
+    func testGetPercentageDidSucceeded() {
+        let input = 0.8
+        let expectedResult = "80%"
+        
+        let result = sut.getPercentage(percentageDouble: input)
+        
+        XCTAssertEqual(result, expectedResult)
+    }
+    
+    func testGetPercentageDidFail() {
+        let input = 0.4
+        let expectedResult = "80%"
+        
+        let result = sut.getPercentage(percentageDouble: input)
+        
+        XCTAssertNotEqual(result, expectedResult)
     }
 }

@@ -18,10 +18,7 @@ struct UpdateTennantView: View {
                     .frame(width: 200, height: 200)
                 
                 TextField(" Amount paid", text: $viewModel.amountAdded)
-                    .frame(height: 50)
-                    .buttonHorizontalPadding()
-                    .padding(.top)
-                    .keyboardType(.numberPad)
+                    .numberTextField()
                     .focused($isInputActive)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
@@ -32,7 +29,6 @@ struct UpdateTennantView: View {
                             }
                         }
                     }
-                    .foregroundStyle(Color.black)
                 
                 Spacer()
                 
@@ -42,7 +38,7 @@ struct UpdateTennantView: View {
                     Text("Paid in full")
                         .padding()
                 }
-                .buttonHorizontalPadding()
+                .customHorizontalPadding(isButton: true)
                 
                 Button {
                     
@@ -50,7 +46,7 @@ struct UpdateTennantView: View {
                     Text("Add payment")
                         .padding()
                 }
-                .buttonHorizontalPadding()
+                .customHorizontalPadding(isButton: true)
                 .disabled(viewModel.amountAdded == "")
                 
                 Spacer()

@@ -23,7 +23,7 @@ class CalculateViewViewModel: ObservableObject, AmountPayableRepository {
         //
     }
     
-    func notPaidInFull(with amount: Int) {
+    func notPaidInFull(with amount: Double) {
         //
     }
 }
