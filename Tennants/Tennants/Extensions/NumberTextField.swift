@@ -3,9 +3,9 @@ import SwiftUI
 struct NumberTextField: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .frame(height: 50)
+            .padding()
             .customHorizontalPadding(isButton: false)
-            .padding(.top)
+//            .padding(.top)
             .keyboardType(.numberPad)
             .foregroundStyle(Color.black)
     }
