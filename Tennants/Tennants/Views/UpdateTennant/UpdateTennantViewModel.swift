@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class UpdateTennantViewModel: ObservableObject, TennantRepository, PaymentHistoryCalculatable, AmountPayableRepository {
+class UpdateTennantViewModel: ObservableObject, PaymentHistoryCalculatable, AmountPayableRepository {
     var realmRepository: RealmRepository
     var newTennants = [Tennant]()
     var rentAmount: Int = 1500
@@ -14,51 +14,8 @@ class UpdateTennantViewModel: ObservableObject, TennantRepository, PaymentHistor
     init(realmRepository: RealmRepository = RealmRepository()) {
         self.realmRepository = realmRepository
         self.endDate = Date.now
-        mapTennantsToArray()
-        getTennantByMostDebt()
-    }
-    
-    func mapTennantsToArray() {
-        newTennants = self.realmRepository.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
-                                                            flatNumber: $0.flatNumber,
-                                                            name: $0.name,
-                                                            surname: $0.surname,
-                                                            company: $0.company,
-                                                            position: $0.position,
-                                                            monthlyIncome: $0.monthlyIncome,
-                                                            balance: $0.balance,
-                                                            amountDue: $0.amountDue,
-                                                            startDate: $0.startDate,
-                                                            endDate: $0.endDate,
-                                                            fullPayments: $0.fullPayments) })
-        print(newTennants)
-    }
-    
-    func updateTennant() {
-        let index = newTennants.firstIndex(where: { $0.id == selectedTennant.id}) ?? 0
-        newTennants[index] = selectedTennant
-        
-//        try? realmRepository.update(insertions: newTennants)
-    }
-    
-    func deleteTennant() {
-        if let tennatToDelete = newTennants.first(where: { tennant in
-            tennant.id == selectedTennant
-        }) {
-            try? realmRepository.delete(tennatToDelete)
-        }
-    }
-    
-    func getTennantByMostDebt() {
-        let sortedTennants = realmRepository.tennants.sorted(by: {$0.amountDue > $1.amountDue})
-        if let sortedTennant = sortedTennants.first {
-            selectedTennant = sortedTennant
-        }
-    }
-    
-    func addTennant() {
-//        realmRepository.add(selectedTennant, to: realmRepository.realm)
-        try! realmRepository.update(insertions: [selectedTennant])
+//        mapTennantsToArray()
+//        getTennantByMostDebt()
     }
     
     func getNumberOfMonthsPassed(startDate: String, endDate: Date) {

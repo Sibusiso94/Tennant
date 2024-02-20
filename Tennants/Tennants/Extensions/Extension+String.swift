@@ -8,3 +8,11 @@ extension String {
         return startDate
     }
 }
+
+extension Date {
+    func getDateAsString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: self)
+    }
+}

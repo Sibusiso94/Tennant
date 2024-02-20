@@ -1,27 +1,25 @@
 import Foundation
 
 protocol TennantAddable {
-    func addTennant()
+    func addTennant(selectedTennant: Tennant)
 }
 
 protocol TennantUpdatable {
-    func updateTennant()
+    func updateTennant(newTennants: inout [Tennant], selectedTennant: Tennant)
 }
 
 protocol TennantDeletable {
-    func deleteTennant()
+    func deleteTennant(newTennants: inout [Tennant], selectedTennant: Tennant)
 }
 
 protocol TennantByMostDebtable {
-    func getTennantByMostDebt()
+    func getTennantByMostDebt(selectedTennant: inout Tennant)
 }
 
 protocol TennantRepository: TennantAddable,
                                 TennantUpdatable,
                                 TennantDeletable,
-                                TennantByMostDebtable,
-                                PaymentHistoryCalculatable,
-                                AmountPayableRepository {
+                                TennantByMostDebtable {
     var realmRepository: RealmRepository { get }
 }
 

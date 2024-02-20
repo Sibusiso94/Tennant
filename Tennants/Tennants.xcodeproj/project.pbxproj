@@ -19,8 +19,9 @@
 		5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734552B6269640040A0AA /* TennantLandingView.swift */; };
 		5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47345A2B6377D40040A0AA /* Tennant.swift */; };
 		5C65589E2B762A120057021E /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C65589D2B762A120057021E /* OnboardingManager.swift */; };
-		5C6558A02B76660F0057021E /* AddNewTennanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C65589F2B76660F0057021E /* AddNewTennanView.swift */; };
+		5C6558A02B76660F0057021E /* AddNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C65589F2B76660F0057021E /* AddNewView.swift */; };
 		5C6558A22B7A53620057021E /* TextFieldDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6558A12B7A53620057021E /* TextFieldDoneButton.swift */; };
+		5C6558A42B7AA4620057021E /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6558A32B7AA4620057021E /* LandingViewModel.swift */; };
 		5C664DF92B6B8436000AE276 /* UpdateTennatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C664DF82B6B8436000AE276 /* UpdateTennatViewModelTests.swift */; };
 		5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C664DFA2B6B86B8000AE276 /* Extension+String.swift */; };
 		5C8778582B7104F1008F5CD8 /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8778572B7104F1008F5CD8 /* RealmTests.swift */; };
@@ -42,7 +43,11 @@
 		5CE2CDBF2B73EC86003FF780 /* BackgroundColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDBE2B73EC86003FF780 /* BackgroundColour.swift */; };
 		5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */; };
 		5CE2CDC32B74A8AE003FF780 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDC22B74A8AE003FF780 /* NumberTextField.swift */; };
-		5CE2CDC52B74B43F003FF780 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDC42B74B43F003FF780 /* OnboardingViewModel.swift */; };
+		5CEBD7EB2B8086EE00F20043 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBD7EA2B8086EE00F20043 /* SessionManager.swift */; };
+		5CEBD7ED2B8342AB00F20043 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBD7EC2B8342AB00F20043 /* MainAppView.swift */; };
+		5CFE7F802B7C8A81005E05FD /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFE7F7F2B7C8A81005E05FD /* AddView.swift */; };
+		5CFE7F822B7C8BB8005E05FD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFE7F812B7C8BB8005E05FD /* CardView.swift */; };
+		5CFE7F842B7C8CAA005E05FD /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFE7F832B7C8CAA005E05FD /* DataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +83,9 @@
 		5C4734552B6269640040A0AA /* TennantLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantLandingView.swift; sourceTree = "<group>"; };
 		5C47345A2B6377D40040A0AA /* Tennant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
 		5C65589D2B762A120057021E /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
-		5C65589F2B76660F0057021E /* AddNewTennanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTennanView.swift; sourceTree = "<group>"; };
+		5C65589F2B76660F0057021E /* AddNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewView.swift; sourceTree = "<group>"; };
 		5C6558A12B7A53620057021E /* TextFieldDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDoneButton.swift; sourceTree = "<group>"; };
+		5C6558A32B7AA4620057021E /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
 		5C664DF82B6B8436000AE276 /* UpdateTennatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennatViewModelTests.swift; sourceTree = "<group>"; };
 		5C664DFA2B6B86B8000AE276 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		5C8778572B7104F1008F5CD8 /* RealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
@@ -99,7 +105,11 @@
 		5CE2CDBE2B73EC86003FF780 /* BackgroundColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColour.swift; sourceTree = "<group>"; };
 		5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
 		5CE2CDC22B74A8AE003FF780 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
-		5CE2CDC42B74B43F003FF780 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingViewModel.swift; path = ../../../../../../OnboardingViewModel.swift; sourceTree = "<group>"; };
+		5CEBD7EA2B8086EE00F20043 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		5CEBD7EC2B8342AB00F20043 /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		5CFE7F7F2B7C8A81005E05FD /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		5CFE7F812B7C8BB8005E05FD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		5CFE7F832B7C8CAA005E05FD /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +169,9 @@
 				5C47345C2B6384A90040A0AA /* Interfaces */,
 				5C4734592B6375C30040A0AA /* Models */,
 				5C47344D2B6262880040A0AA /* Views */,
-				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
+				5CEBD7EC2B8342AB00F20043 /* MainAppView.swift */,
 				5C4734252B6261C10040A0AA /* ContentView.swift */,
+				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
 				5C4734272B6261C40040A0AA /* Assets.xcassets */,
 				5C4734292B6261C40040A0AA /* Preview Content */,
 			);
@@ -218,7 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				5C4734552B6269640040A0AA /* TennantLandingView.swift */,
-				5C65589F2B76660F0057021E /* AddNewTennanView.swift */,
+				5C65589F2B76660F0057021E /* AddNewView.swift */,
+				5C6558A32B7AA4620057021E /* LandingViewModel.swift */,
+				5CFE7F7F2B7C8A81005E05FD /* AddView.swift */,
+				5CFE7F812B7C8BB8005E05FD /* CardView.swift */,
 			);
 			path = "Landing View";
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */,
+				5CFE7F832B7C8CAA005E05FD /* DataProvider.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -292,12 +307,28 @@
 		5CE2CDBB2B73EA28003FF780 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				5CE2CDBC2B73EBE1003FF780 /* OnboardingView.swift */,
-				5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */,
-				5CE2CDC42B74B43F003FF780 /* OnboardingViewModel.swift */,
-				5C65589D2B762A120057021E /* OnboardingManager.swift */,
+				5CEBD7EE2B83889D00F20043 /* Views */,
+				5CEBD7EF2B8388D800F20043 /* Managers */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		5CEBD7EE2B83889D00F20043 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5CE2CDBC2B73EBE1003FF780 /* OnboardingView.swift */,
+				5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5CEBD7EF2B8388D800F20043 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5C65589D2B762A120057021E /* OnboardingManager.swift */,
+				5CEBD7EA2B8086EE00F20043 /* SessionManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,19 +468,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CFE7F842B7C8CAA005E05FD /* DataProvider.swift in Sources */,
 				5C6558A22B7A53620057021E /* TextFieldDoneButton.swift in Sources */,
 				5CAF480C2B67F21C00CE486B /* UpdateTennantView.swift in Sources */,
 				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
+				5CFE7F822B7C8BB8005E05FD /* CardView.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
 				5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */,
 				5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */,
-				5C6558A02B76660F0057021E /* AddNewTennanView.swift in Sources */,
+				5C6558A02B76660F0057021E /* AddNewView.swift in Sources */,
 				5CE2CDC32B74A8AE003FF780 /* NumberTextField.swift in Sources */,
+				5CEBD7EB2B8086EE00F20043 /* SessionManager.swift in Sources */,
 				5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */,
+				5CEBD7ED2B8342AB00F20043 /* MainAppView.swift in Sources */,
 				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
 				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
 				5CAF480F2B6826A700CE486B /* UpdateTennantTopCardView.swift in Sources */,
@@ -459,10 +494,11 @@
 				5C65589E2B762A120057021E /* OnboardingManager.swift in Sources */,
 				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
 				5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */,
-				5CE2CDC52B74B43F003FF780 /* OnboardingViewModel.swift in Sources */,
+				5CFE7F802B7C8A81005E05FD /* AddView.swift in Sources */,
 				5CAF48152B68276900CE486B /* HorizontalAlignment.swift in Sources */,
 				5CE2CDBF2B73EC86003FF780 /* BackgroundColour.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,
+				5C6558A42B7AA4620057021E /* LandingViewModel.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

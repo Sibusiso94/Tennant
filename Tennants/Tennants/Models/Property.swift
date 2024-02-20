@@ -6,19 +6,20 @@ class Property: Object, Identifiable {
     @Persisted var isAHome: Bool
     @Persisted var buildingName: String
     @Persisted var buildingAddress: String
-    @Persisted var numberOfUnits: Int
-    @Persisted var numberOfFlatsOccupied: Int
+    @Persisted var numberOfUnits: String
+    @Persisted var numberOfUnitsOccupied: String
     
-    convenience init(isAHome: Bool,
+    convenience init(isAHome: Bool = false,
                      buildingName: String,
                      buildingAddress: String,
-                     numberOfUnits: Int,
-                     numberOfFlatsOccupied: Int) {
+                     numberOfUnits: String,
+                     numberOfUnitsOccupied: String) {
         self.init()
+        self.buildingID = UUID().uuidString
         self.isAHome = isAHome
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
-        self.numberOfFlatsOccupied = numberOfFlatsOccupied
+        self.numberOfUnitsOccupied = numberOfUnitsOccupied
     }
 }

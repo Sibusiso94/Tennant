@@ -67,17 +67,6 @@ class RealmRepository: ObservableObject {
         return Array(realm.objects(type))
     }
     
-//    public func add(_ tennant: Tennant, to realm: Realm) {
-//        do {
-//            try realm.write {
-//                $tennants.append(tennant)
-//                realm.add(tennants, update: .modified)
-//            }
-//        } catch {
-//            print("Failed to add wish list item: \(error)")
-//        }
-//    }
-    
     public func deleteAll(_ objects: [AnyObject]) throws {
         try transaction { realm in
             let deletions = objects.compactMap {
