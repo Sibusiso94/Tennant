@@ -2,20 +2,6 @@ import Foundation
 
 class DataProvider: TennantRepository {
     let realmRepository = RealmRepository()
-    func mapTennantsToArray(newTennants: inout [Tennant]) {
-        newTennants = self.realmRepository.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
-                                                            flatNumber: $0.flatNumber,
-                                                            name: $0.name,
-                                                            surname: $0.surname,
-                                                            company: $0.company,
-                                                            position: $0.position,
-                                                            monthlyIncome: $0.monthlyIncome,
-                                                            balance: $0.balance,
-                                                            amountDue: $0.amountDue,
-                                                            startDate: $0.startDate,
-                                                            endDate: $0.endDate,
-                                                            fullPayments: $0.fullPayments) })
-    }
     
     func updateTennant(newTennants: inout [Tennant], selectedTennant: Tennant) {
         let index = newTennants.firstIndex(where: { $0.id == selectedTennant.id}) ?? 0

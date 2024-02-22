@@ -20,20 +20,25 @@ struct AddView: View {
         ZStack {
             Color("PastelGrey")
             
-            VStack {
+            VStack(spacing: 30) {
                 Spacer()
                 if let title = title {
                     Text(title)
                         .font(.title)
+                        .bold()
                 }
                 
-                Image(systemName: "plus")
+                Image("EmptyViewImage")
                     .resizable()
                     .frame(width: width, height: height)
-                    .foregroundStyle(Color("DarkPastelBlue"))
-                    .onTapGesture {
-                        shouldShowAddProperty = true
-                    }
+                
+                Button {
+                    shouldShowAddProperty = true
+                } label: {
+                    Text("Add Property")
+                        .padding()
+                }
+                .customHorizontalPadding(isButton: true)
                 
                 Spacer()
             }

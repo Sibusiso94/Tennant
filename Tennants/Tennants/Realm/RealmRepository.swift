@@ -13,6 +13,7 @@ fileprivate func getConfiguration(fileName: String) -> Realm.Configuration {
 
 class RealmRepository: ObservableObject {
     private var configuration: Realm.Configuration
+    @ObservedResults(Property.self) var properties
     @ObservedResults(Tennant.self) var tennants
     
     public init() {
@@ -131,6 +132,31 @@ class RealmRepository: ObservableObject {
             print("Transaction error: \(error.localizedDescription)")
             throw error
         }
+    }
+    
+    func mapPropertiesToArray() -> [Property] {
+        return self.properties.map({ Property(buildingID: $0.buildingID,
+                                                              buildingName: $0.buildingName,
+                                                              buildingAddress: $0.buildingAddress,
+                                                              numberOfUnits: $0.numberOfUnits,
+                                                              numberOfUnitsOccupied: $0.numberOfUnitsOccupied,
+                                                              flats: $0.flats) })
+    }
+    
+    func mapTennantsToArray() -> [Tennant] {
+        return self.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
+                                                                  flatNumber: $0.flatNumber,
+                                                                  tennantID: $0.tennantID,
+                                                                  name: $0.name,
+                                                                  surname: $0.surname,
+                                                                  company: $0.company,
+                                                                  position: $0.position,
+                                                                  monthlyIncome: $0.monthlyIncome,
+                                                                  balance: $0.balance,
+                                                                  amountDue: $0.amountDue,
+                                                                  startDate: $0.startDate,
+                                                                  endDate: $0.endDate,
+                                                                  fullPayments: $0.fullPayments) })
     }
 }
 

@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import RealmSwift
 
 enum AddedObject {
@@ -7,14 +8,21 @@ enum AddedObject {
 }
 
 class LandingViewModel: ObservableObject {
-    @ObservedResults(Property.self) var properties
     @Published var newData: NewDataModel = NewDataModel()
+    @Published var properties: [Property] = []
+    @Published var tennants: [Tennant] = []
     @Published var viewTitle: String = ""
     @Published var buttonTitle: String = ""
     
+//    var flats: List<Flat>?
     let realmRepository: RealmRepository
     var newProperty: Property = Property()
     var newTennant: Tennant = Tennant()
+    
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     init(realmRepository: RealmRepository = RealmRepository()) {
         self.realmRepository = realmRepository
@@ -27,27 +35,58 @@ class LandingViewModel: ObservableObject {
         }
     }
     
-    func AddData(newData: NewDataModel) {
+    func addData() {
         if newData.isAProperty {
-            Property(buildingName: newData.name,
-                     buildingAddress: newData.address,
-                     numberOfUnits: newData.numberOfUnits,
-                     numberOfUnitsOccupied: newData.numberOfUnitsOccupied)
+            addNewProperty()
         } else {
-            let date = Date.now
-            Tennant(buildingNumber: newData.buildingNumber,
-                    flatNumber: newData.flatNumber,
-                    name: newData.name,
-                    surname: newData.surname,
-                    company: newData.company,
-                    position: newData.position,
-                    monthlyIncome: Int(newData.monthlyIncome) ?? 0,
-                    balance: 0.0,
-                    amountDue: 0.0, 
-                    startDate: getCurrentDate(date: date),
-                    endDate: getEndDate(date: date),
-                    fullPayments: 0)
+            addNewTennant()
         }
+    }
+    
+    private func addNewProperty() {
+        let buildingID = UUID().uuidString
+        let newPropoerty = Property(buildingID: buildingID,
+                                    buildingName: newData.name,
+                                    buildingAddress: newData.address,
+                                    numberOfUnits: newData.numberOfUnits,
+                                    numberOfUnitsOccupied: newData.numberOfUnitsOccupied)
+        let newPropertyFlats = setUpFlatsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
+        newPropoerty.flats.append(objectsIn: newPropertyFlats)
+        
+//        try! realmRepository.update(insertions: [newPropoerty])
+        properties.append(newPropoerty)
+        print(properties)
+    }
+    
+    private func addNewTennant() {
+        let date = Date.now
+        #warning("Make sure ID is 13 digits")
+        let newTennant = Tennant(buildingNumber: newData.buildingNumber,
+                                flatNumber: newData.flatNumber,
+                                 tennantID: newData.tennantID,
+                                name: newData.name,
+                                surname: newData.surname,
+                                company: newData.company,
+                                position: newData.position,
+                                monthlyIncome: Int(newData.monthlyIncome) ?? 0,
+                                balance: 0.0,
+                                amountDue: 0.0,
+                                startDate: getCurrentDate(date: date),
+                                endDate: getEndDate(date: date),
+                                fullPayments: 0)
+        
+//        try! realmRepository.update(insertions: [newTennant])
+        tennants.append(newTennant)
+        print(tennants)
+    }
+    
+    private func setUpFlatsForNewProperty(numberOfUnits: Int, buildingID: String) -> [Flat] {
+        var flats: [Flat] = []
+        for unit in 0..<numberOfUnits {
+            flats.append(Flat(flatNumber: unit, buildingID: buildingID))
+        }
+        
+        return flats
     }
     
     private func getCurrentDate(date: Date) -> String {

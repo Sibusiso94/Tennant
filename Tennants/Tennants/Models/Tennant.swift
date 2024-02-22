@@ -22,6 +22,7 @@ class Tennant: Object, Identifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var buildingNumber: String
     @Persisted var flatNumber: String
+    @Persisted var tennantID: String
     @Persisted var name: String
     @Persisted var surname: String
     @Persisted var company : String
@@ -36,6 +37,7 @@ class Tennant: Object, Identifiable {
     convenience init(id: String = UUID().uuidString, 
                      buildingNumber: String,
                      flatNumber: String,
+                     tennantID: String,
                      name: String,
                      surname: String,
                      company : String,
@@ -49,6 +51,7 @@ class Tennant: Object, Identifiable {
         self.init()
         self.buildingNumber = buildingNumber
         self.flatNumber = flatNumber
+        self.tennantID = tennantID
         self.name = name
         self.surname = surname
         self.company = company

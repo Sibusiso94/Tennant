@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C2772FC2B86657C0057CC5D /* AddFirstPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FB2B86657C0057CC5D /* AddFirstPropertyView.swift */; };
+		5C2772FE2B8666970057CC5D /* Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FD2B8666970057CC5D /* Flat.swift */; };
+		5C2773002B87618A0057CC5D /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FF2B87618A0057CC5D /* NewDataModel.swift */; };
+		5C2773022B8764810057CC5D /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2773012B8764810057CC5D /* AddFirstPropertyManager.swift */; };
+		5C2773042B87C9370057CC5D /* Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2773032B87C9370057CC5D /* Migrator.swift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
 		5C4734262B6261C10040A0AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734252B6261C10040A0AA /* ContentView.swift */; };
 		5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4734272B6261C40040A0AA /* Assets.xcassets */; };
@@ -68,6 +73,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C2772FB2B86657C0057CC5D /* AddFirstPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyView.swift; sourceTree = "<group>"; };
+		5C2772FD2B8666970057CC5D /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
+		5C2772FF2B87618A0057CC5D /* NewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
+		5C2773012B8764810057CC5D /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
+		5C2773032B87C9370057CC5D /* Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrator.swift; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4734232B6261C00040A0AA /* TennantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsApp.swift; sourceTree = "<group>"; };
 		5C4734252B6261C10040A0AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -242,6 +252,8 @@
 			children = (
 				5C47345A2B6377D40040A0AA /* Tennant.swift */,
 				5CAF47A62B64DEB200CE486B /* Property.swift */,
+				5C2772FD2B8666970057CC5D /* Flat.swift */,
+				5C2772FF2B87618A0057CC5D /* NewDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +272,7 @@
 			children = (
 				5CAF47AA2B64E44F00CE486B /* RealmRepository.swift */,
 				5CFE7F832B7C8CAA005E05FD /* DataProvider.swift */,
+				5C2773032B87C9370057CC5D /* Migrator.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -318,6 +331,7 @@
 			children = (
 				5CE2CDBC2B73EBE1003FF780 /* OnboardingView.swift */,
 				5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */,
+				5C2772FB2B86657C0057CC5D /* AddFirstPropertyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +341,7 @@
 			children = (
 				5C65589D2B762A120057021E /* OnboardingManager.swift */,
 				5CEBD7EA2B8086EE00F20043 /* SessionManager.swift */,
+				5C2773012B8764810057CC5D /* AddFirstPropertyManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -468,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C2773002B87618A0057CC5D /* NewDataModel.swift in Sources */,
 				5CFE7F842B7C8CAA005E05FD /* DataProvider.swift in Sources */,
 				5C6558A22B7A53620057021E /* TextFieldDoneButton.swift in Sources */,
 				5CAF480C2B67F21C00CE486B /* UpdateTennantView.swift in Sources */,
@@ -476,6 +492,7 @@
 				5CFE7F822B7C8BB8005E05FD /* CardView.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
 				5C4734522B6265AE0040A0AA /* TabViewModel.swift in Sources */,
+				5C2773042B87C9370057CC5D /* Migrator.swift in Sources */,
 				5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */,
 				5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
@@ -484,7 +501,9 @@
 				5CE2CDC32B74A8AE003FF780 /* NumberTextField.swift in Sources */,
 				5CEBD7EB2B8086EE00F20043 /* SessionManager.swift in Sources */,
 				5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */,
+				5C2772FC2B86657C0057CC5D /* AddFirstPropertyView.swift in Sources */,
 				5CEBD7ED2B8342AB00F20043 /* MainAppView.swift in Sources */,
+				5C2772FE2B8666970057CC5D /* Flat.swift in Sources */,
 				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
 				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
 				5CAF480F2B6826A700CE486B /* UpdateTennantTopCardView.swift in Sources */,
@@ -494,6 +513,7 @@
 				5C65589E2B762A120057021E /* OnboardingManager.swift in Sources */,
 				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
 				5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */,
+				5C2773022B8764810057CC5D /* AddFirstPropertyManager.swift in Sources */,
 				5CFE7F802B7C8A81005E05FD /* AddView.swift in Sources */,
 				5CAF48152B68276900CE486B /* HorizontalAlignment.swift in Sources */,
 				5CE2CDBF2B73EC86003FF780 /* BackgroundColour.swift in Sources */,

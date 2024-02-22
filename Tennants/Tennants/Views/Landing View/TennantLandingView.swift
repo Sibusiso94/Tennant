@@ -4,11 +4,6 @@ struct TennantLandingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: LandingViewModel
     @State var shouldShowAddProperty: Bool
-    let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
     
     init() {
         _viewModel = StateObject(wrappedValue: LandingViewModel())
@@ -24,7 +19,7 @@ struct TennantLandingView: View {
                 VStack {
                     if viewModel.properties.isEmpty {
                         AddView(shouldShowAddProperty: $shouldShowAddProperty,
-                                title: "Add Prpoerty",
+                                title: "Add your first Property",
                                 width: 250,
                                 height: 250)
                     } else {
@@ -32,7 +27,7 @@ struct TennantLandingView: View {
                             .frame(height: 80)
                     
                         GeometryReader { geometry in
-                            LazyVGrid(columns: columns) {
+                            LazyVGrid(columns: viewModel.columns) {
                                 ForEach(viewModel.properties, id: \.buildingID) { property in
                                     CardView(property: property, geometry: geometry)
                                 }
@@ -52,8 +47,8 @@ struct TennantLandingView: View {
                     }
                 }
                 .sheet(isPresented: $shouldShowAddProperty, content: {
-                    AddNewView(data: $viewModel.newData, isAProperty: false) {
-                        print(viewModel.newData)
+                    AddNewView(data: $viewModel.newData, isAProperty: true) {
+                        viewModel.addData()
 //                        try! viewModel.realmRepository.update(insertions: [viewModel.newProperty])
                         dismiss()
                     }
