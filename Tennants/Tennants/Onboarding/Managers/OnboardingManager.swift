@@ -23,10 +23,10 @@ final class OnboardingManager: ObservableObject {
     func load() {
         items = [
             .init(title: "Welcome, let's get you started", 
-                  image: "First",
+                  image: "image1",
                   subTitle: ""),
             .init(title: "Setting up your properties",
-                  image: "Second",
+                  image: "image2",
                   subTitle: "You'll start by setting up your proprty and then edit the details to set up tennants")
         ]
     }

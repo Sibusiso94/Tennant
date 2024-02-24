@@ -21,21 +21,23 @@ struct TennantLandingView: View {
                         AddView(shouldShowAddProperty: $shouldShowAddProperty,
                                 title: "Add your first Property",
                                 width: 250,
-                                height: 250)
+                                height: 250,
+                                isNoData: viewModel.properties.isEmpty)
                     } else {
                         Spacer()
                             .frame(height: 80)
                     
                         GeometryReader { geometry in
                             LazyVGrid(columns: viewModel.columns) {
-                                ForEach(viewModel.properties, id: \.buildingID) { property in
-                                    CardView(property: property, geometry: geometry)
+                                ForEach(Array(viewModel.properties.enumerated()), id: \.offset) { index, property in
+                                    CardView(property: property, image: Image("image\(index)"), geometry: geometry)
                                 }
                                 
                                 VStack {
                                     AddView(shouldShowAddProperty: $shouldShowAddProperty,
                                             width: 100,
-                                            height: 100)
+                                            height: 100,
+                                            isNoData: viewModel.properties.isEmpty)
                                 }
                                 .frame(maxWidth: .infinity)
                                 .frame(height: geometry.size.height / 2.5)
@@ -50,7 +52,6 @@ struct TennantLandingView: View {
                     AddNewView(data: $viewModel.newData, isAProperty: true) {
                         viewModel.addData()
 //                        try! viewModel.realmRepository.update(insertions: [viewModel.newProperty])
-                        dismiss()
                     }
                 })
             }

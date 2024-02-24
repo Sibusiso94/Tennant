@@ -34,43 +34,43 @@ struct AddNewView: View {
                         TextField("Address", text: $data.address)
                             .padding()
                             .customHorizontalPadding(isButton: false)
-                            .focused($isInputActive)
-                            .toolbar {
-                                ToolbarItemGroup(placement: .keyboard) {
-                                    Spacer()
-                                    
-                                    Button("Done") {
-                                        isInputActive = false
-                                    }
-                                }
-                            }
+//                            .focused($isInputActive)
+//                            .toolbar {
+//                                ToolbarItemGroup(placement: .keyboard) {
+//                                    Spacer()
+//                                    
+//                                    Button("Done") {
+//                                        isInputActive = false
+//                                    }
+//                                }
+//                            }
                         
                         if isAProperty {
                             TextField("Number of Units", text: $data.numberOfUnits)
                                 .numberTextField()
                                 .focused($isInputActive)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
-                                        
-                                        Button("Done") {
-                                            isInputActive = false
-                                        }
-                                    }
-                                }
+//                                .toolbar {
+//                                    ToolbarItemGroup(placement: .keyboard) {
+//                                        Spacer()
+//                                        
+//                                        Button("Done") {
+//                                            isInputActive = false
+//                                        }
+//                                    }
+//                                }
                             
                             TextField("Number of Units Occupied", text: $data.numberOfUnitsOccupied)
                                 .numberTextField()
                                 .focused($isInputActive)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
-                                        
-                                        Button("Done") {
-                                            isInputActive = false
-                                        }
-                                    }
-                                }
+//                                .toolbar {
+//                                    ToolbarItemGroup(placement: .keyboard) {
+//                                        Spacer()
+//                                        
+//                                        Button("Done") {
+//                                            isInputActive = false
+//                                        }
+//                                    }
+//                                }
                         } else {
                             HStack(spacing: 0) {
                                 CustomTextField(text: $data.buildingNumber, placeHolderText: "Building Number")
@@ -86,6 +86,7 @@ struct AddNewView: View {
                         Button {
                             data.isAProperty = isAProperty
                             action()
+                            dismiss()
                         } label: {
                             Text(isAProperty ? "Add property" : "Add Tennant")
                                 .padding()

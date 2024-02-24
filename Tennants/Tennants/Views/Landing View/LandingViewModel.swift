@@ -13,8 +13,7 @@ class LandingViewModel: ObservableObject {
     @Published var tennants: [Tennant] = []
     @Published var viewTitle: String = ""
     @Published var buttonTitle: String = ""
-    
-//    var flats: List<Flat>?
+
     let realmRepository: RealmRepository
     var newProperty: Property = Property()
     var newTennant: Tennant = Tennant()
@@ -44,6 +43,7 @@ class LandingViewModel: ObservableObject {
     }
     
     private func addNewProperty() {
+        #warning("Check if total flats is not less than number occupied")
         let buildingID = UUID().uuidString
         let newPropoerty = Property(buildingID: buildingID,
                                     buildingName: newData.name,
@@ -96,5 +96,9 @@ class LandingViewModel: ObservableObject {
     private func getEndDate(date: Date) -> String {
         let dateInOneYear = Calendar.current.date(byAdding: .year, value: 1, to: date)
         return dateInOneYear?.getDateAsString() ?? date.getDateAsString()
+    }
+    
+    private func clearData() {
+        
     }
 }
