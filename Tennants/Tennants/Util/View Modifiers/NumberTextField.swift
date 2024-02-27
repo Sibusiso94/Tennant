@@ -5,7 +5,6 @@ struct NumberTextField: ViewModifier {
         content
             .padding()
             .customHorizontalPadding(isButton: false)
-//            .padding(.top)
             .keyboardType(.numberPad)
             .foregroundStyle(Color.black)
     }

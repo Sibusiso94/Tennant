@@ -14,22 +14,22 @@ struct AddFirstPropertyView: View {
             Color("PastelGrey")
                 .ignoresSafeArea()
             
-            TabView(selection: $manager.active) {
-                AddNewView(data: $landingViewModel.newData,
-                           isAProperty: true,
-                           isOnboarding: true,
-                           action: manager.next)
-                .tag(AddFirstPropertyManager.Screen.firstProperty)
-                
-                AddNewView(data: $landingViewModel.newData,
-                           isAProperty: false,
-                           isOnboarding: true) {
-                    landingViewModel.addData()
-                }
-                           .tag(AddFirstPropertyManager.Screen.firstTennant)
-            }
-            .animation(.easeInOut, value: manager.active)
-            .tabViewStyle(.page(indexDisplayMode: .never))
+//            TabView(selection: $manager.active) {
+//                AddNewView(data: $landingViewModel.newData,
+//                           isAProperty: true,
+//                           isOnboarding: true,
+//                           action: manager.next)
+//                .tag(AddFirstPropertyManager.Screen.firstProperty)
+//                
+//                AddNewView(data: $landingViewModel.newData,
+//                           isAProperty: false,
+//                           isOnboarding: true) {
+//                    landingViewModel.addData()
+//                }
+//                           .tag(AddFirstPropertyManager.Screen.firstTennant)
+//            }
+//            .animation(.easeInOut, value: manager.active)
+//            .tabViewStyle(.page(indexDisplayMode: .never))
         }
     }
 }

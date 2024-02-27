@@ -42,8 +42,12 @@ class UpdateTennantViewModel: ObservableObject, PaymentHistoryCalculatable, Amou
     }
     
     func getPercentage(percentageDouble: Double) -> String {
-        let percentageString = Int(percentageDouble * 100)
-        return "\(percentageString)%"
+        if percentageDouble == 0.0 {
+            let percentageString = Int(percentageDouble * 100)
+            return "\(percentageString)%"
+        } else {
+            return "0%"
+        }
     }
     
     func paidInFull() {

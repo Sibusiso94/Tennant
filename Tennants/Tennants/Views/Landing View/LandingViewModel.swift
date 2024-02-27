@@ -2,9 +2,18 @@ import Foundation
 import SwiftUI
 import RealmSwift
 
-enum AddedObject {
-    case property
-    case tennant
+enum Field: Int, Hashable {
+    case name
+    case address
+}
+
+enum TennantField: Int, Hashable {
+    case buildingNumber
+    case flatNumber
+    case tennantID
+    case company
+    case position
+    case monthlyIncome
 }
 
 class LandingViewModel: ObservableObject {
@@ -13,6 +22,8 @@ class LandingViewModel: ObservableObject {
     @Published var tennants: [Tennant] = []
     @Published var viewTitle: String = ""
     @Published var buttonTitle: String = ""
+    @Published var toastMessage: String = ""
+    @Published var numberOfUnitsOccupiedIsHigherThanUnits: Bool = false
 
     let realmRepository: RealmRepository
     var newProperty: Property = Property()
@@ -42,8 +53,11 @@ class LandingViewModel: ObservableObject {
         }
     }
     
+    func clearData() {
+        newData = NewDataModel()
+    }
+    
     private func addNewProperty() {
-        #warning("Check if total flats is not less than number occupied")
         let buildingID = UUID().uuidString
         let newPropoerty = Property(buildingID: buildingID,
                                     buildingName: newData.name,
@@ -96,9 +110,5 @@ class LandingViewModel: ObservableObject {
     private func getEndDate(date: Date) -> String {
         let dateInOneYear = Calendar.current.date(byAdding: .year, value: 1, to: date)
         return dateInOneYear?.getDateAsString() ?? date.getDateAsString()
-    }
-    
-    private func clearData() {
-        
     }
 }

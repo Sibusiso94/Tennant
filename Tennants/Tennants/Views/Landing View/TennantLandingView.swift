@@ -51,7 +51,7 @@ struct TennantLandingView: View {
                 .sheet(isPresented: $shouldShowAddProperty, content: {
                     AddNewView(data: $viewModel.newData, isAProperty: true) {
                         viewModel.addData()
-//                        try! viewModel.realmRepository.update(insertions: [viewModel.newProperty])
+                        viewModel.clearData()
                     }
                 })
             }
