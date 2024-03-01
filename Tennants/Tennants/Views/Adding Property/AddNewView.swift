@@ -55,6 +55,7 @@ struct AddNewView: View {
                                 if !validate() {
                                     showErrorMessage = true
                                 } else {
+                                    data.isAProperty = true
                                     action()
                                     showTennantView = true
                                 }
@@ -76,7 +77,7 @@ struct AddNewView: View {
                             }
                         }
                         .navigationDestination(isPresented: $showTennantView) {
-                            AddTenantView(data: $data, path: $path) {
+                            AddTenantView(data: $data, path: path) {
                                 action()
                             }
                         }

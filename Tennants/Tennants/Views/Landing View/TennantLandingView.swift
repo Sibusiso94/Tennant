@@ -50,24 +50,18 @@ struct TennantLandingView: View {
                         }
                     }
                 }
-//                .navigationDestination(for: NewDataModel.self) { data in
-//                    AddNewView(data: $viewModel.newData) {
-//                        viewModel.addData()
-//                        viewModel.clearData()
-//                    }
-//                }
-//                .navigationDestination(for: NewDataModel.self) { data in
-//                    AddTenantView(data: $data) {
-//                        action()
-//                    }
-//                }
-                .sheet(isPresented: $shouldShowAddProperty, content: {
+                .navigationDestination(isPresented: $shouldShowAddProperty) { 
                     AddNewView(data: $viewModel.newData) {
                         viewModel.addData()
-                        print(viewModel.newData)
-                        viewModel.clearData()
                     }
-                })
+                }
+//                .sheet(isPresented: $shouldShowAddProperty, content: {
+//                    AddNewView(data: $viewModel.newData) {
+//                        viewModel.addData()
+//                        print(viewModel.newData)
+//                        viewModel.clearData()
+//                    }
+//                })
             }
         }
     }

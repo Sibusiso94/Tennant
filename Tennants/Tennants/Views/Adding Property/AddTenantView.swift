@@ -6,16 +6,13 @@ struct AddTenantView: View {
     
     @Environment(\.dismiss) var dismiss
     @Binding var data: NewDataModel
-    @Binding var path: NavigationPath
     @State var showErrorMessage: Bool
     
     var action: () -> Void
     
     init(data: Binding<NewDataModel>,
-         path: Binding<NavigationPath>,
          action: @escaping () -> Void) {
         self._data = data
-        self._path = path
         self.action = action
         _showErrorMessage = State(initialValue: false)
     }
@@ -77,8 +74,8 @@ struct AddTenantView: View {
                                 if !validate() {
                                     showErrorMessage = true
                                 } else {
+                                    data.isAProperty = false
                                     action()
-                                    dismiss()
                                 }
                             } label: {
                                 Text("Add another Tenant")
@@ -89,20 +86,18 @@ struct AddTenantView: View {
                             Spacer()
                             
                         }
-                        .navigationTitle("Add a Tenant")
+                        .navigationTitle("Add Tenant")
                         .navigationBarBackButtonHidden(true)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button("Cancel") {
-//                                    dismiss()
-                                    path = NavigationPath()
+                                    dismiss()
                                 }
                             }
                             
                             ToolbarItem(placement: .topBarTrailing) {
                                 Button("Done") {
-//                                    dismiss()
-                                    path = NavigationPath()
+                                    dismiss()
                                 }
                             }
                         }
@@ -115,6 +110,6 @@ struct AddTenantView: View {
 }
 
 #Preview {
-    AddTenantView(data: .constant(NewDataModel()), path: .constant(NavigationPath()), action: {})
+    AddTenantView(data: .constant(NewDataModel()), action: {})
 }
 

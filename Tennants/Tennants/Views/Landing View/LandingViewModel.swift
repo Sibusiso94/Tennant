@@ -34,6 +34,7 @@ class LandingViewModel: ObservableObject {
 
     let realmRepository: RealmRepository
     var newProperty: Property = Property()
+    var newPropertyFlats: [Flat] = []
     var newTennant: Tennant = Tennant()
     
     let columns: [GridItem] = [
@@ -71,12 +72,12 @@ class LandingViewModel: ObservableObject {
                                     buildingAddress: newData.address,
                                     numberOfUnits: newData.numberOfUnits,
                                     numberOfUnitsOccupied: newData.numberOfUnitsOccupied)
-        let newPropertyFlats = setUpFlatsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
+        newPropertyFlats = setUpFlatsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
         newPropoerty.flats.append(objectsIn: newPropertyFlats)
         
 //        try! realmRepository.update(insertions: [newPropoerty])
         properties.append(newPropoerty)
-        print(properties)
+        clearData()
     }
     
     private func addNewTennant() {
@@ -98,7 +99,12 @@ class LandingViewModel: ObservableObject {
         
 //        try! realmRepository.update(insertions: [newTennant])
         tennants.append(newTennant)
-        print(tennants)
+        clearData()
+    }
+    
+    func addNewTenantsToPropertyUnits() {
+        newPropertyFlats
+        tennants
     }
     
     private func setUpFlatsForNewProperty(numberOfUnits: Int, buildingID: String) -> [Flat] {
