@@ -34,6 +34,10 @@
 		5C6E4FD42B8CC40C00D77824 /* ValidationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FD32B8CC40C00D77824 /* ValidationModifier.swift */; };
 		5C6E4FD62B8CC4C500D77824 /* Extension+Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FD52B8CC4C500D77824 /* Extension+Field.swift */; };
 		5C6E4FDB2B8CC92200D77824 /* TextFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FDA2B8CC92200D77824 /* TextFormView.swift */; };
+		5C6E4FDE2B8E0D6000D77824 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FDD2B8E0D6000D77824 /* CustomTextField.swift */; };
+		5C6E4FE12B8E0DBA00D77824 /* CustomValidatedNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */; };
+		5C6E4FE32B8E0E5800D77824 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */; };
+		5C6E4FE62B8F08CD00D77824 /* AddTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */; };
 		5C8778582B7104F1008F5CD8 /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8778572B7104F1008F5CD8 /* RealmTests.swift */; };
 		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Property.swift */; };
@@ -108,6 +112,10 @@
 		5C6E4FD32B8CC40C00D77824 /* ValidationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationModifier.swift; sourceTree = "<group>"; };
 		5C6E4FD52B8CC4C500D77824 /* Extension+Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Field.swift"; sourceTree = "<group>"; };
 		5C6E4FDA2B8CC92200D77824 /* TextFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormView.swift; sourceTree = "<group>"; };
+		5C6E4FDD2B8E0D6000D77824 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomValidatedNumberField.swift; sourceTree = "<group>"; };
+		5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantView.swift; sourceTree = "<group>"; };
 		5C8778572B7104F1008F5CD8 /* RealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
 		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -228,8 +236,10 @@
 		5C47344D2B6262880040A0AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C6E4FDC2B8E0D4300D77824 /* Custom Views */,
 				5C4734502B6265860040A0AA /* Tab View */,
 				5C4734542B6269310040A0AA /* Landing View */,
+				5C6E4FE42B8E0F3F00D77824 /* Adding Property */,
 				5CAF48002B67A9B200CE486B /* CalculateView */,
 				5CAF480D2B68263100CE486B /* UpdateTennant */,
 			);
@@ -249,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				5C4734552B6269640040A0AA /* TennantLandingView.swift */,
-				5C65589F2B76660F0057021E /* AddNewView.swift */,
 				5C6558A32B7AA4620057021E /* LandingViewModel.swift */,
 				5CFE7F7F2B7C8A81005E05FD /* AddView.swift */,
 				5CFE7F812B7C8BB8005E05FD /* CardView.swift */,
@@ -306,6 +315,25 @@
 				5CAF48102B6826D900CE486B /* Extensions */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		5C6E4FDC2B8E0D4300D77824 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C6E4FDD2B8E0D6000D77824 /* CustomTextField.swift */,
+				5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */,
+				5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		5C6E4FE42B8E0F3F00D77824 /* Adding Property */ = {
+			isa = PBXGroup;
+			children = (
+				5C65589F2B76660F0057021E /* AddNewView.swift */,
+				5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */,
+			);
+			path = "Adding Property";
 			sourceTree = "<group>";
 		};
 		5CAF47A92B64E43200CE486B /* Realm */ = {
@@ -528,6 +556,8 @@
 				5C6558A22B7A53620057021E /* TextFieldDoneButton.swift in Sources */,
 				5CAF480C2B67F21C00CE486B /* UpdateTennantView.swift in Sources */,
 				5C47345B2B6377D40040A0AA /* Tennant.swift in Sources */,
+				5C6E4FE62B8F08CD00D77824 /* AddTenantView.swift in Sources */,
+				5C6E4FE12B8E0DBA00D77824 /* CustomValidatedNumberField.swift in Sources */,
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
 				5CFE7F822B7C8BB8005E05FD /* CardView.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
@@ -538,9 +568,11 @@
 				5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */,
+				5C6E4FDE2B8E0D6000D77824 /* CustomTextField.swift in Sources */,
 				5C6558A02B76660F0057021E /* AddNewView.swift in Sources */,
 				5CE2CDC32B74A8AE003FF780 /* NumberTextField.swift in Sources */,
 				5CEBD7EB2B8086EE00F20043 /* SessionManager.swift in Sources */,
+				5C6E4FE32B8E0E5800D77824 /* ErrorMessageView.swift in Sources */,
 				5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */,
 				5C2772FC2B86657C0057CC5D /* AddFirstPropertyView.swift in Sources */,
 				5C6E4FD62B8CC4C500D77824 /* Extension+Field.swift in Sources */,

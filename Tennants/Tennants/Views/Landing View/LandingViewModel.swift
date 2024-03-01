@@ -8,12 +8,19 @@ enum Field: Int, Hashable {
 }
 
 enum TennantField: Int, Hashable {
+    case name
+    case address
     case buildingNumber
     case flatNumber
     case tennantID
     case company
     case position
     case monthlyIncome
+}
+
+enum ErrorMessage: String, Hashable {
+    case numberOfUnitsError = "The number of flats occupied cannot exceed the number of units."
+    case tenantIDError = "Invalid ID number"
 }
 
 class LandingViewModel: ObservableObject {

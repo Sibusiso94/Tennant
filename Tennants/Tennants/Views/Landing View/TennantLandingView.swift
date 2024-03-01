@@ -4,14 +4,16 @@ struct TennantLandingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: LandingViewModel
     @State var shouldShowAddProperty: Bool
+    @State var path: NavigationPath
     
     init() {
         _viewModel = StateObject(wrappedValue: LandingViewModel())
         _shouldShowAddProperty = State(initialValue: false)
+        _path = State(initialValue: NavigationPath())
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack {
                 Color("PastelGrey")
                     .ignoresSafeArea()
@@ -48,9 +50,21 @@ struct TennantLandingView: View {
                         }
                     }
                 }
+//                .navigationDestination(for: NewDataModel.self) { data in
+//                    AddNewView(data: $viewModel.newData) {
+//                        viewModel.addData()
+//                        viewModel.clearData()
+//                    }
+//                }
+//                .navigationDestination(for: NewDataModel.self) { data in
+//                    AddTenantView(data: $data) {
+//                        action()
+//                    }
+//                }
                 .sheet(isPresented: $shouldShowAddProperty, content: {
-                    AddNewView(data: $viewModel.newData, isAProperty: true) {
+                    AddNewView(data: $viewModel.newData) {
                         viewModel.addData()
+                        print(viewModel.newData)
                         viewModel.clearData()
                     }
                 })
