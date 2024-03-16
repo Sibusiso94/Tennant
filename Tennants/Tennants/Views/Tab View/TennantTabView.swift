@@ -8,7 +8,7 @@ struct TennantTabView: View {
             TennantLandingView()
                 .tabItem {
                     Image(systemName: "house.fill")
-                    Text("Flats")
+                    Text("Units")
                 }
                 .tag(TennantTabItem.home)
             

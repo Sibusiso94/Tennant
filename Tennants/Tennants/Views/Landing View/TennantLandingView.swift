@@ -4,11 +4,15 @@ struct TennantLandingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: LandingViewModel
     @State var shouldShowAddProperty: Bool
+    @State var shouldAddPropertyOptions: Bool
+    @State var showTennantView: Bool
     @State var path: NavigationPath
     
     init() {
         _viewModel = StateObject(wrappedValue: LandingViewModel())
         _shouldShowAddProperty = State(initialValue: false)
+        _shouldAddPropertyOptions = State(initialValue: false)
+        _showTennantView = State(initialValue: false)
         _path = State(initialValue: NavigationPath())
     }
     
@@ -20,7 +24,7 @@ struct TennantLandingView: View {
                 
                 VStack {
                     if viewModel.properties.isEmpty {
-                        AddView(shouldShowAddProperty: $shouldShowAddProperty,
+                        AddView(shouldShowAddProperty: $shouldAddPropertyOptions,
                                 title: "Add your first Property",
                                 width: 250,
                                 height: 250,
@@ -36,7 +40,7 @@ struct TennantLandingView: View {
                                 }
                                 
                                 VStack {
-                                    AddView(shouldShowAddProperty: $shouldShowAddProperty,
+                                    AddView(shouldShowAddProperty: $shouldAddPropertyOptions,
                                             width: 100,
                                             height: 100,
                                             isNoData: viewModel.properties.isEmpty)
@@ -50,18 +54,24 @@ struct TennantLandingView: View {
                         }
                     }
                 }
-                .navigationDestination(isPresented: $shouldShowAddProperty) { 
-                    AddNewView(data: $viewModel.newData) {
+                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
+                    PropertyOptionsView(propertyType: $viewModel.propertyType) {
+                        shouldShowAddProperty = true
+                    }
+                }
+                .navigationDestination(isPresented: $shouldShowAddProperty) {
+                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
+                        viewModel.newData.isAProperty = true
+                        viewModel.addData()
+                        showTennantView = true
+                    }
+                }
+                .navigationDestination(isPresented: $showTennantView) {
+                    AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {
+                        viewModel.newData.isAProperty = false
                         viewModel.addData()
                     }
                 }
-//                .sheet(isPresented: $shouldShowAddProperty, content: {
-//                    AddNewView(data: $viewModel.newData) {
-//                        viewModel.addData()
-//                        print(viewModel.newData)
-//                        viewModel.clearData()
-//                    }
-//                })
             }
         }
     }

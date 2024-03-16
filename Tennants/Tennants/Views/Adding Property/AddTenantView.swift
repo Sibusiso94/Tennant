@@ -3,18 +3,27 @@ import SwiftUI
 struct AddTenantView: View {
     @FocusState private var isInputActive: Bool
     @FocusState private var focusedTennantField: TennantField?
-    
     @Environment(\.dismiss) var dismiss
+    
     @Binding var data: NewDataModel
     @State var showErrorMessage: Bool
+    @State var selectedProperty: String
+    @State var selectedUnit: String
     
+    var menuItemModel: [MenuItemModel]
     var action: () -> Void
     
     init(data: Binding<NewDataModel>,
+         selectedProperty: String = "",
+         selectedUnit: String = "",
+         menuItemModel: [MenuItemModel] = [],
          action: @escaping () -> Void) {
         self._data = data
+        self.menuItemModel = menuItemModel
         self.action = action
         _showErrorMessage = State(initialValue: false)
+        _selectedProperty = State(initialValue: selectedProperty)
+        _selectedUnit = State(initialValue: selectedUnit)
     }
     
     var body: some View {
@@ -34,14 +43,9 @@ struct AddTenantView: View {
                                 .focused($focusedTennantField, equals: .address)
                                 .onSubmit { self.focusNextField($focusedTennantField) }
                             
-                            HStack(spacing: 0) {
-                                CustomTextField(text: $data.buildingNumber, placeHolderText: "Building Number")
-                                CustomTextField(text: $data.flatNumber, placeHolderText: "Flat Number")
-                            }
-                            
                             CustomValidatedNumberField(text: $data.tennantID,
                                                        placeHolderText: "ID Number",
-                                                       numberOfUnits: data.numberOfUnits, isProperty: false)
+                                                       isProperty: false)
                             .focused($focusedTennantField, equals: .tennantID)
                             .onSubmit {
                                 if !validate() {
@@ -66,15 +70,37 @@ struct AddTenantView: View {
                                 .focused($focusedTennantField, equals: .position)
                                 .onSubmit { self.focusNextField($focusedTennantField) }
                             
-                            CustomTextField(text: $data.monthlyIncome, placeHolderText: "Monthly Income")
-                                .focused($focusedTennantField, equals: .monthlyIncome)
-                                .onSubmit { self.focusNextField($focusedTennantField) }
+//                            CustomTextField(text: $data.monthlyIncome, placeHolderText: "Monthly Income")
+//                                .focused($focusedTennantField, equals: .monthlyIncome)
+//                                .onSubmit { self.focusNextField($focusedTennantField) }
+                            
+                            HStack(spacing: 0) {
+                                Text("\(selectedProperty)")
+                                
+                                CustomMenu(selectedItem: $selectedUnit, items: menuItemModel) { id in
+                                    data.unitID = selectedProperty
+                                }
+                                VStack {
+                                    Menu(menuItemModel.first?.name ?? "") {
+                                        ForEach(menuItemModel, id: \.id) { item in
+                                            Button {
+                                                data.unitID = selectedProperty
+                                            } label: {
+                                                Text("\(item.name)")
+                                            }
+//                                            .customHorizontalPadding(isButton: true)
+                                        }
+                                    }
+                                    .padding()
+//                                    .customHorizontalPadding(isButton: true)
+                                }
+                            }
+                            .padding()
                             
                             Button {
                                 if !validate() {
                                     showErrorMessage = true
                                 } else {
-                                    data.isAProperty = false
                                     action()
                                 }
                             } label: {
@@ -107,9 +133,5 @@ struct AddTenantView: View {
             .foregroundStyle(.black)
         }
     }
-}
-
-#Preview {
-    AddTenantView(data: .constant(NewDataModel()), action: {})
 }
 

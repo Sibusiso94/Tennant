@@ -9,7 +9,7 @@ struct NewDataModel: Hashable {
     var numberOfUnits: String
     var numberOfUnitsOccupied: String
     var buildingNumber: String
-    var flatNumber: String
+    var unitID: String
     var company: String
     var position: String
     var monthlyIncome: String
@@ -22,7 +22,7 @@ struct NewDataModel: Hashable {
          numberOfUnits: String = "",
          numberOfUnitsOccupied: String = "",
          buildingNumber: String = "",
-         flatNumber: String = "",
+         unitID: String = "",
          company: String = "",
          position: String = "",
          monthlyIncome: String = "") {
@@ -34,7 +34,7 @@ struct NewDataModel: Hashable {
         self.numberOfUnits = numberOfUnits
         self.numberOfUnitsOccupied = numberOfUnitsOccupied
         self.buildingNumber = buildingNumber
-        self.flatNumber = flatNumber
+        self.unitID = unitID
         self.company = company
         self.position = position
         self.monthlyIncome = monthlyIncome

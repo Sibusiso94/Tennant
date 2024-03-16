@@ -21,10 +21,11 @@ class AllTennants: Object, Identifiable {
 class Tennant: Object, Identifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var buildingNumber: String
-    @Persisted var flatNumber: String
+    @Persisted var unitID: String
     @Persisted var tennantID: String
     @Persisted var name: String
     @Persisted var surname: String
+    @Persisted var currentAddress: String
     @Persisted var company : String
     @Persisted var position: String
     @Persisted var monthlyIncome: Int
@@ -36,10 +37,11 @@ class Tennant: Object, Identifiable {
     
     convenience init(id: String = UUID().uuidString, 
                      buildingNumber: String,
-                     flatNumber: String,
+                     unitID: String,
                      tennantID: String,
                      name: String,
                      surname: String,
+                     currentAddress: String,
                      company : String,
                      position: String,
                      monthlyIncome: Int,
@@ -50,10 +52,11 @@ class Tennant: Object, Identifiable {
                      fullPayments: Int) {
         self.init()
         self.buildingNumber = buildingNumber
-        self.flatNumber = flatNumber
+        self.unitID = unitID
         self.tennantID = tennantID
         self.name = name
         self.surname = surname
+        self.currentAddress = currentAddress
         self.company = company
         self.position = position
         self.monthlyIncome = monthlyIncome

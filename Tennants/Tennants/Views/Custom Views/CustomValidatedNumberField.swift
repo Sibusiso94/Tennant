@@ -6,6 +6,16 @@ struct CustomValidatedNumberField: View {
     var numberOfUnits: String
     var isProperty: Bool
     
+    init(text: Binding<String>, 
+         placeHolderText: String,
+         numberOfUnits: String = "",
+         isProperty: Bool) {
+        self._text = text
+        self.placeHolderText = placeHolderText
+        self.numberOfUnits = numberOfUnits
+        self.isProperty = isProperty
+    }
+    
     var body: some View {
         TextField(placeHolderText, text: $text)
             .validate({

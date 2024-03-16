@@ -11,8 +11,6 @@ extension String {
 
 extension Date {
     func getDateAsString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: self)
+        return self.formatted(date: .numeric, time: .omitted)
     }
 }

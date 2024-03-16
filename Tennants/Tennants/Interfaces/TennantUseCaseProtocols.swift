@@ -28,3 +28,14 @@ protocol PaymentHistoryCalculatable {
     func getPaymentHistoryPercentage(numberOfMonthsPassed: Int, numberOfFullPayments: Int) -> Double
     func getPercentage(percentageDouble: Double) -> String
 }
+
+enum TennantField: Int, Hashable {
+    case name
+    case address
+    case buildingNumber
+    case UnitNumber
+    case tennantID
+    case company
+    case position
+    case monthlyIncome
+}

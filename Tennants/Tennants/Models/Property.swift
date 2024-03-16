@@ -8,7 +8,7 @@ class Property: Object, Identifiable {
     @Persisted var buildingAddress: String
     @Persisted var numberOfUnits: String
     @Persisted var numberOfUnitsOccupied: String
-    @Persisted var flats: List<Flat>
+    @Persisted var units: List<String>
     
     convenience init(buildingID: String,
                      isAHome: Bool = false,
@@ -16,7 +16,7 @@ class Property: Object, Identifiable {
                      buildingAddress: String,
                      numberOfUnits: String,
                      numberOfUnitsOccupied: String,
-                     flats: List<Flat> = List<Flat>()) {
+                     units: List<String> = List<String>()) {
         self.init()
         self.buildingID = UUID().uuidString
         self.isAHome = isAHome
@@ -24,7 +24,7 @@ class Property: Object, Identifiable {
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
         self.numberOfUnitsOccupied = numberOfUnitsOccupied
-        self.flats = flats
+        self.units = units
     }
     
     override class func primaryKey() -> String? {

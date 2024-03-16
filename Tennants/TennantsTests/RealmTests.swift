@@ -27,7 +27,7 @@ final class RealmTests: XCTestCase {
 
 //    func testExample() throws {
 //        sut.add(Tennant(buildingNumber: "13130",
-//                        flatNumber: "3", name: "Wolbesto", surname: "Polesto", company: "Beresto", position: "Manager", monthlyIncome: 7000, balance: -290, amountDue: 290, startDate: "2024-09-12", endDate: "2025-10-13", fullPayments: 2), to: realm)
+//                        UnitNumber: "3", name: "Wolbesto", surname: "Polesto", company: "Beresto", position: "Manager", monthlyIncome: 7000, balance: -290, amountDue: 290, startDate: "2024-09-12", endDate: "2025-10-13", fullPayments: 2), to: realm)
 //        
 //        XCTAssertEqual(realm.objects(Tennant.self).first!.name, "Wolbesto")
 //    }

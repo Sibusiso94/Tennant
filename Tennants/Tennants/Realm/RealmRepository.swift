@@ -140,23 +140,24 @@ class RealmRepository: ObservableObject {
                                                               buildingAddress: $0.buildingAddress,
                                                               numberOfUnits: $0.numberOfUnits,
                                                               numberOfUnitsOccupied: $0.numberOfUnitsOccupied,
-                                                              flats: $0.flats) })
+                                                              units: $0.units) })
     }
     
     func mapTennantsToArray() -> [Tennant] {
         return self.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
-                                                                  flatNumber: $0.flatNumber,
-                                                                  tennantID: $0.tennantID,
-                                                                  name: $0.name,
-                                                                  surname: $0.surname,
-                                                                  company: $0.company,
-                                                                  position: $0.position,
-                                                                  monthlyIncome: $0.monthlyIncome,
-                                                                  balance: $0.balance,
-                                                                  amountDue: $0.amountDue,
-                                                                  startDate: $0.startDate,
-                                                                  endDate: $0.endDate,
-                                                                  fullPayments: $0.fullPayments) })
+                                           unitID: $0.unitID,
+                                           tennantID: $0.tennantID,
+                                           name: $0.name,
+                                           surname: $0.surname,
+                                           currentAddress: $0.currentAddress,
+                                           company: $0.company,
+                                           position: $0.position,
+                                           monthlyIncome: $0.monthlyIncome,
+                                           balance: $0.balance,
+                                           amountDue: $0.amountDue,
+                                           startDate: $0.startDate,
+                                           endDate: $0.endDate,
+                                           fullPayments: $0.fullPayments) })
     }
 }
 

@@ -7,19 +7,8 @@ enum Field: Int, Hashable {
     case address
 }
 
-enum TennantField: Int, Hashable {
-    case name
-    case address
-    case buildingNumber
-    case flatNumber
-    case tennantID
-    case company
-    case position
-    case monthlyIncome
-}
-
 enum ErrorMessage: String, Hashable {
-    case numberOfUnitsError = "The number of flats occupied cannot exceed the number of units."
+    case numberOfUnitsError = "The number of units occupied cannot exceed the number of units."
     case tenantIDError = "Invalid ID number"
 }
 
@@ -27,15 +16,18 @@ class LandingViewModel: ObservableObject {
     @Published var newData: NewDataModel = NewDataModel()
     @Published var properties: [Property] = []
     @Published var tennants: [Tennant] = []
+    @Published var selectedUnit: String = ""
     @Published var viewTitle: String = ""
     @Published var buttonTitle: String = ""
     @Published var toastMessage: String = ""
     @Published var numberOfUnitsOccupiedIsHigherThanUnits: Bool = false
+    @Published var propertyType: PropertyOptions = .multipleUnits
 
     let realmRepository: RealmRepository
-    var newProperty: Property = Property()
-    var newPropertyFlats: [Flat] = []
-    var newTennant: Tennant = Tennant()
+    @Published var newProperty: Property = Property()
+    var newPropertyUnits: [SingleUnit] = []
+    @Published var newTennant: Tennant = Tennant()
+    @Published var availableUnits: [MenuItemModel] = []
     
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -58,6 +50,7 @@ class LandingViewModel: ObservableObject {
             addNewProperty()
         } else {
             addNewTennant()
+//            addNewTenantsToPropertyUnits()
         }
     }
     
@@ -67,28 +60,30 @@ class LandingViewModel: ObservableObject {
     
     private func addNewProperty() {
         let buildingID = UUID().uuidString
-        let newPropoerty = Property(buildingID: buildingID,
+        newProperty = Property(buildingID: buildingID,
                                     buildingName: newData.name,
                                     buildingAddress: newData.address,
                                     numberOfUnits: newData.numberOfUnits,
                                     numberOfUnitsOccupied: newData.numberOfUnitsOccupied)
-        newPropertyFlats = setUpFlatsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
-        newPropoerty.flats.append(objectsIn: newPropertyFlats)
+        setUpUnitsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
+//        newProperty.units.append(objectsIn: newPropertyUnits)
+        newProperty.units.append(objectsIn: [""])
         
 //        try! realmRepository.update(insertions: [newPropoerty])
-        properties.append(newPropoerty)
+        properties.append(newProperty)
         clearData()
     }
     
     private func addNewTennant() {
         let date = Date.now
-        #warning("Make sure ID is 13 digits")
-        let newTennant = Tennant(buildingNumber: newData.buildingNumber,
-                                flatNumber: newData.flatNumber,
+        #warning("Make sure ID is 13 digits outide of view")
+        newTennant = Tennant(buildingNumber: newData.buildingNumber,
+                             unitID: newData.unitID,
                                  tennantID: newData.tennantID,
                                 name: newData.name,
                                 surname: newData.surname,
-                                company: newData.company,
+                                 currentAddress: newData.address,
+                                 company: newData.company,
                                 position: newData.position,
                                 monthlyIncome: Int(newData.monthlyIncome) ?? 0,
                                 balance: 0.0,
@@ -102,18 +97,26 @@ class LandingViewModel: ObservableObject {
         clearData()
     }
     
-    func addNewTenantsToPropertyUnits() {
-        newPropertyFlats
-        tennants
-    }
+//    func addNewTenantsToPropertyUnits() {
+//        guard let index = newProperty.flats.firstIndex(where: { flat in
+//            flat.id == newTennant.flatID
+//        }) else { return }
+//        
+//        newProperty.flats[index].tennantID = newTennant.tennantID
+//        print(newProperty)
+//    }
     
-    private func setUpFlatsForNewProperty(numberOfUnits: Int, buildingID: String) -> [Flat] {
-        var flats: [Flat] = []
+//    func setUpFlatModel() {
+//        availableUnits = newPropertyFlats.map { flat in
+//            flat.id
+//        }
+//    }
+    
+    private func setUpUnitsForNewProperty(numberOfUnits: Int, buildingID: String) {
+        #warning("Find out how to set the unit availability")
         for unit in 0..<numberOfUnits {
-            flats.append(Flat(flatNumber: unit, buildingID: buildingID))
+//            newPropertyFlats.append(Flat(UnitNumber: unit, buildingID: buildingID, isAvailable: <#Bool#>))
         }
-        
-        return flats
     }
     
     private func getCurrentDate(date: Date) -> String {

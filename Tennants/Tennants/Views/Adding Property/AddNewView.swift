@@ -6,20 +6,23 @@ struct AddNewView: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var data: NewDataModel
-    @State var path: NavigationPath
-    @State var showErrorMessage: Bool
-    @State var showTennantView: Bool
     
+    @State var showErrorMessage: Bool
+    @State var showSheet: Bool
+    @State var isPropertyAdded: Bool
+    
+    var propertyOptions: PropertyOptions
     var action: () -> Void
     
     init(data: Binding<NewDataModel>,
-         path: NavigationPath = NavigationPath(),
+         propertyOptions: PropertyOptions,
          action: @escaping () -> Void) {
         self._data = data
-        _path = State(wrappedValue: path)
-        _showErrorMessage = State(initialValue: false)
-        _showTennantView = State(initialValue: false)
+        self.propertyOptions = propertyOptions
         self.action = action
+        _showErrorMessage = State(initialValue: false)
+        _isPropertyAdded = State(initialValue: false)
+        _showSheet = State(initialValue: false)
     }
     
     var body: some View {
@@ -39,56 +42,73 @@ struct AddNewView: View {
                                 .focused($focusedField, equals: .address)
                                 .onSubmit { self.focusNextField($focusedField) }
                             
-                            
-                            TextField("Number of Units", text: $data.numberOfUnits)
-                                .numberTextField()
-                            
-                            CustomValidatedNumberField(text: $data.numberOfUnitsOccupied,
-                                                       placeHolderText: "Number of Units Occupied",
-                                                       numberOfUnits: data.numberOfUnits, isProperty: true)
+                            switch propertyOptions {
+                            case .multipleUnits:
+                                TextField("Number of Units", text: $data.numberOfUnits)
+                                    .numberTextField()
+                                
+                                CustomValidatedNumberField(text: $data.numberOfUnitsOccupied,
+                                                           placeHolderText: "Number of Units Occupied",
+                                                           numberOfUnits: data.numberOfUnits, isProperty: true)
+                                
+                                if isPropertyAdded {
+                                    Button {
+                                        action()
+                                        
+                                    } label: {
+                                        Text("Add tenants to property")
+                                            .padding()
+                                    }
+                                    .customHorizontalPadding(isButton: true)
+                                    //            .disabled(viewModel.amountAdded == "")
+                                } else {
+                                    Button {
+                                        if !validate() {
+                                            showErrorMessage = true
+                                        } else {
+                                            showSheet = true
+                                            isPropertyAdded = true
+                                        }
+                                    } label: {
+                                        Text("Add property")
+                                            .padding()
+                                    }
+                                    .customHorizontalPadding(isButton: true)
+                                }
+                            case .singleUnit:
+                                CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
+                                CustomTextField(text: $data.address, placeHolderText: "Number of Bathrooms")
+                                
+                                Button {
+                                    action()
+                                    
+                                } label: {
+                                    Text("Add property")
+                                        .padding()
+                                }
+                                .customHorizontalPadding(isButton: true)
+                                //            .disabled(viewModel.amountAdded == "")
+                            }
                             
                             if showErrorMessage {
                                 ErrorMessageView(errorMessage: ErrorMessage.numberOfUnitsError)
                             }
                             
-                            Button {
-                                if !validate() {
-                                    showErrorMessage = true
-                                } else {
-                                    data.isAProperty = true
-                                    action()
-                                    showTennantView = true
-                                }
-                            } label: {
-                                Text("Add property")
-                                    .padding()
-                            }
-                            .customHorizontalPadding(isButton: true)
-                            //            .disabled(viewModel.amountAdded == "")
                             Spacer()
                             
                         }
                         .navigationTitle("Add a Property")
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Button("Cancel") {
-                                    dismiss()
-                                }
-                            }
-                        }
-                        .navigationDestination(isPresented: $showTennantView) {
-                            AddTenantView(data: $data, path: path) {
-                                action()
-                            }
-                        }
                     }
                 }
             }
             .foregroundStyle(.black)
+            .sheet(isPresented: $showSheet, content: {
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
+            })
         }
     }
 }
 
 #Preview {
-    AddNewView(data: .constant(NewDataModel()), action: {})
+    AddNewView(data: .constant(NewDataModel()), propertyOptions: .multipleUnits, action: {})
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C2772FC2B86657C0057CC5D /* AddFirstPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FB2B86657C0057CC5D /* AddFirstPropertyView.swift */; };
-		5C2772FE2B8666970057CC5D /* Flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FD2B8666970057CC5D /* Flat.swift */; };
+		5C2772FE2B8666970057CC5D /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FD2B8666970057CC5D /* SingleUnit.swift */; };
 		5C2773002B87618A0057CC5D /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2772FF2B87618A0057CC5D /* NewDataModel.swift */; };
 		5C2773022B8764810057CC5D /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2773012B8764810057CC5D /* AddFirstPropertyManager.swift */; };
 		5C2773042B87C9370057CC5D /* Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2773032B87C9370057CC5D /* Migrator.swift */; };
@@ -38,6 +38,9 @@
 		5C6E4FE12B8E0DBA00D77824 /* CustomValidatedNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */; };
 		5C6E4FE32B8E0E5800D77824 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */; };
 		5C6E4FE62B8F08CD00D77824 /* AddTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */; };
+		5C6E4FE82B91DEA100D77824 /* CustomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE72B91DEA100D77824 /* CustomMenu.swift */; };
+		5C73FDAC2BA2E514008AC476 /* PropertyOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */; };
+		5C79266A2BA56E0400878F58 /* OptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926692BA56E0400878F58 /* OptionCardView.swift */; };
 		5C8778582B7104F1008F5CD8 /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8778572B7104F1008F5CD8 /* RealmTests.swift */; };
 		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Property.swift */; };
@@ -53,6 +56,7 @@
 		5CAF480F2B6826A700CE486B /* UpdateTennantTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF480E2B6826A700CE486B /* UpdateTennantTopCardView.swift */; };
 		5CAF48152B68276900CE486B /* HorizontalAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48142B68276900CE486B /* HorizontalAlignment.swift */; };
 		5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF48162B68314300CE486B /* CircularProgressView.swift */; };
+		5CD2012D2BA30A1E00A5861C /* PropertyManagementProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD2012C2BA30A1E00A5861C /* PropertyManagementProtocols.swift */; };
 		5CE2CDBD2B73EBE1003FF780 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDBC2B73EBE1003FF780 /* OnboardingView.swift */; };
 		5CE2CDBF2B73EC86003FF780 /* BackgroundColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDBE2B73EC86003FF780 /* BackgroundColour.swift */; };
 		5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */; };
@@ -83,7 +87,7 @@
 
 /* Begin PBXFileReference section */
 		5C2772FB2B86657C0057CC5D /* AddFirstPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyView.swift; sourceTree = "<group>"; };
-		5C2772FD2B8666970057CC5D /* Flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flat.swift; sourceTree = "<group>"; };
+		5C2772FD2B8666970057CC5D /* SingleUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
 		5C2772FF2B87618A0057CC5D /* NewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
 		5C2773012B8764810057CC5D /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
 		5C2773032B87C9370057CC5D /* Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrator.swift; sourceTree = "<group>"; };
@@ -116,6 +120,9 @@
 		5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomValidatedNumberField.swift; sourceTree = "<group>"; };
 		5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantView.swift; sourceTree = "<group>"; };
+		5C6E4FE72B91DEA100D77824 /* CustomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenu.swift; sourceTree = "<group>"; };
+		5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyOptionsView.swift; sourceTree = "<group>"; };
+		5C7926692BA56E0400878F58 /* OptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardView.swift; sourceTree = "<group>"; };
 		5C8778572B7104F1008F5CD8 /* RealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
 		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -129,6 +136,7 @@
 		5CAF480E2B6826A700CE486B /* UpdateTennantTopCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantTopCardView.swift; sourceTree = "<group>"; };
 		5CAF48142B68276900CE486B /* HorizontalAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalAlignment.swift; sourceTree = "<group>"; };
 		5CAF48162B68314300CE486B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		5CD2012C2BA30A1E00A5861C /* PropertyManagementProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyManagementProtocols.swift; sourceTree = "<group>"; };
 		5CE2CDBC2B73EBE1003FF780 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		5CE2CDBE2B73EC86003FF780 /* BackgroundColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColour.swift; sourceTree = "<group>"; };
 		5CE2CDC02B749EAD003FF780 /* OnboardingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
@@ -271,7 +279,7 @@
 			children = (
 				5C47345A2B6377D40040A0AA /* Tennant.swift */,
 				5CAF47A62B64DEB200CE486B /* Property.swift */,
-				5C2772FD2B8666970057CC5D /* Flat.swift */,
+				5C2772FD2B8666970057CC5D /* SingleUnit.swift */,
 				5C2772FF2B87618A0057CC5D /* NewDataModel.swift */,
 			);
 			path = Models;
@@ -282,6 +290,7 @@
 			children = (
 				5CAF48072B67D9D800CE486B /* TennantUseCaseProtocols.swift */,
 				5CAF48092B67DA4200CE486B /* CalculatorUseCaseProtocols.swift */,
+				5CD2012C2BA30A1E00A5861C /* PropertyManagementProtocols.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -323,6 +332,7 @@
 				5C6E4FDD2B8E0D6000D77824 /* CustomTextField.swift */,
 				5C6E4FE02B8E0DBA00D77824 /* CustomValidatedNumberField.swift */,
 				5C6E4FE22B8E0E5800D77824 /* ErrorMessageView.swift */,
+				5C6E4FE72B91DEA100D77824 /* CustomMenu.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -332,6 +342,8 @@
 			children = (
 				5C65589F2B76660F0057021E /* AddNewView.swift */,
 				5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */,
+				5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */,
+				5C7926692BA56E0400878F58 /* OptionCardView.swift */,
 			);
 			path = "Adding Property";
 			sourceTree = "<group>";
@@ -566,6 +578,7 @@
 				5C2773042B87C9370057CC5D /* Migrator.swift in Sources */,
 				5C664DFB2B6B86B8000AE276 /* Extension+String.swift in Sources */,
 				5CE2CDC12B749EAD003FF780 /* OnboardingSubView.swift in Sources */,
+				5CD2012D2BA30A1E00A5861C /* PropertyManagementProtocols.swift in Sources */,
 				5C4734562B6269640040A0AA /* TennantLandingView.swift in Sources */,
 				5CAF48022B67A9DA00CE486B /* AlertButtons.swift in Sources */,
 				5C6E4FDE2B8E0D6000D77824 /* CustomTextField.swift in Sources */,
@@ -576,12 +589,15 @@
 				5CAF48172B68314300CE486B /* CircularProgressView.swift in Sources */,
 				5C2772FC2B86657C0057CC5D /* AddFirstPropertyView.swift in Sources */,
 				5C6E4FD62B8CC4C500D77824 /* Extension+Field.swift in Sources */,
+				5C6E4FE82B91DEA100D77824 /* CustomMenu.swift in Sources */,
 				5CEBD7ED2B8342AB00F20043 /* MainAppView.swift in Sources */,
 				5C6E4FD42B8CC40C00D77824 /* ValidationModifier.swift in Sources */,
-				5C2772FE2B8666970057CC5D /* Flat.swift in Sources */,
+				5C2772FE2B8666970057CC5D /* SingleUnit.swift in Sources */,
 				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
 				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
+				5C73FDAC2BA2E514008AC476 /* PropertyOptionsView.swift in Sources */,
 				5CAF480F2B6826A700CE486B /* UpdateTennantTopCardView.swift in Sources */,
+				5C79266A2BA56E0400878F58 /* OptionCardView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5CE2CDBD2B73EBE1003FF780 /* OnboardingView.swift in Sources */,
 				5CAF47A72B64DEB200CE486B /* Property.swift in Sources */,

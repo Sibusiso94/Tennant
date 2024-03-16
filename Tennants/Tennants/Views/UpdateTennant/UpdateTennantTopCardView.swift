@@ -5,7 +5,7 @@ struct UpdateTennantTopCardView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "\(tennant.flatNumber).square")
+            Image(systemName: "\(tennant.unitID).square")
                 .resizable()
                 .frame(width: 100, height: 100, alignment: .leading)
                 .padding()
