@@ -6,6 +6,7 @@ struct AddNewView: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var data: NewDataModel
+    @Binding var availableUnits: [SingleUnit]
     
     @State var showErrorMessage: Bool
     @State var showSheet: Bool
@@ -15,9 +16,11 @@ struct AddNewView: View {
     var action: () -> Void
     
     init(data: Binding<NewDataModel>,
+         availableUnits: Binding<[SingleUnit]>,
          propertyOptions: PropertyOptions,
          action: @escaping () -> Void) {
         self._data = data
+        self._availableUnits = availableUnits
         self.propertyOptions = propertyOptions
         self.action = action
         _showErrorMessage = State(initialValue: false)
@@ -103,12 +106,14 @@ struct AddNewView: View {
             }
             .foregroundStyle(.black)
             .sheet(isPresented: $showSheet, content: {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
+                VStack {
+                    CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
+                }
             })
         }
     }
 }
 
 #Preview {
-    AddNewView(data: .constant(NewDataModel()), propertyOptions: .multipleUnits, action: {})
+    AddNewView(data: .constant(NewDataModel()), availableUnits: .constant([SingleUnit()]), propertyOptions: .multipleUnits, action: {})
 }

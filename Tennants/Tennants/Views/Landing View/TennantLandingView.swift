@@ -60,7 +60,7 @@ struct TennantLandingView: View {
                     }
                 }
                 .navigationDestination(isPresented: $shouldShowAddProperty) {
-                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
+                    AddNewView(data: $viewModel.newData, availableUnits: $viewModel.newPropertyUnits, propertyOptions: viewModel.propertyType) {
                         viewModel.newData.isAProperty = true
                         viewModel.addData()
                         showTennantView = true

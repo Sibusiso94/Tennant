@@ -144,7 +144,7 @@ class RealmRepository: ObservableObject {
     }
     
     func mapTennantsToArray() -> [Tennant] {
-        return self.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
+        return self.tennants.map({ Tennant(buildingID: $0.buildingID,
                                            unitID: $0.unitID,
                                            tennantID: $0.tennantID,
                                            name: $0.name,

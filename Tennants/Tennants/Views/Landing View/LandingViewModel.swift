@@ -25,7 +25,7 @@ class LandingViewModel: ObservableObject {
 
     let realmRepository: RealmRepository
     @Published var newProperty: Property = Property()
-    var newPropertyUnits: [SingleUnit] = []
+    @Published var newPropertyUnits: [SingleUnit] = []
     @Published var newTennant: Tennant = Tennant()
     @Published var availableUnits: [MenuItemModel] = []
     
@@ -76,23 +76,23 @@ class LandingViewModel: ObservableObject {
     
     private func addNewTennant() {
         let date = Date.now
-        #warning("Make sure ID is 13 digits outide of view")
-        newTennant = Tennant(buildingNumber: newData.buildingNumber,
+#warning("Make sure ID is 13 digits outide of view")
+        newTennant = Tennant(buildingID: newData.buildingNumber,
                              unitID: newData.unitID,
-                                 tennantID: newData.tennantID,
-                                name: newData.name,
-                                surname: newData.surname,
-                                 currentAddress: newData.address,
-                                 company: newData.company,
-                                position: newData.position,
-                                monthlyIncome: Int(newData.monthlyIncome) ?? 0,
-                                balance: 0.0,
-                                amountDue: 0.0,
-                                startDate: getCurrentDate(date: date),
-                                endDate: getEndDate(date: date),
-                                fullPayments: 0)
+                             tennantID: newData.tennantID,
+                             name: newData.name,
+                             surname: newData.surname,
+                             currentAddress: newData.address,
+                             company: newData.company,
+                             position: newData.position,
+                             monthlyIncome: Int(newData.monthlyIncome) ?? 0,
+                             balance: 0.0,
+                             amountDue: 0.0,
+                             startDate: getCurrentDate(date: date),
+                             endDate: getEndDate(date: date),
+                             fullPayments: 0)
         
-//        try! realmRepository.update(insertions: [newTennant])
+        //        try! realmRepository.update(insertions: [newTennant])
         tennants.append(newTennant)
         clearData()
     }
@@ -115,7 +115,7 @@ class LandingViewModel: ObservableObject {
     private func setUpUnitsForNewProperty(numberOfUnits: Int, buildingID: String) {
         #warning("Find out how to set the unit availability")
         for unit in 0..<numberOfUnits {
-//            newPropertyFlats.append(Flat(UnitNumber: unit, buildingID: buildingID, isAvailable: <#Bool#>))
+            newPropertyUnits.append(SingleUnit(unitNumber: unit, buildingID: buildingID, numberOfBedrooms: 1, numberOfBathrooms: 1, isAvailable: false))
         }
     }
     

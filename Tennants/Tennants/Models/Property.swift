@@ -3,7 +3,7 @@ import RealmSwift
 
 class Property: Object, Identifiable {
     @Persisted(primaryKey: true) var buildingID: String
-    @Persisted var isAHome: Bool
+    @Persisted var isASingle: Bool
     @Persisted var buildingName: String
     @Persisted var buildingAddress: String
     @Persisted var numberOfUnits: String
@@ -11,7 +11,7 @@ class Property: Object, Identifiable {
     @Persisted var units: List<String>
     
     convenience init(buildingID: String,
-                     isAHome: Bool = false,
+                     isASingle: Bool = false,
                      buildingName: String,
                      buildingAddress: String,
                      numberOfUnits: String,
@@ -19,7 +19,7 @@ class Property: Object, Identifiable {
                      units: List<String> = List<String>()) {
         self.init()
         self.buildingID = UUID().uuidString
-        self.isAHome = isAHome
+        self.isASingle = isASingle
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits

@@ -41,6 +41,10 @@
 		5C6E4FE82B91DEA100D77824 /* CustomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E4FE72B91DEA100D77824 /* CustomMenu.swift */; };
 		5C73FDAC2BA2E514008AC476 /* PropertyOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */; };
 		5C79266A2BA56E0400878F58 /* OptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926692BA56E0400878F58 /* OptionCardView.swift */; };
+		5C79266C2BA58E1800878F58 /* SingleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79266B2BA58E1800878F58 /* SingleProperty.swift */; };
+		5C79266E2BA5A3AE00878F58 /* EditUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */; };
+		5C7926712BA5A55F00878F58 /* SwipeActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */; };
+		5C7926732BA5A57000878F58 /* SwipeActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */; };
 		5C8778582B7104F1008F5CD8 /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8778572B7104F1008F5CD8 /* RealmTests.swift */; };
 		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Property.swift */; };
@@ -123,6 +127,10 @@
 		5C6E4FE72B91DEA100D77824 /* CustomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenu.swift; sourceTree = "<group>"; };
 		5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyOptionsView.swift; sourceTree = "<group>"; };
 		5C7926692BA56E0400878F58 /* OptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCardView.swift; sourceTree = "<group>"; };
+		5C79266B2BA58E1800878F58 /* SingleProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleProperty.swift; sourceTree = "<group>"; };
+		5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitView.swift; sourceTree = "<group>"; };
+		5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionModel.swift; sourceTree = "<group>"; };
+		5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionViewModel.swift; sourceTree = "<group>"; };
 		5C8778572B7104F1008F5CD8 /* RealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
 		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -281,6 +289,7 @@
 				5CAF47A62B64DEB200CE486B /* Property.swift */,
 				5C2772FD2B8666970057CC5D /* SingleUnit.swift */,
 				5C2772FF2B87618A0057CC5D /* NewDataModel.swift */,
+				5C79266B2BA58E1800878F58 /* SingleProperty.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,8 +353,19 @@
 				5C6E4FE52B8F08CD00D77824 /* AddTenantView.swift */,
 				5C73FDAB2BA2E514008AC476 /* PropertyOptionsView.swift */,
 				5C7926692BA56E0400878F58 /* OptionCardView.swift */,
+				5C79266F2BA5A53200878F58 /* Swipe Action  */,
 			);
 			path = "Adding Property";
+			sourceTree = "<group>";
+		};
+		5C79266F2BA5A53200878F58 /* Swipe Action  */ = {
+			isa = PBXGroup;
+			children = (
+				5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */,
+				5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */,
+				5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */,
+			);
+			path = "Swipe Action ";
 			sourceTree = "<group>";
 		};
 		5CAF47A92B64E43200CE486B /* Realm */ = {
@@ -596,6 +616,7 @@
 				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
 				5CAF47D52B676E4000CE486B /* CalculateView.swift in Sources */,
 				5C73FDAC2BA2E514008AC476 /* PropertyOptionsView.swift in Sources */,
+				5C7926712BA5A55F00878F58 /* SwipeActionModel.swift in Sources */,
 				5CAF480F2B6826A700CE486B /* UpdateTennantTopCardView.swift in Sources */,
 				5C79266A2BA56E0400878F58 /* OptionCardView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
@@ -604,13 +625,16 @@
 				5C65589E2B762A120057021E /* OnboardingManager.swift in Sources */,
 				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
 				5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */,
+				5C7926732BA5A57000878F58 /* SwipeActionViewModel.swift in Sources */,
 				5C2773022B8764810057CC5D /* AddFirstPropertyManager.swift in Sources */,
 				5CFE7F802B7C8A81005E05FD /* AddView.swift in Sources */,
+				5C79266C2BA58E1800878F58 /* SingleProperty.swift in Sources */,
 				5CAF48152B68276900CE486B /* HorizontalAlignment.swift in Sources */,
 				5CE2CDBF2B73EC86003FF780 /* BackgroundColour.swift in Sources */,
 				5C47344F2B62656E0040A0AA /* TennantTabView.swift in Sources */,
 				5C6558A42B7AA4620057021E /* LandingViewModel.swift in Sources */,
 				5C6E4FD22B8CC30B00D77824 /* ValidationPreferenceKey.swift in Sources */,
+				5C79266E2BA5A3AE00878F58 /* EditUnitView.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
