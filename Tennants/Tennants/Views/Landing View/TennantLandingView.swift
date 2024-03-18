@@ -4,6 +4,7 @@ struct TennantLandingView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: LandingViewModel
     @State var shouldShowAddProperty: Bool
+    @State var shouldShowAddUnits: Bool
     @State var shouldAddPropertyOptions: Bool
     @State var showTennantView: Bool
     @State var path: NavigationPath
@@ -12,6 +13,7 @@ struct TennantLandingView: View {
         _viewModel = StateObject(wrappedValue: LandingViewModel())
         _shouldShowAddProperty = State(initialValue: false)
         _shouldAddPropertyOptions = State(initialValue: false)
+        _shouldShowAddUnits = State(initialValue: false)
         _showTennantView = State(initialValue: false)
         _path = State(initialValue: NavigationPath())
     }
@@ -60,11 +62,14 @@ struct TennantLandingView: View {
                     }
                 }
                 .navigationDestination(isPresented: $shouldShowAddProperty) {
-                    AddNewView(data: $viewModel.newData, availableUnits: $viewModel.newPropertyUnits, propertyOptions: viewModel.propertyType) {
+                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
                         viewModel.newData.isAProperty = true
                         viewModel.addData()
-                        showTennantView = true
+//                        showTennantView = true
                     }
+                }
+                .navigationDestination(isPresented: $viewModel.shouldShowAddUnits) {
+                    EditUnitView(units: viewModel.newPropertyUnits)
                 }
                 .navigationDestination(isPresented: $showTennantView) {
                     AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {

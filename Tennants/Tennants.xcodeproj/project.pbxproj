@@ -45,6 +45,9 @@
 		5C79266E2BA5A3AE00878F58 /* EditUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */; };
 		5C7926712BA5A55F00878F58 /* SwipeActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */; };
 		5C7926732BA5A57000878F58 /* SwipeActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */; };
+		5C7926762BA835DE00878F58 /* BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926752BA835DE00878F58 /* BottomNavigation.swift */; };
+		5C7926782BA8362700878F58 /* CustomSwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926772BA8362700878F58 /* CustomSwipeButton.swift */; };
+		5C79267A2BA8367D00878F58 /* StackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7926792BA8367D00878F58 /* StackCardView.swift */; };
 		5C8778582B7104F1008F5CD8 /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8778572B7104F1008F5CD8 /* RealmTests.swift */; };
 		5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */; };
 		5CAF47A72B64DEB200CE486B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF47A62B64DEB200CE486B /* Property.swift */; };
@@ -131,6 +134,9 @@
 		5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitView.swift; sourceTree = "<group>"; };
 		5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionModel.swift; sourceTree = "<group>"; };
 		5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionViewModel.swift; sourceTree = "<group>"; };
+		5C7926752BA835DE00878F58 /* BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigation.swift; sourceTree = "<group>"; };
+		5C7926772BA8362700878F58 /* CustomSwipeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwipeButton.swift; sourceTree = "<group>"; };
+		5C7926792BA8367D00878F58 /* StackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackCardView.swift; sourceTree = "<group>"; };
 		5C8778572B7104F1008F5CD8 /* RealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
 		5CAA7B822B68EBFE0087AC86 /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5CAF47A62B64DEB200CE486B /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -361,11 +367,22 @@
 		5C79266F2BA5A53200878F58 /* Swipe Action  */ = {
 			isa = PBXGroup;
 			children = (
-				5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */,
+				5C7926742BA8357F00878F58 /* Views */,
 				5C7926702BA5A55F00878F58 /* SwipeActionModel.swift */,
 				5C7926722BA5A56F00878F58 /* SwipeActionViewModel.swift */,
 			);
 			path = "Swipe Action ";
+			sourceTree = "<group>";
+		};
+		5C7926742BA8357F00878F58 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C79266D2BA5A3AE00878F58 /* EditUnitView.swift */,
+				5C7926752BA835DE00878F58 /* BottomNavigation.swift */,
+				5C7926772BA8362700878F58 /* CustomSwipeButton.swift */,
+				5C7926792BA8367D00878F58 /* StackCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5CAF47A92B64E43200CE486B /* Realm */ = {
@@ -591,6 +608,7 @@
 				5C6E4FE62B8F08CD00D77824 /* AddTenantView.swift in Sources */,
 				5C6E4FE12B8E0DBA00D77824 /* CustomValidatedNumberField.swift in Sources */,
 				5CAF47AB2B64E44F00CE486B /* RealmRepository.swift in Sources */,
+				5C7926782BA8362700878F58 /* CustomSwipeButton.swift in Sources */,
 				5CFE7F822B7C8BB8005E05FD /* CardView.swift in Sources */,
 				5CAF480A2B67DA4200CE486B /* CalculatorUseCaseProtocols.swift in Sources */,
 				5C6E4FCF2B8C8E9900D77824 /* Extension+View.swift in Sources */,
@@ -611,6 +629,7 @@
 				5C6E4FD62B8CC4C500D77824 /* Extension+Field.swift in Sources */,
 				5C6E4FE82B91DEA100D77824 /* CustomMenu.swift in Sources */,
 				5CEBD7ED2B8342AB00F20043 /* MainAppView.swift in Sources */,
+				5C79267A2BA8367D00878F58 /* StackCardView.swift in Sources */,
 				5C6E4FD42B8CC40C00D77824 /* ValidationModifier.swift in Sources */,
 				5C2772FE2B8666970057CC5D /* SingleUnit.swift in Sources */,
 				5CAF48042B67ACDA00CE486B /* CalculateViewViewModel.swift in Sources */,
@@ -623,6 +642,7 @@
 				5CE2CDBD2B73EBE1003FF780 /* OnboardingView.swift in Sources */,
 				5CAF47A72B64DEB200CE486B /* Property.swift in Sources */,
 				5C65589E2B762A120057021E /* OnboardingManager.swift in Sources */,
+				5C7926762BA835DE00878F58 /* BottomNavigation.swift in Sources */,
 				5CAF48082B67D9D800CE486B /* TennantUseCaseProtocols.swift in Sources */,
 				5CAA7B832B68EBFE0087AC86 /* UpdateTennantViewModel.swift in Sources */,
 				5C7926732BA5A57000878F58 /* SwipeActionViewModel.swift in Sources */,

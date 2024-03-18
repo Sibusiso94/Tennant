@@ -6,26 +6,21 @@ struct AddNewView: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var data: NewDataModel
-    @Binding var availableUnits: [SingleUnit]
     
     @State var showErrorMessage: Bool
-    @State var showSheet: Bool
     @State var isPropertyAdded: Bool
     
     var propertyOptions: PropertyOptions
     var action: () -> Void
     
     init(data: Binding<NewDataModel>,
-         availableUnits: Binding<[SingleUnit]>,
          propertyOptions: PropertyOptions,
          action: @escaping () -> Void) {
         self._data = data
-        self._availableUnits = availableUnits
         self.propertyOptions = propertyOptions
         self.action = action
         _showErrorMessage = State(initialValue: false)
         _isPropertyAdded = State(initialValue: false)
-        _showSheet = State(initialValue: false)
     }
     
     var body: some View {
@@ -49,35 +44,33 @@ struct AddNewView: View {
                             case .multipleUnits:
                                 TextField("Number of Units", text: $data.numberOfUnits)
                                     .numberTextField()
+//                                
+//                                CustomValidatedNumberField(text: $data.numberOfUnitsOccupied,
+//                                                           placeHolderText: "Number of Units Occupied",
+//                                                           numberOfUnits: data.numberOfUnits, isProperty: true)
                                 
-                                CustomValidatedNumberField(text: $data.numberOfUnitsOccupied,
-                                                           placeHolderText: "Number of Units Occupied",
-                                                           numberOfUnits: data.numberOfUnits, isProperty: true)
-                                
-                                if isPropertyAdded {
+//                                if isPropertyAdded {
+//                                    Button {
+//                                        action()
+//                                        
+//                                    } label: {
+//                                        Text("Add tenants to property")
+//                                            .padding()
+//                                    }
+//                                    .customHorizontalPadding(isButton: true)
+//                                    //            .disabled(viewModel.amountAdded == "")
+//                                } else {
                                     Button {
-                                        action()
-                                        
-                                    } label: {
-                                        Text("Add tenants to property")
-                                            .padding()
-                                    }
-                                    .customHorizontalPadding(isButton: true)
-                                    //            .disabled(viewModel.amountAdded == "")
-                                } else {
-                                    Button {
-                                        if !validate() {
-                                            showErrorMessage = true
-                                        } else {
-                                            showSheet = true
-                                            isPropertyAdded = true
-                                        }
+//                                        if !validate() {
+//                                            showErrorMessage = true
+//                                        } else {
+                                            action()
+//                                        }
                                     } label: {
                                         Text("Add property")
                                             .padding()
                                     }
                                     .customHorizontalPadding(isButton: true)
-                                }
                             case .singleUnit:
                                 CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
                                 CustomTextField(text: $data.address, placeHolderText: "Number of Bathrooms")
@@ -105,15 +98,10 @@ struct AddNewView: View {
                 }
             }
             .foregroundStyle(.black)
-            .sheet(isPresented: $showSheet, content: {
-                VStack {
-                    CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
-                }
-            })
         }
     }
 }
 
-#Preview {
-    AddNewView(data: .constant(NewDataModel()), availableUnits: .constant([SingleUnit()]), propertyOptions: .multipleUnits, action: {})
-}
+//#Preview {
+//    AddNewView(data: .constant(NewDataModel()), availableUnits: .constant([SingleUnit()]), propertyOptions: .multipleUnits, action: {})
+//}

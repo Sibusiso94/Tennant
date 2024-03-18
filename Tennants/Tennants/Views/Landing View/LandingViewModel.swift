@@ -28,6 +28,8 @@ class LandingViewModel: ObservableObject {
     @Published var newPropertyUnits: [SingleUnit] = []
     @Published var newTennant: Tennant = Tennant()
     @Published var availableUnits: [MenuItemModel] = []
+    @Published var isCompleteAddingUnits: Bool = false
+    @Published var shouldShowAddUnits: Bool = false
     
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -65,13 +67,15 @@ class LandingViewModel: ObservableObject {
                                     buildingAddress: newData.address,
                                     numberOfUnits: newData.numberOfUnits,
                                     numberOfUnitsOccupied: newData.numberOfUnitsOccupied)
-        setUpUnitsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID)
-//        newProperty.units.append(objectsIn: newPropertyUnits)
-        newProperty.units.append(objectsIn: [""])
-        
-//        try! realmRepository.update(insertions: [newPropoerty])
-        properties.append(newProperty)
-        clearData()
+        setUpUnitsForNewProperty(numberOfUnits: Int(newData.numberOfUnits) ?? 1, buildingID: buildingID) { isComplete in
+            //        newProperty.units.append(objectsIn: newPropertyUnits)
+            self.newProperty.units.append(objectsIn: [""])
+            
+            //        try! realmRepository.update(insertions: [newPropoerty])
+            self.properties.append(self.newProperty)
+            self.clearData()
+            self.shouldShowAddUnits = true
+        }
     }
     
     private func addNewTennant() {
@@ -112,10 +116,21 @@ class LandingViewModel: ObservableObject {
 //        }
 //    }
     
-    private func setUpUnitsForNewProperty(numberOfUnits: Int, buildingID: String) {
-        #warning("Find out how to set the unit availability")
+    private func setUpUnitsForNewProperty(numberOfUnits: Int,
+                                          buildingID: String,
+                                          completion: @escaping (Bool) -> Void) {
+        let group = DispatchGroup()
+        var units: [SingleUnit] = []
+        
+        group.enter()
         for unit in 0..<numberOfUnits {
-            newPropertyUnits.append(SingleUnit(unitNumber: unit, buildingID: buildingID, numberOfBedrooms: 1, numberOfBathrooms: 1, isAvailable: false))
+            units.append(SingleUnit(unitNumber: unit, buildingID: buildingID, numberOfBedrooms: 1, numberOfBathrooms: 1, isAvailable: false))
+        }
+        group.leave()
+        
+        group.notify(queue: .main) {
+            self.newPropertyUnits = units.reversed()
+            completion(true)
         }
     }
     

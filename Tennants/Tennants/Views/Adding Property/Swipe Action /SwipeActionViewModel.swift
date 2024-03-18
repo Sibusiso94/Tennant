@@ -8,13 +8,16 @@ class SwipeActionViewModel: ObservableObject {
     }
     
     func fetchData() {
+        var units: [SingleUnit] = []
         for item in 0..<4 {
-            displayingUnits.append(SingleUnit(unitNumber: item,
+            units.append(SingleUnit(unitNumber: item,
                                                buildingID: "Telesto",
                                                numberOfBedrooms: 1,
                                                numberOfBathrooms: 1,
                                                isAvailable: false))
         }
+        
+        displayingUnits = units
     }
     
     func getIndex(of unit: SingleUnit) -> Int {
