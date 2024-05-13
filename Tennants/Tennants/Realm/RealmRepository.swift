@@ -13,6 +13,7 @@ fileprivate func getConfiguration(fileName: String) -> Realm.Configuration {
 
 class RealmRepository: ObservableObject {
     private var configuration: Realm.Configuration
+    @ObservedResults(Property.self) var properties
     @ObservedResults(Tennant.self) var tennants
     
     public init() {
@@ -66,17 +67,6 @@ class RealmRepository: ObservableObject {
     public func objects<T: Object>(_ type: T.Type) -> [T] {
         return Array(realm.objects(type))
     }
-    
-//    public func add(_ tennant: Tennant, to realm: Realm) {
-//        do {
-//            try realm.write {
-//                $tennants.append(tennant)
-//                realm.add(tennants, update: .modified)
-//            }
-//        } catch {
-//            print("Failed to add wish list item: \(error)")
-//        }
-//    }
     
     public func deleteAll(_ objects: [AnyObject]) throws {
         try transaction { realm in
@@ -142,6 +132,32 @@ class RealmRepository: ObservableObject {
             print("Transaction error: \(error.localizedDescription)")
             throw error
         }
+    }
+    
+    func mapPropertiesToArray() -> [Property] {
+        return self.properties.map({ Property(buildingID: $0.buildingID,
+                                                              buildingName: $0.buildingName,
+                                                              buildingAddress: $0.buildingAddress,
+                                                              numberOfUnits: $0.numberOfUnits,
+                                                              numberOfUnitsOccupied: $0.numberOfUnitsOccupied,
+                                                              units: $0.units) })
+    }
+    
+    func mapTennantsToArray() -> [Tennant] {
+        return self.tennants.map({ Tennant(buildingNumber: $0.buildingNumber,
+                                           unitID: $0.unitID,
+                                           tennantID: $0.tennantID,
+                                           name: $0.name,
+                                           surname: $0.surname,
+                                           currentAddress: $0.currentAddress,
+                                           company: $0.company,
+                                           position: $0.position,
+                                           monthlyIncome: $0.monthlyIncome,
+                                           balance: $0.balance,
+                                           amountDue: $0.amountDue,
+                                           startDate: $0.startDate,
+                                           endDate: $0.endDate,
+                                           fullPayments: $0.fullPayments) })
     }
 }
 

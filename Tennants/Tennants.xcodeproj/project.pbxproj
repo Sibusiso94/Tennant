@@ -385,6 +385,7 @@
 			mainGroup = 5C4734172B6261C00040A0AA;
 			packageReferences = (
 				5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5C8936D32BEBB4FD007F2915 /* XCRemoteSwiftPackageReference "MyLibrary" */,
 			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
@@ -785,6 +786,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5C8936D32BEBB4FD007F2915 /* XCRemoteSwiftPackageReference "MyLibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SibusisoGlu/MyLibrary";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.6;
+			};
+		};
 		5CAF47A82B64E36400CE486B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift/";
