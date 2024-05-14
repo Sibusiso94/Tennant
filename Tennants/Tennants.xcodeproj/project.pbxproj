@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C0089952BF32F2D0061C00B /* Extension+Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00897D2BF32F2D0061C00B /* Extension+Field.swift */; };
-		5C0089972BF32F2D0061C00B /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00897F2BF32F2D0061C00B /* Extension+String.swift */; };
-		5C0089992BF32F2D0061C00B /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089812BF32F2D0061C00B /* Extension+View.swift */; };
-		5C00899B2BF32F2D0061C00B /* TextFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089842BF32F2D0061C00B /* TextFormView.swift */; };
-		5C00899D2BF32F2D0061C00B /* ValidationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089862BF32F2D0061C00B /* ValidationModifier.swift */; };
-		5C00899F2BF32F2D0061C00B /* ValidationPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089882BF32F2D0061C00B /* ValidationPreferenceKey.swift */; };
-		5C0089A12BF32F2D0061C00B /* BackgroundColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00898B2BF32F2D0061C00B /* BackgroundColour.swift */; };
-		5C0089A32BF32F2D0061C00B /* HorizontalAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00898D2BF32F2D0061C00B /* HorizontalAlignment.swift */; };
-		5C0089A52BF32F2D0061C00B /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00898F2BF32F2D0061C00B /* NumberTextField.swift */; };
-		5C0089A72BF32F2D0061C00B /* TextFieldDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089912BF32F2D0061C00B /* TextFieldDoneButton.swift */; };
 		5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089A82BF32FBE0061C00B /* MainAppView.swift */; };
 		5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */; };
 		5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */; };
@@ -29,6 +19,10 @@
 		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
 		5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */; };
 		5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* LandingViewModel.swift */; };
+		5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */; };
+		5C0089E42BF34A4D0061C00B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DF2BF34A4D0061C00B /* Property.swift */; };
+		5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E02BF34A4D0061C00B /* SingleUnit.swift */; };
+		5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E12BF34A4D0061C00B /* Tennant.swift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
 		5C4734262B6261C10040A0AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734252B6261C10040A0AA /* ContentView.swift */; };
 		5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4734272B6261C40040A0AA /* Assets.xcassets */; };
@@ -56,16 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5C00897D2BF32F2D0061C00B /* Extension+Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Field.swift"; sourceTree = "<group>"; };
-		5C00897F2BF32F2D0061C00B /* Extension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
-		5C0089812BF32F2D0061C00B /* Extension+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
-		5C0089842BF32F2D0061C00B /* TextFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFormView.swift; sourceTree = "<group>"; };
-		5C0089862BF32F2D0061C00B /* ValidationModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationModifier.swift; sourceTree = "<group>"; };
-		5C0089882BF32F2D0061C00B /* ValidationPreferenceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPreferenceKey.swift; sourceTree = "<group>"; };
-		5C00898B2BF32F2D0061C00B /* BackgroundColour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColour.swift; sourceTree = "<group>"; };
-		5C00898D2BF32F2D0061C00B /* HorizontalAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalAlignment.swift; sourceTree = "<group>"; };
-		5C00898F2BF32F2D0061C00B /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
-		5C0089912BF32F2D0061C00B /* TextFieldDoneButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDoneButton.swift; sourceTree = "<group>"; };
 		5C0089A82BF32FBE0061C00B /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppView.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/MainAppView.swift"; sourceTree = "<group>"; };
 		5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
 		5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
@@ -75,9 +59,12 @@
 		5C0089C62BF330390061C00B /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C0089C82BF330390061C00B /* TennantTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
 		5C0089CF2BF330FC0061C00B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
-		5C0089D12BF3310B0061C00B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingDataProvider.swift; sourceTree = "<group>"; };
 		5C0089DC2BF345330061C00B /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
+		5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
+		5C0089DF2BF34A4D0061C00B /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		5C0089E02BF34A4D0061C00B /* SingleUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
+		5C0089E12BF34A4D0061C00B /* Tennant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4734232B6261C00040A0AA /* TennantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsApp.swift; sourceTree = "<group>"; };
 		5C4734252B6261C10040A0AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,49 +103,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C0089822BF32F2D0061C00B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5C00897D2BF32F2D0061C00B /* Extension+Field.swift */,
-				5C00897F2BF32F2D0061C00B /* Extension+String.swift */,
-				5C0089812BF32F2D0061C00B /* Extension+View.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		5C0089892BF32F2D0061C00B /* Validation */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089842BF32F2D0061C00B /* TextFormView.swift */,
-				5C0089862BF32F2D0061C00B /* ValidationModifier.swift */,
-				5C0089882BF32F2D0061C00B /* ValidationPreferenceKey.swift */,
-			);
-			path = Validation;
-			sourceTree = "<group>";
-		};
-		5C0089922BF32F2D0061C00B /* View Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				5C00898B2BF32F2D0061C00B /* BackgroundColour.swift */,
-				5C00898D2BF32F2D0061C00B /* HorizontalAlignment.swift */,
-				5C00898F2BF32F2D0061C00B /* NumberTextField.swift */,
-				5C0089912BF32F2D0061C00B /* TextFieldDoneButton.swift */,
-			);
-			path = "View Modifiers";
-			sourceTree = "<group>";
-		};
-		5C0089932BF32F2D0061C00B /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089D12BF3310B0061C00B /* LandingView.swift */,
-				5C0089822BF32F2D0061C00B /* Extensions */,
-				5C0089892BF32F2D0061C00B /* Validation */,
-				5C0089922BF32F2D0061C00B /* View Modifiers */,
-			);
-			name = Util;
-			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Util";
-			sourceTree = "<group>";
-		};
 		5C0089B02BF32FE00061C00B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +176,17 @@
 			path = DataProviders;
 			sourceTree = "<group>";
 		};
+		5C0089E22BF34A4D0061C00B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */,
+				5C0089DF2BF34A4D0061C00B /* Property.swift */,
+				5C0089E02BF34A4D0061C00B /* SingleUnit.swift */,
+				5C0089E12BF34A4D0061C00B /* Tennant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5C4734172B6261C00040A0AA = {
 			isa = PBXGroup;
 			children = (
@@ -255,10 +210,10 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C0089E22BF34A4D0061C00B /* Models */,
 				5C0089D22BF331120061C00B /* Landing */,
 				5C0089C92BF330390061C00B /* Tab View */,
 				5C0089B82BF32FE00061C00B /* Onboarding */,
-				5C0089932BF32F2D0061C00B /* Util */,
 				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
 				5C4734252B6261C10040A0AA /* ContentView.swift */,
 				5C0089A82BF32FBE0061C00B /* MainAppView.swift */,
@@ -429,29 +384,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
+				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
 				5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */,
-				5C0089952BF32F2D0061C00B /* Extension+Field.swift in Sources */,
-				5C00899B2BF32F2D0061C00B /* TextFormView.swift in Sources */,
-				5C00899F2BF32F2D0061C00B /* ValidationPreferenceKey.swift in Sources */,
 				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
 				5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
-				5C0089A12BF32F2D0061C00B /* BackgroundColour.swift in Sources */,
 				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
 				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
 				5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */,
-				5C0089A72BF32F2D0061C00B /* TextFieldDoneButton.swift in Sources */,
 				5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */,
-				5C0089992BF32F2D0061C00B /* Extension+View.swift in Sources */,
-				5C00899D2BF32F2D0061C00B /* ValidationModifier.swift in Sources */,
 				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
-				5C0089972BF32F2D0061C00B /* Extension+String.swift in Sources */,
+				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
 				5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */,
-				5C0089A32BF32F2D0061C00B /* HorizontalAlignment.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
+				5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */,
 				5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */,
 				5C0089CB2BF330390061C00B /* TabViewModel.swift in Sources */,
-				5C0089A52BF32F2D0061C00B /* NumberTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

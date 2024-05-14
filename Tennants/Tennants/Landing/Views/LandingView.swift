@@ -55,24 +55,24 @@ struct TennantLandingView: View {
                         }
                     }
                 }
-                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
-                    PropertyOptionsView(propertyType: $viewModel.propertyType) {
-                        shouldShowAddProperty = true
-                    }
-                }
-                .navigationDestination(isPresented: $shouldShowAddProperty) {
-                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
-                        viewModel.newData.isAProperty = true
-                        viewModel.addData()
-                        showTennantView = true
-                    }
-                }
-                .navigationDestination(isPresented: $showTennantView) {
-                    AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {
-                        viewModel.newData.isAProperty = false
-                        viewModel.addData()
-                    }
-                }
+//                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
+//                    PropertyOptionsView(propertyType: $viewModel.propertyType) {
+//                        shouldShowAddProperty = true
+//                    }
+//                }
+//                .navigationDestination(isPresented: $shouldShowAddProperty) {
+//                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
+//                        viewModel.newData.isAProperty = true
+//                        viewModel.addData()
+//                        showTennantView = true
+//                    }
+//                }
+//                .navigationDestination(isPresented: $showTennantView) {
+//                    AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {
+//                        viewModel.newData.isAProperty = false
+//                        viewModel.addData()
+//                    }
+//                }
             }
         }
     }
