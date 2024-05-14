@@ -1,0 +1,15 @@
+{
+  "originHash" : "9b5351aac05a62d363ace7b2d9b04fb368aa60e75cc3fd0de1f12a03388a7539",
+  "pins" : [
+    {
+      "identity" : "mylibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SibusisoGlu/MyLibrary",
+      "state" : {
+        "revision" : "3bcb033cfcfd0513ebc2abbb52a87818ef5b5a97",
+        "version" : "1.1.7"
+      }
+    }
+  ],
+  "version" : 3
+}
