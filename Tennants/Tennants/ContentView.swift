@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Tennants
-//
-//  Created by Sibusiso Mbonani on 2024/01/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
