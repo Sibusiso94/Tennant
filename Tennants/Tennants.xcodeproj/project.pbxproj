@@ -27,6 +27,8 @@
 		5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C82BF330390061C00B /* TennantTabView.swift */; };
 		5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* LandingView.swift */; };
 		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
+		5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */; };
+		5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* LandingViewModel.swift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
 		5C4734262B6261C10040A0AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734252B6261C10040A0AA /* ContentView.swift */; };
 		5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4734272B6261C40040A0AA /* Assets.xcassets */; };
@@ -74,6 +76,8 @@
 		5C0089C82BF330390061C00B /* TennantTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
 		5C0089CF2BF330FC0061C00B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		5C0089D12BF3310B0061C00B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingDataProvider.swift; sourceTree = "<group>"; };
+		5C0089DC2BF345330061C00B /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4734232B6261C00040A0AA /* TennantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsApp.swift; sourceTree = "<group>"; };
 		5C4734252B6261C10040A0AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -197,9 +201,35 @@
 		5C0089D22BF331120061C00B /* Landing */ = {
 			isa = PBXGroup;
 			children = (
-				5C0089CF2BF330FC0061C00B /* LandingView.swift */,
+				5C0089D72BF344380061C00B /* DataProviders */,
+				5C0089D62BF344260061C00B /* ViewModels */,
+				5C0089D52BF344170061C00B /* Views */,
 			);
 			path = Landing;
+			sourceTree = "<group>";
+		};
+		5C0089D52BF344170061C00B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089CF2BF330FC0061C00B /* LandingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C0089D62BF344260061C00B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DC2BF345330061C00B /* LandingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5C0089D72BF344380061C00B /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */,
+			);
+			path = DataProviders;
 			sourceTree = "<group>";
 		};
 		5C4734172B6261C00040A0AA = {
@@ -399,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */,
 				5C0089952BF32F2D0061C00B /* Extension+Field.swift in Sources */,
 				5C00899B2BF32F2D0061C00B /* TextFormView.swift in Sources */,
 				5C00899F2BF32F2D0061C00B /* ValidationPreferenceKey.swift in Sources */,
@@ -410,6 +441,7 @@
 				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
 				5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */,
 				5C0089A72BF32F2D0061C00B /* TextFieldDoneButton.swift in Sources */,
+				5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */,
 				5C0089992BF32F2D0061C00B /* Extension+View.swift in Sources */,
 				5C00899D2BF32F2D0061C00B /* ValidationModifier.swift in Sources */,
 				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
