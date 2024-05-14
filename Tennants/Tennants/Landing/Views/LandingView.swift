@@ -37,7 +37,7 @@ struct TennantLandingView: View {
                         GeometryReader { geometry in
                             LazyVGrid(columns: viewModel.columns) {
                                 ForEach(Array(viewModel.properties.enumerated()), id: \.offset) { index, property in
-                                    CardView(property: property, image: Image("image\(index)"), geometry: geometry)
+                                    CardView(title: property.buildingName, image: Image("image\(index)"), geometry: geometry)
                                 }
                                 
                                 VStack {
