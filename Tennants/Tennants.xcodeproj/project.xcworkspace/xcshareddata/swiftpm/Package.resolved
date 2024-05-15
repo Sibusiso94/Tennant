@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SibusisoGlu/MyLibrary",
       "state" : {
-        "revision" : "6a9c82646a93d5593ad89f2c5414a78b5373da27",
-        "version" : "1.1.9"
+        "revision" : "0e3e3e0539671ef77479a2f5a2480642afba6559",
+        "version" : "1.1.15"
       }
     }
   ],

@@ -6,21 +6,26 @@ enum Field: Int, Hashable {
     case address
 }
 
+enum PropertyOptions {
+    case multipleUnits
+    case singleUnit
+}
+
 enum ErrorMessage: String, Hashable {
     case numberOfUnitsError = "The number of units occupied cannot exceed the number of units."
     case tenantIDError = "Invalid ID number"
 }
 
 class LandingViewModel: ObservableObject {
-//    @Published var newData: NewDataModel = NewDataModel()
+    @Published var newData: NewDataModel = NewDataModel()
     @Published var properties: [Property] = []
-//    @Published var tennants: [Tennant] = []
-//    @Published var selectedUnit: String = ""
+    @Published var tenants: [Tennant] = []
+    @Published var selectedUnit: String = ""
 //    @Published var viewTitle: String = ""
 //    @Published var buttonTitle: String = ""
 //    @Published var toastMessage: String = ""
 //    @Published var numberOfUnitsOccupiedIsHigherThanUnits: Bool = false
-//    @Published var propertyType: PropertyOptions = .multipleUnits
+    @Published var propertyType: PropertyOptions = .multipleUnits
 //
 //    let realmRepository: RealmRepository
 //    @Published var newProperty: Property = Property()

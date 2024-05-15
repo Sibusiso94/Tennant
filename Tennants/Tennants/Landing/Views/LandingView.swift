@@ -55,18 +55,21 @@ struct TennantLandingView: View {
                         }
                     }
                 }
-//                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
-//                    PropertyOptionsView(propertyType: $viewModel.propertyType) {
-//                        shouldShowAddProperty = true
-//                    }
-//                }
-//                .navigationDestination(isPresented: $shouldShowAddProperty) {
-//                    AddNewView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
-//                        viewModel.newData.isAProperty = true
-//                        viewModel.addData()
-//                        showTennantView = true
-//                    }
-//                }
+                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
+                    PropertyOptionsView() { selectedOption in
+                        if selectedOption == 1 {
+                            viewModel.propertyType = .singleUnit
+                        } else {
+                            viewModel.propertyType = .multipleUnits
+                        }
+                        shouldShowAddProperty = true
+                    }
+                }
+                .navigationDestination(isPresented: $shouldShowAddProperty) {
+                    AddPropertyView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
+//
+                    }
+                }
 //                .navigationDestination(isPresented: $showTennantView) {
 //                    AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {
 //                        viewModel.newData.isAProperty = false
