@@ -62,6 +62,7 @@ struct TennantLandingView: View {
                         } else {
                             viewModel.propertyType = .multipleUnits
                         }
+                        
                         shouldShowAddProperty = true
                     }
                 }

@@ -77,7 +77,6 @@ struct AddPropertyView: View {
                             
                             Button {
                                 action()
-                                
                             } label: {
                                 Text("Add property")
                                     .padding()
