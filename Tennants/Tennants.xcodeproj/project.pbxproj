@@ -32,6 +32,7 @@
 		5C4734352B6261C50040A0AA /* TennantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734342B6261C50040A0AA /* TennantsTests.swift */; };
 		5C47343F2B6261C50040A0AA /* TennantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47343E2B6261C50040A0AA /* TennantsUITests.swift */; };
 		5C4734412B6261C50040A0AA /* TennantsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */; };
+		5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* TenantsView.swift */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
 		5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FD2BF4CC930035F729 /* EditUnitView.swift */; };
 		5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */; };
@@ -82,6 +83,7 @@
 		5C47343A2B6261C50040A0AA /* TennantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47343E2B6261C50040A0AA /* TennantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITests.swift; sourceTree = "<group>"; };
 		5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5CAB08DE2BFCAF5500603758 /* TenantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantsView.swift; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
 		5CD215FD2BF4CC930035F729 /* EditUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitView.swift; sourceTree = "<group>"; };
 		5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitManager.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */,
 				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
+				5CAB08DE2BFCAF5500603758 /* TenantsView.swift */,
 			);
 			path = "Update Tenant";
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */,
 				5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */,
 				5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */,
+				5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */,
 				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
 				5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */,
 				5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */,

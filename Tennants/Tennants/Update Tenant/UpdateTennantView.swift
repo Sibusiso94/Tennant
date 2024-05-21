@@ -5,13 +5,20 @@ struct UpdateTennantView: View {
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
     @State var paymentHistoryPercentage = 0.0
+    @Binding var tenant: Tennant
     
-    init() { }
+    init(tenant: Binding<Tennant>) {
+        self._tenant = tenant
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
-                UpdateTennantTopCardView(unitNumber: "1", name: "John", surname: "Doe", balance: "0.0", amountDue: "0.0")
+                UpdateTennantTopCardView(unitNumber: tenant.unitID,
+                                         name: tenant.name,
+                                         surname: tenant.surname,
+                                         balance: "\(tenant.balance)",
+                                         amountDue: "\(tenant.amountDue)")
                     .padding(.horizontal)
                 
                 CircularProgressView(progress: 0.7,
@@ -74,5 +81,5 @@ struct UpdateTennantView: View {
 }
 
 #Preview {
-    UpdateTennantView()
+    UpdateTennantView(tenant: .constant(MockTenants.tenants[0]))
 }

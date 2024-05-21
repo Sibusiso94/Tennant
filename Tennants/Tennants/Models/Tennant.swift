@@ -100,3 +100,17 @@ class TennantJobBuilder: TennantBuilder {
         return self
     }
 }
+
+class MockTenants {
+    static let tenants = [Tennant(unitID: "1", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "2", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "3", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "4", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "5", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "6", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "7", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "8", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "9", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "10", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "11", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0)]
+}
