@@ -11,14 +11,15 @@ struct UpdateTennantView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                UpdateTennantTopCardView(unitNumber: "1", name: "John", surname: "Doe", balance: 0.0, amountDue: 0.0)
-                    .padding(.top)
+                UpdateTennantTopCardView(unitNumber: "1", name: "John", surname: "Doe", balance: "0.0", amountDue: "0.0")
+                    .padding(.horizontal)
                 
-                CircularProgressView(progress: paymentHistoryPercentage,
-                                     percentageString: viewModel.getPercentage(percentageDouble: paymentHistoryPercentage))
-                    .frame(width: 200, height: 200)
+                CircularProgressView(progress: 0.7,
+                                     percentageString: viewModel.getPercentage(percentageDouble: paymentHistoryPercentage), lineWidth: 20)
+                    .frame(width: 150, height: 150)
+                    .padding(.vertical)
                 
-                TextField(" Amount paid", text: $viewModel.amountAdded)
+                TextField("Amount paid", text: $viewModel.amountAdded)
                     .numberTextField()
                     .focused($isInputActive)
                     .toolbar {
@@ -30,8 +31,6 @@ struct UpdateTennantView: View {
                             }
                         }
                     }
-                
-                Spacer()
                 
                 Button {
                     
