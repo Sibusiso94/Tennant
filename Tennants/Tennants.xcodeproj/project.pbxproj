@@ -23,6 +23,7 @@
 		5C0089E42BF34A4D0061C00B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DF2BF34A4D0061C00B /* Property.swift */; };
 		5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E02BF34A4D0061C00B /* SingleUnit.swift */; };
 		5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E12BF34A4D0061C00B /* Tennant.swift */; };
+		5C05CB122BFF552B00BF7297 /* PDFReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */; };
 		5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */; };
 		5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
@@ -71,6 +72,7 @@
 		5C0089DF2BF34A4D0061C00B /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		5C0089E02BF34A4D0061C00B /* SingleUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
 		5C0089E12BF34A4D0061C00B /* Tennant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderView.swift; sourceTree = "<group>"; };
 		5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantView.swift; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5C05CB102BFF550900BF7297 /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */,
+			);
+			path = PDFReader;
+			sourceTree = "<group>";
+		};
 		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +244,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C05CB102BFF550900BF7297 /* PDFReader */,
 				5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */,
 				5C0089E22BF34A4D0061C00B /* Models */,
 				5C0089D22BF331120061C00B /* Landing */,
@@ -425,6 +436,7 @@
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
 				5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */,
 				5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */,
+				5C05CB122BFF552B00BF7297 /* PDFReaderView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
 				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,

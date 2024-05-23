@@ -28,7 +28,6 @@ struct TenantsView: View {
                             .padding(.horizontal)
                     }
                 }
-                .padding(.vertical)
             }
             .navigationTitle(properties.first ?? "")
             .toolbar {
@@ -41,7 +40,9 @@ struct TenantsView: View {
                 }
             }
             .navigationDestination(isPresented: $showDetailView) {
-                UpdateTennantView(tenant: $selectedTenant)
+                withAnimation {
+                    UpdateTennantView(tenant: $selectedTenant)
+                }
             }
         }
     }
