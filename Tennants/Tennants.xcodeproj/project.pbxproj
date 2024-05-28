@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089A82BF32FBE0061C00B /* MainAppView.swift */; };
+		5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */; };
+		5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */; };
+		5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AF2BF32FE00061C00B /* SessionManager.swift */; };
+		5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */; };
+		5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089B62BF32FE00061C00B /* OnboardingView.swift */; };
+		5C0089CB2BF330390061C00B /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C62BF330390061C00B /* TabViewModel.swift */; };
+		5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C82BF330390061C00B /* TennantTabView.swift */; };
+		5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* LandingView.swift */; };
+		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
+		5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */; };
+		5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* LandingViewModel.swift */; };
+		5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */; };
+		5C0089E42BF34A4D0061C00B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DF2BF34A4D0061C00B /* Property.swift */; };
+		5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E02BF34A4D0061C00B /* SingleUnit.swift */; };
+		5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E12BF34A4D0061C00B /* Tennant.swift */; };
+		5C05CB122BFF552B00BF7297 /* PDFReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */; };
+		5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */; };
+		5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */; };
+		5C25D5D32C05C6C300C24658 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */; };
+		5C25D5D72C05C81D00C24658 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5D62C05C81D00C24658 /* FirebaseAnalytics */; };
+		5C25D5D92C05C82300C24658 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5D82C05C82300C24658 /* FirebaseAnalyticsSwift */; };
+		5C25D5DB2C05C82D00C24658 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5DA2C05C82D00C24658 /* FirebaseAppCheck */; };
+		5C25D5DD2C05C83800C24658 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5DC2C05C83800C24658 /* FirebaseAuth */; };
+		5C25D5DF2C05C84500C24658 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5DE2C05C84500C24658 /* FirebaseFirestore */; };
+		5C25D5E12C05C85800C24658 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5E02C05C85700C24658 /* FirebaseRemoteConfigSwift */; };
+		5C25D5E32C05C86600C24658 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5E22C05C86600C24658 /* FirebaseFirestoreSwift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
 		5C4734262B6261C10040A0AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734252B6261C10040A0AA /* ContentView.swift */; };
 		5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4734272B6261C40040A0AA /* Assets.xcassets */; };
@@ -14,6 +41,10 @@
 		5C4734352B6261C50040A0AA /* TennantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734342B6261C50040A0AA /* TennantsTests.swift */; };
 		5C47343F2B6261C50040A0AA /* TennantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47343E2B6261C50040A0AA /* TennantsUITests.swift */; };
 		5C4734412B6261C50040A0AA /* TennantsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */; };
+		5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* TenantsView.swift */; };
+		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
+		5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FD2BF4CC930035F729 /* EditUnitView.swift */; };
+		5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +65,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C0089A82BF32FBE0061C00B /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppView.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/MainAppView.swift"; sourceTree = "<group>"; };
+		5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
+		5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		5C0089AF2BF32FE00061C00B /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
+		5C0089B62BF32FE00061C00B /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		5C0089C62BF330390061C00B /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		5C0089C82BF330390061C00B /* TennantTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
+		5C0089CF2BF330FC0061C00B /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingDataProvider.swift; sourceTree = "<group>"; };
+		5C0089DC2BF345330061C00B /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
+		5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
+		5C0089DF2BF34A4D0061C00B /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		5C0089E02BF34A4D0061C00B /* SingleUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
+		5C0089E12BF34A4D0061C00B /* Tennant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
+		5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderView.swift; sourceTree = "<group>"; };
+		5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
+		5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantView.swift; sourceTree = "<group>"; };
+		5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4734232B6261C00040A0AA /* TennantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsApp.swift; sourceTree = "<group>"; };
 		5C4734252B6261C10040A0AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +94,10 @@
 		5C47343A2B6261C50040A0AA /* TennantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47343E2B6261C50040A0AA /* TennantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITests.swift; sourceTree = "<group>"; };
 		5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5CAB08DE2BFCAF5500603758 /* TenantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantsView.swift; sourceTree = "<group>"; };
+		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
+		5CD215FD2BF4CC930035F729 /* EditUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitView.swift; sourceTree = "<group>"; };
+		5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +105,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C25D5DB2C05C82D00C24658 /* FirebaseAppCheck in Frameworks */,
+				5C25D5DD2C05C83800C24658 /* FirebaseAuth in Frameworks */,
+				5C25D5D92C05C82300C24658 /* FirebaseAnalyticsSwift in Frameworks */,
+				5C25D5E12C05C85800C24658 /* FirebaseRemoteConfigSwift in Frameworks */,
+				5C25D5D72C05C81D00C24658 /* FirebaseAnalytics in Frameworks */,
+				5C0089D42BF331580061C00B /* MyLibrary in Frameworks */,
+				5C25D5DF2C05C84500C24658 /* FirebaseFirestore in Frameworks */,
+				5C25D5E32C05C86600C24658 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +133,117 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C0089B02BF32FE00061C00B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */,
+				5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */,
+				5C0089AF2BF32FE00061C00B /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5C0089B72BF32FE00061C00B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */,
+				5C0089B62BF32FE00061C00B /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C0089B82BF32FE00061C00B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089B02BF32FE00061C00B /* Managers */,
+				5C0089B72BF32FE00061C00B /* Views */,
+			);
+			name = Onboarding;
+			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Onboarding";
+			sourceTree = "<group>";
+		};
+		5C0089C92BF330390061C00B /* Tab View */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089C62BF330390061C00B /* TabViewModel.swift */,
+				5C0089C82BF330390061C00B /* TennantTabView.swift */,
+			);
+			name = "Tab View";
+			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Views/Tab View";
+			sourceTree = "<group>";
+		};
+		5C0089D22BF331120061C00B /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089D72BF344380061C00B /* DataProviders */,
+				5C0089D62BF344260061C00B /* ViewModels */,
+				5C0089D52BF344170061C00B /* Views */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		5C0089D52BF344170061C00B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089CF2BF330FC0061C00B /* LandingView.swift */,
+				5CD215FC2BF4CC490035F729 /* AddPropertyFlow */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C0089D62BF344260061C00B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DC2BF345330061C00B /* LandingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5C0089D72BF344380061C00B /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */,
+				5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		5C0089E22BF34A4D0061C00B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */,
+				5C0089DF2BF34A4D0061C00B /* Property.swift */,
+				5C0089E02BF34A4D0061C00B /* SingleUnit.swift */,
+				5C0089E12BF34A4D0061C00B /* Tennant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C05CB102BFF550900BF7297 /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				5C05CB112BFF552B00BF7297 /* PDFReaderView.swift */,
+			);
+			path = PDFReader;
+			sourceTree = "<group>";
+		};
+		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
+			isa = PBXGroup;
+			children = (
+				5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */,
+				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
+				5CAB08DE2BFCAF5500603758 /* TenantsView.swift */,
+			);
+			path = "Update Tenant";
+			sourceTree = "<group>";
+		};
+		5C25D5D52C05C81D00C24658 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5C4734172B6261C00040A0AA = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +251,7 @@
 				5C4734332B6261C50040A0AA /* TennantsTests */,
 				5C47343D2B6261C50040A0AA /* TennantsUITests */,
 				5C4734212B6261C00040A0AA /* Products */,
+				5C25D5D52C05C81D00C24658 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +268,16 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C05CB102BFF550900BF7297 /* PDFReader */,
+				5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */,
+				5C0089E22BF34A4D0061C00B /* Models */,
+				5C0089D22BF331120061C00B /* Landing */,
+				5C0089C92BF330390061C00B /* Tab View */,
+				5C0089B82BF32FE00061C00B /* Onboarding */,
 				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
+				5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */,
 				5C4734252B6261C10040A0AA /* ContentView.swift */,
+				5C0089A82BF32FBE0061C00B /* MainAppView.swift */,
 				5C4734272B6261C40040A0AA /* Assets.xcassets */,
 				5C4734292B6261C40040A0AA /* Preview Content */,
 			);
@@ -127,6 +309,15 @@
 			path = TennantsUITests;
 			sourceTree = "<group>";
 		};
+		5CD215FC2BF4CC490035F729 /* AddPropertyFlow */ = {
+			isa = PBXGroup;
+			children = (
+				5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */,
+				5CD215FD2BF4CC930035F729 /* EditUnitView.swift */,
+			);
+			path = AddPropertyFlow;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +334,16 @@
 			dependencies = (
 			);
 			name = Tennants;
+			packageProductDependencies = (
+				5C0089D32BF331580061C00B /* MyLibrary */,
+				5C25D5D62C05C81D00C24658 /* FirebaseAnalytics */,
+				5C25D5D82C05C82300C24658 /* FirebaseAnalyticsSwift */,
+				5C25D5DA2C05C82D00C24658 /* FirebaseAppCheck */,
+				5C25D5DC2C05C83800C24658 /* FirebaseAuth */,
+				5C25D5DE2C05C84500C24658 /* FirebaseFirestore */,
+				5C25D5E02C05C85700C24658 /* FirebaseRemoteConfigSwift */,
+				5C25D5E22C05C86600C24658 /* FirebaseFirestoreSwift */,
+			);
 			productName = Tennants;
 			productReference = 5C4734202B6261C00040A0AA /* Tennants.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +416,10 @@
 				Base,
 			);
 			mainGroup = 5C4734172B6261C00040A0AA;
+			packageReferences = (
+				5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */,
+				5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +438,7 @@
 			files = (
 				5C47342B2B6261C40040A0AA /* Preview Assets.xcassets in Resources */,
 				5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */,
+				5C25D5D32C05C6C300C24658 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +463,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
+				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
+				5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */,
+				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
+				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
+				5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */,
+				5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */,
+				5C05CB122BFF552B00BF7297 /* PDFReaderView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
+				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
+				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
+				5C0089D02BF330FC0061C00B /* LandingView.swift in Sources */,
+				5C0089DD2BF345330061C00B /* LandingViewModel.swift in Sources */,
+				5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */,
+				5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */,
+				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
+				5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */,
+				5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */,
+				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
+				5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
+				5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */,
+				5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */,
+				5C0089CB2BF330390061C00B /* TabViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +816,68 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SibusisoGlu/MyLibrary";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.7;
+			};
+		};
+		5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5C0089D32BF331580061C00B /* MyLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */;
+			productName = MyLibrary;
+		};
+		5C25D5D62C05C81D00C24658 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5C25D5D82C05C82300C24658 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		5C25D5DA2C05C82D00C24658 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		5C25D5DC2C05C83800C24658 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		5C25D5DE2C05C84500C24658 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		5C25D5E02C05C85700C24658 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+		5C25D5E22C05C86600C24658 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5C4734182B6261C00040A0AA /* Project object */;
 }
