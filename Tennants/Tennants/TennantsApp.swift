@@ -1,4 +1,5 @@
 import SwiftUI
+import Firebase
 
 @main
 struct TennantsApp: App {
@@ -6,5 +7,9 @@ struct TennantsApp: App {
         WindowGroup {
             ContentView()
         }
+    }
+    
+    init() {
+        FirebaseApp.configure()
     }
 }
