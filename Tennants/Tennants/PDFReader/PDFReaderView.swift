@@ -3,52 +3,44 @@ import UniformTypeIdentifiers
 import MyLibrary
 
 struct PDFReaderView: View {
-    @State private var showFileImporter = false
-    @State var showSheet = false
-    @AppStorage("bookmarkData") var downloadsBookmark: Data?
-    @State var urlselected: URL?
+    @State private var showPDFImporter: Bool = false
+    @State private var selectedBankImage: String = ""
+    @StateObject var fileManager = FPDDataManager()
     
-    var networkingManager = NetworkManager()
-
     var body: some View {
-        VStack {
-            Button("Set downloads directory") {
-//                showFileImporter.toggle()
-                networkingManager.fetchUserData()
+        ZStack {
+            Color("PastelGrey")
+                .ignoresSafeArea()
+            VStack {
+                if let results = fileManager.results {
+                    ForEach(results, id: \.reference) { result in
+                        VStack {
+                            Text(result.reference)
+                            Text(result.amount)
+                            Text(result.date)
+                        }
+                    }
+                } else {
+                    DocumentSelectionView(image: Image("\(fileManager.selectedBankType.lowercased())"),
+                                          imageWidth: fileManager.selectedBankType == "Capitec" ? 300 : 200,
+                                          bankTypes: fileManager.bankTypes,
+                                          selectedBankType: $fileManager.selectedBankType) {
+                        showPDFImporter.toggle()
+                    }
+                }
             }
-        }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType.folder]) { result in
-            print("File importer for folder presented")
-            switch result {
-            case .success(let url):
-                print("Folder selected: \(url)")
-                handleFolderSelection(url: url)
-                self.urlselected = url
-            case .failure(let error):
-                print("Importer error: \(error)")
+            .fileImporter(isPresented: $showPDFImporter, allowedContentTypes: [UTType.pdf]) { result in
+                switch result {
+                case .success(let url):
+                    fileManager.handleImportedFile(url: url)
+                case .failure(let error):
+                    print("Importer error: \(error)")
+                }
             }
-        }
-        .sheet(isPresented: $showSheet, content: {
-            if let url = urlselected {
-                SHeet(url: url)
-            }
-        })
-    }
-
-    private func handleFolderSelection(url: URL) {
-        guard url.startAccessingSecurityScopedResource() else {
-            print("Failed to access security scoped resource for folder")
-            return
-        }
-
-        defer { url.stopAccessingSecurityScopedResource() }
-
-        do {
-            downloadsBookmark = try url.bookmarkData(options: .minimalBookmark, includingResourceValuesForKeys: nil, relativeTo: nil)
-            print("Downloads directory set successfully")
-            showSheet = true
-        } catch {
-            print("Bookmark error \(error)")
         }
     }
+}
+
+#Preview {
+    PDFReaderView()
 }

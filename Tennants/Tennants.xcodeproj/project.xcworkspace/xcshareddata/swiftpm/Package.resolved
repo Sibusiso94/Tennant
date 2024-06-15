@@ -1,5 +1,5 @@
 {
-  "originHash" : "33a7a2dda182ae3902578a0fc40080d337226a81b9c485cf554111602f9edcb9",
+  "originHash" : "8f6e2ba7a42addb850a74e5bb38bb3b7619de5820ab66889a8f459aec2a04e73",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SibusisoGlu/MyLibrary",
       "state" : {
-        "revision" : "b192d0b3abfbe80991cdec6cdecfa08ef53185fd",
-        "version" : "1.2.4"
+        "revision" : "293fdfe1fb3ed4ca9b46aba335c48b1393ad0f36",
+        "version" : "1.2.6"
       }
     },
     {

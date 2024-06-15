@@ -1,26 +1,44 @@
 import Foundation
+import SwiftUI
 import FirebaseStorage
 import PDFKit
+
+protocol PDFManager {
+    func handleImportedFile(url: URL)
+    func uploadFile(url: Data?)
+    func validateFileURL(_ fileURL: URL) -> Bool
+}
 
 protocol FileDataManager {
     var url: URL { get }
     func uploadFile()
 }
 
-final class FPDDataManager: ObservableObject {
+final class FPDDataManager: ObservableObject, PDFManager {
+    var networkingManager = NetworkManagerConcreation()
     let storageRef = Storage.storage().reference()
-    @Published var tenantsData: [TenantData] = []
+    var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
+    @Published var selectedBankType = "Standard"
+    @Published var results: [TenantData]?
+    
     init() {
         
     }
     
-//    var url: URL
-//    
-//    init(url: URL) {
-//        self.url = url
-//    }
+    func handleImportedFile(url: URL) {
+        if validateFileURL(url) {
+            guard let safeURL = securelyAccessURL(url: url) else { return }
+            
+            do {
+                let data = try Data(contentsOf: url)
+//                uploadFile(url: data)
+            } catch {
+                print("Error reading file data: \(error.localizedDescription)")
+            }
+        }
+    }
     
-    func uploadFile(url: Data?) {
+    internal func uploadFile(url: Data?) {
         guard let localFile = url else { return }
         let date = Date.now
 
@@ -49,7 +67,46 @@ final class FPDDataManager: ObservableObject {
         }
     }
     
-    func validateFileURL(_ fileURL: URL) -> Bool {
+    func securelyAccessURL(url: URL) -> URL? {
+        var documentURL: URL?
+        guard url.startAccessingSecurityScopedResource() else {
+            print("Failed to start accessing security-scoped resource")
+            return nil
+        }
+
+        defer { url.stopAccessingSecurityScopedResource() }
+
+        let fileCoordinator = NSFileCoordinator()
+        var error: NSError? = nil
+        fileCoordinator.coordinate(readingItemAt: url, error: &error) { [weak self] (url) in
+            let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey]
+
+            guard let fileList = FileManager.default.enumerator(at: url, includingPropertiesForKeys: keys) else {
+                print("*** Unable to access the contents of \(url.path) ***")
+                return
+            }
+
+            for case let file as URL in fileList {
+                guard file.startAccessingSecurityScopedResource() else {
+                    print("Failed to start accessing security-scoped resource for file: \(file.lastPathComponent)")
+                    continue
+                }
+
+                print("Chosen file: \(file.lastPathComponent)")
+                documentURL = file
+
+                file.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        if let error = error {
+            print("File coordination error: \(error)")
+        }
+        
+        return documentURL
+    }
+    
+    internal func validateFileURL(_ fileURL: URL) -> Bool {
         let fileManager = FileManager.default
         
         // Check if the URL is a file URL
