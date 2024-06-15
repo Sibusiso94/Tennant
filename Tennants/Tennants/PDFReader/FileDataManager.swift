@@ -27,11 +27,11 @@ final class FPDDataManager: ObservableObject, PDFManager {
     
     func handleImportedFile(url: URL) {
         if validateFileURL(url) {
-            guard let safeURL = securelyAccessURL(url: url) else { return }
+//            guard let safeURL = securelyAccessURL(url: url) else { return }
             
             do {
                 let data = try Data(contentsOf: url)
-//                uploadFile(url: data)
+                uploadFile(url: data)
             } catch {
                 print("Error reading file data: \(error.localizedDescription)")
             }
@@ -45,24 +45,24 @@ final class FPDDataManager: ObservableObject, PDFManager {
         #warning("Get userID/name to pass in to make folder unique")
         let statementRef = storageRef.child("statements/statement_\(date).pdf")
         if let url = url {
-            let uploadTask = statementRef.putData(localFile, metadata: nil) { metadata, error in
+            _ = statementRef.putData(localFile, metadata: nil) { metadata, error in
                 guard let metadata = metadata else {
-                    print("Uh-oh, an error occurred: \(error?.localizedDescription)")
+                    print("Uh-oh, an error occurred: \(String(describing: error?.localizedDescription))")
                     return
                 }
-                // Metadata contains file metadata such as size, content-type.
+                
                 let size = metadata.size
                 let name = metadata.name ?? ""
                 let type = metadata.contentType ?? ""
                 print("================================")
                 print("PDF info: \n\(size) \n\(name) \n\(type)")
-                // You can also access to download URL after upload.
-                //          statementRef.downloadURL { (url, error) in
-                //            guard let downloadURL = url else {
-                //              // Uh-oh, an error occurred!
-                //              return
-                //            }
-                //          }
+                
+                statementRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        print(error?.localizedDescription ?? "")
+                        return
+                    }
+                }
             }
         }
     }
@@ -138,5 +138,12 @@ final class FPDDataManager: ObservableObject, PDFManager {
         
         // If all checks pass, the URL is valid
         return true
+    }
+    
+    func fetchUserData() {
+        let url = networkingManager.setUpURL(bankType: selectedBankType)
+        networkingManager.fetchUserData(apiURL: url) { tenants in
+            self.results = tenants
+        }
     }
 }

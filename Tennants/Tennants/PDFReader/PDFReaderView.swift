@@ -13,7 +13,7 @@ struct PDFReaderView: View {
                 .ignoresSafeArea()
             VStack {
                 if let results = fileManager.results {
-                    ForEach(results, id: \.reference) { result in
+                    ForEach(results, id: \.id) { result in
                         VStack {
                             Text(result.reference)
                             Text(result.amount)
@@ -32,7 +32,8 @@ struct PDFReaderView: View {
             .fileImporter(isPresented: $showPDFImporter, allowedContentTypes: [UTType.pdf]) { result in
                 switch result {
                 case .success(let url):
-                    fileManager.handleImportedFile(url: url)
+//                    fileManager.handleImportedFile(url: url)
+                    fileManager.fetchUserData()
                 case .failure(let error):
                     print("Importer error: \(error)")
                 }
