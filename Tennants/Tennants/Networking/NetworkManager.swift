@@ -19,35 +19,37 @@ final class NetworkManagerConcreation: ObservableObject, NetworkManager {
         isLoading = true
         if let url = URL(string: apiURL) {
             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                if let error = error {
-                    // Handle error
-                    print("Error occurred: \(error)")
-                    return
-                }
-                
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    // Handle invalid response
-                    print("Invalid response")
-                    return
-                }
-                
-                guard let data = data else {
-                    // Handle missing data
-                    print("No data received")
-                    return
-                }
-                
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase 
-                
-                do {
-                    let tenantData = try decoder.decode([TenantData].self, from: data)
-                    self?.isLoading = false
-                    completion(tenantData)
-                } catch {
-                    // Handle decoding error
-                    self?.isLoading = false
-                    print("Error parsing data: \(error)")
+                DispatchQueue.main.async {
+                    if let error = error {
+                        // Handle error
+                        print("Error occurred: \(error)")
+                        return
+                    }
+                    
+                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                        // Handle invalid response
+                        print("Invalid response")
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        // Handle missing data
+                        print("No data received")
+                        return
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    
+                    do {
+                        let tenantData = try decoder.decode([TenantData].self, from: data)
+                        self?.isLoading = false
+                        completion(tenantData)
+                    } catch {
+                        // Handle decoding error
+                        self?.isLoading = false
+                        print("Error parsing data: \(error)")
+                    }
                 }
             }
             .resume()

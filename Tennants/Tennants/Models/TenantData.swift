@@ -2,9 +2,9 @@ import Foundation
 
 class TenantData: Codable {
     var id: String
-    let date: String
+    var date: String
     let reference: String
-    let amount: String
+    var amount: String
 }
 
 typealias TennantsData = [TenantData]

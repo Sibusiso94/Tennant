@@ -19,6 +19,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
     let storageRef = Storage.storage().reference()
     var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
     @Published var selectedBankType = "Standard"
+    @Published var isCompletePayment = true
     @Published var results: [TenantData]?
     
     init() {
@@ -144,6 +145,29 @@ final class FPDDataManager: ObservableObject, PDFManager {
         let url = networkingManager.setUpURL(bankType: selectedBankType)
         networkingManager.fetchUserData(apiURL: url) { tenants in
             self.results = tenants
+            self.filterAllPayments(tenants: self.results)
+        }
+    }
+    
+    private func filterAllPayments(tenants: [TenantData]?) {
+        guard let tenants = tenants else { return }
+        for (index, tenant) in tenants.enumerated() {
+            results?[index].amount = tenant.amount.replacingOccurrences(of: "\"", with: "")
+        }
+    }
+    
+    private func cleanPaymentAmount(amount: String) -> String {
+        let cleanAmount = amount.replacingOccurrences(of: "\"", with: "")
+        return cleanAmount
+    }
+    
+    func isPaymentComplete(amount: String) -> Bool {
+        guard let amount = Double(amount) else { return false }
+        
+        if amount > 600 {
+            return true
+        } else {
+            return false
         }
     }
 }

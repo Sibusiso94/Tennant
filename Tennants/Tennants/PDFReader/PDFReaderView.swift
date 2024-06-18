@@ -14,11 +14,10 @@ struct PDFReaderView: View {
             VStack {
                 if let results = fileManager.results {
                     ForEach(results, id: \.id) { result in
-                        VStack {
-                            Text(result.reference)
-                            Text(result.amount)
-                            Text(result.date)
-                        }
+                        UserDetailsCard(reference: result.reference,
+                                        amount: result.amount,
+                                        date: result.date,
+                                        isCompletePayment: fileManager.isPaymentComplete(amount: result.amount))
                     }
                 } else {
                     DocumentSelectionView(image: Image("\(fileManager.selectedBankType.lowercased())"),
@@ -41,6 +40,7 @@ struct PDFReaderView: View {
         }
     }
 }
+
 
 #Preview {
     PDFReaderView()
