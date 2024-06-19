@@ -155,8 +155,8 @@ final class FPDDataManager: ObservableObject, PDFManager {
         networkingManager.fetchUserData(apiURL: url) { [weak self] tenants in
             self?.results = tenants
             self?.filterAllPayments(tenants: self?.results)
-            self?.isLoading = false
             self?.showPDFImporter = false
+            self?.isLoading = false
             self?.shouldShowResultView = true
         }
         

@@ -3,7 +3,6 @@ import UniformTypeIdentifiers
 import MyLibrary
 
 struct PDFReaderView: View {
-    @State private var selectedBankImage: String = ""
     @StateObject var fileManager = FPDDataManager()
     
     var body: some View {
@@ -45,17 +44,27 @@ struct PDFReaderView: View {
                 ZStack {
                     Color("PastelGrey")
                         .ignoresSafeArea()
-                    VStack {
-                        if let results = fileManager.results {
-                            ForEach(results, id: \.id) { result in
-                                UserDetailsCard(reference: result.reference,
-                                                amount: result.amount,
-                                                date: result.date,
-                                                isCompletePayment: fileManager.isPaymentComplete(amount: result.amount))
+                    
+                    ScrollView {
+                        VStack {
+                            if let results = fileManager.results {
+                                ForEach(results, id: \.id) { result in
+                                    UserDetailsCard(reference: result.reference,
+                                                    amount: result.amount,
+                                                    date: result.date,
+                                                    isCompletePayment: fileManager.isPaymentComplete(amount: result.amount))
+                                }
                             }
                         }
                     }
-                    .navigationTitle("History")
+                }
+                .navigationTitle("History")
+            }
+            .overlay {
+                if fileManager.isLoading {
+                    ProgressView()
+                        .scaleEffect(5)
+                        .padding(.bottom)
                 }
             }
         }
