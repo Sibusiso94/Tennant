@@ -5,8 +5,32 @@ protocol NetworkManager {
     func fetchUserData(apiURL: String, completion: @escaping ([TenantData]) -> ())
 }
 
-final class NetworkManagerConcreation: ObservableObject, NetworkManager {
-    @Published var isLoading = false
+enum TenantError: LocalizedError {
+    case failedToDecode
+    case noDataReceived
+    case invalidUrl
+    case custom(error: Error)
+    case invalidResponse(response: String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .failedToDecode:
+            return "Failed to decode response"
+        case .noDataReceived:
+            return "No data received"
+        case .invalidUrl:
+            return "Invalid URL"
+        case .invalidResponse(let response):
+            return "Invalid response received: \(response)"
+        case .custom(let error):
+            return error.localizedDescription
+        }
+    }
+}
+
+final class NetworkManagerConcreation: NetworkManager {
+    var hasError = false
+    var error: TenantError?
     
     func setUpURL(bankType: String = "Standard",
                   reference: String = "STANSAL",
@@ -16,25 +40,24 @@ final class NetworkManagerConcreation: ObservableObject, NetworkManager {
     }
     
     func fetchUserData(apiURL: String, completion: @escaping ([TenantData]) -> ()) {
-        isLoading = true
         if let url = URL(string: apiURL) {
             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
                 DispatchQueue.main.async {
                     if let error = error {
-                        // Handle error
-                        print("Error occurred: \(error)")
+                        self?.hasError = true
+                        self?.error = TenantError.custom(error: error)
                         return
                     }
                     
                     guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        // Handle invalid response
-                        print("Invalid response")
+                        self?.hasError = true
+                        self?.error = TenantError.invalidResponse(response: String(describing: response))
                         return
                     }
                     
                     guard let data = data else {
-                        // Handle missing data
-                        print("No data received")
+                        self?.hasError = true
+                        self?.error = TenantError.noDataReceived
                         return
                     }
                     
@@ -43,19 +66,17 @@ final class NetworkManagerConcreation: ObservableObject, NetworkManager {
                     
                     do {
                         let tenantData = try decoder.decode([TenantData].self, from: data)
-                        self?.isLoading = false
                         completion(tenantData)
                     } catch {
-                        // Handle decoding error
-                        self?.isLoading = false
-                        print("Error parsing data: \(error)")
+                        self?.hasError = true
+                        self?.error = TenantError.custom(error: error)
                     }
                 }
             }
             .resume()
         } else {
-            // Handle invalid URL
-            print("Invalid URL")
+            hasError = true
+            error = TenantError.invalidUrl
         }
     }
 }

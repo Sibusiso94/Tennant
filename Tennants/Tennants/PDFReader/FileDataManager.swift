@@ -18,9 +18,17 @@ final class FPDDataManager: ObservableObject, PDFManager {
     var networkingManager = NetworkManagerConcreation()
     let storageRef = Storage.storage().reference()
     var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
+    
     @Published var selectedBankType = "Standard"
     @Published var isCompletePayment = true
     @Published var results: [TenantData]?
+    
+    @Published var isLoading = false
+    @Published var hasError: Bool = false
+    @Published var error: TenantError?
+    
+    @Published var showPDFImporter: Bool = false
+    @Published var shouldShowResultView: Bool = false
     
     init() {
         
@@ -142,11 +150,18 @@ final class FPDDataManager: ObservableObject, PDFManager {
     }
     
     func fetchUserData() {
+       isLoading = true
         let url = networkingManager.setUpURL(bankType: selectedBankType)
-        networkingManager.fetchUserData(apiURL: url) { tenants in
-            self.results = tenants
-            self.filterAllPayments(tenants: self.results)
+        networkingManager.fetchUserData(apiURL: url) { [weak self] tenants in
+            self?.results = tenants
+            self?.filterAllPayments(tenants: self?.results)
+            self?.isLoading = false
+            self?.showPDFImporter = false
+            self?.shouldShowResultView = true
         }
+        
+        hasError = networkingManager.hasError
+        error = networkingManager.error
     }
     
     private func filterAllPayments(tenants: [TenantData]?) {
