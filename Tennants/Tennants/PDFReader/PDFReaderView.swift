@@ -21,15 +21,6 @@ struct PDFReaderView: View {
                 .sheet(isPresented: $fileManager.showPDFImporter) {
                     DocumentPicker()
                 }
-//                .fileImporter(isPresented: $fileManager.showPDFImporter, allowedContentTypes: [UTType.pdf]) { result in
-//                    switch result {
-//                    case .success(let url):
-//                          fileManager.handleImportedFile(url: url)
-////                        fileManager.fetchUserData()
-//                    case .failure(let error):
-//                        print("Importer error: \(error)")
-//                    }
-//                }
             }
 //            .navigationTitle("Select a PDF")
             .toolbar {

@@ -67,54 +67,8 @@ final class FPDDataManager: ObservableObject, PDFManager {
                 let type = metadata.contentType ?? ""
                 print("================================")
                 print("PDF info: \n\(size) \n\(name) \n\(type)")
-                
-                statementRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                        print(error?.localizedDescription ?? "")
-                        return
-                    }
-                }
             }
         }
-    }
-    
-    func securelyAccessURL(url: URL) -> URL? {
-        var documentURL: URL?
-        guard url.startAccessingSecurityScopedResource() else {
-            print("Failed to start accessing security-scoped resource")
-            return nil
-        }
-
-        defer { url.stopAccessingSecurityScopedResource() }
-
-        let fileCoordinator = NSFileCoordinator()
-        var error: NSError? = nil
-        fileCoordinator.coordinate(readingItemAt: url, error: &error) { [weak self] (url) in
-            let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey]
-
-            guard let fileList = FileManager.default.enumerator(at: url, includingPropertiesForKeys: keys) else {
-                print("*** Unable to access the contents of \(url.path) ***")
-                return
-            }
-
-            for case let file as URL in fileList {
-                guard file.startAccessingSecurityScopedResource() else {
-                    print("Failed to start accessing security-scoped resource for file: \(file.lastPathComponent)")
-                    continue
-                }
-
-                print("Chosen file: \(file.lastPathComponent)")
-                documentURL = file
-
-                file.stopAccessingSecurityScopedResource()
-            }
-        }
-
-        if let error = error {
-            print("File coordination error: \(error)")
-        }
-        
-        return documentURL
     }
     
     internal func validateFileURL(_ fileURL: URL) -> Bool {
