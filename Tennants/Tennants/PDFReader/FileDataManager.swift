@@ -2,8 +2,10 @@ import Foundation
 import SwiftUI
 import FirebaseStorage
 import PDFKit
+import OSLog
 
 protocol PDFManager {
+//    var networkManager: NetworkManagerConcreation { get }
     func handleImportedFile(url: URL)
     func uploadFile(url: Data?)
     func validateFileURL(_ fileURL: URL) -> Bool
@@ -15,6 +17,8 @@ protocol FileDataManager {
 }
 
 final class FPDDataManager: ObservableObject, PDFManager {
+//    var networkManager: NetworkManagerConcreation
+    
     var networkingManager = NetworkManagerConcreation()
     let storageRef = Storage.storage().reference()
     var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
@@ -36,8 +40,6 @@ final class FPDDataManager: ObservableObject, PDFManager {
     
     func handleImportedFile(url: URL) {
         if validateFileURL(url) {
-//            guard let safeURL = securelyAccessURL(url: url) else { return }
-            
             do {
                 let data = try Data(contentsOf: url)
                 uploadFile(url: data)

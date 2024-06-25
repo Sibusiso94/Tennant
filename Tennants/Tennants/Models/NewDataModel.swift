@@ -1,6 +1,6 @@
 import Foundation
 
-struct NewDataModel: Hashable {
+class NewDataModel {
     var isAProperty: Bool
     var name: String
     var surname: String

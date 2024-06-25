@@ -1,7 +1,9 @@
 import Foundation
+import SwiftData
 
+@Model
 class SingleUnit: Identifiable  {
-    var id: String
+    @Attribute(.unique) var id: String
     var UnitNumber: Int
     var buildingID: String
     var numberOfBedrooms: Int
@@ -10,11 +12,11 @@ class SingleUnit: Identifiable  {
     var tennantID: String
     
     init(id: String = UUID().uuidString,
-                     unitNumber: Int,
-                     buildingID: String,
-                     numberOfBedrooms: Int,
-                     numberOfBathrooms: Int,
-                     isAvailable: Bool,
+                     unitNumber: Int = 0,
+                     buildingID: String = "",
+                     numberOfBedrooms: Int = 1,
+                     numberOfBathrooms: Int = 1,
+                     isAvailable: Bool =  false,
                      tennantID: String = "") {
         self.id = id
         self.UnitNumber = unitNumber

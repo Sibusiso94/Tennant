@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 import Firebase
 
@@ -7,6 +8,7 @@ struct TennantsApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Property.self, SingleUnit.self, Tennant.self])
     }
     
     init() {

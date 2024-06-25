@@ -39,13 +39,16 @@ struct UpdateTennantView: View {
                         }
                     }
                 
-                Button {
-                    
-                } label: {
-                    Text("Paid in full")
-                        .padding()
+                CustomTextButton(title: "Paid in full") {
+                    //
                 }
-                .customHorizontalPadding(isButton: true)
+//                Button {
+//                    
+//                } label: {
+//                    Text()
+//                        .padding()
+//                }
+//                .customHorizontalPadding(isButton: true)
                 
                 Button {
                     

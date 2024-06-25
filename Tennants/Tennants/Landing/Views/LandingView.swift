@@ -68,7 +68,7 @@ struct TennantLandingView: View {
                 }
                 .navigationDestination(isPresented: $shouldShowAddProperty) {
                     AddPropertyView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
-//
+                        viewModel.createProperty()
                     }
                 }
 //                .navigationDestination(isPresented: $showTennantView) {

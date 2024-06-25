@@ -52,37 +52,16 @@ struct AddPropertyView: View {
                                                        placeHolderText: "Number of Units Occupied",
                                                        numberOfUnits: data.numberOfUnits, isProperty: true)
                             
-                            if isPropertyAdded {
-                                Button {
-                                    action()
-                                    
-                                } label: {
-                                    Text("Add tenants to property")
-                                        .padding()
-                                }
-                                .customHorizontalPadding(isButton: true)
-                                //            .disabled(viewModel.amountAdded == "")
-                            } else {
-                                Button {
-                                    isPropertyAdded = true
-                                } label: {
-                                    Text("Add property")
-                                        .padding()
-                                }
-                                .customHorizontalPadding(isButton: true)
+                            CustomTextButton(title: "Add property") {
+                                action()
                             }
                         case .singleUnit:
                             CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
                             CustomTextField(text: $data.address, placeHolderText: "Number of Bathrooms")
                             
-                            Button {
+                            CustomTextButton(title: "Add property") {
                                 action()
-                            } label: {
-                                Text("Add property")
-                                    .padding()
                             }
-                            .customHorizontalPadding(isButton: true)
-                            //            .disabled(viewModel.amountAdded == "")
                         }
                         
                         Spacer()

@@ -1,54 +1,90 @@
+
+import Foundation
 import SwiftUI
-import UniformTypeIdentifiers
-import MyLibrary
+import UIKit
 
-struct Test: View {
-    @State private var showFileImporter = false
-    @State private var fileAccessed = false
-    @State var showSheet = false
-    @AppStorage("bookmarkData") var downloadsBookmark: Data?
-    @State var urlselected: URL?
-    
-    var networkingManager = NetworkManagerConcreation()
-
-    var body: some View {
-        VStack {
-            Button("Set downloads directory") {
-                showFileImporter.toggle()
-            }
-        }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType.folder]) { result in
-            print("File importer for folder presented")
-            switch result {
-            case .success(let url):
-                print("Folder selected: \(url)")
-                handleFolderSelection(url: url)
-                self.urlselected = url
-            case .failure(let error):
-                print("Importer error: \(error)")
-            }
-        }
-        .sheet(isPresented: $showSheet, content: {
-            if let url = urlselected {
-                SHeet(url: url)
-            }
-        })
+struct DocumentPicker: UIViewControllerRepresentable {
+    func makeCoordinator() -> Coordinator {
+        return Coordinator()
     }
 
-    private func handleFolderSelection(url: URL) {
-        guard url.startAccessingSecurityScopedResource() else {
-            print("Failed to access security scoped resource for folder")
-            return
-        }
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
+        documentPicker.delegate = context.coordinator
+        return documentPicker
+    }
 
-        defer { url.stopAccessingSecurityScopedResource() }
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+        // No updates needed for this example
+    }
 
-        do {
-            downloadsBookmark = try url.bookmarkData(options: .minimalBookmark, includingResourceValuesForKeys: nil, relativeTo: nil)
-            print("Downloads directory set successfully")
-            showSheet = true
-        } catch {
-            print("Bookmark error \(error)")
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let manager = FPDDataManager()
+        
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+            // Get bookmark data from the provided URL
+            let bookmarkData = try? url.bookmarkData()
+            if let data = bookmarkData {
+                // Save data
+                print("==================")
+                print("Data saved")
+            }
+
+            // Access to an external document by the bookmark data
+            if let data = bookmarkData {
+                var stale = false
+                if let url = try? URL(resolvingBookmarkData: data, bookmarkDataIsStale: &stale),
+                   stale == false,
+                   url.startAccessingSecurityScopedResource()
+                {
+                    var error: NSError?
+                    NSFileCoordinator().coordinate(readingItemAt: url, error: &error) { readURL in
+//                        if let data = try? Data(contentsOf: readURL) {
+                            manager.handleImportedFile(url: readURL)
+//                        }
+                    }
+                    
+                    url.stopAccessingSecurityScopedResource()
+                }
+            }
+            
+            // Start accessing a security-scoped resource.
+//            guard url.startAccessingSecurityScopedResource() else {
+//                // Handle the failure here.
+//                return
+//            }
+
+            // Make sure you release the security-scoped resource when you finish.
+//            defer { url.stopAccessingSecurityScopedResource() }
+
+            // Use file coordination for reading and writing any of the URL’s content.
+//            var error: NSError? = nil
+//            NSFileCoordinator().coordinate(readingItemAt: url, error: &error) { (url) in
+//                let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey]
+//
+//                // Get an enumerator for the directory's content.
+//                guard let fileList = FileManager.default.enumerator(at: url, includingPropertiesForKeys: keys) else {
+//                    Swift.debugPrint("*** Unable to access the contents of \(url.path) ***\n")
+//                    return
+//                }
+//
+//                for case let file as URL in fileList {
+//                    // Start accessing the content's security-scoped URL.
+//                    guard file.startAccessingSecurityScopedResource() else {
+//                        // Handle the failure here.
+//                        continue
+//                    }
+//
+//                    // Do something with the file here.
+//                    Swift.debugPrint("chosen file: \(file.lastPathComponent)")
+//                    if let url = URL(string: file.lastPathComponent) {
+//                        manager.handleImportedFile(url: url)
+//                    }
+//
+//                    // Make sure you release the security-scoped resource when you finish.
+//                    file.stopAccessingSecurityScopedResource()
+//                }
+//            }
         }
     }
 }

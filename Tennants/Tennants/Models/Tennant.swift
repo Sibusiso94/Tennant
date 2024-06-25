@@ -1,24 +1,9 @@
 import Foundation
+import SwiftData
 
-//class AllTennants: Object, Identifiable {
-//    @Persisted(primaryKey: true) var id: String
-//    @Persisted var tennants: List<Tennant>
-//   
-//    func saveUser() {
-//        do {
-//            let realm = try Realm()
-//            try realm.write {
-//                realm.add(self, update: .modified)
-//            }
-//        } catch {
-//            // add a completion to handle error
-//            print("Failed to add user: \(error)")
-//        }
-//    }
-//}
-
+@Model
 class Tennant: Identifiable {
-    var id: String
+    @Attribute(.unique) var id: String
     var buildingNumber: String
     var unitID: String
     var tennantID: String
