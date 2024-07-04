@@ -35,7 +35,7 @@ final class NetworkManagerConcreation: NetworkManager {
     func setUpURL(bankType: String = "Standard",
                   reference: String = "STANSAL",
                   storagePath: String = "statements/StandardBank.pdf") -> String {
-        let apiURL = "http://192.168.1.43:5000/api/fetchingAndReturning?bankType=\(bankType)&referenceName=\(reference)&pdfURL=\(storagePath)"
+        let apiURL = "http://192.168.1.43:8080/api/fetchingAndReturning?bankType=\(bankType)&referenceName=\(reference)&storagePath=\(storagePath)"
         return apiURL
     }
     
