@@ -14,8 +14,18 @@ struct PDFReaderView: View {
                     DocumentSelectionView(image: Image("\(fileManager.selectedBankType.lowercased())"),
                                           imageWidth: fileManager.selectedBankType == "Capitec" ? 300 : 200,
                                           bankTypes: fileManager.bankTypes,
-                                          selectedBankType: $fileManager.selectedBankType) {
-                        fileManager.showPDFImporter.toggle()
+                                          selectedBankType: $fileManager.selectedBankType)
+                    
+                    if fileManager.isCompleteUploading {
+                        CustomTextButton(title: "Process document") {
+                            fileManager.fetchApiData()
+                            fileManager.isCompleteUploading = false
+                        }
+                    } else {
+                        CustomTextButton(title: "Select a document") {
+                            fileManager.isCompleteUploading = true
+                            fileManager.showPDFImporter.toggle()
+                        }
                     }
                 }
                 .sheet(isPresented: $fileManager.showPDFImporter) {
@@ -47,6 +57,7 @@ struct PDFReaderView: View {
                                                     amount: result.amount,
                                                     date: result.date,
                                                     isCompletePayment: fileManager.isPaymentComplete(amount: result.amount))
+                                    .foregroundStyle(Color.black)
                                 }
                             }
                         }
@@ -56,9 +67,11 @@ struct PDFReaderView: View {
             }
             .overlay {
                 if fileManager.isLoading {
-                    ProgressView()
-                        .scaleEffect(5)
-                        .padding(.bottom)
+                    ZStack {
+                        ProgressView()
+                            .scaleEffect(3)
+                    }
+                    .background(Color("PastelBlue"))
                 }
             }
         }

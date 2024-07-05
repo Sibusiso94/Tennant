@@ -7,7 +7,7 @@ import OSLog
 protocol PDFManager {
 //    var networkManager: NetworkManagerConcreation { get }
     func handleImportedFile(url: URL)
-    func uploadFile(url: Data?)
+    func uploadFile(url: Data?, completion: @escaping (String?, Error?) -> Void)
     func validateFileURL(_ fileURL: URL) -> Bool
 }
 
@@ -22,6 +22,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
     var networkingManager = NetworkManagerConcreation()
     let storageRef = Storage.storage().reference()
     var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
+    var storagePath = ""
     
     @Published var selectedBankType = "Standard"
     @Published var isCompletePayment = true
@@ -33,40 +34,46 @@ final class FPDDataManager: ObservableObject, PDFManager {
     
     @Published var showPDFImporter: Bool = false
     @Published var shouldShowResultView: Bool = false
+    @Published var isCompleteUploading: Bool = false
     
     init() {
-        
+        storagePath = "statements/statement_Tester.pdf"
     }
     
     func handleImportedFile(url: URL) {
-        if validateFileURL(url) {
-            do {
-                let data = try Data(contentsOf: url)
-                uploadFile(url: data)
-            } catch {
-                print("Error reading file data: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    internal func uploadFile(url: Data?) {
-        guard let localFile = url else { return }
-        let date = Date.now
-
-        #warning("Get userID/name to pass in to make folder unique")
-        let statementRef = storageRef.child("statements/statement_\(date).pdf")
-        if let url = url {
-            _ = statementRef.putData(localFile, metadata: nil) { metadata, error in
-                guard let metadata = metadata else {
-                    print("Uh-oh, an error occurred: \(String(describing: error?.localizedDescription))")
+        do {
+            let data = try Data(contentsOf: url)
+            uploadFile(url: data) { success, error in
+                if let error = error {
+                    print("Failed to upload: \(String(describing: error.localizedDescription))")
                     return
                 }
                 
-                let size = metadata.size
+                print("\(String(describing: success))")
+                self.isCompleteUploading = true
+            }
+        } catch {
+            print("Error reading file data: \(error.localizedDescription)")
+        }
+    }
+    
+    #warning("Get userID/name to pass in to make folder unique")
+    internal func uploadFile(url: Data?, completion: @escaping (String?, Error?) -> Void) {
+        guard let localFile = url else { return }
+        let metadata = StorageMetadata()
+        metadata.contentType = "application/pdf"
+        
+        let statementRef = storageRef.child(storagePath)
+        if let url = url {
+            _ = statementRef.putData(localFile, metadata: metadata) { metadata, error in
+                guard let metadata = metadata else {
+                    print("Uh-oh, an error occurred: \(String(describing: error?.localizedDescription))")
+                    completion(nil, error)
+                    return
+                }
+                
                 let name = metadata.name ?? ""
-                let type = metadata.contentType ?? ""
-                print("================================")
-                print("PDF info: \n\(size) \n\(name) \n\(type)")
+                completion("PDF file \(name) uploaded successfully", nil)
             }
         }
     }
@@ -105,15 +112,17 @@ final class FPDDataManager: ObservableObject, PDFManager {
         return true
     }
     
-    func fetchUserData() {
+    func fetchApiData() {
        isLoading = true
-        let url = networkingManager.setUpURL(bankType: selectedBankType)
+        let reference = "STANSAL"
+        let url = networkingManager.setUpURL(bankType: selectedBankType, reference: reference, storagePath: storagePath)
         networkingManager.fetchUserData(apiURL: url) { [weak self] tenants in
             self?.results = tenants
             self?.filterAllPayments(tenants: self?.results)
             self?.showPDFImporter = false
             self?.isLoading = false
             self?.shouldShowResultView = true
+            print("API called successfully")
         }
         
         hasError = networkingManager.hasError
