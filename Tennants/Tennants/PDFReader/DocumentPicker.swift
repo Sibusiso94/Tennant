@@ -3,8 +3,10 @@ import SwiftUI
 import UIKit
 
 struct DocumentPicker: UIViewControllerRepresentable {
+    var completion: (URL) -> Void
+    
     func makeCoordinator() -> Coordinator {
-        return Coordinator()
+        return Coordinator(completion: completion)
     }
     
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
@@ -18,7 +20,12 @@ struct DocumentPicker: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, UIDocumentPickerDelegate {
-        let manager = FPDDataManager()
+        var completion: (URL) -> Void
+        
+        init(completion: @escaping (URL) -> Void) {
+            self.completion = completion
+        }
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL])  {
             guard let url = urls.first else { return }
             handlePickedDocument(at: url)
@@ -44,7 +51,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
                    url.startAccessingSecurityScopedResource() {
                     var error: NSError?
                     NSFileCoordinator().coordinate(readingItemAt: url, error: &error) { readURL in
-                        manager.handleImportedFile(url: readURL)
+                        completion(readURL)
                     }
                     
                     url.stopAccessingSecurityScopedResource()
