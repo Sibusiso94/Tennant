@@ -49,7 +49,7 @@ class LandingViewModel: ObservableObject, NewPropertyManager {
     
     func createProperty() {
         let dispatchGroup = DispatchGroup()
-        var newProperty = Property(buildingName: newData.name,
+        let newProperty = Property(buildingName: newData.name,
                                    buildingAddress: newData.address,
                                         numberOfUnits: newData.numberOfUnits,
                                         units: [])
@@ -75,7 +75,7 @@ class LandingViewModel: ObservableObject, NewPropertyManager {
     }
     
     func generatePropertyUnitsIDs(with units: [SingleUnit], completion: @escaping ([String]) -> Void) {
-        var unitIDs = units.map({$0.id})
+        let unitIDs = units.map({$0.id})
         completion(unitIDs)
     }
     

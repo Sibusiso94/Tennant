@@ -38,9 +38,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
         func handlePickedDocument(at url: URL) {
             let bookmarkData = try? url.bookmarkData()
             if let data = bookmarkData {
-                // Save data
-                print("==================")
-                print("Data saved")
+                print("URL bookmark data \(data) saved.")
             }
             
             // Access to an external document by the bookmark data

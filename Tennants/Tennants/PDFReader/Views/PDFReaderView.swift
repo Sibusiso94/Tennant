@@ -1,9 +1,15 @@
 import SwiftUI
-import UniformTypeIdentifiers
+import SwiftData
 import MyLibrary
 
 struct PDFReaderView: View {
-    @StateObject var fileManager = FPDDataManager()
+    @StateObject var fileManager: FPDDataManager
+    @StateObject var apiManager: ApiDataManager
+    
+    init(modelContext: ModelContext) {
+        _fileManager = StateObject(wrappedValue: FPDDataManager())
+        _apiManager = StateObject(wrappedValue: ApiDataManager(modelContext: modelContext))
+    }
     
     var body: some View {
         NavigationStack {
@@ -18,7 +24,7 @@ struct PDFReaderView: View {
                     
                     if fileManager.isCompleteUploading {
                         CustomTextButton(title: "Process document") {
-                            fileManager.fetchApiData()
+                            apiManager.fetchApiData(selectedBankType: fileManager.selectedBankType, storagePath: fileManager.storagePath)
                             fileManager.isCompleteUploading = false
                         }
                     } else {
@@ -29,48 +35,41 @@ struct PDFReaderView: View {
                     }
                 }
                 .sheet(isPresented: $fileManager.showPDFImporter) {
-                    DocumentPicker()
+                    DocumentPicker() { url in
+                        fileManager.handleImportedFile(url: url)
+                    }
                 }
             }
 //            .navigationTitle("Select a PDF")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if let _ = fileManager.results {
-                        Button {
-                            fileManager.shouldShowResultView.toggle()
-                        } label: {
-                            Text("History")
-                        }
+                    Button {
+                        apiManager.shouldShowResultView.toggle()
+                    } label: {
+                        Text("History")
                     }
                 }
             }
-            .navigationDestination(isPresented: $fileManager.shouldShowResultView) {
+            .navigationDestination(isPresented: $apiManager.shouldShowResultView) {
                 ZStack {
                     Color("PastelGrey")
                         .ignoresSafeArea()
-                    
                     ScrollView {
                         VStack {
-                            if let results = fileManager.results {
-                                ForEach(results, id: \.id) { result in
-                                    UserDetailsCard(reference: result.reference,
-                                                    amount: result.amount,
-                                                    date: result.date,
-                                                    isCompletePayment: fileManager.isPaymentComplete(amount: result.amount))
-                                    .foregroundStyle(Color.black)
-                                }
+                            ForEach(apiManager.allHistoryData) { history in
+                                HistoryView(history: history)
                             }
                         }
                     }
                 }
-                .navigationTitle("History")
             }
             .overlay {
-                if fileManager.isLoading {
+                if apiManager.isLoading {
                     ZStack {
                         ProgressView()
-                            .scaleEffect(3)
                     }
+                    .frame(width: 100, height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .background(Color("PastelBlue"))
                 }
             }

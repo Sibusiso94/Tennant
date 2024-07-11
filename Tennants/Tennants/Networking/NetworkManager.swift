@@ -2,7 +2,7 @@ import Foundation
 
 protocol NetworkManager {
     func setUpURL(bankType: String, reference: String, storagePath: String) -> String
-    func fetchUserData(apiURL: String, completion: @escaping ([TenantData]) -> ())
+    func fetchUserData(apiURL: String, completion: @escaping ([TenantPaymentData]) -> ())
 }
 
 enum TenantError: LocalizedError {
@@ -39,7 +39,7 @@ final class NetworkManagerConcreation: NetworkManager {
         return apiURL
     }
     
-    func fetchUserData(apiURL: String, completion: @escaping ([TenantData]) -> ()) {
+    func fetchUserData(apiURL: String, completion: @escaping ([TenantPaymentData]) -> ()) {
         if let url = URL(string: apiURL) {
             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
                 DispatchQueue.main.async {
@@ -65,7 +65,7 @@ final class NetworkManagerConcreation: NetworkManager {
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     
                     do {
-                        let tenantData = try decoder.decode([TenantData].self, from: data)
+                        let tenantData = try decoder.decode([TenantPaymentData].self, from: data)
                         completion(tenantData)
                     } catch {
                         self?.hasError = true
