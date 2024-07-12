@@ -3,12 +3,11 @@ import SwiftData
 
 class ApiDataManager: ObservableObject {
     let modelContext: ModelContext
-    let dataProvider: DataProvider
+    let dataProvider: HistoryDataProvider
     let networkingManager = NetworkManagerConcreation()
     
     let reference = "STANSAL"
     @Published var isCompletePayment = true
-    @Published var results: [TenantPaymentData]?
     @Published var allHistoryData: [History] = []
     @Published var shouldShowResultView: Bool = false
     
@@ -18,7 +17,7 @@ class ApiDataManager: ObservableObject {
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
-        self.dataProvider = DataProvider(modelContext: modelContext)
+        self.dataProvider = HistoryDataProvider(modelContext: modelContext)
         self.allHistoryData = dataProvider.fetchData()
     }
     
@@ -29,9 +28,7 @@ class ApiDataManager: ObservableObject {
                                              storagePath: storagePath)
         
         networkingManager.fetchUserData(apiURL: url) { [weak self] tenants in
-            self?.results = tenants
-            self?.filterAllPayments(tenants: self?.results)
-            
+            self?.persistHistoryData(with: tenants)
             self?.isLoading = false
             self?.shouldShowResultView = true
             print("API called successfully")
@@ -41,16 +38,24 @@ class ApiDataManager: ObservableObject {
         error = networkingManager.error
     }
     
-    private func filterAllPayments(tenants: [TenantPaymentData]?) {
-        guard let tenants = tenants else { return }
-        for (index, tenant) in tenants.enumerated() {
-            results?[index].amount = tenant.amount.replacingOccurrences(of: "\"", with: "")
+    func setUpApiData(with results: [TenantPaymentData]?) -> [TenantData] {
+        if let results = results {
+            let filteredData = filterAllPayments(tenants: results)
+            let paymentData = setUpPaymentData(data: filteredData)
+            return paymentData
         }
+        return []
     }
     
-    private func cleanPaymentAmount(amount: String) -> String {
-        let cleanAmount = amount.replacingOccurrences(of: "\"", with: "")
-        return cleanAmount
+    private func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData] {
+        var updatedResult: [TenantPaymentData] = []
+        
+        for (index, tenant) in tenants.enumerated() {
+            tenants[index].amount = tenant.amount.replacingOccurrences(of: "\"", with: "")
+            updatedResult.append(tenants[index])
+        }
+        
+        return updatedResult
     }
     
     func isPaymentComplete(amount: String) -> Bool {
@@ -69,5 +74,17 @@ class ApiDataManager: ObservableObject {
         }
         
         return results
+    }
+    
+    func setUpHistoryData(with data: [TenantData]) -> History {
+        let date = Date.now
+        return History(results: data, dateCreated: date.formatted(date: .abbreviated, time: .omitted))
+    }
+    
+    func persistHistoryData(with results: [TenantPaymentData]?) {
+        let data = setUpApiData(with: results)
+        let history = setUpHistoryData(with: data)
+        dataProvider.create(history)
+        self.allHistoryData = dataProvider.fetchData()
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-class DataProvider: DataSource {
+class HistoryDataProvider: DataSource {
     typealias T = History
     
     let modelContext: ModelContext

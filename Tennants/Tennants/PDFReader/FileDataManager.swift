@@ -20,7 +20,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
     @Published var isCompleteUploading: Bool = false
     
     init() {
-        storagePath = "statements/statement_Tester.pdf"
+        
     }
     
     func handleImportedFile(url: URL) {
@@ -47,12 +47,13 @@ final class FPDDataManager: ObservableObject, PDFManager {
         guard let localFile = url else { return }
         let metadata = StorageMetadata()
         metadata.contentType = "application/pdf"
+        storagePath = setUpStoragePath()
         
         let statementRef = storageRef.child(storagePath)
         if let url = url {
             _ = statementRef.putData(localFile, metadata: metadata) { metadata, error in
                 guard let metadata = metadata else {
-                    print("Uh-oh, an error occurred: \(String(describing: error?.localizedDescription))")
+                    print("An error occurred: \(String(describing: error?.localizedDescription))")
                     completion(nil, error)
                     return
                 }
@@ -89,5 +90,13 @@ final class FPDDataManager: ObservableObject, PDFManager {
         }
         
         return true
+    }
+    
+    private func setUpStoragePath() -> String {
+        let date = Date.now
+        let day = date.formatted(.dateTime.weekday(.twoDigits))
+        let month = date.formatted(.dateTime.month(.twoDigits))
+        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
+        return "statements/userID/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
     }
 }
