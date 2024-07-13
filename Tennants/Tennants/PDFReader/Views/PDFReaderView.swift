@@ -24,11 +24,12 @@ struct PDFReaderView: View {
                     
                     if fileManager.isCompleteUploading {
                         CustomTextButton(title: "Process document") {
-                            apiManager.fetchApiData(selectedBankType: fileManager.selectedBankType, storagePath: fileManager.storagePath)
+                            apiManager.fetchApiData(storagePath: fileManager.storagePath)
                             fileManager.isCompleteUploading = false
                         }
                     } else {
                         CustomTextButton(title: "Select a document") {
+                            apiManager.selectedBankType = fileManager.selectedBankType
                             fileManager.isCompleteUploading = true
                             fileManager.showPDFImporter.toggle()
                         }
@@ -47,6 +48,7 @@ struct PDFReaderView: View {
                         apiManager.shouldShowResultView.toggle()
                     } label: {
                         Text("History")
+                            .foregroundStyle(Color(.black.opacity(0.7)))
                     }
                 }
             }
@@ -66,11 +68,19 @@ struct PDFReaderView: View {
             .overlay {
                 if apiManager.isLoading {
                     ZStack {
-                        ProgressView()
+                        VStack {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                .scaleEffect(2.0)
+                                .padding()
+                            
+                            Text("Processing...")
+                                .foregroundStyle(Color(.black.opacity(0.7)))
+                        }
                     }
-                    .frame(width: 100, height: 100)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .background(Color("PastelBlue"))
+                    .frame(width: 120, height: 120)
+                    .background(Color(.white))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
             }
         }

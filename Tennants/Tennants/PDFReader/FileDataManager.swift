@@ -29,7 +29,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
                 let data = try Data(contentsOf: url)
                 uploadFile(url: data) { success, error in
                     if let error = error {
-                        print("Failed to upload: \(String(describing: error.localizedDescription))")
+                        os_log("Failed to upload: %@", type: .debug, error.localizedDescription)
                         return
                     }
                     
@@ -37,7 +37,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
                     self.isCompleteUploading = true
                 }
             } catch {
-                print("Error reading file data: \(error.localizedDescription)")
+                os_log("Error reading file data: %@", type: .debug, error.localizedDescription)
             }
         }
     }
@@ -53,7 +53,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
         if let url = url {
             _ = statementRef.putData(localFile, metadata: metadata) { metadata, error in
                 guard let metadata = metadata else {
-                    print("An error occurred: \(String(describing: error?.localizedDescription))")
+                    os_log("An error occurred: %@", type: .debug,  error?.localizedDescription ?? "Failed to reading metadata")
                     completion(nil, error)
                     return
                 }
@@ -68,7 +68,7 @@ final class FPDDataManager: ObservableObject, PDFManager {
         let fileManager = FileManager.default
         
         guard fileURL.isFileURL else {
-            print("The URL is not a file URL.")
+            os_log("The URL is not a file URL.", type: .debug)
             return false
         }
         
@@ -76,16 +76,16 @@ final class FPDDataManager: ObservableObject, PDFManager {
             let fileAttributes = try fileManager.attributesOfItem(atPath: fileURL.path)
             
             if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeDirectory {
-                print("The URL is a directory.")
+                os_log("The URL is a directory.", type: .debug)
                 return false
             }
             
             if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeSymbolicLink {
-                print("The URL is a symbolic link.")
+                os_log("The URL is a symbolic link.", type: .debug)
                 return false
             }
         } catch {
-            print("The URL is invalid or cannot be accessed: \(error.localizedDescription)")
+            os_log("The URL is invalid or cannot be accessed:", type: .debug, error.localizedDescription)
             return false
         }
         

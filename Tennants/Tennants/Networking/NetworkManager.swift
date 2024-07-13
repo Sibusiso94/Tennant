@@ -1,11 +1,16 @@
 import Foundation
 
 protocol NetworkManager {
-    func setUpURL(bankType: String, reference: String, storagePath: String) -> String
-    func fetchUserData(apiURL: String, completion: @escaping ([TenantPaymentData]) -> ())
+    associatedtype T: Decodable
+    
+    var hasError: Bool { get set }
+    var error: ApiError? { get set }
+    
+    func createURL(baseURL: String, parameters: [String: String]) -> URL?
+    func fetchData<T: Decodable>(from url: URL, completion: @escaping (Result<T, ApiError>) -> Void)
 }
 
-enum TenantError: LocalizedError {
+enum ApiError: LocalizedError {
     case failedToDecode
     case noDataReceived
     case invalidUrl
@@ -29,54 +34,49 @@ enum TenantError: LocalizedError {
 }
 
 final class NetworkManagerConcreation: NetworkManager {
+    typealias T = TenantPaymentData
     var hasError = false
-    var error: TenantError?
+    var error: ApiError?
     
-    func setUpURL(bankType: String = "Standard",
-                  reference: String = "STANSAL",
-                  storagePath: String = "statements/StandardBank.pdf") -> String {
-        let apiURL = "http://192.168.8.105:5000/api/fetchingAndReturning?bankType=\(bankType)&referenceName=\(reference)&storagePath=\(storagePath)"
-        return apiURL
+    func createURL(baseURL: String, parameters: [String: String]) -> URL? {
+        var components = URLComponents(string: baseURL)
+        components?.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+        return components?.url
     }
     
-    func fetchUserData(apiURL: String, completion: @escaping ([TenantPaymentData]) -> ()) {
-        if let url = URL(string: apiURL) {
-            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        self?.hasError = true
-                        self?.error = TenantError.custom(error: error)
-                        return
-                    }
-                    
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        self?.hasError = true
-                        self?.error = TenantError.invalidResponse(response: String(describing: response))
-                        return
-                    }
-                    
-                    guard let data = data else {
-                        self?.hasError = true
-                        self?.error = TenantError.noDataReceived
-                        return
-                    }
-                    
+    func fetchData<T: Decodable>(from url: URL, completion: @escaping (Result<T, ApiError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.handleError(ApiError.custom(error: error), completion: completion)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    self?.handleError(ApiError.invalidResponse(response: String(describing: response)), completion: completion)
+                    return
+                }
+                
+                guard let data = data else {
+                    self?.handleError(ApiError.noDataReceived, completion: completion)
+                    return
+                }
+                
+                do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    
-                    do {
-                        let tenantData = try decoder.decode([TenantPaymentData].self, from: data)
-                        completion(tenantData)
-                    } catch {
-                        self?.hasError = true
-                        self?.error = TenantError.custom(error: error)
-                    }
+                    let resultData = try decoder.decode(T.self, from: data)
+                    completion(.success(resultData))
+                } catch {
+                    self?.handleError(ApiError.custom(error: error), completion: completion)
                 }
             }
-            .resume()
-        } else {
-            hasError = true
-            error = TenantError.invalidUrl
-        }
+        }.resume()
+    }
+    
+    private func handleError<T>(_ error: ApiError, completion: (Result<T, ApiError>) -> Void) {
+        self.hasError = true
+        self.error = error
+        completion(.failure(error))
     }
 }

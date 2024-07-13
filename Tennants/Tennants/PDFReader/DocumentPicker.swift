@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import UIKit
+import OSLog
 
 struct DocumentPicker: UIViewControllerRepresentable {
     var completion: (URL) -> Void
@@ -38,10 +39,9 @@ struct DocumentPicker: UIViewControllerRepresentable {
         func handlePickedDocument(at url: URL) {
             let bookmarkData = try? url.bookmarkData()
             if let data = bookmarkData {
-                print("URL bookmark data \(data) saved.")
+                os_log("URL bookmark data saved.", type: .debug)
             }
             
-            // Access to an external document by the bookmark data
             if let data = bookmarkData {
                 var stale = false
                 if let url = try? URL(resolvingBookmarkData: data, bookmarkDataIsStale: &stale),

@@ -1,19 +1,23 @@
 import Foundation
 import SwiftData
+import OSLog
 
 class ApiDataManager: ObservableObject {
     let modelContext: ModelContext
     let dataProvider: HistoryDataProvider
     let networkingManager = NetworkManagerConcreation()
     
-    let reference = "STANSAL"
+    let baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
+    let reference = "Salary Transfer"
+    var selectedBankType = ""
+    var storagePath = ""
     @Published var isCompletePayment = true
     @Published var allHistoryData: [History] = []
     @Published var shouldShowResultView: Bool = false
     
     @Published var isLoading = false
     @Published var hasError: Bool = false
-    @Published var error: TenantError?
+    @Published var error: ApiError?
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
@@ -21,21 +25,28 @@ class ApiDataManager: ObservableObject {
         self.allHistoryData = dataProvider.fetchData()
     }
     
-    func fetchApiData(selectedBankType: String, storagePath: String) {
-       isLoading = true
-        let url = networkingManager.setUpURL(bankType: selectedBankType, 
-                                             reference: reference,
-                                             storagePath: storagePath)
+    func fetchApiData(storagePath: String) {
+        isLoading = true
         
-        networkingManager.fetchUserData(apiURL: url) { [weak self] tenants in
-            self?.persistHistoryData(with: tenants)
-            self?.isLoading = false
-            self?.shouldShowResultView = true
-            print("API called successfully")
+        if let url = networkingManager.createURL(baseURL: baseURL, parameters: ["bankType": selectedBankType, "referenceName": reference, "storagePath": storagePath]) {
+            networkingManager.fetchData(from: url) { [weak self] (result: Result<[TenantPaymentData], ApiError>) in
+                switch result {
+                case .success(let data):
+                    self?.persistHistoryData(with: data)
+                    self?.isLoading = false
+                    self?.shouldShowResultView = true
+                    os_log("API called successfully")
+                case .failure(let error):
+                    self?.isLoading = false
+                    os_log("%@", type: .debug, self?.networkingManager.error.debugDescription ?? "")
+                    self?.hasError = self?.networkingManager.hasError ?? true
+                    self?.error = error
+                }
+            }
+        } else {
+            isLoading = false
+            os_log("Invalid URL")
         }
-        
-        hasError = networkingManager.hasError
-        error = networkingManager.error
     }
     
     func setUpApiData(with results: [TenantPaymentData]?) -> [TenantData] {
