@@ -23,6 +23,18 @@ class SwiftDataRepository {
         modelContext.insert(data)
     }
     
+    func createMultiple<T: PersistentModel>(data: [T]) {
+        for item in data {
+            modelContext.insert(item)
+        }
+
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save context: \(error)")
+        }
+    }
+    
     func read<T: PersistentModel>(request: FetchDescriptor<T>) -> [T] {
         do {
             return try modelContext.fetch(request)
@@ -44,7 +56,7 @@ class SwiftDataRepository {
             modelContext.delete(object)
             try modelContext.save()
         } catch {
-            
+            print("Failed to delete")
         }
     }
 }

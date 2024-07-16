@@ -48,16 +48,12 @@ struct AddPropertyView: View {
                             TextField("Number of Units", text: $data.numberOfUnits)
                                 .numberTextField()
                             
-                            CustomValidatedNumberField(text: $data.numberOfUnitsOccupied,
-                                                       placeHolderText: "Number of Units Occupied",
-                                                       numberOfUnits: data.numberOfUnits, isProperty: true)
-                            
                             CustomTextButton(title: "Add property") {
                                 action()
                             }
                         case .singleUnit:
-                            CustomTextField(text: $data.address, placeHolderText: "Number Of Bedrooms")
-                            CustomTextField(text: $data.address, placeHolderText: "Number of Bathrooms")
+                            CustomTextField(text: $data.numberOfBedrooms, placeHolderText: "Number Of Bedrooms")
+                            CustomTextField(text: $data.numberOfBathrooms, placeHolderText: "Number of Bathrooms")
                             
                             CustomTextButton(title: "Add property") {
                                 action()

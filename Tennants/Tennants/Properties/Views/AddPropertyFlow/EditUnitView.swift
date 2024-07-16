@@ -13,7 +13,7 @@ struct EditUnitView: View {
                 .ignoresSafeArea()
             
             ForEach(Array(units.enumerated()), id: \.offset) {index, unit in
-                StackCardView(unitNumber: "\(units[index].UnitNumber)", numberOfBedrooms: $units[index].numberOfBedrooms, numberOfBathrooms: $units[index].numberOfBathrooms, isAvailable: $units[index].isAvailable)
+                StackCardView(unitNumber: "\(units[index].unitNumber)", numberOfBedrooms: $units[index].numberOfBedrooms, numberOfBathrooms: $units[index].numberOfBathrooms, isAvailable: $units[index].isAvailable)
                     .frame(height: 300)
                     .padding(.horizontal)
             }

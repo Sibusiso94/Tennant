@@ -1,19 +1,16 @@
 import SwiftUI
 import MyLibrary
+import SwiftData
 
-struct TennantLandingView: View {
+struct PropertiesView: View {
+    let modelContext: ModelContext
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel: LandingViewModel
-    @State var shouldShowAddProperty: Bool
-    @State var shouldAddPropertyOptions: Bool
-    @State var showTennantView: Bool
+    @StateObject var viewModel: PropertiesViewModel
     @State var path: NavigationPath
     
-    init() {
-        _viewModel = StateObject(wrappedValue: LandingViewModel())
-        _shouldShowAddProperty = State(initialValue: false)
-        _shouldAddPropertyOptions = State(initialValue: false)
-        _showTennantView = State(initialValue: false)
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        _viewModel = StateObject(wrappedValue: PropertiesViewModel(modelContext: modelContext))
         _path = State(initialValue: NavigationPath())
     }
     
@@ -25,7 +22,7 @@ struct TennantLandingView: View {
                 
                 VStack {
                     if viewModel.properties.isEmpty {
-                        AddView(shouldShowAddProperty: $shouldAddPropertyOptions,
+                        AddView(shouldShowAddProperty: $viewModel.shouldAddPropertyOptions,
                                 title: "Add your first Property",
                                 width: 250,
                                 height: 250,
@@ -41,7 +38,7 @@ struct TennantLandingView: View {
                                 }
                                 
                                 VStack {
-                                    AddView(shouldShowAddProperty: $shouldAddPropertyOptions,
+                                    AddView(shouldShowAddProperty: $viewModel.shouldAddPropertyOptions,
                                             width: 100,
                                             height: 100,
                                             isNoData: viewModel.properties.isEmpty)
@@ -55,7 +52,7 @@ struct TennantLandingView: View {
                         }
                     }
                 }
-                .navigationDestination(isPresented: $shouldAddPropertyOptions) {
+                .navigationDestination(isPresented: $viewModel.shouldAddPropertyOptions) {
                     PropertyOptionsView() { selectedOption in
                         if selectedOption == 1 {
                             viewModel.propertyType = .singleUnit
@@ -63,12 +60,12 @@ struct TennantLandingView: View {
                             viewModel.propertyType = .multipleUnits
                         }
                         
-                        shouldShowAddProperty = true
+                        viewModel.shouldShowAddProperty = true
                     }
                 }
-                .navigationDestination(isPresented: $shouldShowAddProperty) {
+                .navigationDestination(isPresented: $viewModel.shouldShowAddProperty) {
                     AddPropertyView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
-                        viewModel.createProperty()
+                        viewModel.addProperty()
                     }
                 }
 //                .navigationDestination(isPresented: $showTennantView) {
@@ -80,8 +77,4 @@ struct TennantLandingView: View {
             }
         }
     }
-}
-
-#Preview {
-    TennantLandingView()
 }

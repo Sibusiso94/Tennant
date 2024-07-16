@@ -4,7 +4,7 @@ import SwiftData
 @Model
 class SingleUnit: Identifiable  {
     @Attribute(.unique) var id: String
-    var UnitNumber: Int
+    var unitNumber: Int
     var buildingID: String
     var numberOfBedrooms: Int
     var numberOfBathrooms: Int
@@ -19,7 +19,7 @@ class SingleUnit: Identifiable  {
                      isAvailable: Bool =  false,
                      tennantID: String = "") {
         self.id = id
-        self.UnitNumber = unitNumber
+        self.unitNumber = unitNumber
         self.buildingID = buildingID
         self.numberOfBedrooms = numberOfBedrooms
         self.numberOfBathrooms = numberOfBathrooms

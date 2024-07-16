@@ -11,7 +11,7 @@ final class EditUnitManager: ObservableObject {
     }
     
     func getLatValue(of units: [SingleUnit]) -> Int {
-        if let lastValue = units.last?.UnitNumber {
+        if let lastValue = units.last?.unitNumber {
             return lastValue - 1
         } else {
             return 0

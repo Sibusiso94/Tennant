@@ -24,7 +24,7 @@ struct PDFReaderView: View {
                     
                     if fileManager.isCompleteUploading {
                         CustomTextButton(title: "Process document") {
-                            apiManager.fetchApiData(storagePath: fileManager.storagePath)
+                            apiManager.fetchApiData(storagePath: fileManager.fileStoragePath)
                             fileManager.isCompleteUploading = false
                         }
                     } else {
@@ -67,20 +67,7 @@ struct PDFReaderView: View {
             }
             .overlay {
                 if apiManager.isLoading {
-                    ZStack {
-                        VStack {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                                .scaleEffect(2.0)
-                                .padding()
-                            
-                            Text("Processing...")
-                                .foregroundStyle(Color(.black.opacity(0.7)))
-                        }
-                    }
-                    .frame(width: 120, height: 120)
-                    .background(Color(.white))
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    LoadingView(title: "Processing...")
                 }
             }
         }

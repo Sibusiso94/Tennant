@@ -1,10 +1,14 @@
 import Foundation
 import SwiftUI
 import FirebaseStorage
-import PDFKit
 import OSLog
 
 protocol PDFManager {
+    var storageRef: StorageReference { get }
+    var bankTypes: [String] { get }
+    var fileStoragePath: String { get set }
+    var selectedBankType: String { get set }
+    
     func handleImportedFile(url: URL)
     func uploadFile(url: Data?, completion: @escaping (String?, Error?) -> Void)
     func validateFileURL(_ fileURL: URL) -> Bool
@@ -12,16 +16,14 @@ protocol PDFManager {
 
 final class FPDDataManager: ObservableObject, PDFManager {
     let storageRef = Storage.storage().reference()
-    var bankTypes: [String] = ["Standard", "FNB", "Capitec"]
-    var storagePath = ""
+    let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
+    var fileStoragePath = ""
     
     @Published var selectedBankType = "Standard"
     @Published var showPDFImporter: Bool = false
     @Published var isCompleteUploading: Bool = false
     
-    init() {
-        
-    }
+    init() { }
     
     func handleImportedFile(url: URL) {
         if validateFileURL(url) {
@@ -42,14 +44,13 @@ final class FPDDataManager: ObservableObject, PDFManager {
         }
     }
     
-    #warning("Get userID/name to pass in to make folder unique")
     internal func uploadFile(url: Data?, completion: @escaping (String?, Error?) -> Void) {
         guard let localFile = url else { return }
         let metadata = StorageMetadata()
         metadata.contentType = "application/pdf"
-        storagePath = setUpStoragePath()
+        fileStoragePath = setUpStoragePath()
         
-        let statementRef = storageRef.child(storagePath)
+        let statementRef = storageRef.child(fileStoragePath)
         if let url = url {
             _ = statementRef.putData(localFile, metadata: metadata) { metadata, error in
                 guard let metadata = metadata else {

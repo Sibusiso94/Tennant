@@ -1,8 +1,8 @@
 import Foundation
 import SwiftData
 
-class HistoryDataProvider: DataSource {
-    typealias T = History
+class UnitsDataProvider: DataSource {
+    typealias T = SingleUnit
     
     let modelContext: ModelContext
     let repository: SwiftDataRepository
@@ -16,8 +16,12 @@ class HistoryDataProvider: DataSource {
         repository.create(data: object)
     }
     
+    func createMultiple(_ object: [T]) {
+        repository.createMultiple(data: object)
+    }
+    
     func fetchData() -> [T] {
-        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.dateCreated)])
+        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber)])
         return repository.read(request: descriptor)
     }
     

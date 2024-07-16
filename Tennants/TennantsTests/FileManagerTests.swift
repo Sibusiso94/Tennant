@@ -1,14 +1,7 @@
-//
-//  TennantsTests.swift
-//  TennantsTests
-//
-//  Created by Sibusiso Mbonani on 2024/01/25.
-//
-
 import XCTest
 @testable import Tennants
 
-final class TennantsTests: XCTestCase {
+final class FileManagerTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -32,5 +25,27 @@ final class TennantsTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+}
 
+class fileManagerMock {
+//    var storageRef: FirebaseStorage.StorageReference
+    
+    func handleImportedFile(url: URL) {
+        //
+    }
+    
+    func uploadFile(url: Data?, completion: @escaping (String?, (any Error)?) -> Void) {
+        //
+    }
+    
+    func validateFileURL(_ fileURL: URL) -> Bool {
+        return true
+    }
+    
+//    let storageRef = Storage.storage().reference()
+    let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
+    var fileStoragePath = ""
+    var selectedBankType = "Standard"
+    let validFileURL = URL(fileURLWithPath: "/path/to/valid/file.pdf")
+    let invalidFileURL = URL(string: "https://invalid.url")!
 }

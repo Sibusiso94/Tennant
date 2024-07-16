@@ -1,8 +1,8 @@
 import Foundation
 import SwiftData
 
-class HistoryDataProvider: DataSource {
-    typealias T = History
+class PropertiesDataProvider: DataSource {
+    typealias T = Property
     
     let modelContext: ModelContext
     let repository: SwiftDataRepository
@@ -17,7 +17,7 @@ class HistoryDataProvider: DataSource {
     }
     
     func fetchData() -> [T] {
-        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.dateCreated)])
+        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.buildingName)])
         return repository.read(request: descriptor)
     }
     
