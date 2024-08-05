@@ -2,13 +2,31 @@ import Foundation
 import SwiftData
 import OSLog
 
-class ApiDataManager: ObservableObject {
+protocol APIManager {
+    var baseURL: String { get }
+    var reference: String { get set }
+    var selectedBankType: String { get set }
+    
+    func fetchApiData(storagePath: String)
+    func setUpHistoryData(with data: [TenantData]) -> History
+    func persistHistoryData(with results: [TenantPaymentData]?)
+}
+
+protocol APIDataHandler {
+    func setUpApiData(with results: [TenantPaymentData]?) -> [TenantData]
+    func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData]
+    func setUpPaymentData(data: [TenantPaymentData]) -> [TenantData]
+    func isPaymentComplete(amount: String) -> Bool
+    func setUpHistoryData(with data: [TenantData]) -> History
+}
+
+class ApiDataManager: ObservableObject, APIManager {
     let modelContext: ModelContext
     let dataProvider: HistoryDataProvider
     let networkingManager = NetworkManagerConcreation()
     
-    let baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
-    let reference = "Salary Transfer"
+    var baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
+    var reference = "Salary Transfer"
     var selectedBankType = ""
     var storagePath = ""
     @Published var isCompletePayment = true
@@ -69,6 +87,14 @@ class ApiDataManager: ObservableObject {
         return updatedResult
     }
     
+    func setUpPaymentData(data: [TenantPaymentData]) -> [TenantData] {
+        let results = data.map { data in
+            TenantData(id: data.id, date: data.date, reference: data.reference, amount: data.amount)
+        }
+        
+        return results
+    }
+    
     func isPaymentComplete(amount: String) -> Bool {
         guard let amount = Double(amount) else { return false }
         
@@ -77,14 +103,6 @@ class ApiDataManager: ObservableObject {
         } else {
             return false
         }
-    }
-    
-    func setUpPaymentData(data: [TenantPaymentData]) -> [TenantData] {
-        let results = data.map { data in
-            TenantData(id: data.id, date: data.date, reference: data.reference, amount: data.amount)
-        }
-        
-        return results
     }
     
     func setUpHistoryData(with data: [TenantData]) -> History {

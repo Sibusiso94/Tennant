@@ -17,13 +17,15 @@
 		5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C82BF330390061C00B /* TennantTabView.swift */; };
 		5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* PropertiesView.swift */; };
 		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
-		5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */; };
 		5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* PropertiesManager.swift */; };
 		5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */; };
 		5C0089E42BF34A4D0061C00B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DF2BF34A4D0061C00B /* Property.swift */; };
 		5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E02BF34A4D0061C00B /* SingleUnit.swift */; };
 		5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089E12BF34A4D0061C00B /* Tennant.swift */; };
 		5C05CB122BFF552B00BF7297 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C05CB112BFF552B00BF7297 /* DocumentPicker.swift */; };
+		5C0B9B652C60F28D00362893 /* PropertyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B9B642C60F28D00362893 /* PropertyDetailViewModel.swift */; };
+		5C0B9B682C611E2500362893 /* AddTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B9B672C611E2500362893 /* AddTenantView.swift */; };
+		5C0D5DB52C5D05D400440001 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D5DB42C5D05D400440001 /* APIManagerTests.swift */; };
 		5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */; };
 		5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */; };
 		5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F46992C16CAB800F1482B /* TenantPaymentData.swift */; };
@@ -51,7 +53,8 @@
 		5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734342B6261C50040A0AA /* FileManagerTests.swift */; };
 		5C47343F2B6261C50040A0AA /* TennantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47343E2B6261C50040A0AA /* TennantsUITests.swift */; };
 		5C4734412B6261C50040A0AA /* TennantsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */; };
-		5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* TenantsView.swift */; };
+		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
+		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
 		5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FD2BF4CC930035F729 /* EditUnitView.swift */; };
 		5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */; };
@@ -100,13 +103,15 @@
 		5C0089C62BF330390061C00B /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		5C0089C82BF330390061C00B /* TennantTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
 		5C0089CF2BF330FC0061C00B /* PropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesView.swift; sourceTree = "<group>"; };
-		5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingDataProvider.swift; sourceTree = "<group>"; };
 		5C0089DC2BF345330061C00B /* PropertiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesManager.swift; sourceTree = "<group>"; };
 		5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
 		5C0089DF2BF34A4D0061C00B /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		5C0089E02BF34A4D0061C00B /* SingleUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
 		5C0089E12BF34A4D0061C00B /* Tennant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tennant.swift; sourceTree = "<group>"; };
 		5C05CB112BFF552B00BF7297 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		5C0B9B642C60F28D00362893 /* PropertyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewModel.swift; sourceTree = "<group>"; };
+		5C0B9B672C611E2500362893 /* AddTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantView.swift; sourceTree = "<group>"; };
+		5C0D5DB42C5D05D400440001 /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
 		5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantViewModel.swift; sourceTree = "<group>"; };
 		5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantView.swift; sourceTree = "<group>"; };
 		5C1F46992C16CAB800F1482B /* TenantPaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentData.swift; sourceTree = "<group>"; };
@@ -130,7 +135,8 @@
 		5C47343A2B6261C50040A0AA /* TennantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47343E2B6261C50040A0AA /* TennantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITests.swift; sourceTree = "<group>"; };
 		5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5CAB08DE2BFCAF5500603758 /* TenantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantsView.swift; sourceTree = "<group>"; };
+		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
+		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
 		5CD215FD2BF4CC930035F729 /* EditUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitView.swift; sourceTree = "<group>"; };
 		5CD215FF2BF4F1840035F729 /* EditUnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitManager.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */,
+				5C0B9B642C60F28D00362893 /* PropertyDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -243,7 +250,6 @@
 		5C0089D72BF344380061C00B /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
-				5C0089DA2BF344BA0061C00B /* LandingDataProvider.swift */,
 				5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */,
 				5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */,
 			);
@@ -273,12 +279,20 @@
 			path = PDFReader;
 			sourceTree = "<group>";
 		};
+		5C0B9B662C611E0100362893 /* TenantDetails */ = {
+			isa = PBXGroup;
+			children = (
+				5C0B9B672C611E2500362893 /* AddTenantView.swift */,
+			);
+			path = TenantDetails;
+			sourceTree = "<group>";
+		};
 		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
 			isa = PBXGroup;
 			children = (
 				5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */,
 				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
-				5CAB08DE2BFCAF5500603758 /* TenantsView.swift */,
+				5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */,
 			);
 			path = "Update Tenant";
 			sourceTree = "<group>";
@@ -357,6 +371,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C0B9B662C611E0100362893 /* TenantDetails */,
 				5C3E31992C3E7C6600321EB3 /* Persistance */,
 				5C1F46962C12EA9C00F1482B /* Networking */,
 				5C25D5E82C099CF400C24658 /* Info.plist */,
@@ -372,6 +387,7 @@
 				5C0089A82BF32FBE0061C00B /* MainAppView.swift */,
 				5C4734272B6261C40040A0AA /* Assets.xcassets */,
 				5C4734292B6261C40040A0AA /* Preview Content */,
+				5CB29C442C49634600BC8220 /* Launch Screen.storyboard */,
 			);
 			path = Tennants;
 			sourceTree = "<group>";
@@ -388,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				5C4734342B6261C50040A0AA /* FileManagerTests.swift */,
+				5C0D5DB42C5D05D400440001 /* APIManagerTests.swift */,
 			);
 			path = TennantsTests;
 			sourceTree = "<group>";
@@ -542,6 +559,7 @@
 			files = (
 				5C47342B2B6261C40040A0AA /* Preview Assets.xcassets in Resources */,
 				5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */,
+				5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */,
 				5C25D5D32C05C6C300C24658 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,7 +588,6 @@
 				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
 				5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */,
 				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
-				5C0089DB2BF344BA0061C00B /* LandingDataProvider.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,
 				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
@@ -580,6 +597,7 @@
 				5C05CB122BFF552B00BF7297 /* DocumentPicker.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5C3E319D2C400DFF00321EB3 /* ApiDataManager.swift in Sources */,
+				5C0B9B652C60F28D00362893 /* PropertyDetailViewModel.swift in Sources */,
 				5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */,
 				5CDA50D02C4592080040E268 /* UnitsDataProvider.swift in Sources */,
 				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
@@ -590,7 +608,8 @@
 				5C3E31952C3BDE1100321EB3 /* HistoryView.swift in Sources */,
 				5CD215FE2BF4CC930035F729 /* EditUnitView.swift in Sources */,
 				5C3E319B2C3E7CAD00321EB3 /* HistoryDataProvider.swift in Sources */,
-				5CAB08DF2BFCAF5500603758 /* TenantsView.swift in Sources */,
+				5C0B9B682C611E2500362893 /* AddTenantView.swift in Sources */,
+				5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */,
 				5C3E31982C3E672300321EB3 /* SwiftDataRepository.swift in Sources */,
 				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
 				5CD216002BF4F1840035F729 /* EditUnitManager.swift in Sources */,
@@ -610,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0D5DB52C5D05D400440001 /* APIManagerTests.swift in Sources */,
 				5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,9 +790,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tennants/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App wants to access your documents folder";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App wants to access your downloads folder";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -800,9 +824,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tennants/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App wants to access your documents folder";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App wants to access your downloads folder";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

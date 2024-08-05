@@ -9,6 +9,7 @@ class Tennant: Identifiable {
     var tennantID: String
     var name: String
     var surname: String
+    var reference: String
     var currentAddress: String
     var company : String
     var position: String
@@ -25,6 +26,7 @@ class Tennant: Identifiable {
                      tennantID: String = "",
                      name: String = "",
                      surname: String = "",
+                     reference: String = "",
                      currentAddress: String = "",
                      company : String = "",
                      position: String = "",
@@ -40,6 +42,7 @@ class Tennant: Identifiable {
         self.tennantID = tennantID
         self.name = name
         self.surname = surname
+        self.reference = reference
         self.currentAddress = currentAddress
         self.company = company
         self.position = position
@@ -87,15 +90,14 @@ class TennantJobBuilder: TennantBuilder {
 }
 
 class MockTenants {
-    static let tenants = [Tennant(unitID: "1", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "2", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "3", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "4", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "5", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "6", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "7", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "8", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "9", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "10", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0),
-            Tennant(unitID: "11", name: "John", surname: "Snow", balance: 0.0, amountDue: 0.0)]
+    static let tenants = [Tennant(unitID: "1", name: "John", surname: "Snow", reference: "John Snow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "2"),
+            Tennant(unitID: "3", name: "Jane", surname: "Doe", reference: "Jane Doe", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "4"),
+                          Tennant(unitID: "5", name: "Crane", surname: "Moe", reference: "Crane Moe", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "6", name: "Thabo", surname: "FLow", reference: "Thabo Flow", balance: 0.0, amountDue: 0.0),
+            Tennant(unitID: "7"),
+            Tennant(unitID: "8"),
+            Tennant(unitID: "9"),
+            Tennant(unitID: "10")]
 }

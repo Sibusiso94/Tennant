@@ -5,25 +5,22 @@ import SwiftData
 class SingleUnit: Identifiable  {
     @Attribute(.unique) var id: String
     var unitNumber: Int
-    var buildingID: String
+    var property: Property
     var numberOfBedrooms: Int
     var numberOfBathrooms: Int
-    var isAvailable: Bool
-    var tennantID: String
+    var tennantID: String?
     
     init(id: String = UUID().uuidString,
-                     unitNumber: Int = 0,
-                     buildingID: String = "",
-                     numberOfBedrooms: Int = 1,
-                     numberOfBathrooms: Int = 1,
-                     isAvailable: Bool =  false,
-                     tennantID: String = "") {
+         unitNumber: Int = 0,
+         property: Property = Property(),
+         numberOfBedrooms: Int = 1,
+         numberOfBathrooms: Int = 1,
+         tennantID: String? = nil) {
         self.id = id
         self.unitNumber = unitNumber
-        self.buildingID = buildingID
+        self.property = property
         self.numberOfBedrooms = numberOfBedrooms
         self.numberOfBathrooms = numberOfBathrooms
-        self.isAvailable = isAvailable
         self.tennantID = tennantID
     }
 }

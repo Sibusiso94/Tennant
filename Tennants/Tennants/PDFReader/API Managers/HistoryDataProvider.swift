@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-class HistoryDataProvider: DataSource {
+class HistoryDataProvider: CreateSD, ReadSD {
     typealias T = History
     
     let modelContext: ModelContext
@@ -19,10 +19,6 @@ class HistoryDataProvider: DataSource {
     func fetchData() -> [T] {
         let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.dateCreated)])
         return repository.read(request: descriptor)
-    }
-    
-    func update(_ object: T) {
-        repository.update(object: object)
     }
     
     func delete(_ object: T) {

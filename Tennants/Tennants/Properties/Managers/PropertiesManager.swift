@@ -19,8 +19,7 @@ enum ErrorMessage: String, Hashable {
 
 protocol NewPropertyManager {
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void)
-    func generatePropertyUnits(buildingID: String, numberOfUnits: Int, completion: @escaping ([SingleUnit]) -> Void)
-    func generatePropertyUnitsIDs(with units: [SingleUnit], completion: @escaping ([String]) -> Void)
+    func generatePropertyUnits(property: Property, numberOfUnits: Int, completion: @escaping ([SingleUnit]) -> Void)
 }
 
 class PropertiesManager: NewPropertyManager {
@@ -48,21 +47,17 @@ class PropertiesManager: NewPropertyManager {
                                    buildingAddress: newData.address,
                                         numberOfUnits: newData.numberOfUnits,
                                         units: [])
-        var units: [SingleUnit] = []
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
-        generatePropertyUnits(buildingID: newProperty.buildingID, numberOfUnits: numberOfUnits) { allUnits in
-            units = allUnits
+        generatePropertyUnits(property: newProperty, numberOfUnits: numberOfUnits) { allUnits in
             self.unitDataProvider.createMultiple(allUnits)
             dispatchGroup.leave()
         }
         
         dispatchGroup.enter()
-        generatePropertyUnitsIDs(with: units) { ids in
-            newProperty.units = ids
-            dispatchGroup.leave()
-        }
+        newProperty.units = self.unitDataProvider.fetchData()
+        dispatchGroup.leave()
         
         dispatchGroup.notify(queue: .main) {
             self.dataProvider.create(newProperty)
@@ -70,23 +65,18 @@ class PropertiesManager: NewPropertyManager {
         }
     }
     
-    func generatePropertyUnits(buildingID: String,
+    func generatePropertyUnits(property: Property,
                                numberOfUnits: Int,
                                completion: @escaping ([SingleUnit]) -> Void) {
         var newUnits: [SingleUnit] = []
         
         for unit in 1..<numberOfUnits {
             let newUnit = SingleUnit(unitNumber: unit,
-                                     buildingID: buildingID)
+                                     property: property)
             self.unitDataProvider.create(newUnit)
             newUnits.append(newUnit)
         }
         
         completion(newUnits)
-    }
-    
-    func generatePropertyUnitsIDs(with units: [SingleUnit], completion: @escaping ([String]) -> Void) {
-        let unitIDs = units.map({$0.id})
-        completion(unitIDs)
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-class UnitsDataProvider: DataSource {
+class UnitsDataProvider: SwiftDataSource {
     typealias T = SingleUnit
     
     let modelContext: ModelContext

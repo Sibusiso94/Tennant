@@ -1,13 +1,32 @@
 import Foundation
 import SwiftData
 
-protocol DataSource {
+protocol SwiftDataSource {
     associatedtype T: PersistentModel
     
     func create(_ object: T)
-//    func read<T: PersistentModel>(request: FetchDescriptor<T>) -> [T]
     func fetchData() -> [T]
     func update(_ object: T)
+    func delete(_ object: T)
+}
+
+protocol CreateSD {
+    associatedtype T: PersistentModel
+    func create(_ object: T)
+}
+
+protocol ReadSD {
+    associatedtype T: PersistentModel
+    func fetchData() -> [T]
+}
+
+protocol UpdateSD {
+    associatedtype T: PersistentModel
+    func update(_ object: T)
+}
+
+protocol DeleteSD {
+    associatedtype T: PersistentModel
     func delete(_ object: T)
 }
 

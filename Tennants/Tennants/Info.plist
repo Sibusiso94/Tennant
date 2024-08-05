@@ -6,7 +6,11 @@
 	<array>
 		<dict/>
 	</array>
-	
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.tenants.Tennants</key>
@@ -19,21 +23,7 @@
 			<string>Any</string>
 		</dict>
 	</dict>
-
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>App wants to access your documents folder</string>
-	<key>NSDownloadsFolderUsageDescription</key>
-	<string>App wants to access your downloads folder</string>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
-
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-
 </dict>
 </plist>

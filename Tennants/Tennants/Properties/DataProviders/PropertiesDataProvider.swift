@@ -1,7 +1,7 @@
 import Foundation
 import SwiftData
 
-class PropertiesDataProvider: DataSource {
+class PropertiesDataProvider: SwiftDataSource {
     typealias T = Property
     
     let modelContext: ModelContext

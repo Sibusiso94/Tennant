@@ -18,7 +18,8 @@ struct UpdateTennantView: View {
                                          name: tenant.name,
                                          surname: tenant.surname,
                                          balance: "\(tenant.balance)",
-                                         amountDue: "\(tenant.amountDue)")
+                                         amountDue: "\(tenant.amountDue)", 
+                                         reference: "\(tenant.reference)")
                     .padding(.horizontal)
                 
                 CircularProgressView(progress: 0.7,
