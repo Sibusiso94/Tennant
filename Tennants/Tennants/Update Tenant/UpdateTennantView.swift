@@ -6,9 +6,11 @@ struct UpdateTennantView: View {
     @StateObject var viewModel = UpdateTennantViewModel()
     @State var paymentHistoryPercentage = 0.0
     @Binding var tenant: Tennant
+    @Binding var path: NavigationPath
     
-    init(tenant: Binding<Tennant>) {
+    init(tenant: Binding<Tennant>, _ path: Binding<NavigationPath>) {
         self._tenant = tenant
+        self._path = path
     }
     
     var body: some View {
@@ -65,14 +67,26 @@ struct UpdateTennantView: View {
                 Color("PastelGrey")
                     .ignoresSafeArea()
             }
+//            .navigationBarBackButtonHidden(true)
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button {
+//                        path.removeLast()
+//                    } label: {
+//                        HStack {
+//                            Image(systemName: "chevron.left")
+//                            Text("Back")
+//                        }
+//                    }
+//                }
+//            }
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "ellipsis")
-                    }
+                CustomMenuButton {
+                    //
+                } option2Action: {
+                    //
                 }
+
             }
             .onAppear {
                 viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
@@ -83,6 +97,6 @@ struct UpdateTennantView: View {
     }
 }
 
-#Preview {
-    UpdateTennantView(tenant: .constant(MockTenants.tenants[0]))
-}
+//#Preview {
+//    UpdateTennantView(tenant: .constant(MockTenants.tenants[0]))
+//}

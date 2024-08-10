@@ -7,13 +7,15 @@ struct PropertyDetailView: View {
     @State var tenants = MockTenants.tenants
     
     @ObservedObject var viewModel: PropertiesViewModel
+    @Binding var path: NavigationPath
     @Environment(\.dismiss) var dismiss
     var property: Property
     
-    init(property: Property, viewModel: PropertiesViewModel) {
+    init(property: Property, viewModel: PropertiesViewModel, path: Binding<NavigationPath>) {
         _showDetailView = State(initialValue: false)
         self.property = property
         self.viewModel = viewModel
+        self._path = path
     }
     
     var body: some View {
@@ -54,10 +56,11 @@ struct PropertyDetailView: View {
                 .navigationTitle(property.buildingName)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        PropertyMenuButton {
+                        CustomMenuButton {
                             print("edit")
-                        } deleteAction: {
+                        } option2Action: {
                             viewModel.manager.deleteProperties(property: property)
+                            viewModel.refreshData()
                             dismiss()
                         }
 
@@ -65,7 +68,7 @@ struct PropertyDetailView: View {
                 }
                 .navigationDestination(isPresented: $showDetailView) {
                     withAnimation {
-                        UpdateTennantView(tenant: $selectedTenant)
+                        UpdateTennantView(tenant: $selectedTenant, $path)
                     }
                 }
             }
@@ -77,25 +80,26 @@ struct PropertyDetailView: View {
 //    PropertyDetailView(property: Property(buildingName: "Telesto", buildingAddress: "Pinotage Street"), viewModel: <#PropertiesViewModel#>)
 //}
 
-struct PropertyMenuButton: View {
-    var editAction: () -> Void
-    var deleteAction: () -> Void
+struct CustomMenuButton: View {
+    var option1Action: () -> Void
+    var option2Action: () -> Void
     
-    init(editAction: @escaping () -> Void, deleteAction: @escaping () -> Void) {
-        self.editAction = editAction
-        self.deleteAction = deleteAction
+    init(option1Action: @escaping () -> Void,
+         option2Action: @escaping () -> Void) {
+        self.option1Action = option1Action
+        self.option2Action = option2Action
     }
     
     var body: some View {
         Menu {
             Button {
-                editAction()
+                option1Action()
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
             
             Button(role: .destructive) {
-                deleteAction()
+                option2Action()
             } label: {
                 Label("Delete", systemImage: "trash")
             }

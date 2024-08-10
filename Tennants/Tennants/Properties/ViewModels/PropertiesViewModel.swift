@@ -23,7 +23,7 @@ class PropertiesViewModel: ObservableObject {
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.manager = PropertiesManager(modelContext: modelContext)
-        self.properties = self.manager.fetchProperties()
+        self.refreshData()
     }
     
     let columns: [GridItem] = [
@@ -66,5 +66,9 @@ class PropertiesViewModel: ObservableObject {
     
     private func clearData() {
         newData = NewDataModel()
+    }
+    
+    func refreshData() {
+        properties = manager.fetchProperties()
     }
 }

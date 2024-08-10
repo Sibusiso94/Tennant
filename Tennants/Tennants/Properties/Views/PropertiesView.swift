@@ -6,7 +6,7 @@ struct PropertiesView: View {
     let modelContext: ModelContext
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: PropertiesViewModel
-    @State var path: NavigationPath
+    @State private var path: NavigationPath
     @State var mockProperies = ["Telesto"]
     
     init(modelContext: ModelContext) {
@@ -73,7 +73,7 @@ struct PropertiesView: View {
                     }
                     .navigationDestination(isPresented: $viewModel.showPropertyDetailView) {
                         withAnimation {
-                            PropertyDetailView(property: viewModel.selectedProperty, viewModel: viewModel)
+                            PropertyDetailView(property: viewModel.selectedProperty, viewModel: viewModel, path: $path)
                         }
                     }
                     //                .navigationDestination(isPresented: $showTennantView) {
