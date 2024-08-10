@@ -45,8 +45,7 @@ class PropertiesManager: NewPropertyManager {
         let dispatchGroup = DispatchGroup()
         let newProperty = Property(buildingName: newData.name,
                                    buildingAddress: newData.address,
-                                        numberOfUnits: newData.numberOfUnits,
-                                        units: [])
+                                        numberOfUnits: newData.numberOfUnits)
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
@@ -78,5 +77,9 @@ class PropertiesManager: NewPropertyManager {
         }
         
         completion(newUnits)
+    }
+    
+    func deleteProperties(property: Property) {
+        dataProvider.delete(property)
     }
 }

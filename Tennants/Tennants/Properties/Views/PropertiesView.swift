@@ -24,27 +24,33 @@ struct PropertiesView: View {
                 ScrollView {
                     VStack {
                         if viewModel.properties.isEmpty {
-                            AddView(shouldShowAddProperty: $viewModel.shouldAddPropertyOptions,
-                                    title: "Add your first Property",
+                            AddView(title: "Add your first Property",
+                                    image: Image("EmptyViewImage"),
                                     width: 250,
                                     height: 250,
-                                    isNoData: viewModel.properties.isEmpty)
+                                    buttonTitle: "Add Property") {
+                                viewModel.shouldAddPropertyOptions = true
+                            }
                         } else {
                             Spacer()
                                 .frame(height: 80)
                             
                                 LazyVGrid(columns: viewModel.columns) {
                                     ForEach(Array(viewModel.properties.enumerated()), id: \.offset) { index, property in
-                                        CardView(title: property.buildingName, image: Image("image\(index)"), geometry: geometry) {
+                                        CardView(title: property.buildingName, 
+                                                 image: Image("image\(index)"),
+                                                 geometry: geometry) {
                                             viewModel.selectedProperty(property)
                                         }
                                     }
                                     
                                     VStack {
-                                        AddView(shouldShowAddProperty: $viewModel.shouldAddPropertyOptions,
-                                                width: 100,
-                                                height: 100,
-                                                isNoData: viewModel.properties.isEmpty)
+                                        PlusView(image: Image(systemName: "plus"), 
+                                                 width: 100,
+                                                 height: 100,
+                                                 buttonColour: Color("DarkPastelBlue")) {
+                                            viewModel.shouldAddPropertyOptions = true
+                                        }
                                     }
                                     .frame(maxWidth: .infinity)
                                     .frame(height: geometry.size.height / 2.5)
@@ -67,7 +73,7 @@ struct PropertiesView: View {
                     }
                     .navigationDestination(isPresented: $viewModel.showPropertyDetailView) {
                         withAnimation {
-                            PropertyDetailView(property: viewModel.selectedProperty)
+                            PropertyDetailView(property: viewModel.selectedProperty, viewModel: viewModel)
                         }
                     }
                     //                .navigationDestination(isPresented: $showTennantView) {

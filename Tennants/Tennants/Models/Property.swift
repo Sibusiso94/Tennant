@@ -4,23 +4,20 @@ import SwiftData
 @Model
 class Property {
     @Attribute(.unique) var buildingID: String
-    @Relationship(deleteRule: .cascade, inverse: \SingleUnit.property) var units: [SingleUnit]
+    @Relationship(deleteRule: .cascade) var units: [SingleUnit]
     var buildingName: String
     var buildingAddress: String
     var numberOfUnits: String
-    var occupiedUnitIDs: [String]
     
     init(buildingID: String = UUID().uuidString,
          buildingName: String = "",
          buildingAddress: String = "",
          numberOfUnits: String = "",
-         units: [SingleUnit] = [],
-         occupiedUnitIDs: [String] = []) {
+         units: [SingleUnit] = []) {
         self.buildingID = buildingID
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
-        self.occupiedUnitIDs = occupiedUnitIDs
         self.units = units
     }
 }

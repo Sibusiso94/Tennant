@@ -4,16 +4,20 @@ import MyLibrary
 struct PropertyDetailView: View {
     @State var showDetailView: Bool
     @State var selectedTenant = Tennant()
-    var property: Property
     @State var tenants = MockTenants.tenants
     
-    init(property: Property) {
+    @ObservedObject var viewModel: PropertiesViewModel
+    @Environment(\.dismiss) var dismiss
+    var property: Property
+    
+    init(property: Property, viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.property = property
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        NavigationStack() {
+        NavigationStack {
             ZStack {
                 Color("PastelGrey")
                     .ignoresSafeArea()
@@ -38,8 +42,7 @@ struct PropertyDetailView: View {
                                                      name: tenant.name,
                                                      surname: tenant.surname,
                                                      balance: "\(tenant.balance)",
-                                                     amountDue: "\(tenant.amountDue)",
-                                                     reference: "\(tenant.reference)")
+                                                     amountDue: "\(tenant.amountDue)")
                                 .onTapGesture {
                                     selectedTenant = tenant
                                     showDetailView = true
@@ -51,11 +54,13 @@ struct PropertyDetailView: View {
                 .navigationTitle(property.buildingName)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "ellipsis")
+                        PropertyMenuButton {
+                            print("edit")
+                        } deleteAction: {
+                            viewModel.manager.deleteProperties(property: property)
+                            dismiss()
                         }
+
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
@@ -68,6 +73,34 @@ struct PropertyDetailView: View {
     }
 }
 
-#Preview {
-    PropertyDetailView(property: Property(buildingName: "Telesto", buildingAddress: "Pinotage Street"))
+//#Preview {
+//    PropertyDetailView(property: Property(buildingName: "Telesto", buildingAddress: "Pinotage Street"), viewModel: <#PropertiesViewModel#>)
+//}
+
+struct PropertyMenuButton: View {
+    var editAction: () -> Void
+    var deleteAction: () -> Void
+    
+    init(editAction: @escaping () -> Void, deleteAction: @escaping () -> Void) {
+        self.editAction = editAction
+        self.deleteAction = deleteAction
+    }
+    
+    var body: some View {
+        Menu {
+            Button {
+                editAction()
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            
+            Button(role: .destructive) {
+                deleteAction()
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+        } label: {
+            Label("", systemImage: "ellipsis.circle")
+        }
+    }
 }
