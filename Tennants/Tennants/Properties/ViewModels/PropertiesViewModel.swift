@@ -20,6 +20,8 @@ class PropertiesViewModel: ObservableObject {
     @Published var showUploadStatus: Bool = false
     @Published var showPropertyDetailView: Bool = false
     
+    @Published var showAlert: Bool = false
+    
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.manager = PropertiesManager(modelContext: modelContext)
@@ -34,7 +36,7 @@ class PropertiesViewModel: ObservableObject {
     func addProperty() {
         manager.createProperty(newData: newData) { success in
             if success {
-                self.properties = self.manager.fetchProperties()
+                self.showAlert = true
                 self.setUpStatus(message: "Property saved successfully.")
                 self.clearData()
             } else {

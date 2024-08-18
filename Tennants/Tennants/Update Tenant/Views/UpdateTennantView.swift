@@ -5,12 +5,12 @@ struct UpdateTennantView: View {
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
     @State var paymentHistoryPercentage = 0.0
-    @Binding var tenant: Tennant
-    @Binding var path: NavigationPath
     
-    init(tenant: Binding<Tennant>, _ path: Binding<NavigationPath>) {
+    @Environment(\.dismiss) var dismiss
+    @Binding var tenant: Tennant
+    
+    init(tenant: Binding<Tennant>) {
         self._tenant = tenant
-        self._path = path
     }
     
     var body: some View {
@@ -71,7 +71,7 @@ struct UpdateTennantView: View {
 //            .toolbar {
 //                ToolbarItem(placement: .navigationBarLeading) {
 //                    Button {
-//                        path.removeLast()
+//                        dismiss()
 //                    } label: {
 //                        HStack {
 //                            Image(systemName: "chevron.left")

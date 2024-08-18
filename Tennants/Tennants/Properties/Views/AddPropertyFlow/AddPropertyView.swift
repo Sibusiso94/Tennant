@@ -6,19 +6,15 @@ struct AddPropertyView: View {
     @FocusState private var focusedField: Field?
     @Environment(\.dismiss) var dismiss
     
-    @Binding var data: NewDataModel
-    
+    @ObservedObject var viewModel: PropertiesViewModel
     @State var showErrorMessage: Bool
     @State var isPropertyAdded: Bool
     
-    var propertyOptions: PropertyOptions
     var action: () -> Void
     
-    init(data: Binding<NewDataModel>,
-         propertyOptions: PropertyOptions,
+    init(viewModel: PropertiesViewModel,
          action: @escaping () -> Void) {
-        self._data = data
-        self.propertyOptions = propertyOptions
+        self.viewModel = viewModel
         self.action = action
         _showErrorMessage = State(initialValue: false)
         _isPropertyAdded = State(initialValue: false)
@@ -32,28 +28,28 @@ struct AddPropertyView: View {
                 
                 ScrollView {
                     VStack(spacing: 25) {
-                        CustomTextField(text: $data.name, placeHolderText: "Name")
+                        CustomTextField(text: $viewModel.newData.name, placeHolderText: "Name")
                             .focused($focusedField, equals: .name)
                             .onSubmit { self.focusNextField($focusedField) }
                         
-                        CustomTextField(text: $data.address,
+                        CustomTextField(text: $viewModel.newData.address,
                                         placeHolderText: "Address",
                                         texFieldHeight: 100,
                                         axis: .vertical)
                             .focused($focusedField, equals: .address)
                             .onSubmit { self.focusNextField($focusedField) }
                         
-                        switch propertyOptions {
+                        switch viewModel.propertyType {
                         case .multipleUnits:
-                            TextField("Number of Units", text: $data.numberOfUnits)
+                            TextField("Number of Units", text: $viewModel.newData.numberOfUnits)
                                 .numberTextField()
                             
                             CustomTextButton(title: "Add property") {
                                 action()
                             }
                         case .singleUnit:
-                            CustomTextField(text: $data.numberOfBedrooms, placeHolderText: "Number Of Bedrooms")
-                            CustomTextField(text: $data.numberOfBathrooms, placeHolderText: "Number of Bathrooms")
+                            CustomTextField(text: $viewModel.newData.numberOfBedrooms, placeHolderText: "Number Of Bedrooms")
+                            CustomTextField(text: $viewModel.newData.numberOfBathrooms, placeHolderText: "Number of Bathrooms")
                             
                             CustomTextButton(title: "Add property") {
                                 action()

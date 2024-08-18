@@ -26,6 +26,7 @@ class PropertiesManager: NewPropertyManager {
     let modelContext: ModelContext
     let dataProvider: PropertiesDataProvider
     let unitDataProvider: UnitsDataProvider
+    var newProperty = Property()
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.dataProvider = PropertiesDataProvider(modelContext: modelContext)
@@ -43,7 +44,7 @@ class PropertiesManager: NewPropertyManager {
     
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
         let dispatchGroup = DispatchGroup()
-        let newProperty = Property(buildingName: newData.name,
+        newProperty = Property(buildingName: newData.name,
                                    buildingAddress: newData.address,
                                         numberOfUnits: newData.numberOfUnits)
         
@@ -59,7 +60,7 @@ class PropertiesManager: NewPropertyManager {
         dispatchGroup.leave()
         
         dispatchGroup.notify(queue: .main) {
-            self.dataProvider.create(newProperty)
+            self.dataProvider.create(self.newProperty)
             completion(true)
         }
     }
@@ -79,7 +80,13 @@ class PropertiesManager: NewPropertyManager {
         completion(newUnits)
     }
     
-    func deleteProperties(property: Property) {
+    func updateProperty(_ property: Property) {
+        let updatedProperty = Property()
+        updatedProperty.buildingName = property.buildingName
+        dataProvider.update(updatedProperty)
+    }
+    
+    func deleteProperty(_ property: Property) {
         dataProvider.delete(property)
     }
 }

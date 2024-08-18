@@ -67,21 +67,22 @@ struct PropertiesView: View {
                         }
                     }
                     .navigationDestination(isPresented: $viewModel.shouldShowAddProperty) {
-                        AddPropertyView(data: $viewModel.newData, propertyOptions: viewModel.propertyType) {
+                        AddPropertyView(viewModel: viewModel) {
                             viewModel.addProperty()
                         }
                     }
                     .navigationDestination(isPresented: $viewModel.showPropertyDetailView) {
                         withAnimation {
-                            PropertyDetailView(property: viewModel.selectedProperty, viewModel: viewModel, path: $path)
+                            PropertyDetailView(viewModel: viewModel)
                         }
                     }
-                    //                .navigationDestination(isPresented: $showTennantView) {
-                    //                    AddTenantView(data: $viewModel.newData, selectedProperty: viewModel.newProperty.buildingName) {
-                    //                        viewModel.newData.isAProperty = false
-                    //                        viewModel.addData()
-                    //                    }
-                    //                }
+                    .alert("Property successfully added", isPresented: $viewModel.showAlert) {
+                        Button("OK", role: .cancel) {
+                            viewModel.selectedProperty = viewModel.manager.newProperty
+                            viewModel.properties = viewModel.manager.fetchProperties()
+                            viewModel.showPropertyDetailView = true
+                        }
+                    }
                 }
             }
         }

@@ -7,15 +7,11 @@ struct PropertyDetailView: View {
     @State var tenants = MockTenants.tenants
     
     @ObservedObject var viewModel: PropertiesViewModel
-    @Binding var path: NavigationPath
     @Environment(\.dismiss) var dismiss
-    var property: Property
     
-    init(property: Property, viewModel: PropertiesViewModel, path: Binding<NavigationPath>) {
+    init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
-        self.property = property
         self.viewModel = viewModel
-        self._path = path
     }
     
     var body: some View {
@@ -27,7 +23,7 @@ struct PropertyDetailView: View {
                 VStack {
                     HStack {
                         VStack {
-                            Text(property.buildingAddress)
+                            Text(viewModel.selectedProperty.buildingAddress)
                                 .foregroundStyle(.black.opacity(0.7))
                             
                             Text("  All Units ocupied")
@@ -53,13 +49,13 @@ struct PropertyDetailView: View {
                         }
                     }
                 }
-                .navigationTitle(property.buildingName)
+                .navigationTitle(viewModel.selectedProperty.buildingName)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         CustomMenuButton {
                             print("edit")
                         } option2Action: {
-                            viewModel.manager.deleteProperties(property: property)
+                            viewModel.manager.deleteProperty(viewModel.selectedProperty)
                             viewModel.refreshData()
                             dismiss()
                         }
@@ -68,7 +64,7 @@ struct PropertyDetailView: View {
                 }
                 .navigationDestination(isPresented: $showDetailView) {
                     withAnimation {
-                        UpdateTennantView(tenant: $selectedTenant, $path)
+                        UpdateTennantView(tenant: $selectedTenant)
                     }
                 }
             }
