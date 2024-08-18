@@ -5,6 +5,7 @@ struct UpdateTennantView: View {
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
     @State var paymentHistoryPercentage = 0.0
+    @State var showEditView: Bool = false
     
     @Environment(\.dismiss) var dismiss
     @Binding var tenant: Tennant
@@ -82,7 +83,7 @@ struct UpdateTennantView: View {
 //            }
             .toolbar {
                 CustomMenuButton {
-                    //
+                    // show add Tennant
                 } option2Action: {
                     //
                 }
@@ -91,7 +92,14 @@ struct UpdateTennantView: View {
             .onAppear {
                 viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
                 paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
-                                                                                 numberOfFullPayments: viewModel.selectedTennant.fullPayments)
+                                                                                 numberOfFullPayments: Int(viewModel.selectedTennant.fullPayments) ?? 0)
+            }
+            .navigationDestination(isPresented: $showEditView) {
+                withAnimation {
+                    AddTenantView {
+                        //
+                    }
+                }
             }
         }
     }

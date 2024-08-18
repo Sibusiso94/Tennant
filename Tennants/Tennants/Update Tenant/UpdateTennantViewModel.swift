@@ -49,7 +49,10 @@ class UpdateTennantViewModel: ObservableObject {
     }
     
     func paidInFull() {
-        selectedTennant.fullPayments += 1
+        if var payment = Int(selectedTennant.fullPayments) {
+            payment += 1
+            selectedTennant.fullPayments = String(payment)
+        }
     }
     
     func notPaidInFull(with amount: Double) {

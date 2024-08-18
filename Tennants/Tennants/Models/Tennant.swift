@@ -13,12 +13,12 @@ class Tennant: Identifiable {
     var currentAddress: String
     var company : String
     var position: String
-    var monthlyIncome: Int
+    var monthlyIncome: String
     var balance: Double
     var amountDue: Double
     var startDate: String
     var endDate: String
-    var fullPayments: Int
+    var fullPayments: String
     
     init(id: String = UUID().uuidString,
                      buildingNumber: String = "",
@@ -30,12 +30,12 @@ class Tennant: Identifiable {
                      currentAddress: String = "",
                      company : String = "",
                      position: String = "",
-                     monthlyIncome: Int = 0,
+                     monthlyIncome: String = "0",
                      balance: Double = 0.0,
                      amountDue: Double = 0.0,
                      startDate: String = "",
                      endDate: String = "",
-                     fullPayments: Int = 0) {
+                     fullPayments: String = "0") {
         self.id = id
         self.buildingNumber = buildingNumber
         self.unitID = unitID
@@ -63,7 +63,8 @@ class TennantBuilder {
     }
     
     func earns(monthlyIncome: Int) -> TennantBuilder {
-        tennant.monthlyIncome = monthlyIncome
+        guard var monthlyIncomeInt = Int(tennant.monthlyIncome) else { return self }
+        monthlyIncomeInt = monthlyIncome
         return self
     }
     

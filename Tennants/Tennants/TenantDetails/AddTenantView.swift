@@ -2,21 +2,13 @@ import SwiftUI
 import MyLibrary
 
 struct AddTenantView: View {
-    @FocusState private var isInputActive: Bool
     @FocusState private var focusedTennantField: TennantField?
-    
-    @Binding var data: NewDataModel
+    @StateObject var viewModel = AddTenantViewModel()
     @State var showErrorMessage: Bool
-    
-    var selectedUnit: SingleUnit
     
     var action: () -> Void
     
-    init(data: Binding<NewDataModel>,
-         selectedUnit: SingleUnit,
-         action: @escaping () -> Void) {
-        self._data = data
-        self.selectedUnit = selectedUnit
+    init(action: @escaping () -> Void) {
         self.action = action
         _showErrorMessage = State(initialValue: false)
     }
@@ -29,19 +21,19 @@ struct AddTenantView: View {
                 
                 ScrollView {
                     VStack(spacing: 25) {
-                        CustomTextField(text: $data.name, placeHolderText: "Name")
+                        CustomTextField(text: $viewModel.tenant.name, placeHolderText: "Name")
                             .focused($focusedTennantField, equals: .name)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
-                        CustomTextField(text: $data.address, placeHolderText: "Address")
+                        CustomTextField(text: $viewModel.tenant.currentAddress, placeHolderText: "Address")
                             .focused($focusedTennantField, equals: .address)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
-                        CustomTextField(text: $data.address, placeHolderText: "Reference")
+                        CustomTextField(text: $viewModel.tenant.reference, placeHolderText: "Reference")
                             .focused($focusedTennantField, equals: .reference)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
-                        CustomTextField(text: $data.address, placeHolderText: "ID Number")
+                        CustomTextField(text: $viewModel.tenant.tennantID, placeHolderText: "ID Number")
                             .focused($focusedTennantField, equals: .tennantID)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
@@ -52,15 +44,15 @@ struct AddTenantView: View {
                             }
                         }
                         
-                        CustomTextField(text: $data.company, placeHolderText: "Company")
+                        CustomTextField(text: $viewModel.tenant.company, placeHolderText: "Company")
                             .focused($focusedTennantField, equals: .company)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
-                        CustomTextField(text: $data.position, placeHolderText: "Position")
+                        CustomTextField(text: $viewModel.tenant.position, placeHolderText: "Position")
                             .focused($focusedTennantField, equals: .position)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         
-                        CustomTextField(text: $data.monthlyIncome, placeHolderText: "Monthly Income")
+                        CustomTextField(text: $viewModel.tenant.monthlyIncome, placeHolderText: "Monthly Income")
                             .focused($focusedTennantField, equals: .monthlyIncome)
                             .onSubmit { self.focusNextField($focusedTennantField) }
                         

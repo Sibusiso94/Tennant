@@ -1,9 +1,9 @@
 import Foundation
 
 class PropertyDetailViewModel {
-    let units: [String]
+    let units: [SingleUnit]
     
-    init(units: [String]) {
+    init(units: [SingleUnit]) {
         self.units = units
     }
     

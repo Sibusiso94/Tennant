@@ -25,12 +25,12 @@ protocol NewPropertyManager {
 class PropertiesManager: NewPropertyManager {
     let modelContext: ModelContext
     let dataProvider: PropertiesDataProvider
-    let unitDataProvider: UnitsDataProvider
+    let unitManager: UnitManager
     var newProperty = Property()
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.dataProvider = PropertiesDataProvider(modelContext: modelContext)
-        self.unitDataProvider = UnitsDataProvider(modelContext: modelContext)
+        self.unitManager = UnitManager(modelContext: modelContext)
     }
     
     let columns: [GridItem] = [
@@ -51,12 +51,12 @@ class PropertiesManager: NewPropertyManager {
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
         generatePropertyUnits(property: newProperty, numberOfUnits: numberOfUnits) { allUnits in
-            self.unitDataProvider.createMultiple(allUnits)
+            self.unitManager.unitDataProvider.createMultiple(allUnits)
             dispatchGroup.leave()
         }
         
         dispatchGroup.enter()
-        newProperty.units = self.unitDataProvider.fetchData()
+        newProperty.units = self.unitManager.unitDataProvider.fetchData()
         dispatchGroup.leave()
         
         dispatchGroup.notify(queue: .main) {
@@ -73,7 +73,7 @@ class PropertiesManager: NewPropertyManager {
         for unit in 1..<numberOfUnits {
             let newUnit = SingleUnit(unitNumber: unit,
                                      property: property)
-            self.unitDataProvider.create(newUnit)
+            self.unitManager.unitDataProvider.create(newUnit)
             newUnits.append(newUnit)
         }
         

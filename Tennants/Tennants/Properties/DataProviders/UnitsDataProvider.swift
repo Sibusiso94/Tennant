@@ -21,7 +21,7 @@ class UnitsDataProvider: SwiftDataSource {
     }
     
     func fetchData() -> [T] {
-        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber)])
+        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber, order: .forward)])
         return repository.read(request: descriptor)
     }
     

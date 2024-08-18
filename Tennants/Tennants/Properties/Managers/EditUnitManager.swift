@@ -1,20 +1,28 @@
 import Foundation
+import SwiftData
 
-final class EditUnitManager: ObservableObject {
-    @Published var active: Int = 0
-    var firstValue: Int = 0
-    var lastValue: Int = 0
-    var nextScreenIndex: Int = 0
+class UnitManager {
+    let modelContext: ModelContext
+    let unitDataProvider: UnitsDataProvider
     
-    public func next() {
-        active += 1
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        self.unitDataProvider = UnitsDataProvider(modelContext: modelContext)
     }
     
-    func getLatValue(of units: [SingleUnit]) -> Int {
-        if let lastValue = units.last?.unitNumber {
-            return lastValue - 1
-        } else {
-            return 0
+    
+    func generatePropertyUnits(property: Property,
+                               numberOfUnits: Int,
+                               completion: @escaping ([SingleUnit]) -> Void) {
+        var newUnits: [SingleUnit] = []
+        
+        for unit in 1..<numberOfUnits {
+            let newUnit = SingleUnit(unitNumber: unit,
+                                     property: property)
+            self.unitDataProvider.create(newUnit)
+            newUnits.append(newUnit)
         }
+        
+        completion(newUnits)
     }
 }

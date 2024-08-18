@@ -54,6 +54,7 @@
 		5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734342B6261C50040A0AA /* FileManagerTests.swift */; };
 		5C47343F2B6261C50040A0AA /* TennantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47343E2B6261C50040A0AA /* TennantsUITests.swift */; };
 		5C4734412B6261C50040A0AA /* TennantsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */; };
+		5C620CF12C722BA7001F54E6 /* AddTenantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */; };
 		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
 		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
@@ -137,6 +138,7 @@
 		5C47343A2B6261C50040A0AA /* TennantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47343E2B6261C50040A0AA /* TennantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITests.swift; sourceTree = "<group>"; };
 		5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantViewModel.swift; sourceTree = "<group>"; };
 		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
 		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */,
 				5C0B9B642C60F28D00362893 /* PropertyDetailViewModel.swift */,
+				5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				5C05CB122BFF552B00BF7297 /* DocumentPicker.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5C3E319D2C400DFF00321EB3 /* ApiDataManager.swift in Sources */,
+				5C620CF12C722BA7001F54E6 /* AddTenantViewModel.swift in Sources */,
 				5C0B9B652C60F28D00362893 /* PropertyDetailViewModel.swift in Sources */,
 				5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */,
 				5CDA50D02C4592080040E268 /* UnitsDataProvider.swift in Sources */,

@@ -17,7 +17,7 @@ struct TennantsApp: App {
         do {
             container = try ModelContainer(for: Property.self, SingleUnit.self, Tennant.self, History.self, TenantData.self)
         } catch {
-            fatalError("Failed to create ModelContainer for Movie.")
+            fatalError("Failed to create ModelContainer for ...")
         }
     }
 }
