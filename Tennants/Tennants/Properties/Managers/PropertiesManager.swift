@@ -18,8 +18,9 @@ enum ErrorMessage: String, Hashable {
 }
 
 protocol NewPropertyManager {
+    var dataProvider: PropertiesDataProvider { get }
+    var unitManager: UnitManager { get }
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void)
-    func generatePropertyUnits(property: Property, numberOfUnits: Int, completion: @escaping ([SingleUnit]) -> Void)
 }
 
 class PropertiesManager: NewPropertyManager {
@@ -44,40 +45,22 @@ class PropertiesManager: NewPropertyManager {
     
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
         let dispatchGroup = DispatchGroup()
+        newProperty = Property()
         newProperty = Property(buildingName: newData.name,
                                    buildingAddress: newData.address,
                                         numberOfUnits: newData.numberOfUnits)
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
-        generatePropertyUnits(property: newProperty, numberOfUnits: numberOfUnits) { allUnits in
-            self.unitManager.unitDataProvider.createMultiple(allUnits)
+        unitManager.generatePropertyUnits(property: newProperty, numberOfUnits: numberOfUnits) { allUnits in
+            self.newProperty.units = allUnits
             dispatchGroup.leave()
         }
-        
-        dispatchGroup.enter()
-        newProperty.units = self.unitManager.unitDataProvider.fetchData()
-        dispatchGroup.leave()
         
         dispatchGroup.notify(queue: .main) {
             self.dataProvider.create(self.newProperty)
             completion(true)
         }
-    }
-    
-    func generatePropertyUnits(property: Property,
-                               numberOfUnits: Int,
-                               completion: @escaping ([SingleUnit]) -> Void) {
-        var newUnits: [SingleUnit] = []
-        
-        for unit in 1..<numberOfUnits {
-            let newUnit = SingleUnit(unitNumber: unit,
-                                     property: property)
-            self.unitManager.unitDataProvider.create(newUnit)
-            newUnits.append(newUnit)
-        }
-        
-        completion(newUnits)
     }
     
     func updateProperty(_ property: Property) {

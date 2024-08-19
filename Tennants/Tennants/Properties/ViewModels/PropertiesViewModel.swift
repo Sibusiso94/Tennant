@@ -34,6 +34,7 @@ class PropertiesViewModel: ObservableObject {
     ]
     
     func addProperty() {
+        selectedProperty = Property()
         manager.createProperty(newData: newData) { success in
             if success {
                 self.showAlert = true

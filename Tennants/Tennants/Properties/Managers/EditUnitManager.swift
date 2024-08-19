@@ -10,16 +10,20 @@ class UnitManager {
         self.unitDataProvider = UnitsDataProvider(modelContext: modelContext)
     }
     
+    func fetchUnitBy(_ property: Property) -> [SingleUnit] {
+        let data = unitDataProvider.fetchData()
+        let filteredData = data.filter { $0.property == property }
+        return filteredData
+    }
     
     func generatePropertyUnits(property: Property,
                                numberOfUnits: Int,
                                completion: @escaping ([SingleUnit]) -> Void) {
         var newUnits: [SingleUnit] = []
         
-        for unit in 1..<numberOfUnits {
+        for unit in 1..<numberOfUnits + 1 {
             let newUnit = SingleUnit(unitNumber: unit,
                                      property: property)
-            self.unitDataProvider.create(newUnit)
             newUnits.append(newUnit)
         }
         
