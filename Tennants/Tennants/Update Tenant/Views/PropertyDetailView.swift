@@ -3,14 +3,15 @@ import MyLibrary
 
 struct PropertyDetailView: View {
     @State var showDetailView: Bool
-    @State var selectedTenant = Tennant()
     
+    @StateObject var detailViewModel: PropertyDetailViewModel
     @ObservedObject var viewModel: PropertiesViewModel
     @Environment(\.dismiss) var dismiss
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(viewModel.selectedProperty.units))
     }
     
     var body: some View {
@@ -34,14 +35,15 @@ struct PropertyDetailView: View {
                     
                     
                     ScrollView {
-                        ForEach(viewModel.selectedProperty.units) { unit in
+                        ForEach(detailViewModel.units) { unit in
                             UpdateTennantTopCardView(unitNumber: String(unit.unitNumber),
                                                      name: unit.tenant.name,
                                                      surname: unit.tenant.surname,
                                                      balance: "\(unit.tenant.balance)",
-                                                     amountDue: "\(unit.tenant.amountDue)")
+                                                     amountDue: "\(unit.tenant.amountDue)", isOccupied: unit.isOccupied)
                                 .onTapGesture {
-                                    selectedTenant = unit.tenant
+                                    viewModel.selectedUnit = unit
+                                    viewModel.selectedTenant = unit.tenant
                                     showDetailView = true
                                 }
                                 .padding(.horizontal)
@@ -62,9 +64,15 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-                    withAnimation {
-                        UpdateTennantView(tenant: $selectedTenant)
-                    }
+//                    withAnimation {
+                    if viewModel.selectedUnit.isOccupied {
+                        UpdateTennantView(tenant: $viewModel.selectedTenant, unit: viewModel.selectedUnit)
+                        } else {
+                            AddTenantView($viewModel.selectedTenant) {
+                                viewModel.addTenant()
+                            }
+                        }
+//                    }
                 }
             }
         }

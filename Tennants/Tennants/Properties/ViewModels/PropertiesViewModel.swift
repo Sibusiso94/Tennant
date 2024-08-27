@@ -5,12 +5,16 @@ import SwiftData
 class PropertiesViewModel: ObservableObject {
     let modelContext: ModelContext
     let manager: PropertiesManager
+    let tenantManager: TenantManager
     var propertyType: PropertyOptions = .multipleUnits
     
     @Published var newData: NewDataModel = NewDataModel()
     @Published var properties: [Property] = []
     @Published var selectedProperty = Property()
+    
+    @Published var selectedTenant = Tennant()
     @Published var tenants: [Tennant] = []
+    @Published var selectedUnit = SingleUnit()
     
     @Published var shouldShowAddProperty: Bool = false
     @Published var shouldAddPropertyOptions: Bool = false
@@ -25,6 +29,7 @@ class PropertiesViewModel: ObservableObject {
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.manager = PropertiesManager(modelContext: modelContext)
+        self.tenantManager = TenantManager(modelContext: modelContext)
         self.refreshData()
     }
     
@@ -73,5 +78,26 @@ class PropertiesViewModel: ObservableObject {
     
     func refreshData() {
         properties = manager.fetchProperties()
+    }
+    
+    func addTenant() {
+        manager.updateProperty(selectedProperty) {
+            self.refreshTenant()
+        }
+//        tenantManager.addTenant(selectedTenant, selectedUnitID: selectedUnit.id, property: &selectedProperty) {
+//            self.manager.updateProperty(self.selectedProperty) {
+//            }
+//            self.manager.fetchProperties()
+//        }
+    }
+    
+    func refreshTenant() {
+        selectedTenant.name = ""
+        selectedTenant.currentAddress = ""
+        selectedTenant.reference = ""
+        selectedTenant.tennantID = ""
+        selectedTenant.company = ""
+        selectedTenant.position = ""
+        selectedTenant.monthlyIncome = ""
     }
 }

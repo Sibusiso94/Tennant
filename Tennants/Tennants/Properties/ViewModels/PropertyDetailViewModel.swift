@@ -1,16 +1,14 @@
 import Foundation
 
-class PropertyDetailViewModel {
-    let units: [SingleUnit]
+class PropertyDetailViewModel: ObservableObject {
+    @Published var units = [SingleUnit]()
     
-    init(units: [SingleUnit]) {
-        self.units = units
+    init(_ units: [SingleUnit]) {
+        self.units = sortUnits(units)
     }
     
-    func getUnitDetails(with id: String) -> [SingleUnit] {
-        var units: [SingleUnit] = []
-        
-        
-        return units
+    private func sortUnits(_ units: [SingleUnit]) -> [SingleUnit] {
+        let sortedUnits = units.sorted { $0.unitNumber < $1.unitNumber }
+        return sortedUnits
     }
 }

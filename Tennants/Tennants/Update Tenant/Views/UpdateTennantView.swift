@@ -2,22 +2,25 @@ import SwiftUI
 import MyLibrary
 
 struct UpdateTennantView: View {
+    @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @StateObject var viewModel = UpdateTennantViewModel()
+    
     @State var paymentHistoryPercentage = 0.0
     @State var showEditView: Bool = false
-    
-    @Environment(\.dismiss) var dismiss
     @Binding var tenant: Tennant
     
-    init(tenant: Binding<Tennant>) {
+    var unit: SingleUnit
+    
+    init(tenant: Binding<Tennant>, unit: SingleUnit) {
         self._tenant = tenant
+        self.unit = unit
     }
     
     var body: some View {
         NavigationStack {
             VStack {
-                UpdateTennantTopCardView(unitNumber: tenant.unitID,
+                UpdateTennantTopCardView(unitNumber: String(unit.unitNumber),
                                          name: tenant.name,
                                          surname: tenant.surname,
                                          balance: "\(tenant.balance)",
@@ -94,13 +97,13 @@ struct UpdateTennantView: View {
                 paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
                                                                                  numberOfFullPayments: Int(viewModel.selectedTennant.fullPayments) ?? 0)
             }
-            .navigationDestination(isPresented: $showEditView) {
-                withAnimation {
-                    AddTenantView {
-                        //
-                    }
-                }
-            }
+//            .navigationDestination(isPresented: $showEditView) {
+//                withAnimation {
+//                    AddTenantView {
+//                        //
+//                    }
+//                }
+//            }
         }
     }
 }
