@@ -15,7 +15,7 @@ struct TennantsApp: App {
     init() {
         FirebaseApp.configure()
         do {
-            container = try ModelContainer(for: Property.self, SingleUnit.self, Tennant.self, History.self, TenantData.self)
+            container = try ModelContainer(for: Property.self, SingleUnit.self, Tennant.self)
         } catch {
             fatalError("Failed to create ModelContainer for ...")
         }

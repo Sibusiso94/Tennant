@@ -1,14 +1,13 @@
 import SwiftUI
-import SwiftData
 import MyLibrary
 
 struct PDFReaderView: View {
     @StateObject var fileManager: FPDDataManager
     @StateObject var apiManager: ApiDataManager
     
-    init(modelContext: ModelContext) {
+    init() {
         _fileManager = StateObject(wrappedValue: FPDDataManager())
-        _apiManager = StateObject(wrappedValue: ApiDataManager(modelContext: modelContext))
+        _apiManager = StateObject(wrappedValue: ApiDataManager())
     }
     
     var body: some View {

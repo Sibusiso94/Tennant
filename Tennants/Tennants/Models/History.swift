@@ -1,35 +1,43 @@
 import Foundation
-import SwiftData
+import RealmSwift
 
-@Model
-class TenantData: Identifiable {
-    @Attribute(.unique) var id: String
-    var date: String
-    let reference: String
-    var amount: String
+class TenantData: Object, Identifiable {
+    @Persisted(primaryKey: true) var id: String
+    @Persisted var date: String
+    @Persisted var reference: String
+    @Persisted var amount: String
     
-    init(id:  String = UUID().uuidString,
+    convenience init(id:  String = UUID().uuidString,
          date: String,
          reference: String,
          amount: String) {
+        self.init()
         self.id = id
         self.date = date
         self.reference = reference
         self.amount = amount
     }
+    
+    override class func primaryKey() -> String? {
+        "id"
+    }
 }
 
-@Model
-class History: Identifiable {
-    @Attribute(.unique) var id: String
-    var results: [TenantData]
-    var dateCreated: String
+class History: Object, Identifiable {
+    @Persisted(primaryKey: true) var id: String
+    @Persisted var results: List<TenantData>
+    @Persisted var dateCreated: String
     
-    init(id: String = UUID().uuidString,
-         results: [TenantData] = [],
+    convenience init(id: String = UUID().uuidString,
+         results: List<TenantData> = List<TenantData>(),
          dateCreated: String = "") {
+        self.init()
         self.id = id
         self.results = results
         self.dateCreated = dateCreated
+    }
+    
+    override class func primaryKey() -> String? {
+        "id"
     }
 }

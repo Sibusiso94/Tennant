@@ -1,5 +1,4 @@
 import Foundation
-import SwiftData
 import OSLog
 
 protocol APIManager {
@@ -21,7 +20,7 @@ protocol APIDataHandler {
 }
 
 class ApiDataManager: ObservableObject, APIManager {
-    let modelContext: ModelContext
+    let repository = RealmRepository()
     let dataProvider: HistoryDataProvider
     let networkingManager = NetworkManagerConcreation()
     
@@ -37,9 +36,8 @@ class ApiDataManager: ObservableObject, APIManager {
     @Published var hasError: Bool = false
     @Published var error: ApiError?
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.dataProvider = HistoryDataProvider(modelContext: modelContext)
+    init() {
+        self.dataProvider = HistoryDataProvider(repository: repository)
         self.allHistoryData = dataProvider.fetchData()
     }
     
@@ -104,11 +102,15 @@ class ApiDataManager: ObservableObject, APIManager {
             return false
         }
     }
-    
+
     func setUpHistoryData(with data: [TenantData]) -> History {
         let date = Date.now
-        return History(results: data, dateCreated: date.formatted(date: .abbreviated, time: .omitted))
+        var history = History()
+        history.results = repository.mapResults(with: data)
+        history.dateCreated = date.formatted(date: .abbreviated, time: .omitted)
+        return history
     }
+    
     
     func persistHistoryData(with results: [TenantPaymentData]?) {
         let data = setUpApiData(with: results)
