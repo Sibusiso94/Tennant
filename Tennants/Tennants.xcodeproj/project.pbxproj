@@ -64,6 +64,9 @@
 		5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */; };
 		5CDA50D02C4592080040E268 /* UnitsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */; };
 		5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */; };
+		5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF646062C7F5E290031B2B0 /* RealmRepository.swift */; };
+		5CF6460A2C7F61DC0031B2B0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; };
+		5CF6460B2C7F62040031B2B0 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5CF6460B2C7F62040031B2B0 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +153,7 @@
 		5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesDataProvider.swift; sourceTree = "<group>"; };
 		5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsDataProvider.swift; sourceTree = "<group>"; };
 		5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewModel.swift; sourceTree = "<group>"; };
+		5CF646062C7F5E290031B2B0 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +169,7 @@
 				5C25D5D72C05C81D00C24658 /* FirebaseAnalytics in Frameworks */,
 				5C0089D42BF331580061C00B /* MyLibrary in Frameworks */,
 				5C25D5DF2C05C84500C24658 /* FirebaseFirestore in Frameworks */,
+				5CF6460A2C7F61DC0031B2B0 /* RealmSwift in Frameworks */,
 				5C25D5E32C05C86600C24658 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3E31972C3E672300321EB3 /* SwiftDataRepository.swift */,
+				5CF646062C7F5E290031B2B0 /* RealmRepository.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -488,6 +495,7 @@
 				5C25D5E02C05C85700C24658 /* FirebaseRemoteConfigSwift */,
 				5C25D5E22C05C86600C24658 /* FirebaseFirestoreSwift */,
 				5C25D5E62C05E0F900C24658 /* FirebaseStorage */,
+				5CF646092C7F61DC0031B2B0 /* RealmSwift */,
 			);
 			productName = Tennants;
 			productReference = 5C4734202B6261C00040A0AA /* Tennants.app */;
@@ -565,6 +573,7 @@
 				5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */,
 				5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5CED454A2C0E019500CEB28D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5CF646082C7F61DC0031B2B0 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
@@ -612,6 +621,7 @@
 			files = (
 				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
 				5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */,
+				5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */,
 				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,
 				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
@@ -1016,6 +1026,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		5CF646082C7F61DC0031B2B0 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.49.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1063,6 +1081,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		5CF646092C7F61DC0031B2B0 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CF646082C7F61DC0031B2B0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
