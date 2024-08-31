@@ -25,7 +25,7 @@ class ApiDataManager: ObservableObject, APIManager {
     let networkingManager = NetworkManagerConcreation()
     
     var baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
-    var reference = "Salary Transfer"
+    var reference = "STANSAL"
     var selectedBankType = ""
     var storagePath = ""
     @Published var isCompletePayment = true
@@ -43,8 +43,16 @@ class ApiDataManager: ObservableObject, APIManager {
     
     func fetchApiData(storagePath: String) {
         isLoading = true
+        let url = networkingManager.createURL(
+            baseURL: baseURL,
+            parameters: [
+                ("bankType", selectedBankType),
+                ("referenceName", reference),
+                ("storagePath", storagePath)
+            ]
+        )
         
-        if let url = networkingManager.createURL(baseURL: baseURL, parameters: ["bankType": selectedBankType, "referenceName": reference, "storagePath": storagePath]) {
+        if let url = url {
             networkingManager.fetchData(from: url) { [weak self] (result: Result<[TenantPaymentData], ApiError>) in
                 switch result {
                 case .success(let data):
@@ -105,7 +113,8 @@ class ApiDataManager: ObservableObject, APIManager {
 
     func setUpHistoryData(with data: [TenantData]) -> History {
         let date = Date.now
-        var history = History()
+        let history = History()
+        history.id = UUID().uuidString
         history.results = repository.mapResults(with: data)
         history.dateCreated = date.formatted(date: .abbreviated, time: .omitted)
         return history

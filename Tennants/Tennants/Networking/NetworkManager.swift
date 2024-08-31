@@ -6,7 +6,7 @@ protocol NetworkManager {
     var hasError: Bool { get set }
     var error: ApiError? { get set }
     
-    func createURL(baseURL: String, parameters: [String: String]) -> URL?
+    func createURL(baseURL: String, parameters: [(String, String)]) -> URL?
     func fetchData<T: Decodable>(from url: URL, completion: @escaping (Result<T, ApiError>) -> Void)
 }
 
@@ -38,9 +38,9 @@ final class NetworkManagerConcreation: NetworkManager {
     var hasError = false
     var error: ApiError?
     
-    func createURL(baseURL: String, parameters: [String: String]) -> URL? {
+    func createURL(baseURL: String, parameters: [(String, String)]) -> URL? {
         var components = URLComponents(string: baseURL)
-        components?.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+        components?.queryItems = parameters.map { URLQueryItem(name: $0.0, value: $0.1) }
         return components?.url
     }
     

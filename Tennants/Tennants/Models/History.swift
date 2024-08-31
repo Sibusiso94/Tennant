@@ -7,7 +7,7 @@ class TenantData: Object, Identifiable {
     @Persisted var reference: String
     @Persisted var amount: String
     
-    convenience init(id:  String = UUID().uuidString,
+    convenience init(id: String = UUID().uuidString,
          date: String,
          reference: String,
          amount: String) {
