@@ -1,6 +1,5 @@
 import XCTest
 import OSLog
-import SwiftData
 @testable import Tennants
 
 class APIManagerTests: XCTestCase {
@@ -10,8 +9,8 @@ class APIManagerTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
         do {
-            var container = try ModelContainer(for: History.self)
-            apiManager = ApiDataManager(modelContext: container.mainContext)
+//            var container = try ModelContainer(for: History.self)
+//            apiManager = ApiDataManager(modelContext: container.mainContext)
         } catch {
             
         }

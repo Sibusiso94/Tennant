@@ -1,6 +1,5 @@
 import Foundation
 import SwiftUI
-import SwiftData
 
 enum Field: Int, Hashable {
     case name
@@ -24,14 +23,14 @@ protocol NewPropertyManager {
 }
 
 class PropertiesManager: NewPropertyManager {
-    let modelContext: ModelContext
+    let repository: RealmRepository
     let dataProvider: PropertiesDataProvider
     let unitManager: UnitManager
     var newProperty = Property()
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.dataProvider = PropertiesDataProvider(modelContext: modelContext)
-        self.unitManager = UnitManager(modelContext: modelContext)
+    init(repository: RealmRepository) {
+        self.repository = repository
+        self.dataProvider = PropertiesDataProvider(repository: repository)
+        self.unitManager = UnitManager(repository: repository)
     }
     
     let columns: [GridItem] = [
@@ -43,6 +42,10 @@ class PropertiesManager: NewPropertyManager {
         return dataProvider.fetchData()
     }
     
+    func fetchPropertyUnits(_ selectedPropertyID: String) -> [SingleUnit] {
+        return unitManager.fetchUnits(selectedPropertyID)
+    }
+    
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
         let dispatchGroup = DispatchGroup()
         newProperty = Property()
@@ -52,8 +55,8 @@ class PropertiesManager: NewPropertyManager {
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
-        unitManager.generatePropertyUnits(property: newProperty, numberOfUnits: numberOfUnits) { allUnits in
-            self.newProperty.units = allUnits
+        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, numberOfUnits: numberOfUnits) { allUnits in
+            self.newProperty.unitIDs.append(objectsIn: allUnits)  
             dispatchGroup.leave()
         }
         
@@ -64,102 +67,8 @@ class PropertiesManager: NewPropertyManager {
     }
     
     func updateProperty(_ property: Property, completion: @escaping () -> Void) {
-        let tempProperty = createTempProperty(with: property)
-        dataProvider.delete(property)
-        dataProvider.create(getUpdatedPropertyUsingTempProperty(tempProperty))
+        dataProvider.update(property)
         completion()
-    }
-    
-    private func getUpdatedPropertyUsingTempProperty(_ property: TempProperty) -> Property {
-        let updatedProperty = Property(buildingID: property.buildingID,
-                                      buildingName: property.buildingName,
-                                      buildingAddress: property.buildingAddress,
-                                      numberOfUnits: property.numberOfUnits)
-        updatedProperty.units = getUpdatedUnitsUsingTempUnits(property.units, property: updatedProperty)
-        return updatedProperty
-    }
-    
-    private func createTempProperty(with property: Property) -> TempProperty {
-        let tempProperty = TempProperty(buildingID: property.buildingID,
-                                        buildingName: property.buildingName,
-                                        buildingAddress: property.buildingAddress,
-                                        numberOfUnits: property.numberOfUnits)
-        tempProperty.units = craeteTempUnits(property.units, property: tempProperty)
-        return tempProperty
-    }
-    
-    private func craeteTempUnits(_ units: [SingleUnit], property: TempProperty) -> [TempSingleUnit] {
-        var updatedUnit: [TempSingleUnit] = []
-        for unit in units {
-            updatedUnit.append(TempSingleUnit(id: unit.id,
-                                              unitNumber: unit.unitNumber,
-                                              property: property,
-                                              tenant: createTempTenant(tenant: unit.tenant),
-                                              numberOfBedrooms: unit.numberOfBedrooms,
-                                              numberOfBathrooms: unit.numberOfBathrooms,
-                                              isOccupied: unit.isOccupied))
-        }
-        
-        return updatedUnit
-    }
-    
-    func createTempTenant(tenant: Tennant) -> TempTennant {
-        var updatedTenant = TempTennant()
-        updatedTenant.id = tenant.id
-        updatedTenant.buildingNumber = tenant.buildingNumber
-        updatedTenant.unitID = tenant.unitID
-        updatedTenant.tennantID = tenant.tennantID
-        updatedTenant.name = tenant.name
-        updatedTenant.surname = tenant.surname
-        updatedTenant.reference = tenant.reference
-        updatedTenant.currentAddress = tenant.currentAddress
-        updatedTenant.company = tenant.company
-        updatedTenant.position = tenant.position
-        updatedTenant.monthlyIncome = tenant.monthlyIncome
-        updatedTenant.balance = tenant.balance
-        updatedTenant.amountDue = tenant.amountDue
-        updatedTenant.startDate = tenant.startDate
-        updatedTenant.endDate = tenant.endDate
-        updatedTenant.fullPayments = tenant.fullPayments
-        
-        return updatedTenant
-    }
-    
-    private func getUpdatedUnitsUsingTempUnits(_ units: [TempSingleUnit], property: Property) -> [SingleUnit] {
-        var updatedUnit: [SingleUnit] = []
-        for unit in units {
-            updatedUnit.append(SingleUnit(id: unit.id,
-                                              unitNumber: unit.unitNumber,
-                                              property: property,
-                                              tenant: getUpdatedTenantUsingTempTenant(tenant: unit.tenant),
-                                              numberOfBedrooms: unit.numberOfBedrooms,
-                                              numberOfBathrooms: unit.numberOfBathrooms,
-                                              isOccupied: unit.isOccupied))
-        }
-        
-        return updatedUnit
-    }
-    
-    func getUpdatedTenantUsingTempTenant(tenant: TempTennant) -> Tennant {
-        var updatedTenant = Tennant()
-        updatedTenant.id = tenant.id
-        updatedTenant.buildingNumber = tenant.buildingNumber
-        updatedTenant.unitID = tenant.unitID
-        updatedTenant.tennantID = tenant.tennantID
-        updatedTenant.name = tenant.name
-        updatedTenant.surname = tenant.surname
-        updatedTenant.reference = tenant.reference
-        updatedTenant.currentAddress = tenant.currentAddress
-        updatedTenant.company = tenant.company
-        updatedTenant.position = tenant.position
-        updatedTenant.monthlyIncome = tenant.monthlyIncome
-        updatedTenant.balance = tenant.balance
-        updatedTenant.amountDue = tenant.amountDue
-        updatedTenant.startDate = tenant.startDate
-        updatedTenant.endDate = tenant.endDate
-        updatedTenant.fullPayments = tenant.fullPayments
-        
-        return updatedTenant
     }
     
     func deleteProperty(_ property: Property) {

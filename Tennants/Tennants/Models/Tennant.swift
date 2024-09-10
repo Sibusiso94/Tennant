@@ -1,26 +1,25 @@
 import Foundation
-import SwiftData
+import RealmSwift
 
-@Model
-class Tennant: Identifiable {
-    @Attribute(.unique) var id: String
-    var buildingNumber: String
-    var unitID: String
-    var tennantID: String
-    var name: String
-    var surname: String
-    var reference: String
-    var currentAddress: String
-    var company : String
-    var position: String
-    var monthlyIncome: String
-    var balance: Double
-    var amountDue: Double
-    var startDate: String
-    var endDate: String
-    var fullPayments: String
+class Tennant: Object, Identifiable {
+    @Persisted(primaryKey: true) var id: String
+    @Persisted var buildingNumber: String
+    @Persisted var unitID: String
+    @Persisted var tennantID: String
+    @Persisted var name: String
+    @Persisted var surname: String
+    @Persisted var reference: String
+    @Persisted var currentAddress: String
+    @Persisted var company : String
+    @Persisted var position: String
+    @Persisted var monthlyIncome: String
+    @Persisted var balance: Double
+    @Persisted var amountDue: Double
+    @Persisted var startDate: String
+    @Persisted var endDate: String
+    @Persisted var fullPayments: String
     
-    init(id: String = UUID().uuidString,
+    convenience init(id: String = UUID().uuidString,
                      buildingNumber: String = "",
                      unitID: String = "",
                      tennantID: String = "",
@@ -36,6 +35,7 @@ class Tennant: Identifiable {
                      startDate: String = "",
                      endDate: String = "",
                      fullPayments: String = "0") {
+        self.init()
         self.id = id
         self.buildingNumber = buildingNumber
         self.unitID = unitID
@@ -53,58 +53,9 @@ class Tennant: Identifiable {
         self.endDate = endDate
         self.fullPayments = fullPayments
     }
-}
-
-class TempTennant: Identifiable {
-    var id: String
-    var buildingNumber: String
-    var unitID: String
-    var tennantID: String
-    var name: String
-    var surname: String
-    var reference: String
-    var currentAddress: String
-    var company : String
-    var position: String
-    var monthlyIncome: String
-    var balance: Double
-    var amountDue: Double
-    var startDate: String
-    var endDate: String
-    var fullPayments: String
     
-    init(id: String = UUID().uuidString,
-                     buildingNumber: String = "",
-                     unitID: String = "",
-                     tennantID: String = "",
-                     name: String = "",
-                     surname: String = "",
-                     reference: String = "",
-                     currentAddress: String = "",
-                     company : String = "",
-                     position: String = "",
-                     monthlyIncome: String = "0",
-                     balance: Double = 0.0,
-                     amountDue: Double = 0.0,
-                     startDate: String = "",
-                     endDate: String = "",
-                     fullPayments: String = "0") {
-        self.id = id
-        self.buildingNumber = buildingNumber
-        self.unitID = unitID
-        self.tennantID = tennantID
-        self.name = name
-        self.surname = surname
-        self.reference = reference
-        self.currentAddress = currentAddress
-        self.company = company
-        self.position = position
-        self.monthlyIncome = monthlyIncome
-        self.balance = balance
-        self.amountDue = amountDue
-        self.startDate = startDate
-        self.endDate = endDate
-        self.fullPayments = fullPayments
+    override class func primaryKey() -> String? {
+        "id"
     }
 }
 

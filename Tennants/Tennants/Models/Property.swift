@@ -1,44 +1,28 @@
 import Foundation
-import SwiftData
+import RealmSwift
 
-@Model
-class Property {
-    @Attribute(.unique) var buildingID: String
-    @Relationship(deleteRule: .cascade) var units: [SingleUnit]
-    var buildingName: String
-    var buildingAddress: String
-    var numberOfUnits: String
+class Property: Object, Identifiable {
+    @Persisted(primaryKey: true) var buildingID: String
+    @Persisted var unitIDs: List<String>
+    @Persisted var buildingName: String
+    @Persisted var buildingAddress: String
+    @Persisted var numberOfUnits: String
     
-    init(buildingID: String = UUID().uuidString,
+    convenience init(buildingID: String = UUID().uuidString,
          buildingName: String = "",
          buildingAddress: String = "",
          numberOfUnits: String = "",
-         units: [SingleUnit] = []) {
+         unitIDs: List<String> = List<String>()) {
+        self.init()
         self.buildingID = buildingID
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
-        self.units = units
+        self.unitIDs = unitIDs
     }
-}
-
-class TempProperty {
-    var buildingID: String
-    var units: [TempSingleUnit]
-    var buildingName: String
-    var buildingAddress: String
-    var numberOfUnits: String
     
-    init(buildingID: String = UUID().uuidString,
-         buildingName: String = "",
-         buildingAddress: String = "",
-         numberOfUnits: String = "",
-         units: [TempSingleUnit] = []) {
-        self.buildingID = buildingID
-        self.buildingName = buildingName
-        self.buildingAddress = buildingAddress
-        self.numberOfUnits = numberOfUnits
-        self.units = units
+    override class func primaryKey() -> String? {
+        "id"
     }
 }
 

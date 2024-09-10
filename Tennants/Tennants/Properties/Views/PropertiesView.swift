@@ -1,17 +1,14 @@
 import SwiftUI
 import MyLibrary
-import SwiftData
 
 struct PropertiesView: View {
-    let modelContext: ModelContext
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: PropertiesViewModel
     @State private var path: NavigationPath
     @State var mockProperies = ["Telesto"]
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        _viewModel = StateObject(wrappedValue: PropertiesViewModel(modelContext: modelContext))
+    init() {
+        _viewModel = StateObject(wrappedValue: PropertiesViewModel())
         _path = State(initialValue: NavigationPath())
     }
     
@@ -24,6 +21,7 @@ struct PropertiesView: View {
                 ScrollView {
                     VStack {
                         if viewModel.properties.isEmpty {
+                            Spacer()
                             AddView(title: "Add your first Property",
                                     image: Image("EmptyViewImage"),
                                     width: 250,
@@ -31,6 +29,7 @@ struct PropertiesView: View {
                                     buttonTitle: "Add Property") {
                                 viewModel.shouldAddPropertyOptions = true
                             }
+                            Spacer()
                         } else {
                             Spacer()
                                 .frame(height: 80)

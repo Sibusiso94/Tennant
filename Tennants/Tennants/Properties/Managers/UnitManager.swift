@@ -1,33 +1,44 @@
 import Foundation
-import SwiftData
 
 class UnitManager {
-    let modelContext: ModelContext
+    let repository: RealmRepository
     let unitDataProvider: UnitsDataProvider
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.unitDataProvider = UnitsDataProvider(modelContext: modelContext)
+    init(repository: RealmRepository) {
+        self.repository = repository
+        self.unitDataProvider = UnitsDataProvider(repository: repository)
     }
     
-    func fetchUnitBy(_ property: Property) -> [SingleUnit] {
+    func fetchUnits(_ propertyId: String) -> [SingleUnit] {
         let data = unitDataProvider.fetchData()
-        let filteredData = data.filter { $0.property == property }
-        return filteredData
+        let filteredData = data.filter { $0.propertyId == propertyId }
+        let orderedUnits = filteredData.sorted(by: { $0.unitNumber < $1.unitNumber })
+        return orderedUnits
     }
     
-    func generatePropertyUnits(property: Property,
+    func generatePropertyUnits(propertyId: String,
                                numberOfUnits: Int,
-                               completion: @escaping ([SingleUnit]) -> Void) {
+                               completion: @escaping ([String]) -> Void) {
         var newUnits: [SingleUnit] = []
         
         for unit in 1..<numberOfUnits + 1 {
             let newUnit = SingleUnit(unitNumber: unit,
-                                     property: property)
+                                     propertyId: propertyId)
             newUnits.append(newUnit)
         }
         
-        completion(newUnits)
+        unitDataProvider.createMultiple(newUnits)
+        let unitIds = getUnitIds(with: newUnits)
+        completion(unitIds)
+    }
+    
+    func getUnitIds(with units: [SingleUnit]) -> [String] {
+        var ids: [String] = []
+        for unit in units {
+            ids.append(unit.id)
+        }
+        
+        return ids
     }
     
     func updateUnit() {

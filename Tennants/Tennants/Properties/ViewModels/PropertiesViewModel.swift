@@ -1,9 +1,8 @@
 import Foundation
 import SwiftUI
-import SwiftData
 
 class PropertiesViewModel: ObservableObject {
-    let modelContext: ModelContext
+    let repository: RealmRepository
     let manager: PropertiesManager
     let tenantManager: TenantManager
     var propertyType: PropertyOptions = .multipleUnits
@@ -14,6 +13,7 @@ class PropertiesViewModel: ObservableObject {
     
     @Published var selectedTenant = Tennant()
     @Published var tenants: [Tennant] = []
+    @Published var allUnits: [SingleUnit] = []
     @Published var selectedUnit = SingleUnit()
     
     @Published var shouldShowAddProperty: Bool = false
@@ -26,10 +26,10 @@ class PropertiesViewModel: ObservableObject {
     
     @Published var showAlert: Bool = false
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.manager = PropertiesManager(modelContext: modelContext)
-        self.tenantManager = TenantManager(modelContext: modelContext)
+    init() {
+        self.repository = RealmRepository()
+        self.manager = PropertiesManager(repository: repository)
+        self.tenantManager = TenantManager()
         self.refreshData()
     }
     
@@ -55,6 +55,7 @@ class PropertiesViewModel: ObservableObject {
     func selectedProperty(_ property: Property) {
         selectedProperty = property
         showPropertyDetailView = true
+        allUnits = manager.fetchPropertyUnits(property.buildingID)
     }
     
     func managePropertyOptions(_ selectedOption: Int) {

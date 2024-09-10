@@ -1,35 +1,49 @@
 import Foundation
-import SwiftData
 
-class UnitsDataProvider: SwiftDataSource {
+class UnitsDataProvider: DataSource {
     typealias T = SingleUnit
     
-    let modelContext: ModelContext
-    let repository: SwiftDataRepository
+    let repository: RealmRepository
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.repository = SwiftDataRepository(modelContext: modelContext)
+    init(repository: RealmRepository) {
+        self.repository = repository
     }
     
     func create(_ object: T) {
-        repository.create(data: object)
+        do {
+            try repository.create(object)
+        } catch let error {
+            
+        }
     }
     
     func createMultiple(_ object: [T]) {
-        repository.createMultiple(data: object)
+        do {
+            try repository.createMultiple(object)
+        } catch let error {
+            
+        }
     }
     
     func fetchData() -> [T] {
-        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber, order: .forward)])
-        return repository.read(request: descriptor)
+//        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber, order: .forward)])
+        let data = repository.readAll(T.self)
+        return data
     }
     
     func update(_ object: T) {
-        repository.update(object: object)
+        do {
+            try repository.update(insertions: [object])
+        } catch let error {
+            
+        }
     }
     
     func delete(_ object: T) {
-        repository.delete(object: object)
+        do {
+            try repository.delete(object)
+        } catch let error {
+            
+        }
     }
 }

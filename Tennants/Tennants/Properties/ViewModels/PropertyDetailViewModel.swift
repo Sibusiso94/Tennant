@@ -2,6 +2,7 @@ import Foundation
 
 class PropertyDetailViewModel: ObservableObject {
     @Published var units = [SingleUnit]()
+    @Published var tenants = [Tennant]()
     
     init(_ units: [SingleUnit]) {
         self.units = sortUnits(units)

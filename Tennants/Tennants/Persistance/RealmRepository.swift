@@ -6,7 +6,6 @@ protocol DataSource {
     
     func create(_ object: T)
     func fetchData() -> [T]
-    func update(deletingSpecifically: T, insertions: T)
     func delete(_ object: T)
 }
 

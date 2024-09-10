@@ -1,31 +1,39 @@
 import Foundation
-import SwiftData
 
-class PropertiesDataProvider: SwiftDataSource {
-    typealias T = Property
+class PropertiesDataProvider: DataSource {typealias T = Property
+    let repository: RealmRepository
     
-    let modelContext: ModelContext
-    let repository: SwiftDataRepository
-    
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        self.repository = SwiftDataRepository(modelContext: modelContext)
+    init(repository: RealmRepository) {
+        self.repository = repository
     }
     
     func create(_ object: T) {
-        repository.create(data: object)
+        do {
+            try repository.create(object)
+        } catch let error {
+            
+        }
     }
     
     func fetchData() -> [T] {
-        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.buildingName)])
-        return repository.read(request: descriptor)
+//        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.buildingName)])
+        let data = repository.readAll(T.self)
+        return data
     }
-    
+
     func update(_ object: T) {
-        repository.update(object: object)
+        do {
+            try repository.update(insertions: [object])
+        } catch let error {
+            
+        }
     }
     
     func delete(_ object: T) {
-        repository.delete(object: object)
+        do {
+            try repository.delete(object)
+        } catch let error {
+            
+        }
     }
 }

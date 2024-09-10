@@ -11,7 +11,7 @@ struct PropertyDetailView: View {
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(viewModel.selectedProperty.units))
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel([SingleUnit]()))
     }
     
     var body: some View {
@@ -35,15 +35,16 @@ struct PropertyDetailView: View {
                     
                     
                     ScrollView {
-                        ForEach(detailViewModel.units) { unit in
+                        ForEach(viewModel.allUnits) { unit in
                             UpdateTennantTopCardView(unitNumber: String(unit.unitNumber),
-                                                     name: unit.tenant.name,
-                                                     surname: unit.tenant.surname,
-                                                     balance: "\(unit.tenant.balance)",
-                                                     amountDue: "\(unit.tenant.amountDue)", isOccupied: unit.isOccupied)
+                                                     name: "tenant.name",
+                                                     surname: "tenant.surname",
+                                                     balance: "balance)",
+                                                     amountDue: "amountDue)",
+                                                     isOccupied: unit.isOccupied)
                                 .onTapGesture {
-                                    viewModel.selectedUnit = unit
-                                    viewModel.selectedTenant = unit.tenant
+//                                    viewModel.selectedUnit = unit
+//                                    viewModel.selectedTenant = unit.tenant
                                     showDetailView = true
                                 }
                                 .padding(.horizontal)

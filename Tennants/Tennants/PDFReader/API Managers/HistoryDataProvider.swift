@@ -1,5 +1,4 @@
 import Foundation
-import SwiftData
 
 class HistoryDataProvider: CreateObject, ReadObject, DeleteObject {
     typealias T = History
