@@ -4,7 +4,6 @@ import SwiftUI
 class PropertiesViewModel: ObservableObject {
     let repository: RealmRepository
     let manager: PropertiesManager
-    let tenantManager: TenantManager
     var propertyType: PropertyOptions = .multipleUnits
     
     @Published var newData: NewDataModel = NewDataModel()
@@ -12,7 +11,8 @@ class PropertiesViewModel: ObservableObject {
     @Published var selectedProperty = Property()
     
     @Published var selectedTenant = Tennant()
-    @Published var tenants: [Tennant] = []
+    @Published var tenants: [TenantCardModel] = []
+    
     @Published var allUnits: [SingleUnit] = []
     @Published var selectedUnit = SingleUnit()
     
@@ -29,7 +29,6 @@ class PropertiesViewModel: ObservableObject {
     init() {
         self.repository = RealmRepository()
         self.manager = PropertiesManager(repository: repository)
-        self.tenantManager = TenantManager()
         self.refreshData()
     }
     
@@ -81,24 +80,41 @@ class PropertiesViewModel: ObservableObject {
         properties = manager.fetchProperties()
     }
     
-    func addTenant() {
-        manager.updateProperty(selectedProperty) {
-            self.refreshTenant()
+    func addTenant(_ tenant: Tennant) {
+        manager.tenantManager.addTenant(propertyID: selectedProperty.buildingID,
+                                unitID: selectedUnit.id,
+                                tenant: tenant) { tenantId in
+            self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
         }
-//        tenantManager.addTenant(selectedTenant, selectedUnitID: selectedUnit.id, property: &selectedProperty) {
-//            self.manager.updateProperty(self.selectedProperty) {
-//            }
-//            self.manager.fetchProperties()
-//        }
+    }
+        
+    func getTenantCardData(tenants: [Tennant],
+                       units: [SingleUnit]) -> [TenantCardModel]? {
+        let tenantData = units.map( { unit in
+            setUpTenantCard(tenants: tenants,
+                            unitId: unit.id,
+                            unitNumber: unit.unitNumber,
+                            isOccupied: unit.isOccupied)
+        })
+        
+        return nil
     }
     
-    func refreshTenant() {
-        selectedTenant.name = ""
-        selectedTenant.currentAddress = ""
-        selectedTenant.reference = ""
-        selectedTenant.tennantID = ""
-        selectedTenant.company = ""
-        selectedTenant.position = ""
-        selectedTenant.monthlyIncome = ""
+    func setUpTenantCard(tenants: [Tennant], 
+                         unitId: String,
+                         unitNumber: Int,
+                         isOccupied: Bool) -> [TenantCardModel] {
+        var updatedTenants: [TenantCardModel] = []
+        
+        for tenant in tenants {
+            if unitId == tenant.unitID {
+                updatedTenants.append(TenantCardModel(unitNumber: String(unitNumber),
+                                       name: tenant.name,
+                                       amount: String(tenant.amountDue),
+                                       isOccupied: isOccupied))
+            }
+        }
+        
+        return updatedTenants
     }
 }

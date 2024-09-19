@@ -43,7 +43,7 @@ struct PropertyDetailView: View {
                                                      amountDue: "amountDue)",
                                                      isOccupied: unit.isOccupied)
                                 .onTapGesture {
-//                                    viewModel.selectedUnit = unit
+                                    viewModel.selectedUnit = unit
 //                                    viewModel.selectedTenant = unit.tenant
                                     showDetailView = true
                                 }
@@ -69,8 +69,8 @@ struct PropertyDetailView: View {
                     if viewModel.selectedUnit.isOccupied {
                         UpdateTennantView(tenant: $viewModel.selectedTenant, unit: viewModel.selectedUnit)
                         } else {
-                            AddTenantView($viewModel.selectedTenant) {
-                                viewModel.addTenant()
+                            AddTenantView() { tenant in
+                                viewModel.addTenant(tenant)
                             }
                         }
 //                    }

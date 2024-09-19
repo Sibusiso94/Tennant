@@ -58,6 +58,7 @@
 		5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B30AA2C760C9A001669E9 /* TenantManager.swift */; };
 		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
 		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
+		5CB785842C9C025900C2FF43 /* TenantCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB785832C9C025900C2FF43 /* TenantCardModel.swift */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
 		5CD216002BF4F1840035F729 /* UnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* UnitManager.swift */; };
 		5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */; };
@@ -146,6 +147,7 @@
 		5C9B30AA2C760C9A001669E9 /* TenantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantManager.swift; sourceTree = "<group>"; };
 		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
 		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5CB785832C9C025900C2FF43 /* TenantCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantCardModel.swift; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
 		5CD215FF2BF4F1840035F729 /* UnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitManager.swift; sourceTree = "<group>"; };
 		5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesDataProvider.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 		5C4734172B6261C00040A0AA = {
 			isa = PBXGroup;
 			children = (
+				5CB785832C9C025900C2FF43 /* TenantCardModel.swift */,
 				5C4734222B6261C00040A0AA /* Tennants */,
 				5C4734332B6261C50040A0AA /* TennantsTests */,
 				5C47343D2B6261C50040A0AA /* TennantsUITests */,
@@ -620,6 +623,7 @@
 				5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */,
 				5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */,
 				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
+				5CB785842C9C025900C2FF43 /* TenantCardModel.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,
 				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,

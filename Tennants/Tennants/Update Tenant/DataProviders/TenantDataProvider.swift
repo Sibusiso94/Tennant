@@ -26,7 +26,7 @@ class TenantDataProvider: DataSource {
     
     func update(_ object: T) {
         do {
-            try repository.update(insertions: [object])
+            try repository.update(object)
         } catch let error {
             
         }

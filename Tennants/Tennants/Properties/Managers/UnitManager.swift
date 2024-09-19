@@ -2,15 +2,15 @@ import Foundation
 
 class UnitManager {
     let repository: RealmRepository
-    let unitDataProvider: UnitsDataProvider
+    let dataProvider: UnitsDataProvider
     
     init(repository: RealmRepository) {
         self.repository = repository
-        self.unitDataProvider = UnitsDataProvider(repository: repository)
+        self.dataProvider = UnitsDataProvider(repository: repository)
     }
     
     func fetchUnits(_ propertyId: String) -> [SingleUnit] {
-        let data = unitDataProvider.fetchData()
+        let data = dataProvider.fetchData()
         let filteredData = data.filter { $0.propertyId == propertyId }
         let orderedUnits = filteredData.sorted(by: { $0.unitNumber < $1.unitNumber })
         return orderedUnits
@@ -27,7 +27,7 @@ class UnitManager {
             newUnits.append(newUnit)
         }
         
-        unitDataProvider.createMultiple(newUnits)
+        dataProvider.createMultiple(newUnits)
         let unitIds = getUnitIds(with: newUnits)
         completion(unitIds)
     }
@@ -39,9 +39,5 @@ class UnitManager {
         }
         
         return ids
-    }
-    
-    func updateUnit() {
-        
     }
 }

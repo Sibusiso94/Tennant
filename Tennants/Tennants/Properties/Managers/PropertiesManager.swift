@@ -26,11 +26,15 @@ class PropertiesManager: NewPropertyManager {
     let repository: RealmRepository
     let dataProvider: PropertiesDataProvider
     let unitManager: UnitManager
+    let tenantManager: TenantManager
+    
     var newProperty = Property()
+    
     init(repository: RealmRepository) {
         self.repository = repository
         self.dataProvider = PropertiesDataProvider(repository: repository)
         self.unitManager = UnitManager(repository: repository)
+        self.tenantManager = TenantManager(repository: repository)
     }
     
     let columns: [GridItem] = [
@@ -55,8 +59,8 @@ class PropertiesManager: NewPropertyManager {
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
-        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, numberOfUnits: numberOfUnits) { allUnits in
-            self.newProperty.unitIDs.append(objectsIn: allUnits)  
+        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, numberOfUnits: numberOfUnits) { unitIds in
+            self.newProperty.unitIDs.append(objectsIn: unitIds)  
             dispatchGroup.leave()
         }
         

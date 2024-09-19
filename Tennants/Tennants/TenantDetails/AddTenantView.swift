@@ -3,13 +3,12 @@ import MyLibrary
 
 struct AddTenantView: View {
     @FocusState private var focusedTennantField: TennantField?
-    @Binding var tenant: Tennant
+    @State var tenant = Tennant()
     @State var showErrorMessage: Bool
     
-    var action: () -> Void
+    var action: (Tennant) -> Void
     
-    init(_ tenant: Binding<Tennant>, action: @escaping () -> Void) {
-        self._tenant = tenant
+    init(action: @escaping (Tennant) -> Void) {
         self.action = action
         _showErrorMessage = State(initialValue: false)
     }
@@ -62,7 +61,7 @@ struct AddTenantView: View {
 //                            if !validate() {
 //                                showErrorMessage = true
 //                            } else {
-                                action()
+                                action(tenant)
 //                            }
                         } label: {
                             Text("Add another Tenant")

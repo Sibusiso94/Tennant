@@ -3,7 +3,7 @@ import RealmSwift
 
 class Tennant: Object, Identifiable {
     @Persisted(primaryKey: true) var id: String
-    @Persisted var buildingNumber: String
+    @Persisted var propertyID: String
     @Persisted var unitID: String
     @Persisted var tennantID: String
     @Persisted var name: String
@@ -20,7 +20,7 @@ class Tennant: Object, Identifiable {
     @Persisted var fullPayments: String
     
     convenience init(id: String = UUID().uuidString,
-                     buildingNumber: String = "",
+                     propertyID: String = "",
                      unitID: String = "",
                      tennantID: String = "",
                      name: String = "",
@@ -37,7 +37,7 @@ class Tennant: Object, Identifiable {
                      fullPayments: String = "0") {
         self.init()
         self.id = id
-        self.buildingNumber = buildingNumber
+        self.propertyID = propertyID
         self.unitID = unitID
         self.tennantID = tennantID
         self.name = name

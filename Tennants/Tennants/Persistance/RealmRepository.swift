@@ -83,33 +83,25 @@ class RealmRepository {
         return Array(realm.objects(type))
     }
     
-    public func update(deletions: [AnyClass] = [], insertions: [AnyObject] = []) throws {
-        try transaction { realm in
-            let deletions = deletions.compactMap {
-                $0 as? Object.Type
-            }
-            let insertions = insertions.compactMap {
-                $0 as? Object
-            }
-            deletions.forEach {
-                realm.delete(realm.objects($0))
-            }
-            realm.add(insertions)
+    public func update<T: Object>(_ object: T) throws {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(object, update: .modified)
         }
     }
     
-    public func update(deletingSpecifically: [AnyObject] = [], insertions: [AnyObject] = []) throws {
-        try transaction { realm in
-            let insertions = insertions.compactMap {
-                $0 as? Object
-            }
-            let deletions = deletingSpecifically.compactMap {
-                $0 as? Object
-            }
-            realm.delete(deletions)
-            realm.add(insertions)
-        }
-    }
+//    public func update<T: Object>(id: String, object: T) throws {
+//            let realm = try! Realm()
+//            
+//            if let userToUpdate = realm.object(ofType: T.self, forPrimaryKey: id) {
+//                try! realm.write {
+//                    realm.add(object, update: .modified)
+//                }
+//            } else {
+//                print("User not found")
+//            }
+//    }
     
     public func delete(_ object: Object) throws {
         try transaction { realm in
