@@ -40,4 +40,17 @@ class UnitManager {
         
         return ids
     }
+    
+    func deleteUnits(with propertyId: String, completion: ([String]) -> Void) {
+        let data = dataProvider.fetchData()
+        var unitIds = [String]()
+        for unit in data {
+            if unit.propertyId == propertyId {
+                unitIds.append(unit.id)
+                dataProvider.delete(unit.id)
+            }
+        }
+        
+        completion(unitIds)
+    }
 }

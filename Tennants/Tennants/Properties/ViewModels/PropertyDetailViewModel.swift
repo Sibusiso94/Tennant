@@ -2,14 +2,14 @@ import Foundation
 
 class PropertyDetailViewModel: ObservableObject {
     @Published var units = [SingleUnit]()
-    @Published var tenants = [Tennant]()
+    var tenants = [TenantCardModel]()
     
-    init(_ units: [SingleUnit]) {
-        self.units = sortUnits(units)
+    init(_ tenants: [TenantCardModel]) {
+        self.tenants = tenants
     }
     
-    private func sortUnits(_ units: [SingleUnit]) -> [SingleUnit] {
-        let sortedUnits = units.sorted { $0.unitNumber < $1.unitNumber }
-        return sortedUnits
-    }
+//    private func sortUnits(_ units: [SingleUnit]) -> [SingleUnit] {
+//        let sortedUnits = units.sorted { $0.unitNumber < $1.unitNumber }
+//        return sortedUnits
+//    }
 }

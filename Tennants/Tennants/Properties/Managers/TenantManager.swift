@@ -39,4 +39,13 @@ class TenantManager {
         dataProvider.create(newTenant)
         completion(newTenantId)
     }
+    
+    func deleteTenants(from unitIds: [String]) {
+        let data = dataProvider.fetchData()
+        let tenantsToDelete = data.filter { unitIds.contains($0.unitID) }
+        
+        for tenant in tenantsToDelete {
+            dataProvider.delete(tenant.id)
+        }
+    }
 }

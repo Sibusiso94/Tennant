@@ -6,7 +6,7 @@ protocol DataSource {
     
     func create(_ object: T)
     func fetchData() -> [T]
-    func delete(_ object: T)
+    func delete(_ id: String)
 }
 
 protocol CreateObject {
@@ -26,7 +26,7 @@ protocol UpdateObject {
 
 protocol DeleteObject {
     associatedtype T: Object
-    func delete(_ object: T)
+    func delete(_ id: String)
 }
 
 public typealias RealmDecodable = Object & Decodable
@@ -103,9 +103,15 @@ class RealmRepository {
 //            }
 //    }
     
-    public func delete(_ object: Object) throws {
-        try transaction { realm in
-            realm.delete(object)
+    public func delete<T: Object>(_ id: String, ofType: T.Type) throws {
+        let realm = try! Realm()
+        
+        if let objectToDelete = realm.object(ofType: T.self, forPrimaryKey: id) {
+            try! realm.write {
+                realm.delete(objectToDelete)
+            }
+        } else {
+            print("User not found")
         }
     }
     

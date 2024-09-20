@@ -63,9 +63,9 @@ class UnitsDataProvider: DataSource {
         }
     }
     
-    func delete(_ object: T) {
+    func delete(_ id: String) {
         do {
-            try repository.delete(object)
+            try repository.delete(id, ofType: T.self)
         } catch let error {
             
         }

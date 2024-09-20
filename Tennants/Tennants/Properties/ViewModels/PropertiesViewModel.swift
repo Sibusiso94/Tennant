@@ -53,6 +53,7 @@ class PropertiesViewModel: ObservableObject {
     
     func selectedProperty(_ property: Property) {
         selectedProperty = property
+        tenants = manager.getTenantCardData()
         showPropertyDetailView = true
         allUnits = manager.fetchPropertyUnits(property.buildingID)
     }
@@ -86,35 +87,5 @@ class PropertiesViewModel: ObservableObject {
                                 tenant: tenant) { tenantId in
             self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
         }
-    }
-        
-    func getTenantCardData(tenants: [Tennant],
-                       units: [SingleUnit]) -> [TenantCardModel]? {
-        let tenantData = units.map( { unit in
-            setUpTenantCard(tenants: tenants,
-                            unitId: unit.id,
-                            unitNumber: unit.unitNumber,
-                            isOccupied: unit.isOccupied)
-        })
-        
-        return nil
-    }
-    
-    func setUpTenantCard(tenants: [Tennant], 
-                         unitId: String,
-                         unitNumber: Int,
-                         isOccupied: Bool) -> [TenantCardModel] {
-        var updatedTenants: [TenantCardModel] = []
-        
-        for tenant in tenants {
-            if unitId == tenant.unitID {
-                updatedTenants.append(TenantCardModel(unitNumber: String(unitNumber),
-                                       name: tenant.name,
-                                       amount: String(tenant.amountDue),
-                                       isOccupied: isOccupied))
-            }
-        }
-        
-        return updatedTenants
     }
 }

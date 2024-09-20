@@ -2,16 +2,15 @@ import SwiftUI
 import MyLibrary
 
 struct PropertyDetailView: View {
+    @Environment(\.dismiss) var dismiss
     @State var showDetailView: Bool
-    
     @StateObject var detailViewModel: PropertyDetailViewModel
     @ObservedObject var viewModel: PropertiesViewModel
-    @Environment(\.dismiss) var dismiss
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel([SingleUnit]()))
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(viewModel.tenants))
     }
     
     var body: some View {
@@ -35,16 +34,15 @@ struct PropertyDetailView: View {
                     
                     
                     ScrollView {
-                        ForEach(viewModel.allUnits) { unit in
-                            UpdateTennantTopCardView(unitNumber: String(unit.unitNumber),
-                                                     name: "tenant.name",
-                                                     surname: "tenant.surname",
-                                                     balance: "balance)",
-                                                     amountDue: "amountDue)",
-                                                     isOccupied: unit.isOccupied)
+                        ForEach(detailViewModel.tenants) { tenant in
+                            UpdateTennantTopCardView(unitNumber: String(tenant.unitNumber),
+                                                     name: tenant.name,
+                                                     surname: tenant.surname,
+                                                     balance: String(tenant.balance),
+                                                     amountDue: String(tenant.amount),
+                                                     isOccupied: tenant.isOccupied)
                                 .onTapGesture {
-                                    viewModel.selectedUnit = unit
-//                                    viewModel.selectedTenant = unit.tenant
+                                    viewModel.selectedUnit.id = tenant.unitId
                                     showDetailView = true
                                 }
                                 .padding(.horizontal)
