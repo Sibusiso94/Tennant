@@ -84,23 +84,24 @@ class PropertiesManager: NewPropertyManager {
         }
     }
     
-    func getTenantCardData() -> [TenantCardModel] {
+    func getTenantCardData(units: [SingleUnit]) -> [TenantCardModel] {
         let tenants = tenantManager.dataProvider.fetchData()
-        let units = unitManager.dataProvider.fetchData()
         let tenantCardData = sortTenantCardData(tenants: tenants, units: units)
         return tenantCardData
     }
     
     private func sortTenantCardData(tenants: [Tennant],
                        units: [SingleUnit]) -> [TenantCardModel] {
-        let tenantData = units.flatMap { unit in
-            setUpTenantCard(tenants: tenants,
-                            unitId: unit.id,
-                            unitNumber: unit.unitNumber,
-                            isOccupied: unit.isOccupied)
+        var tenantData: [TenantCardModel] = []
+        for unit in units {
+            let data = setUpTenantCard(tenants: tenants,
+                                       unitId: unit.id,
+                                       unitNumber: unit.unitNumber,
+                                       isOccupied: unit.isOccupied)
+            tenantData.append(contentsOf: data)
         }
         
-        let sortedTenants = tenantData.sorted(by: { $0.unitNumber > $1.unitNumber} )
+        let sortedTenants = tenantData.sorted(by: { $0.unitNumber < $1.unitNumber} )
         return sortedTenants
     }
     
@@ -110,14 +111,22 @@ class PropertiesManager: NewPropertyManager {
                          isOccupied: Bool) -> [TenantCardModel] {
         var updatedTenants: [TenantCardModel] = []
         
-        for tenant in tenants {
-            if unitId == tenant.unitID {
-                updatedTenants.append(TenantCardModel(unitId: unitId, 
-                                                      unitNumber: String(unitNumber),
-                                                      name: tenant.name,
-                                                      amount: String(tenant.amountDue),
-                                                      isOccupied: isOccupied))
-            } 
+        if !tenants.isEmpty {
+            for tenant in tenants {
+                if unitId == tenant.unitID {
+                    updatedTenants.append(TenantCardModel(unitId: unitId,
+                                                          unitNumber: String(unitNumber),
+                                                          name: tenant.name,
+                                                          amount: String(tenant.amountDue),
+                                                          isOccupied: isOccupied))
+                }
+            }
+        } else {
+            updatedTenants.append(TenantCardModel(unitId: unitId,
+                                                  unitNumber: String(unitNumber),
+                                                  name: "",
+                                                  amount: "",
+                                                  isOccupied: isOccupied))
         }
         
         return updatedTenants

@@ -53,9 +53,9 @@ class PropertiesViewModel: ObservableObject {
     
     func selectedProperty(_ property: Property) {
         selectedProperty = property
-        tenants = manager.getTenantCardData()
         showPropertyDetailView = true
-        allUnits = manager.fetchPropertyUnits(property.buildingID)
+        let units = manager.fetchPropertyUnits(property.buildingID)
+        tenants = manager.getTenantCardData(units: units)
     }
     
     func managePropertyOptions(_ selectedOption: Int) {
