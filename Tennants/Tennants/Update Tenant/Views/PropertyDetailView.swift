@@ -4,6 +4,7 @@ import MyLibrary
 struct PropertyDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State var showDetailView: Bool
+    @State var showAlert = false
     @StateObject var detailViewModel: PropertyDetailViewModel
     @ObservedObject var viewModel: PropertiesViewModel
     
@@ -55,9 +56,7 @@ struct PropertyDetailView: View {
                         CustomMenuButton {
                             print("edit")
                         } option2Action: {
-                            viewModel.manager.deleteProperty(viewModel.selectedProperty)
-                            viewModel.refreshData()
-                            dismiss()
+                            showAlert = true
                         }
 
                     }
@@ -72,6 +71,14 @@ struct PropertyDetailView: View {
                             }
                         }
 //                    }
+                }
+                .alert("Are you sure you want to delete?", isPresented: $showAlert) {
+                    Button("Yes", role: .cancel) {
+                        dismiss()
+                        viewModel.delete(viewModel.selectedProperty.buildingID)
+                    }
+                    
+                    Button("Cancel", role: .destructive) { }
                 }
             }
         }

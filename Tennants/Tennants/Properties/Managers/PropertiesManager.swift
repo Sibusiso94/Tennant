@@ -53,9 +53,11 @@ class PropertiesManager: NewPropertyManager {
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
         let dispatchGroup = DispatchGroup()
         newProperty = Property()
-        newProperty = Property(buildingName: newData.name,
-                                   buildingAddress: newData.address,
-                                        numberOfUnits: newData.numberOfUnits)
+        let id = UUID().uuidString
+        newProperty = Property(buildingID: id,
+                               buildingName: newData.name,
+                               buildingAddress: newData.address,
+                               numberOfUnits: newData.numberOfUnits)
         
         dispatchGroup.enter()
         guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
@@ -75,9 +77,9 @@ class PropertiesManager: NewPropertyManager {
         completion()
     }
     
-    func deleteProperty(_ property: Property) {
-        dataProvider.delete(property.buildingID)
-        unitManager.deleteUnits(with: property.buildingID) { unitIds in
+    func deleteProperty(_ propertyId: String) {
+        dataProvider.delete(propertyId)
+        unitManager.deleteUnits(with: propertyId) { unitIds in
             tenantManager.deleteTenants(from: unitIds)
         }
     }
@@ -115,14 +117,7 @@ class PropertiesManager: NewPropertyManager {
                                                       name: tenant.name,
                                                       amount: String(tenant.amountDue),
                                                       isOccupied: isOccupied))
-            } else {
-                updatedTenants.append(TenantCardModel(unitId: unitId,
-                                                      unitNumber: String(unitNumber),
-                                                      name: "",
-                                                      amount: "",
-                                                      isOccupied: isOccupied))
-                
-            }
+            } 
         }
         
         return updatedTenants

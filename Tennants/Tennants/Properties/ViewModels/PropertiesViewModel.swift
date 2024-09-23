@@ -81,6 +81,12 @@ class PropertiesViewModel: ObservableObject {
         properties = manager.fetchProperties()
     }
     
+    func delete(_ propertyId: String) {
+        selectedProperty = Property()
+        properties.removeAll(where: { $0.buildingID == propertyId })
+        manager.deleteProperty(propertyId)
+    }
+    
     func addTenant(_ tenant: Tennant) {
         manager.tenantManager.addTenant(propertyID: selectedProperty.buildingID,
                                 unitID: selectedUnit.id,

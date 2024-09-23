@@ -22,7 +22,7 @@ class Property: Object, Identifiable {
     }
     
     override class func primaryKey() -> String? {
-        "id"
+        "buildingID"
     }
 }
 

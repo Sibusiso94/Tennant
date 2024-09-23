@@ -1,6 +1,6 @@
 import Foundation
 
-struct TenantCardModel: Identifiable {
+struct TenantCardModel: Identifiable, Hashable {
     var id = UUID().uuidString
     var unitId: String = ""
     var unitNumber: String = ""

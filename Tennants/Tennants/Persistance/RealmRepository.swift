@@ -107,11 +107,13 @@ class RealmRepository {
         let realm = try! Realm()
         
         if let objectToDelete = realm.object(ofType: T.self, forPrimaryKey: id) {
-            try! realm.write {
-                realm.delete(objectToDelete)
+            if !objectToDelete.isInvalidated {
+                try! realm.write {
+                    realm.delete(objectToDelete)
+                }
             }
         } else {
-            print("User not found")
+            print("Property not found")
         }
     }
     
