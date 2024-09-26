@@ -4,14 +4,16 @@ import MyLibrary
 struct PropertyDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State var showDetailView: Bool
+    @State var showAddTenantView = false
     @State var showAlert = false
+    @State var selectedTenant = Tennant()
     @StateObject var detailViewModel: PropertyDetailViewModel
     @ObservedObject var viewModel: PropertiesViewModel
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(viewModel.tenants))
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel())
     }
     
     var body: some View {
@@ -35,7 +37,7 @@ struct PropertyDetailView: View {
                     
                     
                     ScrollView {
-                        ForEach(detailViewModel.tenants) { tenant in
+                        ForEach(viewModel.tenants) { tenant in
                             UpdateTennantTopCardView(unitNumber: String(tenant.unitNumber),
                                                      name: tenant.name,
                                                      surname: tenant.surname,
@@ -43,8 +45,15 @@ struct PropertyDetailView: View {
                                                      amountDue: String(tenant.amount),
                                                      isOccupied: tenant.isOccupied)
                                 .onTapGesture {
-                                    viewModel.selectedUnit.id = tenant.unitId
-                                    showDetailView = true
+                                    if tenant.isOccupied {
+                                        viewModel.getTenant(with: tenant.unitId) { tenant in
+                                            selectedTenant = tenant
+                                            showDetailView.toggle()
+                                        }
+                                    } else {
+                                        viewModel.selectedUnit.id = tenant.unitId
+                                        showAddTenantView.toggle()
+                                    }
                                 }
                                 .padding(.horizontal)
                         }
@@ -62,15 +71,12 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-//                    withAnimation {
-                    if viewModel.selectedUnit.isOccupied {
-                        UpdateTennantView(tenant: $viewModel.selectedTenant, unit: viewModel.selectedUnit)
-                        } else {
-                            AddTenantView() { tenant in
-                                viewModel.addTenant(tenant)
-                            }
-                        }
-//                    }
+                    UpdateTennantView(tenant: selectedTenant, unitNumber: viewModel.selectedUnit.id)
+                }
+                .navigationDestination(isPresented: $showAddTenantView) {
+                    AddTenantView() { tenant in
+                        viewModel.addTenant(tenant)
+                    }
                 }
                 .alert("Are you sure you want to delete?", isPresented: $showAlert) {
                     Button("Yes", role: .cancel) {

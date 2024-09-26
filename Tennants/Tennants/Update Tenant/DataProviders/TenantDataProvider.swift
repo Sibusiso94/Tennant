@@ -24,6 +24,15 @@ class TenantDataProvider: DataSource {
         return data
     }
     
+    func fetchData(by id: String) -> Tennant? {
+        let allTenants = fetchData()
+        if let tenantToReturn = allTenants.first(where: { $0.id == id }) {
+            return tenantToReturn
+        }
+        
+        return nil
+    }
+    
     func update(_ object: T) {
         do {
             try repository.update(object)

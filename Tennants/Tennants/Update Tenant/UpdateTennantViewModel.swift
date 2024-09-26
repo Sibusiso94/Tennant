@@ -2,6 +2,8 @@ import Foundation
 //import RealmSwift
 
 class UpdateTennantViewModel: ObservableObject {
+    var tenant: Tennant
+    var unitNumber: String
     var newTennants = [Tennant]()
     var rentAmount: Int = 1500
     
@@ -10,8 +12,10 @@ class UpdateTennantViewModel: ObservableObject {
     @Published var numberOfMonthsPassed: Int = 0
     @Published var endDate: Date
     
-    init() {
+    init(tenant: Tennant, unitNumber: String) {
         self.endDate = Date.now
+        self.tenant = tenant
+        self.unitNumber = unitNumber
 //        mapTennantsToArray()
 //        getTennantByMostDebt()
     }

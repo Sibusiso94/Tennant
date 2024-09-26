@@ -111,7 +111,7 @@ class PropertiesManager: NewPropertyManager {
                          isOccupied: Bool) -> [TenantCardModel] {
         var updatedTenants: [TenantCardModel] = []
         
-        if !tenants.isEmpty {
+        if isOccupied {
             for tenant in tenants {
                 if unitId == tenant.unitID {
                     updatedTenants.append(TenantCardModel(unitId: unitId,

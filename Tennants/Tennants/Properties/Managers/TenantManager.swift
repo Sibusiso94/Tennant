@@ -15,6 +15,10 @@ class TenantManager {
         return unitTenants
     }
     
+    func fetchTenantBy(_ id: String) -> Tennant? {
+        return dataProvider.fetchData(by: id)
+    }
+    
     func addTenant(propertyID: String,
                    unitID: String,
                    tenant: Tennant,

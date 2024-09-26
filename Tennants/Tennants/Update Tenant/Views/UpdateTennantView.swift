@@ -4,27 +4,29 @@ import MyLibrary
 struct UpdateTennantView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
-    @StateObject var viewModel = UpdateTennantViewModel()
+    @StateObject var viewModel: UpdateTennantViewModel
     
     @State var paymentHistoryPercentage = 0.0
     @State var showEditView: Bool = false
-    @Binding var tenant: Tennant
     
-    var unit: SingleUnit
+    var tenant: Tennant
+    var unitNumber: String
     
-    init(tenant: Binding<Tennant>, unit: SingleUnit) {
-        self._tenant = tenant
-        self.unit = unit
+    init(tenant: Tennant, unitNumber: String) {
+        self.tenant = tenant
+        self.unitNumber = unitNumber
+        _viewModel = StateObject(wrappedValue: UpdateTennantViewModel(tenant: tenant, unitNumber: unitNumber))
     }
     
     var body: some View {
         NavigationStack {
             VStack {
-                UpdateTennantTopCardView(unitNumber: String(unit.unitNumber),
+                UpdateTennantTopCardView(unitNumber: String(unitNumber),
                                          name: tenant.name,
                                          surname: tenant.surname,
                                          balance: "\(tenant.balance)",
-                                         amountDue: "\(tenant.amountDue)")
+                                         amountDue: "\(tenant.amountDue)",
+                                         isOccupied: true)
                     .padding(.horizontal)
                 
                 CircularProgressView(progress: 0.7,

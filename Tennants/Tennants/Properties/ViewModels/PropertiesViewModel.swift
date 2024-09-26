@@ -53,9 +53,9 @@ class PropertiesViewModel: ObservableObject {
     
     func selectedProperty(_ property: Property) {
         selectedProperty = property
-        showPropertyDetailView = true
         let units = manager.fetchPropertyUnits(property.buildingID)
         tenants = manager.getTenantCardData(units: units)
+        showPropertyDetailView = true
     }
     
     func managePropertyOptions(_ selectedOption: Int) {
@@ -94,4 +94,11 @@ class PropertiesViewModel: ObservableObject {
             self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
         }
     }
+    
+    func getTenant(with id: String, completion: (Tennant) -> Void) {
+        if let tenant = manager.tenantManager.fetchTenant(from: id) {
+            completion(tenant)
+        }
+    }
 }
+// "26DFCE83-5291-4BC8-8DCB-9FF1B60201F8"
