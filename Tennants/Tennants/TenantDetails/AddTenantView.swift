@@ -3,14 +3,18 @@ import MyLibrary
 
 struct AddTenantView: View {
     @FocusState private var focusedTennantField: TennantField?
+    @Environment(\.dismiss) var dismiss
+    
     @State var tenant = Tennant()
     @State var showErrorMessage: Bool
+    @State var showAlert: Bool
     
     var action: (Tennant) -> Void
     
     init(action: @escaping (Tennant) -> Void) {
         self.action = action
         _showErrorMessage = State(initialValue: false)
+        _showAlert = State(initialValue: false)
     }
     
     var body: some View {
@@ -61,7 +65,7 @@ struct AddTenantView: View {
 //                            if !validate() {
 //                                showErrorMessage = true
 //                            } else {
-                                action(tenant)
+                            showAlert = true
 //                            }
                         } label: {
                             Text("Add another Tenant")
@@ -72,6 +76,12 @@ struct AddTenantView: View {
                         
                     }
                     .navigationTitle("Add Tenant")
+                }
+                .alert("Tenant successfully added", isPresented: $showAlert) {
+                    Button("OK", role: .cancel) {
+                        action(tenant)
+                        dismiss()
+                    }
                 }
             }
             .foregroundStyle(.black.opacity(0.8))

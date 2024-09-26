@@ -21,7 +21,7 @@ struct UpdateTennantView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                UpdateTennantTopCardView(unitNumber: String(unitNumber),
+                UpdateTennantTopCardView(unitNumber: unitNumber,
                                          name: tenant.name,
                                          surname: tenant.surname,
                                          balance: "\(tenant.balance)",

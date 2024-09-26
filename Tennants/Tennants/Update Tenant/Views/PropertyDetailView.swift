@@ -45,15 +45,7 @@ struct PropertyDetailView: View {
                                                      amountDue: String(tenant.amount),
                                                      isOccupied: tenant.isOccupied)
                                 .onTapGesture {
-                                    if tenant.isOccupied {
-                                        viewModel.getTenant(with: tenant.unitId) { tenant in
-                                            selectedTenant = tenant
-                                            showDetailView.toggle()
-                                        }
-                                    } else {
-                                        viewModel.selectedUnit.id = tenant.unitId
-                                        showAddTenantView.toggle()
-                                    }
+                                    setUpCardDetail(with: tenant)
                                 }
                                 .padding(.horizontal)
                         }
@@ -71,7 +63,7 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-                    UpdateTennantView(tenant: selectedTenant, unitNumber: viewModel.selectedUnit.id)
+                    UpdateTennantView(tenant: selectedTenant, unitNumber: String(viewModel.selectedUnit.unitNumber))
                 }
                 .navigationDestination(isPresented: $showAddTenantView) {
                     AddTenantView() { tenant in
@@ -87,6 +79,19 @@ struct PropertyDetailView: View {
                     Button("Cancel", role: .destructive) { }
                 }
             }
+        }
+    }
+    
+    func setUpCardDetail(with tenant: TenantCardModel) {
+        if tenant.isOccupied {
+            viewModel.getTenant(with: tenant.unitId) { tenantToReturn in
+                selectedTenant = tenantToReturn
+                viewModel.selectedUnit.unitNumber = detailViewModel.safeStringToInt(tenant.unitNumber)
+                showDetailView.toggle()
+            }
+        } else {
+            viewModel.selectedUnit.id = tenant.unitId
+            showAddTenantView.toggle()
         }
     }
 }
