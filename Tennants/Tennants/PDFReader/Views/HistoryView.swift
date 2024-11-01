@@ -2,13 +2,14 @@ import SwiftUI
 import MyLibrary
 
 struct HistoryView: View {
-    var history: History
-    
+    var heading: String
+    var tenantInfo: [TenantData]
+
     var body: some View {
         VStack {
-            Text(history.dateCreated)
+            Text(heading)
                 .foregroundStyle(.black.opacity(0.7))
-            ForEach(history.results, id: \.id) { result in
+            ForEach(tenantInfo, id: \.id) { result in
                 UserDetailsCard(reference: result.reference,
                                 amount: result.amount,
                                 date: result.date,

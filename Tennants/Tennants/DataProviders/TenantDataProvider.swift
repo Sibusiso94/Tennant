@@ -17,7 +17,7 @@ class TenantDataProvider: DataSource {
             
         }
     }
-    
+
     func fetchData() -> [T] {
 //        let descriptor = FetchDescriptor<T>()
         let data = repository.readAll(T.self)

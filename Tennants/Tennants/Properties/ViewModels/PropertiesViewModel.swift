@@ -92,6 +92,7 @@ class PropertiesViewModel: ObservableObject {
                                 unitID: selectedUnit.id,
                                 tenant: tenant) { tenantId in
             self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
+            tenant.reference
         }
     }
     
@@ -101,4 +102,3 @@ class PropertiesViewModel: ObservableObject {
         }
     }
 }
-// "26DFCE83-5291-4BC8-8DCB-9FF1B60201F8"

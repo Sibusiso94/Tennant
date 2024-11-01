@@ -3,6 +3,7 @@ import RealmSwift
 
 class PropertiesDataProvider: DataSource {
     typealias T = Property
+    
     let repository: RealmRepository
     
     init(repository: RealmRepository) {

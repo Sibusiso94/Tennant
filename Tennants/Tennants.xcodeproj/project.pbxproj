@@ -31,7 +31,7 @@
 		5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */; };
 		5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F46992C16CAB800F1482B /* TenantPaymentData.swift */; };
 		5C1F469C2C17059000F1482B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F469B2C17059000F1482B /* NetworkManager.swift */; };
-		5C1F469E2C1B23D000F1482B /* PDFReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F469D2C1B23D000F1482B /* PDFReaderView.swift */; };
+		5C1F469E2C1B23D000F1482B /* FileUploaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F469D2C1B23D000F1482B /* FileUploaderView.swift */; };
 		5C1F46A02C1C589E00F1482B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1F469F2C1C589E00F1482B /* History.swift */; };
 		5C25D5D32C05C6C300C24658 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */; };
 		5C25D5D72C05C81D00C24658 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5C25D5D62C05C81D00C24658 /* FirebaseAnalytics */; };
@@ -53,6 +53,10 @@
 		5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734342B6261C50040A0AA /* FileManagerTests.swift */; };
 		5C47343F2B6261C50040A0AA /* TennantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47343E2B6261C50040A0AA /* TennantsUITests.swift */; };
 		5C4734412B6261C50040A0AA /* TennantsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */; };
+		5C4921D62CC7C10700D4318F /* TenantPaymentDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4921D52CC7C10700D4318F /* TenantPaymentDataProvider.swift */; };
+		5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA32CBE8DB400495D11 /* HistoryManager.swift */; };
+		5C58ADA62CBE8E9800495D11 /* ReferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */; };
+		5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */; };
 		5C620CF12C722BA7001F54E6 /* AddTenantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */; };
 		5C8FDB462C8AFFED004EC65E /* Migrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8FDB452C8AFFED004EC65E /* Migrator.swift */; };
 		5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B30AA2C760C9A001669E9 /* TenantManager.swift */; };
@@ -64,9 +68,13 @@
 		5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */; };
 		5CDA50D02C4592080040E268 /* UnitsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */; };
 		5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */; };
+		5CDFD3FD2CB249330026150D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDFD3FC2CB249330026150D /* FirebaseManager.swift */; };
+		5CDFD4002CB24F8B0026150D /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDFD3FF2CB24F8B0026150D /* References.swift */; };
+		5CDFD4032CB258D30026150D /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDFD4022CB258D30026150D /* FirebaseRepository.swift */; };
 		5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF646062C7F5E290031B2B0 /* RealmRepository.swift */; };
 		5CF6460A2C7F61DC0031B2B0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; };
 		5CF6460B2C7F62040031B2B0 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5CF89BFC2CC136C300FDA874 /* HistoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +132,7 @@
 		5C1A64002BFB6D92007CAEBF /* UpdateTennantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTennantView.swift; sourceTree = "<group>"; };
 		5C1F46992C16CAB800F1482B /* TenantPaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentData.swift; sourceTree = "<group>"; };
 		5C1F469B2C17059000F1482B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		5C1F469D2C1B23D000F1482B /* PDFReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderView.swift; sourceTree = "<group>"; };
+		5C1F469D2C1B23D000F1482B /* FileUploaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderView.swift; sourceTree = "<group>"; };
 		5C1F469F2C1C589E00F1482B /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C25D5E42C05E08900C24658 /* FileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDataManager.swift; sourceTree = "<group>"; };
@@ -142,6 +150,10 @@
 		5C47343A2B6261C50040A0AA /* TennantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47343E2B6261C50040A0AA /* TennantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITests.swift; sourceTree = "<group>"; };
 		5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C4921D52CC7C10700D4318F /* TenantPaymentDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentDataProvider.swift; sourceTree = "<group>"; };
+		5C58ADA32CBE8DB400495D11 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
+		5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesManager.swift; sourceTree = "<group>"; };
+		5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderViewModel.swift; sourceTree = "<group>"; };
 		5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantViewModel.swift; sourceTree = "<group>"; };
 		5C8FDB452C8AFFED004EC65E /* Migrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrator.swift; sourceTree = "<group>"; };
 		5C9B30AA2C760C9A001669E9 /* TenantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantManager.swift; sourceTree = "<group>"; };
@@ -153,7 +165,11 @@
 		5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesDataProvider.swift; sourceTree = "<group>"; };
 		5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsDataProvider.swift; sourceTree = "<group>"; };
 		5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewModel.swift; sourceTree = "<group>"; };
+		5CDFD3FC2CB249330026150D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		5CDFD3FF2CB24F8B0026150D /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
+		5CDFD4022CB258D30026150D /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
 		5CF646062C7F5E290031B2B0 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				5CDA50D32C463A260040E268 /* Managers */,
-				5C0089D72BF344380061C00B /* DataProviders */,
 				5C0089D62BF344260061C00B /* ViewModels */,
 				5C0089D52BF344170061C00B /* Views */,
 			);
@@ -260,24 +275,13 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		5C0089D72BF344380061C00B /* DataProviders */ = {
-			isa = PBXGroup;
-			children = (
-				5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */,
-				5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */,
-			);
-			path = DataProviders;
-			sourceTree = "<group>";
-		};
 		5C0089E22BF34A4D0061C00B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CDFD3FE2CB24F680026150D /* Realm  */,
 				5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */,
-				5C0089DF2BF34A4D0061C00B /* Property.swift */,
-				5C0089E02BF34A4D0061C00B /* SingleUnit.swift */,
-				5C0089E12BF34A4D0061C00B /* Tennant.swift */,
 				5C1F46992C16CAB800F1482B /* TenantPaymentData.swift */,
-				5C1F469F2C1C589E00F1482B /* History.swift */,
+				5CDFD3FF2CB24F8B0026150D /* References.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,9 +289,9 @@
 		5C05CB102BFF550900BF7297 /* PDFReader */ = {
 			isa = PBXGroup;
 			children = (
+				5C58ADA22CBE8D7500495D11 /* Managers */,
 				5C3E31962C3E66BC00321EB3 /* Views */,
-				5C3E319E2C400FCC00321EB3 /* Document Managers */,
-				5C3E319F2C40107700321EB3 /* API Managers */,
+				5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */,
 			);
 			path = PDFReader;
 			sourceTree = "<group>";
@@ -312,7 +316,11 @@
 		5C0F300E2C67706900B7630E /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
+				5C3E319A2C3E7CAD00321EB3 /* HistoryDataProvider.swift */,
 				5C0F300F2C67708300B7630E /* TenantDataProvider.swift */,
+				5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */,
+				5CDA50CF2C4592080040E268 /* UnitsDataProvider.swift */,
+				5C4921D52CC7C10700D4318F /* TenantPaymentDataProvider.swift */,
 			);
 			path = DataProviders;
 			sourceTree = "<group>";
@@ -320,7 +328,6 @@
 		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
 			isa = PBXGroup;
 			children = (
-				5C0F300E2C67706900B7630E /* DataProviders */,
 				5C0F300D2C67703C00B7630E /* Views */,
 				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
 			);
@@ -345,7 +352,7 @@
 		5C3E31962C3E66BC00321EB3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C1F469D2C1B23D000F1482B /* PDFReaderView.swift */,
+				5C1F469D2C1B23D000F1482B /* FileUploaderView.swift */,
 				5C3E31942C3BDE1100321EB3 /* HistoryView.swift */,
 			);
 			path = Views;
@@ -354,8 +361,8 @@
 		5C3E31992C3E7C6600321EB3 /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				5CF646062C7F5E290031B2B0 /* RealmRepository.swift */,
-				5C8FDB452C8AFFED004EC65E /* Migrator.swift */,
+				5CDFD4012CB258BB0026150D /* Firebase */,
+				5CDFD4042CB51D190026150D /* Realm */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -367,12 +374,12 @@
 				5C25D5E42C05E08900C24658 /* FileDataManager.swift */,
 			);
 			name = "Document Managers";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		5C3E319F2C40107700321EB3 /* API Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5C3E319A2C3E7CAD00321EB3 /* HistoryDataProvider.swift */,
 				5C3E319C2C400DFF00321EB3 /* ApiDataManager.swift */,
 			);
 			path = "API Managers";
@@ -403,6 +410,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C0F300E2C67706900B7630E /* DataProviders */,
 				5C0B9B662C611E0100362893 /* TenantDetails */,
 				5C3E31992C3E7C6600321EB3 /* Persistance */,
 				5C1F46962C12EA9C00F1482B /* Networking */,
@@ -437,6 +445,7 @@
 			children = (
 				5C4734342B6261C50040A0AA /* FileManagerTests.swift */,
 				5C0D5DB42C5D05D400440001 /* APIManagerTests.swift */,
+				5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */,
 			);
 			path = TennantsTests;
 			sourceTree = "<group>";
@@ -448,6 +457,17 @@
 				5C4734402B6261C50040A0AA /* TennantsUITestsLaunchTests.swift */,
 			);
 			path = TennantsUITests;
+			sourceTree = "<group>";
+		};
+		5C58ADA22CBE8D7500495D11 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5C3E319E2C400FCC00321EB3 /* Document Managers */,
+				5C3E319F2C40107700321EB3 /* API Managers */,
+				5C58ADA32CBE8DB400495D11 /* HistoryManager.swift */,
+				5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		5CD215FC2BF4CC490035F729 /* AddPropertyFlow */ = {
@@ -466,6 +486,35 @@
 				5C9B30AA2C760C9A001669E9 /* TenantManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		5CDFD3FE2CB24F680026150D /* Realm  */ = {
+			isa = PBXGroup;
+			children = (
+				5C0089DF2BF34A4D0061C00B /* Property.swift */,
+				5C0089E02BF34A4D0061C00B /* SingleUnit.swift */,
+				5C0089E12BF34A4D0061C00B /* Tennant.swift */,
+				5C1F469F2C1C589E00F1482B /* History.swift */,
+			);
+			path = "Realm ";
+			sourceTree = "<group>";
+		};
+		5CDFD4012CB258BB0026150D /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				5CDFD3FC2CB249330026150D /* FirebaseManager.swift */,
+				5CDFD4022CB258D30026150D /* FirebaseRepository.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		5CDFD4042CB51D190026150D /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5CF646062C7F5E290031B2B0 /* RealmRepository.swift */,
+				5C8FDB452C8AFFED004EC65E /* Migrator.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -619,6 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDFD4032CB258D30026150D /* FirebaseRepository.swift in Sources */,
 				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
 				5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */,
 				5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */,
@@ -629,6 +679,7 @@
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
 				5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */,
 				5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */,
+				5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */,
 				5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */,
 				5C05CB122BFF552B00BF7297 /* DocumentPicker.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
@@ -640,22 +691,27 @@
 				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
 				5C0F30102C67708300B7630E /* TenantDataProvider.swift in Sources */,
 				5C1F469C2C17059000F1482B /* NetworkManager.swift in Sources */,
+				5C4921D62CC7C10700D4318F /* TenantPaymentDataProvider.swift in Sources */,
 				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
 				5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */,
+				5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */,
 				5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */,
 				5C3E31952C3BDE1100321EB3 /* HistoryView.swift in Sources */,
 				5C3E319B2C3E7CAD00321EB3 /* HistoryDataProvider.swift in Sources */,
 				5C0B9B682C611E2500362893 /* AddTenantView.swift in Sources */,
 				5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */,
 				5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */,
+				5C58ADA62CBE8E9800495D11 /* ReferencesManager.swift in Sources */,
 				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
+				5CDFD3FD2CB249330026150D /* FirebaseManager.swift in Sources */,
 				5CD216002BF4F1840035F729 /* UnitManager.swift in Sources */,
 				5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */,
+				5CDFD4002CB24F8B0026150D /* References.swift in Sources */,
 				5C25D5E52C05E08900C24658 /* FileDataManager.swift in Sources */,
 				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
 				5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
-				5C1F469E2C1B23D000F1482B /* PDFReaderView.swift in Sources */,
+				5C1F469E2C1B23D000F1482B /* FileUploaderView.swift in Sources */,
 				5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */,
 				5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */,
 				5C8FDB462C8AFFED004EC65E /* Migrator.swift in Sources */,
@@ -667,6 +723,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF89BFC2CC136C300FDA874 /* HistoryManagerTests.swift in Sources */,
 				5C0D5DB52C5D05D400440001 /* APIManagerTests.swift in Sources */,
 				5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */,
 			);

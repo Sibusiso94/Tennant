@@ -1,17 +1,16 @@
 import Foundation
 import RealmSwift
 
-protocol DataSource {
-    associatedtype T: Object
-    
-    func create(_ object: T)
-    func fetchData() -> [T]
-    func delete(_ id: String)
-}
+protocol DataSource: CreateObject, ReadObject, DeleteObject { }
 
 protocol CreateObject {
     associatedtype T: Object
     func create(_ object: T)
+}
+
+protocol MultipleObjectsCreatable {
+    associatedtype T: Object
+    func createMultiple(_ insertions: [T])
 }
 
 protocol ReadObject {

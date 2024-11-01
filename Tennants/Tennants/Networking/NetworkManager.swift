@@ -44,6 +44,18 @@ final class NetworkManagerConcreation: NetworkManager {
         return components?.url
     }
     
+//    func createURL(baseURL: String, parameters: [(String, Any)]) -> URL? {
+//        var components = URLComponents(string: baseURL)
+//        components?.queryItems = parameters.flatMap { (name, value) -> [URLQueryItem] in
+//            if let array = value as? [String] {
+//                return [URLQueryItem(name: name, value: array.joined(separator: ","))]
+//            } else {
+//                return [URLQueryItem(name: name, value: "\(value)")]
+//            }
+//        }
+//        return components?.url
+//    }
+    
     func fetchData<T: Decodable>(from url: URL, completion: @escaping (Result<T, ApiError>) -> Void) {
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             DispatchQueue.main.async {
