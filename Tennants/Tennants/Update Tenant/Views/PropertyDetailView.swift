@@ -6,14 +6,14 @@ struct PropertyDetailView: View {
     @State var showDetailView: Bool
     @State var showAddTenantView = false
     @State var showAlert = false
-    @State var selectedTenant = Tennant()
+    @State var selectedTenant: Tennant?
     @StateObject var detailViewModel: PropertyDetailViewModel
     @ObservedObject var viewModel: PropertiesViewModel
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel())
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(unitManager: viewModel.manager.unitManager))
     }
     
     var body: some View {
@@ -26,10 +26,7 @@ struct PropertyDetailView: View {
                     HStack {
                         VStack {
                             Text(viewModel.selectedProperty.buildingAddress)
-                                .foregroundStyle(.black.opacity(0.7))
-                            
-                            Text("  All Units ocupied")
-                                .foregroundStyle(.black.opacity(0.7))
+                                .bold()
                         }
                         Spacer()
                     }
@@ -37,15 +34,20 @@ struct PropertyDetailView: View {
                     
                     
                     ScrollView {
-                        ForEach(viewModel.tenants) { tenant in
-                            UpdateTennantTopCardView(unitNumber: String(tenant.unitNumber),
-                                                     name: tenant.name,
-                                                     surname: tenant.surname,
-                                                     balance: String(tenant.balance),
-                                                     amountDue: String(tenant.amount),
-                                                     isOccupied: tenant.isOccupied)
+                        ForEach(viewModel.unitCardModel) { unitModel in
+//                            UpdateTennantTopCardView(unitNumber: String(tenant.unitNumber),
+//                                                     name: tenant.name,
+//                                                     surname: tenant.surname,
+//                                                     balance: String(tenant.balance),
+//                                                     amountDue: String(tenant.amount),
+//                                                     isOccupied: tenant.isOccupied)
+                            UnitTopCardView(imageNumber: String(unitModel.unitNumber),
+                                            unitNumber: String(unitModel.unitNumber),
+                                            address: viewModel.selectedProperty.buildingAddress,
+                                            isOccupied: unitModel.isOccupied)
                                 .onTapGesture {
-                                    setUpCardDetail(with: tenant)
+                                    setUpCardDetail(with: unitModel)
+                                    detailViewModel.fetchUnit(unitModel.unitId)
                                 }
                                 .padding(.horizontal)
                         }
@@ -63,13 +65,17 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-                    UpdateTennantView(tenant: selectedTenant, unitNumber: String(viewModel.selectedUnit.unitNumber))
+//                    UpdateTennantView(tenant: selectedTenant, unitNumber: String(viewModel.selectedUnit.unitNumber))
+                    UnitDetailViewContainer(unit: detailViewModel.unit,
+                                            complexName: viewModel.selectedProperty.buildingName,
+                                            address: viewModel.selectedProperty.buildingAddress,
+                                            tenant: selectedTenant)
                 }
-                .navigationDestination(isPresented: $showAddTenantView) {
-                    AddTenantView() { tenant in
-                        viewModel.addTenant(tenant)
-                    }
-                }
+//                .navigationDestination(isPresented: $showAddTenantView) {
+//                    AddTenantView() { tenant in
+//                        viewModel.addTenant(tenant)
+//                    }
+//                }
                 .alert("Are you sure you want to delete?", isPresented: $showAlert) {
                     Button("Yes", role: .cancel) {
                         dismiss()
@@ -82,7 +88,7 @@ struct PropertyDetailView: View {
         }
     }
     
-    func setUpCardDetail(with tenant: TenantCardModel) {
+    func setUpCardDetail(with tenant: UnitCardModel) {
         if tenant.isOccupied {
             viewModel.getTenant(with: tenant.unitId) { tenantToReturn in
                 selectedTenant = tenantToReturn
@@ -90,8 +96,9 @@ struct PropertyDetailView: View {
                 showDetailView.toggle()
             }
         } else {
-            viewModel.selectedUnit.id = tenant.unitId
-            showAddTenantView.toggle()
+            showDetailView.toggle()
+//            viewModel.selectedUnit.id = tenant.unitId
+//            showAddTenantView.toggle()
         }
     }
 }

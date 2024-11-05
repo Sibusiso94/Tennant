@@ -1,8 +1,22 @@
 import Foundation
 
 class PropertyDetailViewModel: ObservableObject {
-    @Published var selectedTenant = TenantCardModel()
-    
+    @Published var selectedTenant = UnitCardModel()
+    @Published var unit = SingleUnit()
+
+
+    let unitManager: UnitManager
+
+    init(unitManager: UnitManager) {
+        self.unitManager = unitManager
+    }
+
+    func fetchUnit(_ unitId: String) {
+        if let selectedUnit = unitManager.fetchUnitsBy(unitId: unitId) {
+            unit = selectedUnit
+        }
+    }
+
     func safeStringToInt(_ string: String) -> Int {
         if let newInt = Int(string) {
             return newInt

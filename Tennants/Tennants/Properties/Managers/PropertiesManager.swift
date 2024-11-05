@@ -47,7 +47,7 @@ class PropertiesManager: NewPropertyManager {
     }
     
     func fetchPropertyUnits(_ selectedPropertyID: String) -> [SingleUnit] {
-        return unitManager.fetchUnits(selectedPropertyID)
+        return unitManager.fetchUnitsBy(propertyId: selectedPropertyID)
     }
     
     func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
@@ -84,15 +84,15 @@ class PropertiesManager: NewPropertyManager {
         }
     }
     
-    func getTenantCardData(units: [SingleUnit]) -> [TenantCardModel] {
+    func getTenantCardData(units: [SingleUnit]) -> [UnitCardModel] {
         let tenants = tenantManager.dataProvider.fetchData()
         let tenantCardData = sortTenantCardData(tenants: tenants, units: units)
         return tenantCardData
     }
     
     private func sortTenantCardData(tenants: [Tennant],
-                       units: [SingleUnit]) -> [TenantCardModel] {
-        var tenantData: [TenantCardModel] = []
+                       units: [SingleUnit]) -> [UnitCardModel] {
+        var tenantData: [UnitCardModel] = []
         for unit in units {
             let data = setUpTenantCard(tenants: tenants,
                                        unitId: unit.id,
@@ -108,13 +108,13 @@ class PropertiesManager: NewPropertyManager {
     private func setUpTenantCard(tenants: [Tennant],
                          unitId: String,
                          unitNumber: Int,
-                         isOccupied: Bool) -> [TenantCardModel] {
-        var updatedTenants: [TenantCardModel] = []
+                         isOccupied: Bool) -> [UnitCardModel] {
+        var updatedTenants: [UnitCardModel] = []
         
         if isOccupied {
             for tenant in tenants {
                 if unitId == tenant.unitID {
-                    updatedTenants.append(TenantCardModel(unitId: unitId,
+                    updatedTenants.append(UnitCardModel(unitId: unitId,
                                                           unitNumber: String(unitNumber),
                                                           name: tenant.name,
                                                           amount: String(tenant.amountDue),
@@ -122,7 +122,7 @@ class PropertiesManager: NewPropertyManager {
                 }
             }
         } else {
-            updatedTenants.append(TenantCardModel(unitId: unitId,
+            updatedTenants.append(UnitCardModel(unitId: unitId,
                                                   unitNumber: String(unitNumber),
                                                   name: "",
                                                   amount: "",

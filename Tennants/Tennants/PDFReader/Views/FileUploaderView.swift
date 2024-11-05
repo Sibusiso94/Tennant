@@ -3,7 +3,8 @@ import MyLibrary
 
 struct FileUploaderView: View {
     @StateObject var viewModel: FileUploaderViewModel
-    
+    @State var isCompleteUploading = false
+
     init() {
         _viewModel = StateObject(wrappedValue: FileUploaderViewModel())
     }
@@ -19,19 +20,21 @@ struct FileUploaderView: View {
                                           bankTypes: viewModel.bankTypes,
                                           selectedBankType: $viewModel.selectedBankType)
                     
-                    if viewModel.isLoading {
+                    if isCompleteUploading {
                         CustomTextButton(title: "Process document") {
                             viewModel.fetchApiData()
+                            viewModel.isLoading = true
                         }
                     } else {
                         CustomTextButton(title: "Select a document") {
-                            viewModel.isLoading = true
                             viewModel.showPDFImporter.toggle()
                         }
                     }
                 }
                 .sheet(isPresented: $viewModel.showPDFImporter) {
                     DocumentPicker() { url in
+                        isCompleteUploading = true
+                        viewModel.isLoading = true
                         viewModel.handleImportedFile(url: url)
                     }
                 }
@@ -40,7 +43,6 @@ struct FileUploaderView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.getTenantData()
                         viewModel.shouldShowResultView.toggle()
                     } label: {
                         Text("History")

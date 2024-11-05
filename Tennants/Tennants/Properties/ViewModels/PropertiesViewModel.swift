@@ -11,8 +11,8 @@ class PropertiesViewModel: ObservableObject {
     @Published var selectedProperty = Property()
     
     @Published var selectedTenant = Tennant()
-    @Published var tenants: [TenantCardModel] = []
-    
+    @Published var unitCardModel: [UnitCardModel] = []
+
     @Published var allUnits: [SingleUnit] = []
     @Published var selectedUnit = SingleUnit()
     
@@ -54,7 +54,7 @@ class PropertiesViewModel: ObservableObject {
     func selectedProperty(_ property: Property) {
         selectedProperty = property
         let units = manager.fetchPropertyUnits(property.buildingID)
-        tenants = manager.getTenantCardData(units: units)
+        unitCardModel = manager.getTenantCardData(units: units)
         showPropertyDetailView = true
     }
     

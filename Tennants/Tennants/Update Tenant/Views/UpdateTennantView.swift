@@ -8,7 +8,8 @@ struct UpdateTennantView: View {
     
     @State var paymentHistoryPercentage = 0.0
     @State var showEditView: Bool = false
-    
+    @State var isEditingTenant: Bool = false
+
     var tenant: Tennant
     var unitNumber: String
     
@@ -34,39 +35,34 @@ struct UpdateTennantView: View {
                     .frame(width: 150, height: 150)
                     .padding(.vertical)
                 
-                TextField("Amount paid", text: $viewModel.amountAdded)
-                    .numberTextField()
-                    .focused($isInputActive)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
+                if isEditingTenant {
+                    TextField("Amount paid", text: $viewModel.amountAdded)
+                        .numberTextField()
+                        .focused($isInputActive)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
 
-                            Button("Done") {
-                                isInputActive = false
+                                Button("Done") {
+                                    isInputActive = false
+                                }
                             }
                         }
+
+                    CustomTextButton(title: "Paid in full") {
+                        //
                     }
-                
-                CustomTextButton(title: "Paid in full") {
-                    //
+
+                    Button {
+
+                    } label: {
+                        Text("Add payment")
+                            .padding()
+                    }
+                    .customHorizontalPadding(isButton: true)
+                    .disabled(viewModel.amountAdded == "")
                 }
-//                Button {
-//                    
-//                } label: {
-//                    Text()
-//                        .padding()
-//                }
-//                .customHorizontalPadding(isButton: true)
-                
-                Button {
-                    
-                } label: {
-                    Text("Add payment")
-                        .padding()
-                }
-                .customHorizontalPadding(isButton: true)
-                .disabled(viewModel.amountAdded == "")
-                
+
                 Spacer()
             }
             .background {

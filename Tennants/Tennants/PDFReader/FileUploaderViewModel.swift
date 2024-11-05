@@ -36,7 +36,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
                     }
                     self?.fileStoragePath = storagePath
                     print("Successfully added")
-                    self?.isLoading = true
+                    self?.isLoading = false
                 }
             } catch {
                 os_log("Error reading file data: %@", type: .debug, error.localizedDescription)
@@ -51,7 +51,8 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
             apiManager.fetchApiData(selectedBankType: selectedBankType, reference: reference, storagePath: fileStoragePath) { [weak self] data, error in
                 if let data {
                     self?.persistHistoryData(with: data)
-                    self?.shouldShowResultView = true
+                    self?.setUpResultView()
+                    self?.isLoading = false
                 }
 
                 if let error {
@@ -59,8 +60,11 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
                 }
             }
         }
+    }
 
-        isLoading = false
+    func setUpResultView() {
+        getTenantData()
+        shouldShowResultView = true
     }
 
     func persistHistoryData(with results: [TenantPaymentData]?) {

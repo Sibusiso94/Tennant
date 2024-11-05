@@ -9,13 +9,21 @@ class UnitManager {
         self.dataProvider = UnitsDataProvider(repository: repository)
     }
     
-    func fetchUnits(_ propertyId: String) -> [SingleUnit] {
+    func fetchUnitsBy(propertyId: String) -> [SingleUnit] {
         let data = dataProvider.fetchData()
         let filteredData = data.filter { $0.propertyId == propertyId }
         let orderedUnits = filteredData.sorted(by: { $0.unitNumber < $1.unitNumber })
         return orderedUnits
     }
-    
+
+    func fetchUnitsBy(unitId: String) -> SingleUnit? {
+        let data = dataProvider.fetchData()
+        if let filteredData = data.first(where: { $0.id == unitId } ) {
+            return filteredData
+        }
+        return nil
+    }
+
     func generatePropertyUnits(propertyId: String,
                                numberOfUnits: Int,
                                completion: @escaping ([String]) -> Void) {
