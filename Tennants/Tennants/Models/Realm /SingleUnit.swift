@@ -8,15 +8,17 @@ class SingleUnit: Object, Identifiable {
     @Persisted var propertyId: String
     @Persisted var numberOfBedrooms: Int
     @Persisted var numberOfBathrooms: Int
+    @Persisted var size: Int
     @Persisted var isOccupied: Bool
     
     convenience init(id: String = UUID().uuidString,
-         unitNumber: Int = 0,
-         propertyId: String = "",
-         tenantID: String = "",
-         numberOfBedrooms: Int = 1,
-         numberOfBathrooms: Int = 1,
-         isOccupied: Bool = false) {
+                     unitNumber: Int = 0,
+                     propertyId: String = "",
+                     tenantID: String = "",
+                     numberOfBedrooms: Int = 1,
+                     numberOfBathrooms: Int = 1,
+                     size: Int = 0,
+                     isOccupied: Bool = false) {
         self.init()
         self.id = id
         self.unitNumber = unitNumber
@@ -24,6 +26,7 @@ class SingleUnit: Object, Identifiable {
         self.tenantID = tenantID
         self.numberOfBedrooms = numberOfBedrooms
         self.numberOfBathrooms = numberOfBathrooms
+        self.size = size
         self.isOccupied = isOccupied
     }
     

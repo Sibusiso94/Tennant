@@ -1,17 +1,26 @@
 import SwiftUI
+import MyLibrary
 
 struct UnitDetailViewContainer: View {
+    @State var showAddTenantView = false
+    @ObservedObject var viewModel: PropertyDetailViewModel
+
     var unit: SingleUnit
     var complexName: String
+    var buildingId: String
     var address: String
     var tenant: Tennant?
 
-    init(unit: SingleUnit,
+    init(viewModel: PropertyDetailViewModel,
+         unit: SingleUnit,
          complexName: String,
+         buildingId: String,
          address: String,
          tenant: Tennant? = nil) {
+        self.viewModel = viewModel
         self.unit = unit
         self.complexName = complexName
+        self.buildingId = buildingId
         self.address = address
         self.tenant = tenant
     }
@@ -29,7 +38,7 @@ struct UnitDetailViewContainer: View {
                                    address: address,
                                    bedrooms: "\(unit.numberOfBedrooms)",
                                    bathrooms: "\(unit.numberOfBathrooms)",
-                                   size: "350m")
+                                   size: "\(unit.size)m")
 
                     Divider()
 
@@ -57,10 +66,24 @@ struct UnitDetailViewContainer: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                         }
                         .padding()
+                    } else {
+                        VStack {
+                            Text("This unit is not occupied. Add a tenant below.")
+                                .multilineTextAlignment(.center)
+                            CustomTextButton(title: "Add tenant") {
+                                showAddTenantView = true
+                            }
+                        }
+                        .padding()
                     }
 
                     Divider()
                 }
+            }
+        }
+        .navigationDestination(isPresented: $showAddTenantView) {
+            AddTenantView() { tenant in
+                viewModel.addTenant(tenant, propertyID: buildingId, unitId: unit.id)
             }
         }
     }

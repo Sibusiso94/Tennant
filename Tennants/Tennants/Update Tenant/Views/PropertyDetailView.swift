@@ -3,17 +3,16 @@ import MyLibrary
 
 struct PropertyDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var viewModel: PropertiesViewModel
     @State var showDetailView: Bool
-    @State var showAddTenantView = false
     @State var showAlert = false
     @State var selectedTenant: Tennant?
     @StateObject var detailViewModel: PropertyDetailViewModel
-    @ObservedObject var viewModel: PropertiesViewModel
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(unitManager: viewModel.manager.unitManager))
+        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(unitManager: viewModel.manager.unitManager, tenantManager: viewModel.manager.tenantManager))
     }
     
     var body: some View {
@@ -35,12 +34,6 @@ struct PropertyDetailView: View {
                     
                     ScrollView {
                         ForEach(viewModel.unitCardModel) { unitModel in
-//                            UpdateTennantTopCardView(unitNumber: String(tenant.unitNumber),
-//                                                     name: tenant.name,
-//                                                     surname: tenant.surname,
-//                                                     balance: String(tenant.balance),
-//                                                     amountDue: String(tenant.amount),
-//                                                     isOccupied: tenant.isOccupied)
                             UnitTopCardView(imageNumber: String(unitModel.unitNumber),
                                             unitNumber: String(unitModel.unitNumber),
                                             address: viewModel.selectedProperty.buildingAddress,
@@ -65,17 +58,13 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-//                    UpdateTennantView(tenant: selectedTenant, unitNumber: String(viewModel.selectedUnit.unitNumber))
-                    UnitDetailViewContainer(unit: detailViewModel.unit,
+                    UnitDetailViewContainer(viewModel: detailViewModel,
+                                            unit: detailViewModel.unit,
                                             complexName: viewModel.selectedProperty.buildingName,
+                                            buildingId: viewModel.selectedProperty.buildingID,
                                             address: viewModel.selectedProperty.buildingAddress,
                                             tenant: selectedTenant)
                 }
-//                .navigationDestination(isPresented: $showAddTenantView) {
-//                    AddTenantView() { tenant in
-//                        viewModel.addTenant(tenant)
-//                    }
-//                }
                 .alert("Are you sure you want to delete?", isPresented: $showAlert) {
                     Button("Yes", role: .cancel) {
                         dismiss()

@@ -87,14 +87,14 @@ class PropertiesViewModel: ObservableObject {
         manager.deleteProperty(propertyId)
     }
     
-    func addTenant(_ tenant: Tennant) {
-        manager.tenantManager.addTenant(propertyID: selectedProperty.buildingID,
-                                unitID: selectedUnit.id,
-                                tenant: tenant) { tenantId in
-            self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
-            tenant.reference
-        }
-    }
+//    func addTenant(_ tenant: Tennant) {
+//        manager.tenantManager.addTenant(propertyID: selectedProperty.buildingID,
+//                                unitID: selectedUnit.id,
+//                                tenant: tenant) { tenantId in
+//            self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
+//            tenant.reference
+//        }
+//    }
     
     func getTenant(with id: String, completion: (Tennant) -> Void) {
         if let tenant = manager.tenantManager.fetchTenant(from: id) {
