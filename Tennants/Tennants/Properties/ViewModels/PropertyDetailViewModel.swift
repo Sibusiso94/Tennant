@@ -18,13 +18,27 @@ class PropertyDetailViewModel: ObservableObject {
         }
     }
 
+    @MainActor
     func addTenant(_ tenant: Tennant, propertyID: String, unitId: String) {
         tenantManager.addTenant(propertyID: propertyID,
                                 unitID: unitId,
                                 tenant: tenant) { tenantId in
             self.unitManager.dataProvider.update(id: unitId, tenantId: tenantId)
-            tenant.reference
+//            tenant.reference
         }
+    }
+
+    @MainActor
+    func updateUnit(id: String,
+                    tenantId: String? = nil,
+                    beds: Int? = nil,
+                    baths: Int? = nil,
+                    size: Int? = nil) {
+        unitManager.updateUnits(id: id,
+                                tenantId: tenantId,
+                                beds: beds,
+                                baths: baths,
+                                size: size)
     }
 
     func safeStringToInt(_ string: String) -> Int {

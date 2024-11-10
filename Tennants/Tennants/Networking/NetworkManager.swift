@@ -92,3 +92,70 @@ final class NetworkManagerConcreation: NetworkManager {
         completion(.failure(error))
     }
 }
+
+//func fetch() async throws -> Dashboard? {
+//    let vitalityDataResponse: VitalityDataResponse = try await withCheckedThrowingContinuation { continuation in
+//        api.getVitalityData { response, error in
+//            if let response = response {
+//                continuation.resume(returning: response)
+//            } else {
+//                continuation.resume(throwing: error ?? VitalityAPIError.other)
+//            }
+//
+//        }
+//    }
+//
+//    let isHealthReviewRequired: Bool = try await withCheckedThrowingContinuation { continuation in
+//        fetchHealthReviewStatus { response in
+//            if let response = response {
+//                continuation.resume(returning: response)
+//            } else {
+//                continuation.resume(throwing: VitalityAPIError.other)
+//            }
+//        }
+//    }
+//
+//    let caffeNeroRepsonse: CaffeNeroPartner.CaffeNeroReward? = try await withCheckedThrowingContinuation { continuation in
+//        fetchCaffeNeroResponse(vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.caffeNeroEligibility) { response in
+//            if let response {
+//                continuation.resume(returning: response)
+//            } else  {
+//                continuation.resume(throwing: VitalityAPIError.other)
+//            }
+//        }
+//    }
+//
+//    let vitalityProfile = VitalityProfile(response: vitalityDataResponse, isHealthReviewRequired: isHealthReviewRequired)
+//
+//    let amexReward = AmexRewardParser.parseAmex(vitalityDataResponse.member?.vitalityProfile?.vitalityPolicy?.planType,
+//                                                vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.partners)
+//
+//    let cinemaReward = CinemaRewardParser.parseCinema(vitalityDataResponse.member?.vitalityProfile?.vitalityPolicy?.planType,
+//                                                      vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.partners,
+//                                                      vitalityDataResponse.member?.vitalityProfile?.vitalityPolicy?.members,
+//                                                      isHealthReviewRequired)
+//
+//    let rakutenHealthyLivingReward = RakutenHealthyLivingRewardParser.parseRakuten(vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.partners, isHealthReviewRequired)
+//
+//    let mindfulChefReward = MindfulChefRewardParser.parseMindfulChef(vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.partners)
+//
+//    let eligibleRewards = vitalityDataResponse.member?.vitalityProfile?.eligibleRewards
+//    let appleWatchReward = AppleWatchReward(response: eligibleRewards?.appleWatchRewardEligibility)
+//    let amazonPrimeReward = AmazonPrimeReward(response: eligibleRewards?.amazonPrimeRewardEligibility)
+//    let waitroseReward = WaitroseReward(response: eligibleRewards?.waitroseEligibility)
+//    let dashboard = Dashboard(vitalityProfile: vitalityProfile,
+//                              caffeNeroReward: caffeNeroRepsonse,
+//                              cinemaReward: cinemaReward,
+//                              appleWatchReward: appleWatchReward,
+//                              amazonPrimeReward: amazonPrimeReward,
+//                              waitroseReward: waitroseReward,
+//                              amexReward: amexReward,
+//                              rakutenHealthyLivingReward: rakutenHealthyLivingReward,
+//                              mindfulChefReward: mindfulChefReward)
+//
+//    analyticsCapturer.logDashboardUserProperties(dashboard: dashboard,
+//                                                 initiatingPolicies: vitalityDataResponse.member?.vitalityProfile?.vitalityPolicy?.initiatingPolicies,
+//                                                 vitalityPartners: vitalityDataResponse.member?.vitalityProfile?.eligibleRewards?.partners)
+//    return dashboard
+//
+//}

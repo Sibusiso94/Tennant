@@ -15,8 +15,8 @@ class Tennant: Object, Identifiable {
     @Persisted var monthlyIncome: String
     @Persisted var balance: Double
     @Persisted var amountDue: Double
-    @Persisted var startDate: String
-    @Persisted var endDate: String
+    @Persisted var startDate: Date
+    @Persisted var endDate: Date
     @Persisted var fullPayments: String
     
     convenience init(id: String = UUID().uuidString,
@@ -32,8 +32,8 @@ class Tennant: Object, Identifiable {
                      monthlyIncome: String = "0",
                      balance: Double = 0.0,
                      amountDue: Double = 0.0,
-                     startDate: String = "",
-                     endDate: String = "",
+                     startDate: Date = Date.now,
+                     endDate: Date = Date.now,
                      fullPayments: String = "0") {
         self.init()
         self.id = id

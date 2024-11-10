@@ -8,7 +8,9 @@ struct AddTenantView: View {
     @State var tenant = Tennant()
     @State var showErrorMessage: Bool
     @State var showAlert: Bool
-    
+    @State var startDate = Date.now
+    @State var endDate = Date.now
+
     var action: (Tennant) -> Void
     
     init(action: @escaping (Tennant) -> Void) {
@@ -28,7 +30,12 @@ struct AddTenantView: View {
                         CustomTextField(text: $tenant.name, placeHolderText: "Name")
                             .focused($focusedTennantField, equals: .name)
                             .onSubmit { self.focusNextField($focusedTennantField) }
-                        
+
+
+                            CustomTextField(text: $tenant.surname, placeHolderText: "Surname")
+                                .focused($focusedTennantField, equals: .name)
+                                .onSubmit { self.focusNextField($focusedTennantField) }
+
                         CustomTextField(text: $tenant.currentAddress, placeHolderText: "Address")
                             .focused($focusedTennantField, equals: .address)
                             .onSubmit { self.focusNextField($focusedTennantField) }
@@ -59,7 +66,13 @@ struct AddTenantView: View {
                         CustomTextField(text: $tenant.monthlyIncome, placeHolderText: "Monthly Income")
                             .focused($focusedTennantField, equals: .monthlyIncome)
                             .onSubmit { self.focusNextField($focusedTennantField) }
-                        
+
+                        VStack {
+                            DatePicker("Start date:", selection: $tenant.startDate, displayedComponents: .date)
+                            DatePicker("End date:", selection: $tenant.endDate, displayedComponents: .date)
+                        }
+                        .padding(.horizontal)
+
                         
                         Button {
 //                            if !validate() {

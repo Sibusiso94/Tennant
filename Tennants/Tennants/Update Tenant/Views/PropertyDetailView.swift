@@ -4,10 +4,12 @@ import MyLibrary
 struct PropertyDetailView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: PropertiesViewModel
+    @StateObject var detailViewModel: PropertyDetailViewModel
+
     @State var showDetailView: Bool
     @State var showAlert = false
     @State var selectedTenant: Tennant?
-    @StateObject var detailViewModel: PropertyDetailViewModel
+    @State private var searchText = ""
     
     init(viewModel: PropertiesViewModel) {
         _showDetailView = State(initialValue: false)
@@ -29,8 +31,7 @@ struct PropertyDetailView: View {
                         }
                         Spacer()
                     }
-                    .padding(.horizontal)
-                    
+                    .padding(.horizontal)                    
                     
                     ScrollView {
                         ForEach(viewModel.unitCardModel) { unitModel in
@@ -47,6 +48,7 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationTitle(viewModel.selectedProperty.buildingName)
+                .searchable(text: $searchText, prompt: "Search Unit")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         CustomMenuButton {
@@ -58,7 +60,7 @@ struct PropertyDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showDetailView) {
-                    UnitDetailViewContainer(viewModel: detailViewModel,
+                    UnitDetailViewContainer(propertyViewModel: viewModel, viewModel: detailViewModel,
                                             unit: detailViewModel.unit,
                                             complexName: viewModel.selectedProperty.buildingName,
                                             buildingId: viewModel.selectedProperty.buildingID,

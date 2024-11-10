@@ -91,9 +91,9 @@ struct UpdateTennantView: View {
 
             }
             .onAppear {
-                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
-                paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
-                                                                                 numberOfFullPayments: Int(viewModel.selectedTennant.fullPayments) ?? 0)
+//                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
+//                paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
+//                                                                                 numberOfFullPayments: Int(viewModel.selectedTennant.fullPayments) ?? 0)
             }
 //            .navigationDestination(isPresented: $showEditView) {
 //                withAnimation {

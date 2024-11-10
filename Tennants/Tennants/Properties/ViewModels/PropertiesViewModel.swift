@@ -37,6 +37,7 @@ class PropertiesViewModel: ObservableObject {
         GridItem(.flexible())
     ]
     
+    @MainActor
     func addProperty() {
         selectedProperty = Property()
         manager.createProperty(newData: newData) { success in
@@ -81,20 +82,12 @@ class PropertiesViewModel: ObservableObject {
         properties = manager.fetchProperties()
     }
     
+    @MainActor
     func delete(_ propertyId: String) {
         selectedProperty = Property()
         properties.removeAll(where: { $0.buildingID == propertyId })
         manager.deleteProperty(propertyId)
     }
-    
-//    func addTenant(_ tenant: Tennant) {
-//        manager.tenantManager.addTenant(propertyID: selectedProperty.buildingID,
-//                                unitID: selectedUnit.id,
-//                                tenant: tenant) { tenantId in
-//            self.manager.unitManager.dataProvider.update(id: self.selectedUnit.id, tenantId: tenantId)
-//            tenant.reference
-//        }
-//    }
     
     func getTenant(with id: String, completion: (Tennant) -> Void) {
         if let tenant = manager.tenantManager.fetchTenant(from: id) {

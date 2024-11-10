@@ -36,26 +36,26 @@ class UnitsDataProvider: DataSource {
                 tenantId: String? = nil,
                 numberOfBedrooms: Int? = nil,
                 numberOfBathrooms: Int? = nil,
-                isOccupied: Bool? = nil) {
+                size: Int? = nil) {
         let realm = try! Realm()
         
         if let unitToUpdate = realm.object(ofType: SingleUnit.self, forPrimaryKey: id) {
             try! realm.write {
-                if let tenantId = tenantId {
+                if let tenantId {
                     unitToUpdate.tenantID = tenantId
                     unitToUpdate.isOccupied = true
                 }
                 
-                if let numberOfBedrooms = numberOfBedrooms {
+                if let numberOfBedrooms {
                     unitToUpdate.numberOfBedrooms = numberOfBedrooms
                 }
                 
-                if let numberOfBathrooms = numberOfBathrooms {
+                if let numberOfBathrooms {
                     unitToUpdate.numberOfBathrooms = numberOfBathrooms
                 }
                 
-                if let isOccupied = isOccupied {
-                    unitToUpdate.isOccupied = true
+                if let size {
+                    unitToUpdate.size = size
                 }
             }
         } else {

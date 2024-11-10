@@ -14,7 +14,8 @@ class NewDataModel {
     var company: String
     var position: String
     var monthlyIncome: String
-    
+    var size: String
+
     init(isAProperty: Bool = false,
          name: String = "",
          surname: String = "",
@@ -27,7 +28,8 @@ class NewDataModel {
          unitID: String = "",
          company: String = "",
          position: String = "",
-         monthlyIncome: String = "") {
+         monthlyIncome: String = "",
+         size: String = "") {
         self.isAProperty = isAProperty
         self.name = name
         self.surname = surname
@@ -41,5 +43,6 @@ class NewDataModel {
         self.company = company
         self.position = position
         self.monthlyIncome = monthlyIncome
+        self.size = size
     }
 }

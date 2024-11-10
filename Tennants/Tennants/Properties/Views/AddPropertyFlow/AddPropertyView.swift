@@ -8,16 +8,17 @@ struct AddPropertyView: View {
     
     @ObservedObject var viewModel: PropertiesViewModel
     @State var showErrorMessage: Bool
-    @State var isPropertyAdded: Bool
-    
+    var isEditing: Bool
+
     var action: () -> Void
     
     init(viewModel: PropertiesViewModel,
+         isEditing: Bool = false,
          action: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.isEditing = isEditing
         self.action = action
         _showErrorMessage = State(initialValue: false)
-        _isPropertyAdded = State(initialValue: false)
     }
     
     var body: some View {
@@ -32,33 +33,41 @@ struct AddPropertyView: View {
                             .focused($focusedField, equals: .name)
                             .onSubmit { self.focusNextField($focusedField) }
                         
-                        CustomTextField(text: $viewModel.newData.address,
-                                        placeHolderText: "Address",
-                                        texFieldHeight: 100,
-                                        axis: .vertical)
-                            .focused($focusedField, equals: .address)
-                            .onSubmit { self.focusNextField($focusedField) }
-                        
                         switch viewModel.propertyType {
                         case .multipleUnits:
+                            CustomTextField(text: $viewModel.newData.address,
+                                            placeHolderText: "Address",
+                                            texFieldHeight: 100,
+                                            axis: .vertical)
+                                .focused($focusedField, equals: .address)
+                                .onSubmit { self.focusNextField($focusedField) }
+
                             TextField("Number of Units", text: $viewModel.newData.numberOfUnits)
                                 .numberTextField()
-                            
-                            CustomTextButton(title: "Add property") {
-                                action()
-                            }
                         case .singleUnit:
                             CustomTextField(text: $viewModel.newData.numberOfBedrooms, placeHolderText: "Number Of Bedrooms")
                             CustomTextField(text: $viewModel.newData.numberOfBathrooms, placeHolderText: "Number of Bathrooms")
-                            
-                            CustomTextButton(title: "Add property") {
-                                action()
-                            }
+                            CustomTextField(text: $viewModel.newData.size, placeHolderText: "Size ㎡")
                         }
-                        
+
+                        CustomTextButton(title: isEditing ? "Edit Unit" : "Add property") {
+                            action()
+                            dismiss()
+                        }
+
                         Spacer()
                     }
-                    .navigationTitle("Add a Property")
+                    .navigationTitle(isEditing ? "Edit Property" : "Add a Property")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            if isEditing {
+                                Button("Cancel") {
+                                    dismiss()
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

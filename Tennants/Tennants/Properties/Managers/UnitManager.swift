@@ -26,18 +26,30 @@ class UnitManager {
 
     func generatePropertyUnits(propertyId: String,
                                numberOfUnits: Int,
+                               numberOfBeds: Int? = nil,
+                               numberOfBaths: Int? = nil,
                                completion: @escaping ([String]) -> Void) {
         var newUnits: [SingleUnit] = []
         
-        for unit in 1..<numberOfUnits + 1 {
-            let newUnit = SingleUnit(unitNumber: unit,
-                                     propertyId: propertyId)
-            newUnits.append(newUnit)
+        if let numberOfBeds, let numberOfBaths {
+            let newUnit = SingleUnit(unitNumber: 1,
+                                     propertyId: propertyId,
+                                     numberOfBedrooms: numberOfBeds,
+                                     numberOfBathrooms: numberOfBaths)
+            
+            dataProvider.create(newUnit)
+            completion([newUnit.id])
+        } else {
+            for unit in 1..<numberOfUnits + 1 {
+                let newUnit = SingleUnit(unitNumber: unit,
+                                         propertyId: propertyId)
+                newUnits.append(newUnit)
+            }
+
+            dataProvider.createMultiple(newUnits)
+            let unitIds = getUnitIds(with: newUnits)
+            completion(unitIds)
         }
-        
-        dataProvider.createMultiple(newUnits)
-        let unitIds = getUnitIds(with: newUnits)
-        completion(unitIds)
     }
     
     func getUnitIds(with units: [SingleUnit]) -> [String] {
@@ -48,7 +60,19 @@ class UnitManager {
         
         return ids
     }
-    
+
+    func updateUnits(id: String,
+                     tenantId: String? = nil,
+                     beds: Int? = nil,
+                     baths: Int? = nil,
+                     size: Int? = nil) {
+        dataProvider.update(id: id,
+                            tenantId: tenantId,
+                            numberOfBedrooms: beds,
+                            numberOfBathrooms: baths,
+                            size: size)
+    }
+
     func deleteUnits(with propertyId: String, completion: ([String]) -> Void) {
         let data = dataProvider.fetchData()
         var unitIds = [String]()
