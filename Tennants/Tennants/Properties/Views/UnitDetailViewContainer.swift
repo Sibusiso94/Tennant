@@ -7,12 +7,14 @@ struct UnitDetailViewContainer: View {
     @State var showAddTenantView = false
     @State var showAlert = false
     @State var showEditingView = false
+//    @State var newTenant = Tennant()
 
     var unit: SingleUnit
     var complexName: String
     var buildingId: String
     var address: String
     var tenant: Tennant?
+    var unitImage: Image?
 
     init(propertyViewModel: PropertiesViewModel,
          viewModel: PropertyDetailViewModel,
@@ -20,7 +22,8 @@ struct UnitDetailViewContainer: View {
          complexName: String,
          buildingId: String,
          address: String,
-         tenant: Tennant? = nil) {
+         tenant: Tennant? = nil,
+         unitImage: Image? = nil) {
         self.propertyViewModel = propertyViewModel
         self.viewModel = viewModel
         self.unit = unit
@@ -28,6 +31,7 @@ struct UnitDetailViewContainer: View {
         self.buildingId = buildingId
         self.address = address
         self.tenant = tenant
+        self.unitImage = unitImage
     }
     
     var body: some View {
@@ -38,12 +42,12 @@ struct UnitDetailViewContainer: View {
             ScrollView {
                 VStack {
                     UnitDetailView(title: "Room \(unit.unitNumber)",
-                                   image: Image("house"),
+                                   image: unitImage ?? Image("house"),
                                    complexName: complexName,
                                    address: address,
                                    bedrooms: "\(unit.numberOfBedrooms)",
                                    bathrooms: "\(unit.numberOfBathrooms)",
-                                   size: "\(unit.size)m")
+                                   size: "\(unit.size)㎡")
 
                     Divider()
 
@@ -65,7 +69,9 @@ struct UnitDetailViewContainer: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                CustomMenuButton {
+                CustomMenuButton(title1: "Edit Unit",
+                                 title2: "Delete Tenant",
+                                 isOccupied: unit.isOccupied) {
                     propertyViewModel.propertyType = PropertyOptions.singleUnit
                     showEditingView = true
                 } option2Action: {
@@ -75,8 +81,11 @@ struct UnitDetailViewContainer: View {
             }
         }
         .navigationDestination(isPresented: $showAddTenantView) {
-            AddTenantView() { tenant in
-                viewModel.addTenant(tenant, propertyID: buildingId, unitId: unit.id)
+            AddTenantView() { tenantToAdd in
+                viewModel.addTenant(tenantToAdd, propertyID: buildingId, unitId: unit.id)
+                propertyViewModel.getTenant(with: unit.id) { tenantToReturn in
+//                    tenant = tenantToReturn
+                }
             }
         }
         .sheet(isPresented: $showEditingView) {

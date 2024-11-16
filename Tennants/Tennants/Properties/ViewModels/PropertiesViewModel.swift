@@ -40,7 +40,7 @@ class PropertiesViewModel: ObservableObject {
     @MainActor
     func addProperty() {
         selectedProperty = Property()
-        manager.createProperty(newData: newData) { success in
+        manager.createProperty(newData: newData, propertyType: propertyType) { success in
             if success {
                 self.showAlert = true
                 self.setUpStatus(message: "Property saved successfully.")

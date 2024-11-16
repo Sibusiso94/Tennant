@@ -28,15 +28,17 @@ class UnitManager {
                                numberOfUnits: Int,
                                numberOfBeds: Int? = nil,
                                numberOfBaths: Int? = nil,
+                               size: Int? = nil,
                                completion: @escaping ([String]) -> Void) {
         var newUnits: [SingleUnit] = []
-        
-        if let numberOfBeds, let numberOfBaths {
+
+        if let numberOfBeds, let numberOfBaths, let size {
             let newUnit = SingleUnit(unitNumber: 1,
                                      propertyId: propertyId,
                                      numberOfBedrooms: numberOfBeds,
-                                     numberOfBathrooms: numberOfBaths)
-            
+                                     numberOfBathrooms: numberOfBaths,
+                                     size: size)
+
             dataProvider.create(newUnit)
             completion([newUnit.id])
         } else {

@@ -33,15 +33,17 @@ struct AddPropertyView: View {
                             .focused($focusedField, equals: .name)
                             .onSubmit { self.focusNextField($focusedField) }
                         
-                        switch viewModel.propertyType {
-                        case .multipleUnits:
+                        if !isEditing {
                             CustomTextField(text: $viewModel.newData.address,
                                             placeHolderText: "Address",
                                             texFieldHeight: 100,
                                             axis: .vertical)
-                                .focused($focusedField, equals: .address)
-                                .onSubmit { self.focusNextField($focusedField) }
+                            .focused($focusedField, equals: .address)
+                            .onSubmit { self.focusNextField($focusedField) }
+                        }
 
+                        switch viewModel.propertyType {
+                        case .multipleUnits:
                             TextField("Number of Units", text: $viewModel.newData.numberOfUnits)
                                 .numberTextField()
                         case .singleUnit:

@@ -49,6 +49,7 @@
 		5C43E4202CDA4E84003AA3EA /* UnitsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43E41F2CDA4E84003AA3EA /* UnitsDetailView.swift */; };
 		5C43E4222CDA59E7003AA3EA /* UnitDetailViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43E4212CDA59E7003AA3EA /* UnitDetailViewContainer.swift */; };
 		5C43E4242CDA6214003AA3EA /* UnitTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43E4232CDA6214003AA3EA /* UnitTopCardView.swift */; };
+		5C43E4392CE0A8F6003AA3EA /* CustomMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43E4382CE0A8F6003AA3EA /* CustomMenuButton.swift */; };
 		5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734232B6261C00040A0AA /* TennantsApp.swift */; };
 		5C4734262B6261C10040A0AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4734252B6261C10040A0AA /* ContentView.swift */; };
 		5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4734272B6261C40040A0AA /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 		5C43E41F2CDA4E84003AA3EA /* UnitsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsDetailView.swift; sourceTree = "<group>"; };
 		5C43E4212CDA59E7003AA3EA /* UnitDetailViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDetailViewContainer.swift; sourceTree = "<group>"; };
 		5C43E4232CDA6214003AA3EA /* UnitTopCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTopCardView.swift; sourceTree = "<group>"; };
+		5C43E4382CE0A8F6003AA3EA /* CustomMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuButton.swift; sourceTree = "<group>"; };
 		5C4734202B6261C00040A0AA /* Tennants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tennants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4734232B6261C00040A0AA /* TennantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantsApp.swift; sourceTree = "<group>"; };
 		5C4734252B6261C10040A0AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,14 @@
 			path = "API Managers";
 			sourceTree = "<group>";
 		};
+		5C43E4372CE0A8D3003AA3EA /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				5C43E4382CE0A8F6003AA3EA /* CustomMenuButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		5C4734172B6261C00040A0AA = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +429,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5C43E4372CE0A8D3003AA3EA /* CustomViews */,
 				5C0F300E2C67706900B7630E /* DataProviders */,
 				5C0B9B662C611E0100362893 /* TenantDetails */,
 				5C3E31992C3E7C6600321EB3 /* Persistance */,
@@ -703,6 +714,7 @@
 				5C0F30102C67708300B7630E /* TenantDataProvider.swift in Sources */,
 				5C1F469C2C17059000F1482B /* NetworkManager.swift in Sources */,
 				5C4921D62CC7C10700D4318F /* TenantPaymentDataProvider.swift in Sources */,
+				5C43E4392CE0A8F6003AA3EA /* CustomMenuButton.swift in Sources */,
 				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
 				5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */,
 				5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */,

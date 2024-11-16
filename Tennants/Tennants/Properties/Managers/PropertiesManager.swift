@@ -19,7 +19,7 @@ enum ErrorMessage: String, Hashable {
 protocol NewPropertyManager {
     var dataProvider: PropertiesDataProvider { get }
     var unitManager: UnitManager { get }
-    func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void)
+    func createProperty(newData: NewDataModel, propertyType: PropertyOptions, completion: @escaping (Bool) -> Void)
 }
 
 class PropertiesManager: NewPropertyManager {
@@ -50,19 +50,25 @@ class PropertiesManager: NewPropertyManager {
         return unitManager.fetchUnitsBy(propertyId: selectedPropertyID)
     }
     
-    func createProperty(newData: NewDataModel, completion: @escaping (Bool) -> Void) {
+    func createProperty(newData: NewDataModel, propertyType: PropertyOptions, completion: @escaping (Bool) -> Void) {
         let dispatchGroup = DispatchGroup()
+        print(propertyType)
         newProperty = Property()
         let id = UUID().uuidString
         newProperty = Property(buildingID: id,
                                buildingName: newData.name,
                                buildingAddress: newData.address,
-                               numberOfUnits: newData.numberOfUnits)
-        
+                               numberOfUnits: newData.numberOfUnits,
+                               isSingleUnit: propertyType == .singleUnit ? true : false)
+
         dispatchGroup.enter()
-        guard let numberOfUnits = Int(newData.numberOfUnits) else { return }
-        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, numberOfUnits: numberOfUnits) { unitIds in
-            self.newProperty.unitIDs.append(objectsIn: unitIds)  
+        let numberOfUnits = Int(newData.numberOfUnits) ?? 1
+        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, 
+                                          numberOfUnits: numberOfUnits,
+                                          numberOfBeds: Int(newData.numberOfBedrooms),
+                                          numberOfBaths: Int(newData.numberOfBathrooms),
+                                          size: Int(newData.size)) { unitIds in
+            self.newProperty.unitIDs.append(objectsIn: unitIds)
             dispatchGroup.leave()
         }
         

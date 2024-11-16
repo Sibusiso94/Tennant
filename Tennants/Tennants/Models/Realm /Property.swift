@@ -7,20 +7,23 @@ class Property: Object, Identifiable {
     @Persisted var buildingName: String
     @Persisted var buildingAddress: String
     @Persisted var numberOfUnits: String
-    
+    @Persisted var isSingleUnit: Bool
+
     convenience init(buildingID: String = UUID().uuidString,
-         buildingName: String = "",
-         buildingAddress: String = "",
-         numberOfUnits: String = "",
-         unitIDs: List<String> = List<String>()) {
+                     buildingName: String = "",
+                     buildingAddress: String = "",
+                     numberOfUnits: String = "",
+                     unitIDs: List<String> = List<String>(),
+                     isSingleUnit: Bool = true) {
         self.init()
         self.buildingID = buildingID
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
         self.unitIDs = unitIDs
+        self.isSingleUnit = isSingleUnit
     }
-    
+
     override class func primaryKey() -> String? {
         "buildingID"
     }
