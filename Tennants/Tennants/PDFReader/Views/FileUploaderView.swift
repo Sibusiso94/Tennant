@@ -22,7 +22,7 @@ struct FileUploaderView: View {
                     
                     if isCompleteUploading {
                         CustomTextButton(title: "Process document") {
-                            viewModel.fetchApiData()
+                            viewModel.handleData()
                             viewModel.isLoading = true
                         }
                     } else {

@@ -1,8 +1,8 @@
 import Foundation
 
 class ReferencesManager {
-    private let repository: RealmRepository
-    private let firebaseRepository: FirebaseRepository
+    let repository: RealmRepository
+    let firebaseRepository: FirebaseRepository
     private let dataProvider: TenantDataProvider
     
     init(repository: RealmRepository,
@@ -12,7 +12,7 @@ class ReferencesManager {
         self.dataProvider = TenantDataProvider(repository: repository)
     }
     
-    func fetchReferences(completion: ([Reference]) -> Void) {
+    private func fetchReferences(completion: ([Reference]) -> Void) {
         var references = [Reference]()
         let allTenants = dataProvider.fetchData()
         

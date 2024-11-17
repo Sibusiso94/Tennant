@@ -5,7 +5,8 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     let repository = RealmRepository()
     var validationManager = ValidationManager()
     let apiManager: ApiDataManager
-    let historyManager:  HistoryManager
+    let historyManager: HistoryManager
+    let referenceManager: ReferencesManager
 
     var fileStoragePath: String?
     let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
@@ -21,6 +22,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     init() {
         self.apiManager = ApiDataManager(repository: repository)
         self.historyManager = HistoryManager(repository: repository)
+        self.referenceManager = ReferencesManager(repository: repository, firebaseRepository: apiManager.firebaseRepository)
         self.getTenantData()
     }
 
@@ -44,15 +46,27 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         }
     }
 
-    func fetchApiData() {
+    func handleData() {
         isLoading = true
-        
+
+        referenceManager.uploadReferences { result in
+            switch result {
+            case .success(let success):
+                fetchApiData()
+                isLoading = false
+            case .failure(let failure):
+                print("failed to upload references: \(failure)")
+                isLoading = false
+            }
+        }
+    }
+
+    private func fetchApiData() {
         if let fileStoragePath {
             apiManager.fetchApiData(selectedBankType: selectedBankType, reference: reference, storagePath: fileStoragePath) { [weak self] data, error in
                 if let data {
                     self?.persistHistoryData(with: data)
                     self?.setUpResultView()
-                    self?.isLoading = false
                 }
 
                 if let error {
