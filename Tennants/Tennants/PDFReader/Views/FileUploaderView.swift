@@ -20,16 +20,17 @@ struct FileUploaderView: View {
                                           bankTypes: viewModel.bankTypes,
                                           selectedBankType: $viewModel.selectedBankType)
                     
-                    if isCompleteUploading {
+//                    if isCompleteUploading {
                         CustomTextButton(title: "Process document") {
-                            viewModel.handleData()
-                            viewModel.isLoading = true
+                            Task {
+                                await viewModel.handleData()
+                            }
                         }
-                    } else {
-                        CustomTextButton(title: "Select a document") {
-                            viewModel.showPDFImporter.toggle()
-                        }
-                    }
+//                    } else {
+//                        CustomTextButton(title: "Select a document") {
+//                            viewModel.showPDFImporter.toggle()
+//                        }
+//                    }
                 }
                 .sheet(isPresented: $viewModel.showPDFImporter) {
                     DocumentPicker() { url in

@@ -12,22 +12,18 @@ class ReferencesManager {
         self.dataProvider = TenantDataProvider(repository: repository)
     }
     
-    private func fetchReferences(completion: ([Reference]) -> Void) {
-        var references = [Reference]()
+    private func fetchReferences() -> Reference {
+        var references = [String]()
         let allTenants = dataProvider.fetchData()
         
-        references = allTenants.map({ tenant in
-            return Reference(id: tenant.id, references: tenant.reference)
-        })
-        
-        completion(references)
+        references = allTenants.map({ $0.reference })
+        return Reference(references: references)
     }
     
-    func uploadReferences(completion: (Result<Void, any Error>) -> Void) {
-        fetchReferences { references in
-            firebaseRepository.create(references) { result in
-                completion(result)
-            }
+    func uploadReferences(completion: @escaping (Error?) -> Void) async {
+        let references = fetchReferences()
+        await firebaseRepository.create(references) { result in
+            completion(result)
         }
     }
 }

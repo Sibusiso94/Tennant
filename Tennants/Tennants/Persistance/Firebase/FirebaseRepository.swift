@@ -2,10 +2,11 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import OSLog
+import MyLibrary
 
 protocol CreateMultipleObjects {
     associatedtype T
-    func create(_ object: [T], completion: (Result<Void, Error>) -> Void)
+    func create(_ object: T, completion: @escaping (Error?) -> Void) async
 }
 
 protocol PDFUploadable {
@@ -18,15 +19,33 @@ class FirebaseRepository: CreateMultipleObjects, PDFUploadable {
     private var db = Firestore.firestore()
     let storageRef = Storage.storage().reference()
     
-    func create(_ object: [Reference], completion: (Result<Void, any Error>) -> Void) {
+    func create(_ objects: Reference, completion: @escaping (Error?) -> Void) async {
         do {
-          try db.collection("references").document("Date").setData(from: object)
-        } catch let error {
-          print("Error writing city to Firestore: \(error)")
+          try await db.collection("userID").document("References").setData([
+            "date": setDate(),
+            "reference": objects.references
+          ])
+          print("Document successfully written!")
+            completion(nil)
+        } catch {
+          print("Error writing document: \(error)")
+            completion(error)
         }
     }
-    
-    
+
+    func getDocumentId() -> String {
+        let docID = self.db.collection("userID").document("References").documentID
+        return docID
+    }
+
+    private func setDate() -> String {
+        let date = Date.now
+        let day = date.formatted(.dateTime.weekday(.twoDigits))
+        let month = date.formatted(.dateTime.month(.twoDigits))
+        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
+        return String(year)
+    }
+
     func uploadFile(url: Data?, fileStoragePath: String, completion: @escaping (String?, Error?) -> Void) {
         guard let localFile = url else { return }
         let metadata = StorageMetadata()

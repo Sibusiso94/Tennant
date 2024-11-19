@@ -46,21 +46,22 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         }
     }
 
-    func handleData() {
+    func handleData() async {
         isLoading = true
 
-        referenceManager.uploadReferences { result in
-            switch result {
-            case .success(let success):
-                fetchApiData()
-                isLoading = false
-            case .failure(let failure):
-                print("failed to upload references: \(failure)")
-                isLoading = false
+        await referenceManager.uploadReferences { error in
+            if let error {
+                print("failed to upload references: \(error)")
+                self.isLoading = false
+            } else {
+//                self.fetchApiData()
+                print("Successfully uploaded")
+                self.isLoading = false
             }
         }
     }
 
+    // Try make this a async await
     private func fetchApiData() {
         if let fileStoragePath {
             apiManager.fetchApiData(selectedBankType: selectedBankType, reference: reference, storagePath: fileStoragePath) { [weak self] data, error in

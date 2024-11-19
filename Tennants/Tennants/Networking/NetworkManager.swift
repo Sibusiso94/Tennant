@@ -93,6 +93,18 @@ final class NetworkManagerConcreation: NetworkManager {
     }
 }
 
+//private func fetchDevices() async throws -> [Device] {
+//    return try await withCheckedThrowingContinuation { continuation in
+//        devicesProvider.fetchDevices { devices, error in
+//            if let error = error {
+//                continuation.resume(throwing: error)
+//            } else {
+//                continuation.resume(returning: devices)
+//            }
+//        }
+//    }
+//}
+
 //func fetch() async throws -> Dashboard? {
 //    let vitalityDataResponse: VitalityDataResponse = try await withCheckedThrowingContinuation { continuation in
 //        api.getVitalityData { response, error in
