@@ -7,14 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089A82BF32FBE0061C00B /* MainAppView.swift */; };
-		5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */; };
-		5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */; };
-		5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089AF2BF32FE00061C00B /* SessionManager.swift */; };
-		5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */; };
-		5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089B62BF32FE00061C00B /* OnboardingView.swift */; };
-		5C0089CB2BF330390061C00B /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C62BF330390061C00B /* TabViewModel.swift */; };
-		5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089C82BF330390061C00B /* TennantTabView.swift */; };
 		5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* PropertiesView.swift */; };
 		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
 		5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* PropertiesManager.swift */; };
@@ -67,6 +59,15 @@
 		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
 		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
 		5CB785842C9C025900C2FF43 /* UnitCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB785832C9C025900C2FF43 /* UnitCardModel.swift */; };
+		5CCCEB072CEDA9F900997FF9 /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB002CEDA9F900997FF9 /* OnboardingSubView.swift */; };
+		5CCCEB092CEDA9F900997FF9 /* AddFirstPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB022CEDA9F900997FF9 /* AddFirstPropertyView.swift */; };
+		5CCCEB0A2CEDA9F900997FF9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB012CEDA9F900997FF9 /* OnboardingView.swift */; };
+		5CCCEB0C2CEDAAF100997FF9 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB0B2CEDAAF100997FF9 /* MainAppView.swift */; };
+		5CCCEB102CEDAB4C00997FF9 /* OnboardingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB0D2CEDAB4B00997FF9 /* OnboardingSubView.swift */; };
+		5CCCEB112CEDAB4C00997FF9 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB0E2CEDAB4B00997FF9 /* OnboardingManager.swift */; };
+		5CCCEB122CEDAB4C00997FF9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB0F2CEDAB4C00997FF9 /* OnboardingView.swift */; };
+		5CCCEB142CEDAB7B00997FF9 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB132CEDAB7B00997FF9 /* SessionManager.swift */; };
+		5CCCEB162CEDABBD00997FF9 /* AddFirstPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB152CEDABBD00997FF9 /* AddFirstPropertyManager.swift */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
 		5CD216002BF4F1840035F729 /* UnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* UnitManager.swift */; };
 		5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */; };
@@ -113,14 +114,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C0089A82BF32FBE0061C00B /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppView.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/MainAppView.swift"; sourceTree = "<group>"; };
-		5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
-		5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
-		5C0089AF2BF32FE00061C00B /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
-		5C0089B62BF32FE00061C00B /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		5C0089C62BF330390061C00B /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
-		5C0089C82BF330390061C00B /* TennantTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
 		5C0089CF2BF330FC0061C00B /* PropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesView.swift; sourceTree = "<group>"; };
 		5C0089DC2BF345330061C00B /* PropertiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesManager.swift; sourceTree = "<group>"; };
 		5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDataModel.swift; sourceTree = "<group>"; };
@@ -168,6 +161,23 @@
 		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
 		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5CB785832C9C025900C2FF43 /* UnitCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitCardModel.swift; sourceTree = "<group>"; };
+		5CCCEAE72CEDA9F900997FF9 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		5CCCEAE82CEDA9F900997FF9 /* TennantTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennantTabView.swift; sourceTree = "<group>"; };
+		5CCCEAEC2CEDA9F900997FF9 /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
+		5CCCEAED2CEDA9F900997FF9 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		5CCCEAEE2CEDA9F900997FF9 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		5CCCEAFC2CEDA9F900997FF9 /* AddFirstPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyView.swift; sourceTree = "<group>"; };
+		5CCCEAFD2CEDA9F900997FF9 /* OnboardingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
+		5CCCEAFE2CEDA9F900997FF9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		5CCCEB002CEDA9F900997FF9 /* OnboardingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingSubView.swift; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Views/Tab View/Onboard/Views/OnboardingSubView.swift"; sourceTree = "<group>"; };
+		5CCCEB012CEDA9F900997FF9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Views/Tab View/Onboard/Views/OnboardingView.swift"; sourceTree = "<group>"; };
+		5CCCEB022CEDA9F900997FF9 /* AddFirstPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddFirstPropertyView.swift; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Views/Tab View/Onboard/Views/AddFirstPropertyView.swift"; sourceTree = "<group>"; };
+		5CCCEB0B2CEDAAF100997FF9 /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		5CCCEB0D2CEDAB4B00997FF9 /* OnboardingSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSubView.swift; sourceTree = "<group>"; };
+		5CCCEB0E2CEDAB4B00997FF9 /* OnboardingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		5CCCEB0F2CEDAB4C00997FF9 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		5CCCEB132CEDAB7B00997FF9 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		5CCCEB152CEDABBD00997FF9 /* AddFirstPropertyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFirstPropertyManager.swift; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
 		5CD215FF2BF4F1840035F729 /* UnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitManager.swift; sourceTree = "<group>"; };
 		5CDA50CD2C458DD50040E268 /* PropertiesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesDataProvider.swift; sourceTree = "<group>"; };
@@ -215,45 +225,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C0089B02BF32FE00061C00B /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089AB2BF32FE00061C00B /* AddFirstPropertyManager.swift */,
-				5C0089AD2BF32FE00061C00B /* OnboardingManager.swift */,
-				5C0089AF2BF32FE00061C00B /* SessionManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		5C0089B72BF32FE00061C00B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089B42BF32FE00061C00B /* OnboardingSubView.swift */,
-				5C0089B62BF32FE00061C00B /* OnboardingView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5C0089B82BF32FE00061C00B /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089B02BF32FE00061C00B /* Managers */,
-				5C0089B72BF32FE00061C00B /* Views */,
-			);
-			name = Onboarding;
-			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Onboarding";
-			sourceTree = "<group>";
-		};
-		5C0089C92BF330390061C00B /* Tab View */ = {
-			isa = PBXGroup;
-			children = (
-				5C0089C62BF330390061C00B /* TabViewModel.swift */,
-				5C0089C82BF330390061C00B /* TennantTabView.swift */,
-			);
-			name = "Tab View";
-			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Tennant/Tennants/Tennants/Views/Tab View";
-			sourceTree = "<group>";
-		};
 		5C0089D22BF331120061C00B /* Properties */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,12 +410,12 @@
 				5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */,
 				5C0089E22BF34A4D0061C00B /* Models */,
 				5C0089D22BF331120061C00B /* Properties */,
-				5C0089C92BF330390061C00B /* Tab View */,
-				5C0089B82BF32FE00061C00B /* Onboarding */,
+				5CCCEAF42CEDA9F900997FF9 /* Onboard */,
+				5CCCEAE92CEDA9F900997FF9 /* TabView */,
 				5C4734232B6261C00040A0AA /* TennantsApp.swift */,
-				5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */,
 				5C4734252B6261C10040A0AA /* ContentView.swift */,
-				5C0089A82BF32FBE0061C00B /* MainAppView.swift */,
+				5CCCEB0B2CEDAAF100997FF9 /* MainAppView.swift */,
+				5C25D5D22C05C6C300C24658 /* GoogleService-Info.plist */,
 				5C4734272B6261C40040A0AA /* Assets.xcassets */,
 				5C4734292B6261C40040A0AA /* Preview Content */,
 				5CB29C442C49634600BC8220 /* Launch Screen.storyboard */,
@@ -488,6 +459,52 @@
 				5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		5CCCEAE92CEDA9F900997FF9 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCEAE72CEDA9F900997FF9 /* TabViewModel.swift */,
+				5CCCEAE82CEDA9F900997FF9 /* TennantTabView.swift */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		5CCCEAEF2CEDA9F900997FF9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCEB0E2CEDAB4B00997FF9 /* OnboardingManager.swift */,
+				5CCCEB132CEDAB7B00997FF9 /* SessionManager.swift */,
+				5CCCEAEC2CEDA9F900997FF9 /* AddFirstPropertyManager.swift */,
+				5CCCEAED2CEDA9F900997FF9 /* OnboardingManager.swift */,
+				5CCCEAEE2CEDA9F900997FF9 /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5CCCEAF42CEDA9F900997FF9 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCEAEF2CEDA9F900997FF9 /* Managers */,
+				5CCCEAFF2CEDA9F900997FF9 /* Views */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
+		5CCCEAFF2CEDA9F900997FF9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCEB152CEDABBD00997FF9 /* AddFirstPropertyManager.swift */,
+				5CCCEB0F2CEDAB4C00997FF9 /* OnboardingView.swift */,
+				5CCCEB0D2CEDAB4B00997FF9 /* OnboardingSubView.swift */,
+				5CCCEAFC2CEDA9F900997FF9 /* AddFirstPropertyView.swift */,
+				5CCCEB022CEDA9F900997FF9 /* AddFirstPropertyView.swift */,
+				5CCCEAFD2CEDA9F900997FF9 /* OnboardingSubView.swift */,
+				5CCCEB012CEDA9F900997FF9 /* OnboardingView.swift */,
+				5CCCEB002CEDA9F900997FF9 /* OnboardingSubView.swift */,
+				5CCCEAFE2CEDA9F900997FF9 /* OnboardingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5CD215FC2BF4CC490035F729 /* AddPropertyFlow */ = {
@@ -690,18 +707,21 @@
 			files = (
 				5CDFD4032CB258D30026150D /* FirebaseRepository.swift in Sources */,
 				5C0089E42BF34A4D0061C00B /* Property.swift in Sources */,
+				5CCCEB072CEDA9F900997FF9 /* OnboardingSubView.swift in Sources */,
 				5CDA50CE2C458DD50040E268 /* PropertiesDataProvider.swift in Sources */,
+				5CCCEB162CEDABBD00997FF9 /* AddFirstPropertyManager.swift in Sources */,
 				5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */,
 				5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */,
 				5CB785842C9C025900C2FF43 /* UnitCardModel.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,
 				5C43E4222CDA59E7003AA3EA /* UnitDetailViewContainer.swift in Sources */,
-				5C0089BE2BF32FE00061C00B /* SessionManager.swift in Sources */,
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
-				5C0089BC2BF32FE00061C00B /* OnboardingManager.swift in Sources */,
 				5C43E4202CDA4E84003AA3EA /* UnitsDetailView.swift in Sources */,
 				5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */,
+				5CCCEB102CEDAB4C00997FF9 /* OnboardingSubView.swift in Sources */,
 				5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */,
+				5CCCEB0C2CEDAAF100997FF9 /* MainAppView.swift in Sources */,
+				5CCCEB122CEDAB4C00997FF9 /* OnboardingView.swift in Sources */,
 				5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */,
 				5C05CB122BFF552B00BF7297 /* DocumentPicker.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
@@ -710,12 +730,11 @@
 				5C0B9B652C60F28D00362893 /* PropertyDetailViewModel.swift in Sources */,
 				5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */,
 				5CDA50D02C4592080040E268 /* UnitsDataProvider.swift in Sources */,
-				5C0089CD2BF330390061C00B /* TennantTabView.swift in Sources */,
 				5C0F30102C67708300B7630E /* TenantDataProvider.swift in Sources */,
 				5C1F469C2C17059000F1482B /* NetworkManager.swift in Sources */,
+				5CCCEB092CEDA9F900997FF9 /* AddFirstPropertyView.swift in Sources */,
 				5C4921D62CC7C10700D4318F /* TenantPaymentDataProvider.swift in Sources */,
 				5C43E4392CE0A8F6003AA3EA /* CustomMenuButton.swift in Sources */,
-				5C0089A92BF32FBF0061C00B /* MainAppView.swift in Sources */,
 				5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */,
 				5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */,
 				5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */,
@@ -725,21 +744,20 @@
 				5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */,
 				5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */,
 				5C58ADA62CBE8E9800495D11 /* ReferencesManager.swift in Sources */,
-				5C0089C42BF32FE00061C00B /* OnboardingView.swift in Sources */,
+				5CCCEB142CEDAB7B00997FF9 /* SessionManager.swift in Sources */,
 				5CDFD3FD2CB249330026150D /* FirebaseManager.swift in Sources */,
 				5CD216002BF4F1840035F729 /* UnitManager.swift in Sources */,
+				5CCCEB0A2CEDA9F900997FF9 /* OnboardingView.swift in Sources */,
 				5C1A64012BFB6D92007CAEBF /* UpdateTennantViewModel.swift in Sources */,
 				5CDFD4002CB24F8B0026150D /* References.swift in Sources */,
+				5CCCEB112CEDAB4C00997FF9 /* OnboardingManager.swift in Sources */,
 				5C25D5E52C05E08900C24658 /* FileDataManager.swift in Sources */,
 				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
-				5C0089BA2BF32FE00061C00B /* AddFirstPropertyManager.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 				5C1F469E2C1B23D000F1482B /* FileUploaderView.swift in Sources */,
 				5C43E4242CDA6214003AA3EA /* UnitTopCardView.swift in Sources */,
 				5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */,
-				5C0089C22BF32FE00061C00B /* OnboardingSubView.swift in Sources */,
 				5C8FDB462C8AFFED004EC65E /* Migrator.swift in Sources */,
-				5C0089CB2BF330390061C00B /* TabViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +923,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tennants/Preview Content\"";
-				DEVELOPMENT_TEAM = 9673UJWKD5;
+				DEVELOPMENT_TEAM = GZ2NG9D5X5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tennants/Info.plist;
@@ -939,7 +957,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tennants/Preview Content\"";
-				DEVELOPMENT_TEAM = 9673UJWKD5;
+				DEVELOPMENT_TEAM = GZ2NG9D5X5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tennants/Info.plist;
