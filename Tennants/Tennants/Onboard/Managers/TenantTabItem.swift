@@ -1,6 +1,6 @@
 import Foundation
 
-enum TennantTabItem: Hashable {
+enum TenantTabItem: Hashable {
     case home
     case update
 }

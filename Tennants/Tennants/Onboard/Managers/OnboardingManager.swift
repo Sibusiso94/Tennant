@@ -15,14 +15,14 @@ struct OnboardingItem: Identifiable, Equatable {
 
 final class OnboardingManager: ObservableObject {
     @Published private(set) var items: [OnboardingItem] = []
-    
+
     init() {
         load()
     }
-    
+
     func load() {
         items = [
-            .init(title: "Welcome, let's get you started", 
+            .init(title: "Welcome, let's get you started",
                   image: "image0",
                   subTitle: ""),
             .init(title: "Setting up your properties",

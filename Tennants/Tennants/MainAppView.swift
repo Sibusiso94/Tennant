@@ -14,7 +14,7 @@ struct MainAppView: View {
                 OnboardingView(action: session.completeOnboarding)
                 .transition(.opacity)
             case .homeView:
-                TennantTabView()
+                TenantTabView()
                     .transition(.opacity)
             default:
                 // Splash Screen
