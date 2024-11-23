@@ -74,6 +74,10 @@
 		5CE442732CEE3DC3000D62CC /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE442722CEE3DC3000D62CC /* OnboardingManager.swift */; };
 		5CE442752CEE3EBA000D62CC /* TenantTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE442742CEE3EBA000D62CC /* TenantTabView.swift */; };
 		5CE442772CEE3EF9000D62CC /* TenantTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE442762CEE3EF9000D62CC /* TenantTabItem.swift */; };
+		5CE845322CEE4FCB00361431 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE845312CEE4FCB00361431 /* Secrets.swift */; };
+		5CE845352CEE50D900361431 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE845342CEE50D900361431 /* Test.swift */; };
+		5CE845372CEE526A00361431 /* SupabaseNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE845362CEE526A00361431 /* SupabaseNetworking.swift */; };
+		5CE845392CEE533300361431 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5CE845382CEE533300361431 /* Supabase */; };
 		5CF646072C7F5E290031B2B0 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF646062C7F5E290031B2B0 /* RealmRepository.swift */; };
 		5CF6460A2C7F61DC0031B2B0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; };
 		5CF6460B2C7F62040031B2B0 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 5CF646092C7F61DC0031B2B0 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -174,6 +178,9 @@
 		5CE442722CEE3DC3000D62CC /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		5CE442742CEE3EBA000D62CC /* TenantTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantTabView.swift; sourceTree = "<group>"; };
 		5CE442762CEE3EF9000D62CC /* TenantTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantTabItem.swift; sourceTree = "<group>"; };
+		5CE845312CEE4FCB00361431 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		5CE845342CEE50D900361431 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		5CE845362CEE526A00361431 /* SupabaseNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseNetworking.swift; sourceTree = "<group>"; };
 		5CF646062C7F5E290031B2B0 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CE845392CEE533300361431 /* Supabase in Frameworks */,
 				5C25D5DB2C05C82D00C24658 /* FirebaseAppCheck in Frameworks */,
 				5C25D5DD2C05C83800C24658 /* FirebaseAuth in Frameworks */,
 				5C25D5E72C05E0F900C24658 /* FirebaseStorage in Frameworks */,
@@ -388,6 +396,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				5CE845332CEE50C600361431 /* Supabase */,
 				5C43E4372CE0A8D3003AA3EA /* CustomViews */,
 				5C0F300E2C67706900B7630E /* DataProviders */,
 				5C0B9B662C611E0100362893 /* TenantDetails */,
@@ -406,6 +415,7 @@
 				5C4734272B6261C40040A0AA /* Assets.xcassets */,
 				5C4734292B6261C40040A0AA /* Preview Content */,
 				5CB29C442C49634600BC8220 /* Launch Screen.storyboard */,
+				5CE845312CEE4FCB00361431 /* Secrets.swift */,
 			);
 			path = Tennants;
 			sourceTree = "<group>";
@@ -524,6 +534,15 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		5CE845332CEE50C600361431 /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				5CE845342CEE50D900361431 /* Test.swift */,
+				5CE845362CEE526A00361431 /* SupabaseNetworking.swift */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -552,6 +571,7 @@
 				5C25D5E22C05C86600C24658 /* FirebaseFirestoreSwift */,
 				5C25D5E62C05E0F900C24658 /* FirebaseStorage */,
 				5CF646092C7F61DC0031B2B0 /* RealmSwift */,
+				5CE845382CEE533300361431 /* Supabase */,
 			);
 			productName = Tennants;
 			productReference = 5C4734202B6261C00040A0AA /* Tennants.app */;
@@ -630,6 +650,7 @@
 				5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5CED454A2C0E019500CEB28D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5CF646082C7F61DC0031B2B0 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
@@ -687,6 +708,7 @@
 				5C1A64022BFB6D92007CAEBF /* UpdateTennantView.swift in Sources */,
 				5C43E4202CDA4E84003AA3EA /* UnitsDetailView.swift in Sources */,
 				5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */,
+				5CE845352CEE50D900361431 /* Test.swift in Sources */,
 				5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */,
 				5CE4426D2CEE3D24000D62CC /* OnboardingSubView.swift in Sources */,
 				5CCCEB0C2CEDAAF100997FF9 /* MainAppView.swift in Sources */,
@@ -712,6 +734,7 @@
 				5C3E319B2C3E7CAD00321EB3 /* HistoryDataProvider.swift in Sources */,
 				5C0B9B682C611E2500362893 /* AddTenantView.swift in Sources */,
 				5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */,
+				5CE845322CEE4FCB00361431 /* Secrets.swift in Sources */,
 				5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */,
 				5C58ADA62CBE8E9800495D11 /* ReferencesManager.swift in Sources */,
 				5CDFD3FD2CB249330026150D /* FirebaseManager.swift in Sources */,
@@ -720,6 +743,7 @@
 				5CDFD4002CB24F8B0026150D /* References.swift in Sources */,
 				5C25D5E52C05E08900C24658 /* FileDataManager.swift in Sources */,
 				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
+				5CE845372CEE526A00361431 /* SupabaseNetworking.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 				5C1F469E2C1B23D000F1482B /* FileUploaderView.swift in Sources */,
 				5C43E4242CDA6214003AA3EA /* UnitTopCardView.swift in Sources */,
@@ -1085,6 +1109,14 @@
 				minimumVersion = 10.26.0;
 			};
 		};
+		5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
 		5CED454A2C0E019500CEB28D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1148,6 +1180,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C25D5D42C05C7DE00C24658 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		5CE845382CEE533300361431 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
 		};
 		5CF646092C7F61DC0031B2B0 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;

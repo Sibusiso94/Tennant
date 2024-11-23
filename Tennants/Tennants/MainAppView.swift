@@ -24,7 +24,3 @@ struct MainAppView: View {
         .animation(.easeInOut, value: session.currentState)
     }
 }
-
-#Preview {
-    MainAppView()
-}

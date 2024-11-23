@@ -7,6 +7,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     let apiManager: ApiDataManager
     let historyManager: HistoryManager
     let referenceManager: ReferencesManager
+    let supabase = SupabaseNetworking()
 
     var fileStoragePath: String?
     let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
@@ -30,15 +31,19 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         if validationManager.validateFileURL(url) {
             do {
                 let data = try Data(contentsOf: url)
-                apiManager.uploadFile(url: data, bankType: selectedBankType) { [weak self] storagePath, error in
-                    if let error = error {
-                        os_log("Failed to upload: %@", type: .debug, error.localizedDescription)
-                        #warning("Create error message")
-                        return
-                    }
-                    self?.fileStoragePath = storagePath
-                    print("Successfully added")
-                    self?.isLoading = false
+//                apiManager.uploadFile(url: data, bankType: selectedBankType) { [weak self] storagePath, error in
+//                    if let error = error {
+//                        os_log("Failed to upload: %@", type: .debug, error.localizedDescription)
+//                        #warning("Create error message")
+//                        return
+//                    }
+//                    self?.fileStoragePath = storagePath
+//                    print("Successfully added")
+//                    self?.isLoading = false
+//                }
+                Task {
+                    try? await supabase.uploadFile(fileData: data, userId: "userId")
+                    self.isLoading = false
                 }
             } catch {
                 os_log("Error reading file data: %@", type: .debug, error.localizedDescription)

@@ -7,7 +7,7 @@ protocol PDFManager {
     var selectedBankType: String { get set }
     var validationManager: ValidationManager { get set }
 
-    func handleImportedFile(url: URL)
+    func handleImportedFile(url: URL) async
 }
 
 class ValidationManager {
