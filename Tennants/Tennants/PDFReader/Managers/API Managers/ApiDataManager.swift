@@ -21,9 +21,7 @@ protocol APIDataHandler {
 class ApiDataManager: ObservableObject, APIManager {
     let repository: RealmRepository
     let networkingManager = NetworkManagerConcreation()
-    let firebaseRepository = FirebaseRepository()
-    
-    let referenceManager: ReferencesManager
+//    let firebaseRepository = FirebaseRepository()
     
     var baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
     var storagePath = ""
@@ -36,7 +34,6 @@ class ApiDataManager: ObservableObject, APIManager {
     
     init(repository: RealmRepository) {
         self.repository = repository
-        self.referenceManager = ReferencesManager(repository: repository, firebaseRepository: firebaseRepository)
     }
     
     func fetchApiData(selectedBankType: String, reference: String, storagePath: String, completion: @escaping ([TenantPaymentData]?, Error?) -> Void) {
@@ -71,12 +68,12 @@ class ApiDataManager: ObservableObject, APIManager {
     func uploadFile(url: Data?, bankType: String, completion: @escaping (String?, Error?) -> Void) {
         guard let localFile = url else { return }
         let fileStoragePath = setUpStoragePath(bankType)
-        firebaseRepository.uploadFile(url: url, fileStoragePath: fileStoragePath) { message, error in
-            if let error = error {
-                completion(nil, error)
-            }
-            completion(fileStoragePath, nil)
-        }
+//        firebaseRepository.uploadFile(url: url, fileStoragePath: fileStoragePath) { message, error in
+//            if let error = error {
+//                completion(nil, error)
+//            }
+//            completion(fileStoragePath, nil)
+//        }
     }
     
     internal func setUpStoragePath(_ selectedBankType: String) -> String {

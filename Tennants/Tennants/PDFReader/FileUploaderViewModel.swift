@@ -1,6 +1,7 @@
 import Foundation
 import OSLog
 
+@MainActor
 class FileUploaderViewModel: ObservableObject, PDFManager {
     let repository = RealmRepository()
     var validationManager = ValidationManager()
@@ -23,7 +24,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     init() {
         self.apiManager = ApiDataManager(repository: repository)
         self.historyManager = HistoryManager(repository: repository)
-        self.referenceManager = ReferencesManager(repository: repository, firebaseRepository: apiManager.firebaseRepository)
+        self.referenceManager = ReferencesManager(repository: repository, supabaseRepository: supabase)
         self.getTenantData()
     }
 
@@ -53,16 +54,15 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
 
     func handleData() async {
         isLoading = true
-
-        await referenceManager.uploadReferences { error in
-            if let error {
-                print("failed to upload references: \(error)")
-                self.isLoading = false
-            } else {
-//                self.fetchApiData()
-                print("Successfully uploaded")
-                self.isLoading = false
-            }
+        do {
+            try await referenceManager.supabaseRepository.signIn()
+            try await referenceManager.supabaseRepository.createReference()
+            //                self.fetchApiData()
+            print("Successfully uploaded")
+            self.isLoading = false
+        } catch {
+            print("failed to upload references: \(error)")
+            self.isLoading = false
         }
     }
 
