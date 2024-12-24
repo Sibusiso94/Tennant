@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Supabase
+import OSLog
 
 enum Table {
     static let tests = "test"
@@ -20,20 +21,21 @@ class SupabaseNetworking {
     var password = "Password1"
     var isAuthenticated = false
     var authAction: AuthAction = .signUp
+    var storagePath = "userId/statement.pdf"
 
     private let supabase = SupabaseClient(supabaseURL: Secrets.projectUrl, supabaseKey: Secrets.apikey)
     private let bucketName = "Statements"
 
     lazy var supabaseStorage =  SupabaseStorageClient(configuration: StorageClientConfiguration(url: Secrets.storageUrl, headers: ["Authorization": "Bearer \(Secrets.serviceRole)", "apikey": Secrets.apikey]))
 
-    func uploadFile(fileData: Data, userId: String) async throws {
-        let fileName = "statement.pdf"
+    func uploadFile(fileData: Data, userId: String, selectedBankType: String) async throws {
+        storagePath = setUpStoragePath(userId, selectedBankType)
 
         do {
             try await supabaseStorage
                 .from("Statement")
                 .upload(
-                    "\(userId)/\(fileName)",
+                    storagePath,
                     data: fileData,
                     options: FileOptions(
                         cacheControl: "3600",
@@ -42,16 +44,14 @@ class SupabaseNetworking {
                     )
                 )
         } catch {
-            print("==============")
-            print(error)
+            os_log("failed to upload pdf: %@", type: .debug, error.localizedDescription)
         }
     }
 
-    func createReference(/*_ references: [String]*/) async throws {
+    func createReference(unitId: String, tenantId: String, reference: String/*, userID: UUID*/) async throws {
         let user = try await supabase.auth.session.user
 
-        let ref = Reference(unitId: "unit 1", tenantId: "Shivon", reference: "Shivon1", userID: user.id)
-        print(ref)
+        let ref = Reference(unitId: unitId, tenantId: tenantId, reference: reference, userID: user.id)
         try await supabase.database
             .from(RefTable.ref)
             .insert(ref)
@@ -59,14 +59,11 @@ class SupabaseNetworking {
     }
 
     func fecthRequests() async throws {
-        let tests : [Reference] = try await supabase
+        let reference: [Reference] = try await supabase
             .from(RefTable.ref)
             .select()
             .execute()
             .value
-
-        print("+++++++++++++++++++++")
-        print(tests)
     }
 
     func signUp() async throws {
@@ -101,5 +98,13 @@ class SupabaseNetworking {
         case .signIn:
             try await signIn()
         }
+    }
+
+    internal func setUpStoragePath(_ userId: String, _ selectedBankType: String) -> String {
+        let date = Date.now
+        let day = date.formatted(.dateTime.weekday(.twoDigits))
+        let month = date.formatted(.dateTime.month(.twoDigits))
+        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
+        return "statements/\(userId)/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
     }
 }

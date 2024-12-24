@@ -4,9 +4,9 @@ import OSLog
 protocol APIManager {
     var baseURL: String { get }
     
-    func fetchApiData(selectedBankType: String, reference: String, storagePath: String, completion: @escaping ([TenantPaymentData]?, Error?) -> Void)
+    func fetchApiData(selectedBankType: String, userId: String, storagePath: String, completion: @escaping ([TenantPaymentData]?, Error?) -> Void)
     func uploadFile(url: Data?, bankType: String, completion: @escaping (String?, Error?) -> Void)
-    func setUpStoragePath(_ selectedBankType: String) -> String 
+//    func setUpStoragePath(_ selectedBankType: String) -> String 
 }
 
 protocol APIDataHandler {
@@ -23,7 +23,7 @@ class ApiDataManager: ObservableObject, APIManager {
     let networkingManager = NetworkManagerConcreation()
 //    let firebaseRepository = FirebaseRepository()
     
-    var baseURL = "http://192.168.1.43:5000/api/fetchingAndReturning?"
+    var baseURL = "http://192.168.1.44:5000/api/fetchingAndReturning?"
     var storagePath = ""
     
     @Published var isCompletePayment = true
@@ -36,12 +36,15 @@ class ApiDataManager: ObservableObject, APIManager {
         self.repository = repository
     }
     
-    func fetchApiData(selectedBankType: String, reference: String, storagePath: String, completion: @escaping ([TenantPaymentData]?, Error?) -> Void) {
+    func fetchApiData(selectedBankType: String, 
+                      userId: String,
+                      storagePath: String,
+                      completion: @escaping ([TenantPaymentData]?, Error?) -> Void) {
         let url = networkingManager.createURL(
             baseURL: baseURL,
             parameters: [
                 ("bankType", selectedBankType),
-                ("referenceName", reference),
+                ("userId", "userId"),
                 ("storagePath", storagePath)
             ]
         )
@@ -67,7 +70,8 @@ class ApiDataManager: ObservableObject, APIManager {
     
     func uploadFile(url: Data?, bankType: String, completion: @escaping (String?, Error?) -> Void) {
         guard let localFile = url else { return }
-        let fileStoragePath = setUpStoragePath(bankType)
+        
+//        let fileStoragePath = setUpStoragePath(bankType)
 //        firebaseRepository.uploadFile(url: url, fileStoragePath: fileStoragePath) { message, error in
 //            if let error = error {
 //                completion(nil, error)
@@ -76,11 +80,11 @@ class ApiDataManager: ObservableObject, APIManager {
 //        }
     }
     
-    internal func setUpStoragePath(_ selectedBankType: String) -> String {
-        let date = Date.now
-        let day = date.formatted(.dateTime.weekday(.twoDigits))
-        let month = date.formatted(.dateTime.month(.twoDigits))
-        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
-        return "statements/userID/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
-    }
+//    internal func setUpStoragePath(_ selectedBankType: String) -> String {
+//        let date = Date.now
+//        let day = date.formatted(.dateTime.weekday(.twoDigits))
+//        let month = date.formatted(.dateTime.month(.twoDigits))
+//        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
+//        return "statements/userID/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
+//    }
 }

@@ -58,6 +58,7 @@
 		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
 		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
 		5CB785842C9C025900C2FF43 /* UnitCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB785832C9C025900C2FF43 /* UnitCardModel.swift */; };
+		5CCAC5372D1A84C600965A33 /* FileUploaderErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCAC5362D1A84C600965A33 /* FileUploaderErrorMessages.swift */; };
 		5CCCEB0C2CEDAAF100997FF9 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCEB0B2CEDAAF100997FF9 /* MainAppView.swift */; };
 		5CD215FB2BF49FA00035F729 /* AddPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */; };
 		5CD216002BF4F1840035F729 /* UnitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD215FF2BF4F1840035F729 /* UnitManager.swift */; };
@@ -162,6 +163,7 @@
 		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
 		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5CB785832C9C025900C2FF43 /* UnitCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitCardModel.swift; sourceTree = "<group>"; };
+		5CCAC5362D1A84C600965A33 /* FileUploaderErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderErrorMessages.swift; sourceTree = "<group>"; };
 		5CCCEB0B2CEDAAF100997FF9 /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
 		5CD215FA2BF49FA00035F729 /* AddPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertyView.swift; sourceTree = "<group>"; };
 		5CD215FF2BF4F1840035F729 /* UnitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitManager.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				5C58ADA22CBE8D7500495D11 /* Managers */,
 				5C3E31962C3E66BC00321EB3 /* Views */,
 				5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */,
+				5CCAC5362D1A84C600965A33 /* FileUploaderErrorMessages.swift */,
 			);
 			path = PDFReader;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				5C25D5E52C05E08900C24658 /* FileDataManager.swift in Sources */,
 				5C0089E62BF34A4D0061C00B /* Tennant.swift in Sources */,
 				5CE845372CEE526A00361431 /* SupabaseNetworking.swift in Sources */,
+				5CCAC5372D1A84C600965A33 /* FileUploaderErrorMessages.swift in Sources */,
 				5C4734242B6261C00040A0AA /* TennantsApp.swift in Sources */,
 				5C1F469E2C1B23D000F1482B /* FileUploaderView.swift in Sources */,
 				5C43E4242CDA6214003AA3EA /* UnitTopCardView.swift in Sources */,

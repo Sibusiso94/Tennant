@@ -6,6 +6,8 @@ class PropertyDetailViewModel: ObservableObject {
 
     let unitManager: UnitManager
     let tenantManager: TenantManager
+    let referenceManager = ReferencesManager()
+    var shoudlShowError = false
 
     init(unitManager: UnitManager, tenantManager: TenantManager) {
         self.unitManager = unitManager
@@ -25,6 +27,17 @@ class PropertyDetailViewModel: ObservableObject {
                                 tenant: tenant) { tenantId in
             self.unitManager.dataProvider.update(id: unitId, tenantId: tenantId)
 //            tenant.reference
+            self.uploadReferences(unitId: unitId, tenantId: tenantId, reference: tenant.reference)
+        }
+    }
+
+    func uploadReferences(unitId: String, tenantId: String, reference: String) {
+        Task {
+            do {
+                try await referenceManager.uploadReference(unitId: unitId, tenantId: tenantId, reference: reference)
+            } catch {
+                shoudlShowError = true
+            }
         }
     }
 

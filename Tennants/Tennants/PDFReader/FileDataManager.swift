@@ -5,37 +5,18 @@ import OSLog
 protocol PDFManager {
     var bankTypes: [String] { get }
     var selectedBankType: String { get set }
-    var validationManager: ValidationManager { get set }
 
+    func validateFileURL(_ fileURL: URL) -> Bool
     func handleImportedFile(url: URL) async
 }
 
-class ValidationManager {
-    func validateFileURL(_ fileURL: URL) -> Bool {
-        let fileManager = FileManager.default
-        
-        guard fileURL.isFileURL else {
-            os_log("The URL is not a file URL.", type: .debug)
-            return false
-        }
-        
-        do {
-            let fileAttributes = try fileManager.attributesOfItem(atPath: fileURL.path)
-            
-            if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeDirectory {
-                os_log("The URL is a directory.", type: .debug)
-                return false
-            }
-            
-            if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeSymbolicLink {
-                os_log("The URL is a symbolic link.", type: .debug)
-                return false
-            }
-        } catch {
-            os_log("The URL is invalid or cannot be accessed:", type: .debug, error.localizedDescription)
-            return false
-        }
-        
-        return true
+enum ValidationErrors: String, Error, CaseIterable {
+    case notFileUrl = "The URL is not a file URL."
+    case notADirectory = "The URL is a directory."
+    case isAsymbolLink = "The URL is a symbolic link."
+//    case invalidOrInaccessable = 
+
+    var localizedDescription: String {
+            return self.rawValue
     }
 }

@@ -3,7 +3,6 @@ import MyLibrary
 
 struct FileUploaderView: View {
     @StateObject var viewModel: FileUploaderViewModel
-    @State var isCompleteUploading = false
 
     init() {
         _viewModel = StateObject(wrappedValue: FileUploaderViewModel())
@@ -20,23 +19,13 @@ struct FileUploaderView: View {
                                           bankTypes: viewModel.bankTypes,
                                           selectedBankType: $viewModel.selectedBankType)
                     
-//                    if isCompleteUploading {
-                        CustomTextButton(title: "Process document") {
-                            DispatchQueue.main.async {
-                                Task {
-                                    await viewModel.handleData()
-                                }
-                            }
-                        }
-//                    } else {
-//                        CustomTextButton(title: "Select a document") {
-//                            viewModel.showPDFImporter.toggle()
-//                        }
-//                    }
+                    ProgressTextButton(title: viewModel.isCompleteUploading ? "Process document" : "Select a document",
+                                       isLoading: $viewModel.isLoading) {
+                        viewModel.isCompleteUploading ? viewModel.handleData() : viewModel.showPDFImporter.toggle()
+                    }
                 }
                 .sheet(isPresented: $viewModel.showPDFImporter) {
                     DocumentPicker() { url in
-                        isCompleteUploading = true
                         viewModel.isLoading = true
                         viewModel.handleImportedFile(url: url)
                     }
@@ -66,11 +55,40 @@ struct FileUploaderView: View {
                     }
                 }
             }
-            .overlay {
-                if viewModel.isLoading {
-                    LoadingView(title: "Processing...")
+        }
+    }
+}
+
+public struct ProgressTextButton: View {
+    var title: String
+    @Binding var isLoading: Bool
+    var action: () -> Void
+
+    public init(title: String,
+                isLoading: Binding<Bool>,
+                action: @escaping () -> Void) {
+        self.title = title
+        self._isLoading = isLoading
+        self.action = action
+    }
+
+    public var body: some View {
+        Button {
+            action()
+        } label: {
+            HStack {
+                Text(title)
+                    .foregroundStyle(Color.black.opacity(0.6))
+
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                        .scaleEffect(1.5)
+                        .padding(.horizontal)
                 }
             }
+            .padding()
         }
+        .customHorizontalPadding(isButton: true)
     }
 }
