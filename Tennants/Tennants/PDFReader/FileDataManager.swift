@@ -6,7 +6,7 @@ protocol PDFManager {
     var bankTypes: [String] { get }
     var selectedBankType: String { get set }
 
-    func validateFileURL(_ fileURL: URL) -> Bool
+    func validateFileURL(_ fileURL: URL, completion: @escaping (Error?) -> Void)
     func handleImportedFile(url: URL) async
 }
 

@@ -8,7 +8,11 @@ class TenantManager {
         self.repository = repository
         self.dataProvider = TenantDataProvider(repository: repository)
     }
-    
+
+    func fetchAll() -> [Tennant] {
+        dataProvider.fetchData()
+    }
+
     func fetchTenant(from unitID: String) -> Tennant? {
         let tenants = dataProvider.fetchData()
         let unitTenants = tenants.first(where: { $0.unitID == unitID } )

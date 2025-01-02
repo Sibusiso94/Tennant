@@ -55,6 +55,9 @@ struct FileUploaderView: View {
                     }
                 }
             }
+            .alert(viewModel.errorMessage, isPresented: $viewModel.showErrorMessage) {
+                Button("OK", role: .cancel) { }
+            }
         }
     }
 }

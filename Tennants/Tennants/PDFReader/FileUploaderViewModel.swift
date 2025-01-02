@@ -20,7 +20,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     @Published var isCompleteUploading = false
 
     @Published var showErrorMessage = false
-    @Published var errorMessage: FileErrorMessages = .failedToFetchFile
+    @Published var errorMessage = ""
 
     init() {
         self.apiManager = ApiDataManager(repository: repository)
@@ -29,35 +29,35 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
     }
 
     func handleImportedFile(url: URL) {
-        if validateFileURL(url) {
+        validateFileURL(url) { [weak self] error in
             do {
                 let data = try Data(contentsOf: url)
                 Task {
-                    try? await supabase.uploadFile(fileData: data, userId: "userId", selectedBankType: selectedBankType)
-                    self.fileStoragePath = supabase.storagePath
-                    self.isLoading = false
-                    self.isCompleteUploading = true
+                    try? await self?.supabase.uploadFile(fileData: data, userId: "userId", selectedBankType: self?.selectedBankType ?? "Standard")
+                    self?.fileStoragePath = self?.supabase.storagePath
+                    self?.isLoading = false
+                    self?.isCompleteUploading = true
                 }
             } catch {
                 os_log("Error reading file data: %@", type: .debug, error.localizedDescription)
-                showErrorMessage = true
-                errorMessage = .failedToFetchFile
-                isCompleteUploading = false
+                self?.showErrorMessage = true
+                self?.errorMessage = FileErrorMessages.failedToFetchFile.rawValue
+                self?.isCompleteUploading = false
             }
         }
     }
 
     func handleData() {
         isLoading = true
-        self.fetchApiData { error in
+        self.fetchApiData { [weak self] error in
             if let error {
                 os_log("failed to fetch Tenant Payment Info: %@", type: .debug, error.localizedDescription)
-                self.isLoading = false
-                self.showErrorMessage = true
-                self.errorMessage = .failedToUploadReferences
+                self?.isLoading = false
+                self?.showErrorMessage = true
+                self?.errorMessage = FileErrorMessages.failedToUploadReferences.rawValue
             } else {
                 os_log("Successfully uploaded")
-                self.isLoading = false
+                self?.isLoading = false
             }
         }
     }
@@ -67,6 +67,8 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         if let fileStoragePath {
             apiManager.fetchApiData(selectedBankType: selectedBankType, userId: "", storagePath: fileStoragePath) { [weak self] data, error in
                 if let error {
+                    self?.showErrorMessage = true
+                    self?.errorMessage = "Failed to process PDF file."
                     completion(error)
                 }
 
@@ -79,6 +81,7 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         } else {
             isLoading = false
             showErrorMessage = true
+            errorMessage = "Failed to connect to server to process PDF file."
         }
     }
 
@@ -104,12 +107,13 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
         return allTenantData.filter({ ids.contains($0.id) })
     }
 
-    nonisolated func validateFileURL(_ fileURL: URL) -> Bool {
+    nonisolated func validateFileURL(_ fileURL: URL, completion: @escaping (Error?) -> Void) {
         let fileManager = FileManager.default
 
         guard fileURL.isFileURL else {
             os_log("The URL is not a file URL.", type: .debug)
-            return false
+            completion(ApiError.fileValidationFailure)
+            return
         }
 
         do {
@@ -117,18 +121,18 @@ class FileUploaderViewModel: ObservableObject, PDFManager {
 
             if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeDirectory {
                 os_log("The URL is a directory.", type: .debug)
-                return false
+                completion(ApiError.fileValidationFailure)
             }
 
             if let fileType = fileAttributes[FileAttributeKey.type] as? FileAttributeType, fileType == .typeSymbolicLink {
                 os_log("The URL is a symbolic link.", type: .debug)
-                return false
+                completion(ApiError.fileValidationFailure)
             }
         } catch {
             os_log("The URL is invalid or cannot be accessed:", type: .debug, error.localizedDescription)
-            return false
+            completion(ApiError.fileValidationFailure)
         }
 
-        return true
+        completion(nil)
     }
 }

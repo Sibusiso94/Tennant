@@ -12,6 +12,13 @@ struct TenantTabView: View {
                 }
                 .tag(TenantTabItem.home)
 
+            TenantListView()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Tenants")
+                }
+                .tag(TenantTabItem.tenants)
+
             FileUploaderView()
                 .tabItem {
                     Image(systemName: "folder.fill")

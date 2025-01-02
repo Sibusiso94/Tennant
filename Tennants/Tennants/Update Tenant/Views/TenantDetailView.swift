@@ -1,7 +1,7 @@
 import SwiftUI
 import MyLibrary
 
-struct UpdateTennantView: View {
+struct TenantDetailView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
     @StateObject var viewModel: UpdateTennantViewModel
