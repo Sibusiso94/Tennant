@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* PropertiesView.swift */; };
-		5C0089D42BF331580061C00B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C0089D32BF331580061C00B /* MyLibrary */; };
+		F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = F9B5C2202FEA7D300043452B /* MyLibrary */; };
 		5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* PropertiesManager.swift */; };
 		5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */; };
 		5C0089E42BF34A4D0061C00B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DF2BF34A4D0061C00B /* Property.swift */; };
@@ -180,7 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CE845392CEE533300361431 /* Supabase in Frameworks */,
-				5C0089D42BF331580061C00B /* MyLibrary in Frameworks */,
+				F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +533,7 @@
 			);
 			name = Tennants;
 			packageProductDependencies = (
-				5C0089D32BF331580061C00B /* MyLibrary */,
+				F9B5C2202FEA7D300043452B /* MyLibrary */,
 				5CE845382CEE533300361431 /* Supabase */,
 			);
 			productName = Tennants;
@@ -609,9 +609,9 @@
 			);
 			mainGroup = 5C4734172B6261C00040A0AA;
 			packageReferences = (
-				5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */,
 				5CED454A2C0E019500CEB28D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				F9B5C21F2FEA7D300043452B /* XCRemoteSwiftPackageReference "MLibrary2" */,
 			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
@@ -1054,14 +1054,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SibusisoGlu/MyLibrary";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.7;
-			};
-		};
 		5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
@@ -1078,12 +1070,20 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		F9B5C21F2FEA7D300043452B /* XCRemoteSwiftPackageReference "MLibrary2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sibusiso94/MLibrary2.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5C0089D32BF331580061C00B /* MyLibrary */ = {
+		F9B5C2202FEA7D300043452B /* MyLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C0089CE2BF330CF0061C00B /* XCRemoteSwiftPackageReference "MyLibrary" */;
+			package = F9B5C21F2FEA7D300043452B /* XCRemoteSwiftPackageReference "MLibrary2" */;
 			productName = MyLibrary;
 		};
 		5CE845382CEE533300361431 /* Supabase */ = {
