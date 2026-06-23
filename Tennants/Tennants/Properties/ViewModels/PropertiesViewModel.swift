@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 class PropertiesViewModel: ObservableObject {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let manager: PropertiesManager
     var propertyType: PropertyOptions = .multipleUnits
     
@@ -27,7 +27,7 @@ class PropertiesViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     
     init() {
-        self.repository = RealmRepository()
+        self.repository = SwiftDataRepository()
         self.manager = PropertiesManager(repository: repository)
         self.refreshData()
     }

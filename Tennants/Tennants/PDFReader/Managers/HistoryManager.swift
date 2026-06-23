@@ -1,5 +1,4 @@
 import Foundation
-import RealmSwift
 
 protocol HistoryManagable {
     func fetchData() -> [History]
@@ -13,12 +12,12 @@ protocol HistoryDataSetter {
 }
 
 class HistoryManager: HistoryManagable, HistoryDataSetter {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let dataProvider: HistoryDataProvider
     let tenantDataProvider: TenantDataProvider
     let tenantPaymentDataProvider: TenantPaymentDataProvider
 
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
         self.dataProvider = HistoryDataProvider(repository: repository)
         self.tenantDataProvider = TenantDataProvider(repository: repository)
@@ -46,10 +45,8 @@ class HistoryManager: HistoryManagable, HistoryDataSetter {
         tenantPaymentDataProvider.createMultiple(data)
     }
 
-    func getIds(_ data: [TenantData]) -> List<String> {
-        let filteredData = data.map({ $0.id })
-        let mappedResults = repository.mapResults(with: filteredData)
-        return mappedResults
+    func getIds(_ data: [TenantData]) -> [String] {
+        return data.map({ $0.id })
     }
 
     internal func setUpHistoryData(with data: [TenantData], id: String) -> History {

@@ -1,12 +1,11 @@
 import Foundation
-import RealmSwift
 
 class PropertiesDataProvider: DataSource {
     typealias T = Property
     
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
     

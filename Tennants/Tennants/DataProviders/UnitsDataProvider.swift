@@ -1,12 +1,11 @@
 import Foundation
-import RealmSwift
 
 class UnitsDataProvider: DataSource {
     typealias T = SingleUnit
     
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
     
@@ -37,29 +36,32 @@ class UnitsDataProvider: DataSource {
                 numberOfBedrooms: Int? = nil,
                 numberOfBathrooms: Int? = nil,
                 size: Int? = nil) {
-        let realm = try! Realm()
-        
-        if let unitToUpdate = realm.object(ofType: SingleUnit.self, forPrimaryKey: id) {
-            try! realm.write {
-                if let tenantId {
-                    unitToUpdate.tenantID = tenantId
-                    unitToUpdate.isOccupied = true
-                }
-                
-                if let numberOfBedrooms {
-                    unitToUpdate.numberOfBedrooms = numberOfBedrooms
-                }
-                
-                if let numberOfBathrooms {
-                    unitToUpdate.numberOfBathrooms = numberOfBathrooms
-                }
-                
-                if let size {
-                    unitToUpdate.size = size
-                }
-            }
-        } else {
+        guard let unitToUpdate = repository.readAll(SingleUnit.self).first(where: { $0.id == id }) else {
             print("Unit not found")
+            return
+        }
+
+        if let tenantId {
+            unitToUpdate.tenantID = tenantId
+            unitToUpdate.isOccupied = true
+        }
+
+        if let numberOfBedrooms {
+            unitToUpdate.numberOfBedrooms = numberOfBedrooms
+        }
+
+        if let numberOfBathrooms {
+            unitToUpdate.numberOfBathrooms = numberOfBathrooms
+        }
+
+        if let size {
+            unitToUpdate.size = size
+        }
+
+        do {
+            try repository.update(unitToUpdate)
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     

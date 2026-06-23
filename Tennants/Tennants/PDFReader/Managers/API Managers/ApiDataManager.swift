@@ -19,7 +19,7 @@ protocol APIDataHandler {
 }
 
 class ApiDataManager: ObservableObject, APIManager {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let networkingManager = NetworkManagerConcreation()
 //    let firebaseRepository = FirebaseRepository()
     
@@ -32,7 +32,7 @@ class ApiDataManager: ObservableObject, APIManager {
     @Published var hasError: Bool = false
     @Published var error: ApiError?
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
     

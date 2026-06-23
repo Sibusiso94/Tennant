@@ -1,10 +1,10 @@
 import Foundation
 
 class TenantManager {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let dataProvider: TenantDataProvider    
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
         self.dataProvider = TenantDataProvider(repository: repository)
     }

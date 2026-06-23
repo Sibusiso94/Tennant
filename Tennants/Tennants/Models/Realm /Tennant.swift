@@ -1,41 +1,43 @@
 import Foundation
-import RealmSwift
+import SwiftData
 
-class Tennant: Object, Identifiable {
-    @Persisted(primaryKey: true) var id: String
-    @Persisted var propertyID: String
-    @Persisted var unitID: String
-    @Persisted var tennantID: String
-    @Persisted var name: String
-    @Persisted var surname: String
-    @Persisted var reference: String
-    @Persisted var currentAddress: String
-    @Persisted var company : String
-    @Persisted var position: String
-    @Persisted var monthlyIncome: String
-    @Persisted var balance: Double
-    @Persisted var amountDue: Double
-    @Persisted var startDate: Date
-    @Persisted var endDate: Date
-    @Persisted var fullPayments: String
-    
-    convenience init(id: String = UUID().uuidString,
-                     propertyID: String = "",
-                     unitID: String = "",
-                     tennantID: String = "",
-                     name: String = "",
-                     surname: String = "",
-                     reference: String = "",
-                     currentAddress: String = "",
-                     company : String = "",
-                     position: String = "",
-                     monthlyIncome: String = "0",
-                     balance: Double = 0.0,
-                     amountDue: Double = 0.0,
-                     startDate: Date = Date.now,
-                     endDate: Date = Date.now,
-                     fullPayments: String = "0") {
-        self.init()
+@Model
+class Tennant: Identifiable, PersistableModel {
+    @Attribute(.unique) var id: String
+    var propertyID: String
+    var unitID: String
+    var tennantID: String
+    var name: String
+    var surname: String
+    var reference: String
+    var currentAddress: String
+    var company: String
+    var position: String
+    var monthlyIncome: String
+    var balance: Double
+    var amountDue: Double
+    var startDate: Date
+    var endDate: Date
+    var fullPayments: String
+
+    var primaryKey: String { id }
+
+    init(id: String = UUID().uuidString,
+         propertyID: String = "",
+         unitID: String = "",
+         tennantID: String = "",
+         name: String = "",
+         surname: String = "",
+         reference: String = "",
+         currentAddress: String = "",
+         company: String = "",
+         position: String = "",
+         monthlyIncome: String = "0",
+         balance: Double = 0.0,
+         amountDue: Double = 0.0,
+         startDate: Date = Date.now,
+         endDate: Date = Date.now,
+         fullPayments: String = "0") {
         self.id = id
         self.propertyID = propertyID
         self.unitID = unitID
@@ -52,10 +54,6 @@ class Tennant: Object, Identifiable {
         self.startDate = startDate
         self.endDate = endDate
         self.fullPayments = fullPayments
-    }
-    
-    override class func primaryKey() -> String? {
-        "id"
     }
 }
 

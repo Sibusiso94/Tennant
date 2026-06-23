@@ -4,9 +4,9 @@ import Foundation
 class TenantDataProvider: DataSource {
     typealias T = Tennant
     
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
     

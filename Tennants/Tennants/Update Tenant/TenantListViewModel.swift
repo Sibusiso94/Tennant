@@ -1,7 +1,7 @@
 import Foundation
 
 class TenantListViewModel: ObservableObject {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let manager: TenantManager
 
     @Published var allTenants = [Tennant]()
@@ -10,7 +10,7 @@ class TenantListViewModel: ObservableObject {
     @Published var showDetailView = false
 
     init() {
-        self.repository = RealmRepository()
+        self.repository = SwiftDataRepository()
         self.manager = TenantManager(repository: repository)
         fetch()
     }

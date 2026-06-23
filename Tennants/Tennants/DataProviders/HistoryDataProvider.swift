@@ -2,9 +2,9 @@ import Foundation
 
 class HistoryDataProvider: CreateObject, ReadObject, DeleteObject {
     typealias T = History
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
     

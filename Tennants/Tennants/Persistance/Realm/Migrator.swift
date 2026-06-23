@@ -1,15 +1,14 @@
 import Foundation
-import RealmSwift
 
+/// Schema migrations are handled by SwiftData's `ModelContainer` (see
+/// `SwiftDataRepository.sharedContainer`). This type is retained as a no-op
+/// hook for any future versioned-schema migration logic.
 class Migrator {
     init() {
         updateSchema()
     }
-    
+
     func updateSchema() {
-        let config = Realm.Configuration(
-            schemaVersion: 1)
-        Realm.Configuration.defaultConfiguration = config
-        let realm = try! Realm()
+        // No-op: SwiftData performs lightweight migrations automatically.
     }
 }

@@ -23,14 +23,14 @@ protocol NewPropertyManager {
 }
 
 class PropertiesManager: NewPropertyManager {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let dataProvider: PropertiesDataProvider
     let unitManager: UnitManager
     let tenantManager: TenantManager
     
     var newProperty = Property()
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
         self.dataProvider = PropertiesDataProvider(repository: repository)
         self.unitManager = UnitManager(repository: repository)
@@ -68,7 +68,7 @@ class PropertiesManager: NewPropertyManager {
                                           numberOfBeds: Int(newData.numberOfBedrooms),
                                           numberOfBaths: Int(newData.numberOfBathrooms),
                                           size: Int(newData.size)) { unitIds in
-            self.newProperty.unitIDs.append(objectsIn: unitIds)
+            self.newProperty.unitIDs.append(contentsOf: unitIds)
             dispatchGroup.leave()
         }
         
