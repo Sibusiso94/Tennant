@@ -1,10 +1,10 @@
 import Foundation
 
 class UnitManager {
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
     let dataProvider: UnitsDataProvider
     
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
         self.dataProvider = UnitsDataProvider(repository: repository)
     }

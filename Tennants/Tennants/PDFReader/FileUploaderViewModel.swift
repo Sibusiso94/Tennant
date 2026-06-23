@@ -3,7 +3,7 @@ import OSLog
 
 @MainActor
 class FileUploaderViewModel: ObservableObject, PDFManager {
-    private let repository = RealmRepository()
+    private let repository = SwiftDataRepository()
     private let supabase = SupabaseNetworking()
     let apiManager: ApiDataManager
     let historyManager: HistoryManager

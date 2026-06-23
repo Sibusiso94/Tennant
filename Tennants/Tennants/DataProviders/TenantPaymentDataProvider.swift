@@ -3,9 +3,9 @@ import Foundation
 class TenantPaymentDataProvider: MultipleObjectsCreatable {
     typealias T = TenantData
 
-    let repository: RealmRepository
+    let repository: SwiftDataRepository
 
-    init(repository: RealmRepository) {
+    init(repository: SwiftDataRepository) {
         self.repository = repository
     }
 

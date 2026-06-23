@@ -1,25 +1,27 @@
 import Foundation
-import RealmSwift
+import SwiftData
 
-class SingleUnit: Object, Identifiable {
-    @Persisted(primaryKey: true) var id: String
-    @Persisted var tenantID: String
-    @Persisted var unitNumber: Int
-    @Persisted var propertyId: String
-    @Persisted var numberOfBedrooms: Int
-    @Persisted var numberOfBathrooms: Int
-    @Persisted var size: Int
-    @Persisted var isOccupied: Bool
-    
-    convenience init(id: String = UUID().uuidString,
-                     unitNumber: Int = 0,
-                     propertyId: String = "",
-                     tenantID: String = "",
-                     numberOfBedrooms: Int = 1,
-                     numberOfBathrooms: Int = 1,
-                     size: Int = 0,
-                     isOccupied: Bool = false) {
-        self.init()
+@Model
+class SingleUnit: Identifiable, PersistableModel {
+    @Attribute(.unique) var id: String
+    var tenantID: String
+    var unitNumber: Int
+    var propertyId: String
+    var numberOfBedrooms: Int
+    var numberOfBathrooms: Int
+    var size: Int
+    var isOccupied: Bool
+
+    var primaryKey: String { id }
+
+    init(id: String = UUID().uuidString,
+         unitNumber: Int = 0,
+         propertyId: String = "",
+         tenantID: String = "",
+         numberOfBedrooms: Int = 1,
+         numberOfBathrooms: Int = 1,
+         size: Int = 0,
+         isOccupied: Bool = false) {
         self.id = id
         self.unitNumber = unitNumber
         self.propertyId = propertyId
@@ -28,9 +30,5 @@ class SingleUnit: Object, Identifiable {
         self.numberOfBathrooms = numberOfBathrooms
         self.size = size
         self.isOccupied = isOccupied
-    }
-    
-    override class func primaryKey() -> String? {
-        "id"
     }
 }

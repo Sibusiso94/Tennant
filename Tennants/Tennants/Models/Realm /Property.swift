@@ -1,31 +1,30 @@
 import Foundation
-import RealmSwift
+import SwiftData
 
-class Property: Object, Identifiable {
-    @Persisted(primaryKey: true) var buildingID: String
-    @Persisted var unitIDs: List<String>
-    @Persisted var buildingName: String
-    @Persisted var buildingAddress: String
-    @Persisted var numberOfUnits: String
-    @Persisted var isSingleUnit: Bool
+@Model
+class Property: Identifiable, PersistableModel {
+    @Attribute(.unique) var buildingID: String
+    var unitIDs: [String]
+    var buildingName: String
+    var buildingAddress: String
+    var numberOfUnits: String
+    var isSingleUnit: Bool
 
-    convenience init(buildingID: String = UUID().uuidString,
-                     buildingName: String = "",
-                     buildingAddress: String = "",
-                     numberOfUnits: String = "",
-                     unitIDs: List<String> = List<String>(),
-                     isSingleUnit: Bool = true) {
-        self.init()
+    var id: String { buildingID }
+    var primaryKey: String { buildingID }
+
+    init(buildingID: String = UUID().uuidString,
+         buildingName: String = "",
+         buildingAddress: String = "",
+         numberOfUnits: String = "",
+         unitIDs: [String] = [],
+         isSingleUnit: Bool = true) {
         self.buildingID = buildingID
         self.buildingName = buildingName
         self.buildingAddress = buildingAddress
         self.numberOfUnits = numberOfUnits
         self.unitIDs = unitIDs
         self.isSingleUnit = isSingleUnit
-    }
-
-    override class func primaryKey() -> String? {
-        "buildingID"
     }
 }
 

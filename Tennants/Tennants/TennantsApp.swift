@@ -1,5 +1,5 @@
 import SwiftUI
-import Firebase
+import SwiftData
 
 @main
 struct TennantsApp: App {
@@ -7,9 +7,9 @@ struct TennantsApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(SwiftDataRepository.sharedContainer)
     }
     
     init() {
-        FirebaseApp.configure()
     }
 }
