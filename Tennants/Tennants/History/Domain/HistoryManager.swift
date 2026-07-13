@@ -1,55 +1,39 @@
 import Foundation
 
 protocol HistoryManagable {
-    func fetchData() -> [History]
-    func persistHistoryData(with results: [TenantPaymentData]?)
+    func fetchHistoryData() -> [History]
 }
 
-protocol HistoryDataSetter {
-    func setUpHistoryData(with data: [TenantData], id: String) -> History
-    func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData]
-    func setUpPaymentData(data: [TenantPaymentData], id: String) -> [TenantData]
-}
-
-class HistoryManager: HistoryManagable, HistoryDataSetter {
+class HistoryManager: HistoryManagable {
     let repository: SwiftDataRepository
     let dataProvider: HistoryDataProvider
-    let tenantDataProvider: TenantDataProvider
     let tenantPaymentDataProvider: TenantPaymentDataProvider
 
     init(repository: SwiftDataRepository) {
         self.repository = repository
         self.dataProvider = HistoryDataProvider(repository: repository)
-        self.tenantDataProvider = TenantDataProvider(repository: repository)
         self.tenantPaymentDataProvider = TenantPaymentDataProvider(repository: repository)
     }
     
-    func fetchData() -> [History] {
+    func fetchHistoryData() -> [History] {
         dataProvider.fetchData()
-    }
-
-    func fetchTenantData() -> [TenantData] {
-        return tenantPaymentDataProvider.fetchData()
     }
 
     func persistHistoryData(with results: [TenantPaymentData]?) {
         #warning("Add Group to wait for completion of each task")
         let historyId = UUID().uuidString
         let data = setUpApiData(with: results, id: historyId)
-        persistTenantData(data)
         let history = setUpHistoryData(with: data, id: historyId)
         dataProvider.create(history)
     }
 
-    func persistTenantData(_ data: [TenantData]) {
-        tenantPaymentDataProvider.createMultiple(data)
-    }
+    
 
     func getIds(_ data: [TenantData]) -> [String] {
         return data.map({ $0.id })
     }
 
-    internal func setUpHistoryData(with data: [TenantData], id: String) -> History {
+    private func setUpHistoryData(with data: [TenantData], id: String) -> History {
         let date = Date.now
         let history = History()
         history.id = id
@@ -58,7 +42,7 @@ class HistoryManager: HistoryManagable, HistoryDataSetter {
         return history
     }
     
-    internal func setUpApiData(with results: [TenantPaymentData]?, id: String) -> [TenantData] {
+    private func setUpApiData(with results: [TenantPaymentData]?, id: String) -> [TenantData] {
         if let results = results {
             let filteredData = filterAllPayments(tenants: results)
             let paymentData = setUpPaymentData(data: filteredData, id: id)
@@ -68,7 +52,7 @@ class HistoryManager: HistoryManagable, HistoryDataSetter {
         return []
     }
     
-    internal func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData] {
+    private func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData] {
         var updatedResult: [TenantPaymentData] = []
         
         for (index, tenant) in tenants.enumerated() {
@@ -79,7 +63,7 @@ class HistoryManager: HistoryManagable, HistoryDataSetter {
         return updatedResult
     }
     
-    internal func setUpPaymentData(data: [TenantPaymentData], id: String) -> [TenantData] {
+    private func setUpPaymentData(data: [TenantPaymentData], id: String) -> [TenantData] {
         let results = data.map { data in
             let newID = UUID().uuidString
             return TenantData(id: newID, historyId: id, date: data.date, reference: data.reference, amount: data.amount)

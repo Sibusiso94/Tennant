@@ -9,7 +9,7 @@ protocol CreateObject {
 }
 
 protocol MultipleObjectsCreatable {
-    associatedtype T: PersistableModel
+    associatedtype T:  PersistableModel
     func createMultiple(_ insertions: [T])
 }
 

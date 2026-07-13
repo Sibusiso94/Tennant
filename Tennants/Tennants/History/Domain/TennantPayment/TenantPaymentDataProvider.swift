@@ -18,7 +18,6 @@ class TenantPaymentDataProvider: MultipleObjectsCreatable {
     }
 
     func fetchData() -> [T] {
-//        let descriptor = FetchDescriptor<T>(sortBy: [SortDescriptor(\.unitNumber, order: .forward)])
         let data = repository.readAll(T.self)
         return data
     }

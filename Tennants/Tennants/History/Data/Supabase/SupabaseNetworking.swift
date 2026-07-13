@@ -16,7 +16,16 @@ enum AuthAction: String, CaseIterable {
     case signIn = "Sign In"
 }
 
-class SupabaseNetworking {
+protocol SupabaseNetworkingProtocol {
+    func uploadFile(fileData: Data, storagePath: String, selectedBankType: String) async throws
+    func signUp() async throws
+    func signIn() async throws
+    func signOut() async throws
+    func isUserAuthenticated() async
+    func authorise() async throws
+}
+
+class SupabaseNetworking: SupabaseNetworkingProtocol {
     var email = "test@gmail.com"
     var password = "Password1"
     var isAuthenticated = false
@@ -28,9 +37,7 @@ class SupabaseNetworking {
 
     lazy var supabaseStorage =  SupabaseStorageClient(configuration: StorageClientConfiguration(url: Secrets.storageUrl, headers: ["Authorization": "Bearer \(Secrets.serviceRole)", "apikey": Secrets.apikey]))
 
-    func uploadFile(fileData: Data, userId: String, selectedBankType: String) async throws {
-        storagePath = setUpStoragePath(userId, selectedBankType)
-
+    func uploadFile(fileData: Data, storagePath: String, selectedBankType: String) async throws {
         do {
             try await supabaseStorage
                 .from("Statement")
@@ -98,13 +105,5 @@ class SupabaseNetworking {
         case .signIn:
             try await signIn()
         }
-    }
-
-    internal func setUpStoragePath(_ userId: String, _ selectedBankType: String) -> String {
-        let date = Date.now
-        let day = date.formatted(.dateTime.weekday(.twoDigits))
-        let month = date.formatted(.dateTime.month(.twoDigits))
-        let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
-        return "statements/\(userId)/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
     }
 }

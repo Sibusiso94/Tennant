@@ -5,7 +5,7 @@ struct FileUploaderView: View {
     @StateObject var viewModel: FileUploaderViewModel
 
     init() {
-        _viewModel = StateObject(wrappedValue: FileUploaderViewModel())
+        _viewModel = StateObject(wrappedValue: FileUploaderViewModel(tenantPaymentUseCase: TenantPaymentUseCase(apiManager: ApiDataManager(networkingManager: NetworkService()), supabase: SupabaseNetworking())))
     }
     
     var body: some View {
@@ -14,14 +14,20 @@ struct FileUploaderView: View {
                 Color("PastelGrey")
                     .ignoresSafeArea()
                 VStack {
-                    DocumentSelectionView(image: Image("\(viewModel.selectedBankType.lowercased())"),
+                    DocumentSelectionView(
+                        image: Image("\(viewModel.selectedBankType.lowercased())"),
                                           imageWidth: viewModel.selectedBankType == "Capitec" ? 300 : 200,
                                           bankTypes: viewModel.bankTypes,
-                                          selectedBankType: $viewModel.selectedBankType)
-                    
-                    ProgressTextButton(title: viewModel.isCompleteUploading ? "Process document" : "Select a document",
-                                       isLoading: $viewModel.isLoading) {
-                        viewModel.isCompleteUploading ? viewModel.handleData() : viewModel.showPDFImporter.toggle()
+                                          selectedBankType: $viewModel.selectedBankType
+                    )
+
+                    ProgressTextButton(
+                        title: viewModel.isCompleteUploading
+                            ? "Process document"
+                            : "Select a document",
+                        isLoading: $viewModel.isLoading
+                    ) {
+                        viewModel.isCompleteUploading ? viewModel.getTenantPaymentInfo() : viewModel.showPDFImporter.toggle()
                     }
                 }
                 .sheet(isPresented: $viewModel.showPDFImporter) {
