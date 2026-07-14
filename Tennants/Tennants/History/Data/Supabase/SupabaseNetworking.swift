@@ -33,14 +33,17 @@ class SupabaseNetworking: SupabaseNetworkingProtocol {
     var storagePath = "userId/statement.pdf"
 
     private let supabase = SupabaseClient(supabaseURL: Secrets.projectUrl, supabaseKey: Secrets.apikey)
-    private let bucketName = "Statements"
-
-    lazy var supabaseStorage =  SupabaseStorageClient(configuration: StorageClientConfiguration(url: Secrets.storageUrl, headers: ["Authorization": "Bearer \(Secrets.serviceRole)", "apikey": Secrets.apikey]))
+    private let bucketName = "Statement"
 
     func uploadFile(fileData: Data, storagePath: String, selectedBankType: String) async throws {
+        // Storage RLS is evaluated against the caller's JWT, so we must be
+        // signed in as a real user before uploading (the publishable key alone
+        // is the `anon` role and will be rejected by RLS).
+        try await ensureSignedIn()
+
         do {
-            try await supabaseStorage
-                .from("Statement")
+            try await supabase.storage
+                .from(bucketName)
                 .upload(
                     storagePath,
                     data: fileData,
@@ -52,6 +55,14 @@ class SupabaseNetworking: SupabaseNetworkingProtocol {
                 )
         } catch {
             os_log("failed to upload pdf: %@", type: .debug, error.localizedDescription)
+            throw error
+        }
+    }
+
+    private func ensureSignedIn() async throws {
+        let hasSession = (try? await supabase.auth.session) != nil
+        if !hasSession {
+            try await signIn()
         }
     }
 

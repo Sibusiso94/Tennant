@@ -38,16 +38,45 @@ class FileUploaderViewModel: ObservableObject {
     }
 
     func handleImportedFile(url: URL) {
+        guard let readURL = resolveSecurityScopedURL(url) else {
+            isLoading = false
+            return
+        }
+
         Task {
             do {
                 try await tenantPaymentUseCase.handleImportedFile(
-                    url: url,
+                    url: readURL,
                     selectedBankType: selectedBankType,
                     userId: "")
+                print("Document:")
+                print(readURL)
             } catch {
                 errorMessage = ""
+                print("Document error:")
+                print(error)
             }
         }
+    }
+
+    private func resolveSecurityScopedURL(_ url: URL) -> URL? {
+        guard url.startAccessingSecurityScopedResource() else {
+            os_log("Failed to access security scoped resource.", type: .error)
+            return nil
+        }
+        defer { url.stopAccessingSecurityScopedResource() }
+
+        var coordinatorError: NSError?
+        var resolvedURL: URL?
+        NSFileCoordinator().coordinate(readingItemAt: url, error: &coordinatorError) { readURL in
+            resolvedURL = readURL
+        }
+
+        if let coordinatorError {
+            os_log("File coordination failed: %{public}@", type: .error, coordinatorError.localizedDescription)
+        }
+
+        return resolvedURL
     }
 
     func setUpResultView() {

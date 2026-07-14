@@ -71,7 +71,6 @@
 		5CF89BFC2CC136C300FDA874 /* HistoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */; };
 		F921EA2A2FFFCDD000719D2E /* TenantPaymentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA292FFFCDC900719D2E /* TenantPaymentProtocol.swift */; };
 		F921EA2C2FFFCDE000719D2E /* TenantPaymentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA2B2FFFCDD400719D2E /* TenantPaymentUseCase.swift */; };
-		F921EA38300119DD00719D2E /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA36300119DD00719D2E /* DocumentPicker.swift */; };
 		F921EA39300119DD00719D2E /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA37300119DD00719D2E /* FileDataManager.swift */; };
 		F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = F9B5C2202FEA7D300043452B /* MyLibrary */; };
 /* End PBXBuildFile section */
@@ -174,7 +173,6 @@
 		5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerTests.swift; sourceTree = "<group>"; };
 		F921EA292FFFCDC900719D2E /* TenantPaymentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentProtocol.swift; sourceTree = "<group>"; };
 		F921EA2B2FFFCDD400719D2E /* TenantPaymentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentUseCase.swift; sourceTree = "<group>"; };
-		F921EA36300119DD00719D2E /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		F921EA37300119DD00719D2E /* FileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -545,7 +543,6 @@
 		F921EA343001199500719D2E /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
-				F921EA36300119DD00719D2E /* DocumentPicker.swift */,
 				F921EA37300119DD00719D2E /* FileDataManager.swift */,
 			);
 			path = FileManager;
@@ -714,7 +711,6 @@
 				5C1A64022BFB6D92007CAEBF /* TenantDetailView.swift in Sources */,
 				5C43E4202CDA4E84003AA3EA /* UnitsDetailView.swift in Sources */,
 				5C1F469A2C16CAB800F1482B /* TenantPaymentData.swift in Sources */,
-				F921EA38300119DD00719D2E /* DocumentPicker.swift in Sources */,
 				F921EA39300119DD00719D2E /* FileDataManager.swift in Sources */,
 				5CE845352CEE50D900361431 /* Test.swift in Sources */,
 				5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */,

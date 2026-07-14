@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 import MyLibrary
 
 struct FileUploaderView: View {
@@ -30,10 +31,19 @@ struct FileUploaderView: View {
                         viewModel.isCompleteUploading ? viewModel.getTenantPaymentInfo() : viewModel.showPDFImporter.toggle()
                     }
                 }
-                .sheet(isPresented: $viewModel.showPDFImporter) {
-                    DocumentPicker() { url in
+                .fileImporter(
+                    isPresented: $viewModel.showPDFImporter,
+                    allowedContentTypes: [.pdf],
+                    allowsMultipleSelection: false
+                ) { result in
+                    switch result {
+                    case .success(let urls):
+                        guard let url = urls.first else { return }
                         viewModel.isLoading = true
                         viewModel.handleImportedFile(url: url)
+                    case .failure(let error):
+                        viewModel.errorMessage = error.localizedDescription
+                        viewModel.showErrorMessage = true
                     }
                 }
             }

@@ -7,6 +7,7 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
 
     private var fileSoragePath: String?
     var errorMessage: String = ""
+    var isCompleteUploading = false
 
     init(apiManager: APIManager,
          supabase: SupabaseNetworkingProtocol) {
@@ -35,10 +36,6 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
         selectedBankType: String,
         userId: String
     ) async throws {
-//        guard let validUrl = try? validateFileURL(url) else {
-//            return
-//        }
-
         fileSoragePath = setUpStoragePath(userId, selectedBankType)
 
         do {
@@ -49,6 +46,8 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
                 storagePath: storagePath,
                 selectedBankType: selectedBankType
             )
+            print("file uploaded")
+            isCompleteUploading = true
         } catch {
             os_log("Error reading file data: %@", type: .debug, error.localizedDescription)
             errorMessage = FileErrorMessages.failedToFetchFile.rawValue
@@ -90,25 +89,4 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
         let year = date.formatted(.dateTime.year(.extended(minimumLength: 2)))
         return "statements/\(userId)/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
     }
-
-//    func persistTenantData(_ data: [TenantData]) {
-//        tenantPaymentDataProvider.createMultiple(data)
-//    }
-//
-//    func fetchTenantData() -> [TenantData] {
-//        return tenantPaymentDataProvider.fetchData()
-//    }
-//
-//    func getTenantData() {
-//        let allHistoryData = historyManager.fetchData()
-//        let allTenantData = historyManager.fetchTenantData()
-//        for history in allHistoryData {
-//            let data = fetchTenantDataBy(Array(history.results), allTenantData: allTenantData)
-//            tenantHistoryData.append(TenantHistory(date: history.dateCreated, data: data))
-//        }
-//    }
 }
-
-//persistHistoryData(with: data)
-//errorMessage = "Failed to process PDF file."
-// errorMessage = "Failed to connect to server to process PDF file."
