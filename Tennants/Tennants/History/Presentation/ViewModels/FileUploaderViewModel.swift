@@ -2,39 +2,32 @@ import Foundation
 import OSLog
 
 @MainActor
-class FileUploaderViewModel: ObservableObject {
+@Observable
+class FileUploaderViewModel {
     private let tenantPaymentUseCase: TenantPaymentProtocol
 
     var fileStoragePath: String?
     let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
 
-    @Published var selectedBankType = "Standard"
-    @Published var shouldShowResultView: Bool = false
-    @Published var tenantHistoryData: [TenantHistory] = []
+    var selectedBankType = "Standard"
+    var shouldShowResultView: Bool = false
+    var tenantHistoryData: [TenantHistory] = []
 
-    @Published var showPDFImporter: Bool = false
-    @Published var isLoading = false
-    @Published var isCompleteUploading = false
+    var showPDFImporter: Bool = false
+    var isLoading = false
+    var isCompleteUploading = false
 
-    @Published var showErrorMessage = false
-    @Published var errorMessage = ""
+    var showErrorMessage = false
+    var errorMessage = ""
 
     init(tenantPaymentUseCase: TenantPaymentProtocol) {
 //        self.getTenantData()
         self.tenantPaymentUseCase = tenantPaymentUseCase
     }
 
-    func getTenantPaymentInfo() {
-        Task {
-            do {
-                try await tenantPaymentUseCase.getPaymentData(
-                    selectedBankType: selectedBankType,
-                    userId: ""
-                )
-            } catch {
-                errorMessage = ""
-            }
-        }
+    convenience init() {
+        let useCase = DIContainer.shared.resolve(TenantPaymentProtocol.self)
+        self.init(tenantPaymentUseCase: useCase)
     }
 
     func handleImportedFile(url: URL) {
@@ -45,18 +38,29 @@ class FileUploaderViewModel: ObservableObject {
 
         Task {
             do {
-                try await tenantPaymentUseCase.handleImportedFile(
+                try await tenantPaymentUseCase.uploadDocument(
                     url: readURL,
                     selectedBankType: selectedBankType,
                     userId: "")
-                print("Document:")
-                print(readURL)
+
+                isCompleteUploading = true
+
+                try await getTenantPaymentInfo()
             } catch {
                 errorMessage = ""
-                print("Document error:")
-                print(error)
             }
         }
+    }
+
+    private func getTenantPaymentInfo() async throws {
+            do {
+                try await tenantPaymentUseCase.getPaymentData(
+                    selectedBankType: selectedBankType,
+                    userId: ""
+                )
+            } catch {
+                errorMessage = ""
+            }
     }
 
     private func resolveSecurityScopedURL(_ url: URL) -> URL? {

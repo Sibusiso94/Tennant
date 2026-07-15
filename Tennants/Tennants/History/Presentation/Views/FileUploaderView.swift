@@ -3,10 +3,10 @@ import UniformTypeIdentifiers
 import MyLibrary
 
 struct FileUploaderView: View {
-    @StateObject var viewModel: FileUploaderViewModel
+    @State var viewModel = FileUploaderViewModel()
 
     init() {
-        _viewModel = StateObject(wrappedValue: FileUploaderViewModel(tenantPaymentUseCase: TenantPaymentUseCase(apiManager: ApiDataManager(networkingManager: NetworkService()), supabase: SupabaseNetworking())))
+
     }
     
     var body: some View {
@@ -22,13 +22,8 @@ struct FileUploaderView: View {
                                           selectedBankType: $viewModel.selectedBankType
                     )
 
-                    ProgressTextButton(
-                        title: viewModel.isCompleteUploading
-                            ? "Process document"
-                            : "Select a document",
-                        isLoading: $viewModel.isLoading
-                    ) {
-                        viewModel.isCompleteUploading ? viewModel.getTenantPaymentInfo() : viewModel.showPDFImporter.toggle()
+                    TextButton(title: "Select a document") {
+                        viewModel.showPDFImporter.toggle()
                     }
                 }
                 .fileImporter(
@@ -47,7 +42,11 @@ struct FileUploaderView: View {
                     }
                 }
             }
-//            .navigationTitle("Select a PDF")
+            .overlay {
+                if viewModel.isLoading {
+                    LoadingIndicator()
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -75,39 +74,5 @@ struct FileUploaderView: View {
                 Button("OK", role: .cancel) { }
             }
         }
-    }
-}
-
-public struct ProgressTextButton: View {
-    var title: String
-    @Binding var isLoading: Bool
-    var action: () -> Void
-
-    public init(title: String,
-                isLoading: Binding<Bool>,
-                action: @escaping () -> Void) {
-        self.title = title
-        self._isLoading = isLoading
-        self.action = action
-    }
-
-    public var body: some View {
-        Button {
-            action()
-        } label: {
-            HStack {
-                Text(title)
-                    .foregroundStyle(Color.black.opacity(0.6))
-
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                        .scaleEffect(1.5)
-                        .padding(.horizontal)
-                }
-            }
-            .padding()
-        }
-        .customHorizontalPadding(isButton: true)
     }
 }

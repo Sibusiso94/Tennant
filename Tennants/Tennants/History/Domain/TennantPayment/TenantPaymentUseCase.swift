@@ -3,15 +3,17 @@ import OSLog
 
 class TenantPaymentUseCase: TenantPaymentProtocol {
     private let apiManager: APIManager
+    private let historManager: HistoryManagable
     private let supabase: SupabaseNetworkingProtocol
 
     private var fileSoragePath: String?
     var errorMessage: String = ""
-    var isCompleteUploading = false
 
     init(apiManager: APIManager,
+         historManager: HistoryManagable,
          supabase: SupabaseNetworkingProtocol) {
         self.apiManager = apiManager
+        self.historManager = historManager
         self.supabase = supabase
     }
 
@@ -21,17 +23,22 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
     ) async throws -> [TenantPaymentData] {
         do {
             guard let storagePath = fileSoragePath else { return [] }
-            return try await apiManager.fetchApiData(
+            let tenantPaymentData = try await apiManager.fetchApiData(
                 selectedBankType: selectedBankType,
                 userId: userId,
                 storagePath: storagePath
             )
+
+            historManager.persistHistoryData(with: tenantPaymentData)
+            print("Data: \(tenantPaymentData)")
+            return tenantPaymentData
         } catch {
+            print("apiManager error: \(error)")
             throw error
         }
     }
 
-    func handleImportedFile(
+    func uploadDocument(
         url: URL,
         selectedBankType: String,
         userId: String
@@ -47,7 +54,6 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
                 selectedBankType: selectedBankType
             )
             print("file uploaded")
-            isCompleteUploading = true
         } catch {
             os_log("Error reading file data: %@", type: .debug, error.localizedDescription)
             errorMessage = FileErrorMessages.failedToFetchFile.rawValue
@@ -90,3 +96,5 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
         return "statements/\(userId)/\(day)_\(month)_\(year)_\(selectedBankType)_statement.pdf"
     }
 }
+
+//Error reading file data: The resource already exists

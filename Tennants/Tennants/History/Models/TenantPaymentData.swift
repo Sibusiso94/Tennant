@@ -6,5 +6,3 @@ class TenantPaymentData: Codable {
     var reference: String
     var amount: String
 }
-
-//typealias TennantsData = [TenantPaymentData]

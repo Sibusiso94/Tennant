@@ -2,6 +2,7 @@ import Foundation
 
 protocol HistoryManagable {
     func fetchHistoryData() -> [History]
+    func persistHistoryData(with results: [TenantPaymentData]?)
 }
 
 class HistoryManager: HistoryManagable {
@@ -20,7 +21,6 @@ class HistoryManager: HistoryManagable {
     }
 
     func persistHistoryData(with results: [TenantPaymentData]?) {
-        #warning("Add Group to wait for completion of each task")
         let historyId = UUID().uuidString
         let data = setUpApiData(with: results, id: historyId)
         let history = setUpHistoryData(with: data, id: historyId)

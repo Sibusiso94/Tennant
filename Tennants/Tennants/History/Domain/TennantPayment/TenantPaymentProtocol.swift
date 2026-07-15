@@ -6,7 +6,7 @@ protocol TenantPaymentProtocol {
         userId: String
     ) async throws -> [TenantPaymentData]
 
-    func handleImportedFile(
+    func uploadDocument(
         url: URL,
         selectedBankType: String,
         userId: String
