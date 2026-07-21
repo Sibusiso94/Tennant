@@ -1,6 +1,6 @@
 import Foundation
 
-class TenantPaymentData: Codable {
+struct TenantPaymentData: Codable {
     var id: String
     var date: String
     var reference: String

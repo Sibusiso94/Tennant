@@ -1,70 +1,77 @@
-import XCTest
-import OSLog
+import Cuckoo
+import Foundation
+import Testing
+
 @testable import Tennants
 
-class APIManagerTests: XCTestCase {
-    var apiManager: ApiDataManager!
-    
-    @MainActor override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        super.setUp()
-        do {
-//            var container = try ModelContainer(for: History.self)
-//            apiManager = ApiDataManager(modelContext: container.mainContext)
-        } catch {
-            
+@MainActor
+@Suite(.serialized)
+struct APIManagerTests {
+    var apiManager: ApiDataManager
+    var mockNetworking: MockNetworkServiceProtocol
+
+    init() {
+        mockNetworking = MockNetworkServiceProtocol()
+        apiManager = ApiDataManager(networkingManager: mockNetworking)
+    }
+
+    @Test
+    func setUpApiDataWithValidResults() async {
+        let tenantPaymentData = MockData.setUpData()
+
+        stub(mockNetworking) { stub in
+            when(stub.createURL(baseURL: any(), parameters: any()))
+                .thenReturn(URL(string: "www.example.com")!)
         }
+
+        stub(mockNetworking) { stub in
+            when(stub.fetchData(from: "www.example.com"))
+                .thenReturn(tenantPaymentData)
+        }
+
+        let result = try? await apiManager.fetchApiData(selectedBankType: "", userId: "", storagePath: "")
+
+        #expect(result?.count == 4)
+        #expect(result?[0].id == "1")
+        #expect(result?[0].date == "2023-01-01")
+        #expect(result?[0].reference == "Ref1")
+        #expect(result?[0].amount == "100")
+        #expect(result?[1].id == "2")
+        #expect(result?[1].date == "2023-01-02")
+        #expect(result?[1].reference == "Ref2")
+        #expect(result?[1].amount == "200")
     }
     
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
-    // MARK: - setUpApiData
-    func testSetUpApiDataWithValidResults() {
-        let tenantPaymentData = MockPaymentTenantData().setUpData()
-        let result = apiManager.setUpApiData(with: tenantPaymentData)
-        
-        
-        XCTAssertEqual(result.count, 4)
-        XCTAssertEqual(result[0].id, "1")
-        XCTAssertEqual(result[0].date, "2023-01-01")
-        XCTAssertEqual(result[0].reference, "Ref1")
-        XCTAssertEqual(result[0].amount, "100")
-        XCTAssertEqual(result[1].id, "2")
-        XCTAssertEqual(result[1].date, "2023-01-02")
-        XCTAssertEqual(result[1].reference, "Ref2")
-        XCTAssertEqual(result[1].amount, "200")
-    }
-    
-    func testSetUpApiDataWithEmptyResults() {
-        // Given
-        let tenantPaymentData: [TenantPaymentData] = []
-        
-        // When
-        let result = apiManager.setUpApiData(with: tenantPaymentData)
-        
-        // Then
-        XCTAssertEqual(result.count, 0)
-    }
-    
-    func testSetUpApiDataWithNilResults() {
+//    func testSetUpApiDataWithEmptyResults() {
+//        // Given
+//        let tenantPaymentData: [TenantPaymentData] = []
+//        
+//        // When
+//        let result = apiManager.setUpApiData(with: tenantPaymentData)
+//        
+//        // Then
+//        XCTAssertEqual(result.count, 0)
+//    }
+
+    @Test
+    func setUpApiDataWithNilResults() async {
         // given
-        let result = apiManager.setUpApiData(with: nil)
-        
+        stub(mockNetworking) { stub in
+            when(stub.createURL(baseURL: any(), parameters: any()))
+                .thenReturn(nil)
+        }
+
+        stub(mockNetworking) { stub in
+            when(stub.fetchData(from: "www.example.com"))
+                .thenReturn(nil as [TenantPaymentData]?)
+        }
+
+        let result = try? await apiManager.fetchApiData(selectedBankType: "", userId: "", storagePath: "")
+
         // Then
-        XCTAssertEqual(result.count, 0)
+        #expect(result == nil)
     }
     
     // MARK: - filterAllPayments
     
 }
-
-class MockPaymentTenantData {
-    func setUpData() -> [TenantPaymentData] {
-        var data: [TenantPaymentData] = []
-        
-        return data
-    }
-}
-

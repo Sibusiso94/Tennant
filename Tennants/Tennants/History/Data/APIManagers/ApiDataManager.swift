@@ -1,10 +1,6 @@
 import Foundation
 import OSLog
 
-protocol APIManager {
-    func fetchApiData(selectedBankType: String, userId: String, storagePath: String) async throws -> [TenantPaymentData]
-}
-
 class ApiDataManager: APIManager {
     let networkingManager: NetworkServiceProtocol
 
@@ -33,9 +29,5 @@ class ApiDataManager: APIManager {
         }
 
         return try await networkingManager.fetchData(from: url.absoluteString)
-    }
-    
-    func uploadFile(url: Data?, bankType: String, completion: @escaping (String?, Error?) -> Void) {
-        guard let localFile = url else { return }
     }
 }

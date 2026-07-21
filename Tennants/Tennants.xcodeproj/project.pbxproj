@@ -77,6 +77,13 @@
 		F92B529730078A610099112B /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B529630078A590099112B /* DIContainer.swift */; };
 		F92B529A30079ECE0099112B /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B529930079EC70099112B /* LoadingIndicator.swift */; };
 		F92B529C30079EF70099112B /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B529B30079EF50099112B /* TextButton.swift */; };
+		F92B529F3008B10A0099112B /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = F92B529E3008B10A0099112B /* Cuckoo */; };
+		F92B52CE3008BEB70099112B /* Cuckoofile.toml in Resources */ = {isa = PBXBuildFile; fileRef = F92B52CD3008BEB20099112B /* Cuckoofile.toml */; };
+		F92B52D13008BF030099112B /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B52D03008BF010099112B /* GeneratedMocks.swift */; };
+		F92B52D33008C2490099112B /* SupabaseNetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B52D23008C2480099112B /* SupabaseNetworkingProtocol.swift */; };
+		F92B52D53008C2930099112B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B52D43008C2910099112B /* APIManager.swift */; };
+		F92B53B83009F9CB0099112B /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B53B73009F9B90099112B /* NetworkServiceProtocol.swift */; };
+		F92B53BA3009FCE70099112B /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92B53B93009FCE30099112B /* MockData.swift */; };
 		F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = F9B5C2202FEA7D300043452B /* MyLibrary */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +190,12 @@
 		F92B529630078A590099112B /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		F92B529930079EC70099112B /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		F92B529B30079EF50099112B /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		F92B52CD3008BEB20099112B /* Cuckoofile.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cuckoofile.toml; sourceTree = "<group>"; };
+		F92B52D03008BF010099112B /* GeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		F92B52D23008C2480099112B /* SupabaseNetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseNetworkingProtocol.swift; sourceTree = "<group>"; };
+		F92B52D43008C2910099112B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		F92B53B73009F9B90099112B /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		F92B53B93009FCE30099112B /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F92B529F3008B10A0099112B /* Cuckoo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +319,7 @@
 		5C1F46962C12EA9C00F1482B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F92B53B73009F9B90099112B /* NetworkServiceProtocol.swift */,
 				5C1F469B2C17059000F1482B /* NetworkManager.swift */,
 			);
 			path = Networking;
@@ -335,12 +350,13 @@
 			path = Persistance;
 			sourceTree = "<group>";
 		};
-		5C3E319F2C40107700321EB3 /* API Managers */ = {
+		5C3E319F2C40107700321EB3 /* APIManagers */ = {
 			isa = PBXGroup;
 			children = (
+				F92B52D43008C2910099112B /* APIManager.swift */,
 				5C3E319C2C400DFF00321EB3 /* ApiDataManager.swift */,
 			);
-			path = "API Managers";
+			path = APIManagers;
 			sourceTree = "<group>";
 		};
 		5C43E4372CE0A8D3003AA3EA /* CustomViews */ = {
@@ -375,6 +391,7 @@
 		5C4734222B6261C00040A0AA /* Tennants */ = {
 			isa = PBXGroup;
 			children = (
+				F92B52CD3008BEB20099112B /* Cuckoofile.toml */,
 				F92B5293300789B50099112B /* DependencyInjection */,
 				F921EA252FFF7DF500719D2E /* History */,
 				5C43E4372CE0A8D3003AA3EA /* CustomViews */,
@@ -409,6 +426,7 @@
 		5C4734332B6261C50040A0AA /* TennantsTests */ = {
 			isa = PBXGroup;
 			children = (
+				F92B52CF3008BEFB0099112B /* Mocks */,
 				5C4734342B6261C50040A0AA /* FileManagerTests.swift */,
 				5C0D5DB42C5D05D400440001 /* APIManagerTests.swift */,
 				5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */,
@@ -494,6 +512,7 @@
 		5CE845332CEE50C600361431 /* Supabase */ = {
 			isa = PBXGroup;
 			children = (
+				F92B52D23008C2480099112B /* SupabaseNetworkingProtocol.swift */,
 				5CE845342CEE50D900361431 /* Test.swift */,
 				5CE845362CEE526A00361431 /* SupabaseNetworking.swift */,
 			);
@@ -525,7 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				5CE845332CEE50C600361431 /* Supabase */,
-				5C3E319F2C40107700321EB3 /* API Managers */,
+				5C3E319F2C40107700321EB3 /* APIManagers */,
 				5C3E319A2C3E7CAD00321EB3 /* HistoryDataProvider.swift */,
 			);
 			path = Data;
@@ -585,6 +604,15 @@
 				F92B529930079EC70099112B /* LoadingIndicator.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F92B52CF3008BEFB0099112B /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F92B53B93009FCE30099112B /* MockData.swift */,
+				F92B52D03008BF010099112B /* GeneratedMocks.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -686,6 +714,7 @@
 				5CE845302CEE469400361431 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				F9B5C21F2FEA7D300043452B /* XCRemoteSwiftPackageReference "MLibrary2" */,
 				F92B5290300789870099112B /* XCRemoteSwiftPackageReference "Swinject" */,
+				F92B529D3008B0A40099112B /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = 5C4734212B6261C00040A0AA /* Products */;
 			projectDirPath = "";
@@ -704,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C47342B2B6261C40040A0AA /* Preview Assets.xcassets in Resources */,
+				F92B52CE3008BEB70099112B /* Cuckoofile.toml in Resources */,
 				5C4734282B6261C40040A0AA /* Assets.xcassets in Resources */,
 				5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */,
 			);
@@ -769,6 +799,7 @@
 				F92B529C30079EF70099112B /* TextButton.swift in Sources */,
 				5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */,
 				5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */,
+				F92B52D33008C2490099112B /* SupabaseNetworkingProtocol.swift in Sources */,
 				5C3E31952C3BDE1100321EB3 /* HistoryView.swift in Sources */,
 				5C3E319B2C3E7CAD00321EB3 /* HistoryDataProvider.swift in Sources */,
 				5C0B9B682C611E2500362893 /* AddTenantView.swift in Sources */,
@@ -788,7 +819,9 @@
 				5CCAC53B2D1E8C2000965A33 /* TenantListViewModel.swift in Sources */,
 				5C43E4242CDA6214003AA3EA /* UnitTopCardView.swift in Sources */,
 				5C0089E52BF34A4D0061C00B /* SingleUnit.swift in Sources */,
+				F92B53B83009F9CB0099112B /* NetworkServiceProtocol.swift in Sources */,
 				5C8FDB462C8AFFED004EC65E /* Migrator.swift in Sources */,
+				F92B52D53008C2930099112B /* APIManager.swift in Sources */,
 				5CE4426F2CEE3D50000D62CC /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,6 +833,8 @@
 				5CF89BFC2CC136C300FDA874 /* HistoryManagerTests.swift in Sources */,
 				5C0D5DB52C5D05D400440001 /* APIManagerTests.swift in Sources */,
 				5C4734352B6261C50040A0AA /* FileManagerTests.swift in Sources */,
+				F92B52D13008BF030099112B /* GeneratedMocks.swift in Sources */,
+				F92B53BA3009FCE70099112B /* MockData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1192,14 @@
 				minimumVersion = 2.10.0;
 			};
 		};
+		F92B529D3008B0A40099112B /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
 		F9B5C21F2FEA7D300043452B /* XCRemoteSwiftPackageReference "MLibrary2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sibusiso94/MLibrary2.git";
@@ -1177,6 +1220,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F92B5290300789870099112B /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		F92B529E3008B10A0099112B /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F92B529D3008B0A40099112B /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
 		};
 		F9B5C2202FEA7D300043452B /* MyLibrary */ = {
 			isa = XCSwiftPackageProductDependency;

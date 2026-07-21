@@ -1,0 +1,19 @@
+# Optional global fallback output for modules that don't set their own
+output = "../TennantsTests/Mocks/GeneratedMocks.swift"
+
+[modules.Tennants]
+imports = ["Foundation"]
+testableImports = ["Tennants"]
+sources = [
+    "Networking/NetworkServiceProtocol.swift",
+    "History/Data/Supabase/SupabaseNetworkingProtocol.swift",
+    "History/Data/APIManagers/APIManager.swift",
+    "History/Domain/TennantPayment/TenantPaymentProtocol.swift",
+]
+# Or filter by name with a regex instead of listing everything:
+# regex = "Protocol$"
+
+[modules.Tennants.options]
+glob = true            # needed for the **/*.swift wildcards above
+protocolsOnly = true   # only generate mocks for protocols (great for you)
+keepDocumentation = false

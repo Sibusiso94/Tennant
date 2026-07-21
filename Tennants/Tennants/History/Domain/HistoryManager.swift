@@ -53,14 +53,11 @@ class HistoryManager: HistoryManagable {
     }
     
     private func filterAllPayments(tenants: [TenantPaymentData]) -> [TenantPaymentData] {
-        var updatedResult: [TenantPaymentData] = []
-        
-        for (index, tenant) in tenants.enumerated() {
-            tenants[index].amount = tenant.amount.replacingOccurrences(of: "\"", with: "")
-            updatedResult.append(tenants[index])
+        return tenants.map { tenant in
+            var updated = tenant
+            updated.amount = tenant.amount.replacingOccurrences(of: "\"", with: "")
+            return updated
         }
-        
-        return updatedResult
     }
     
     private func setUpPaymentData(data: [TenantPaymentData], id: String) -> [TenantData] {

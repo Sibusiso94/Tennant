@@ -25,20 +25,4 @@ final class HistoryManagerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
-    class MockHistoryManager: HistoryManagable {
-        let dataManager: HistoryDataSetter!
-        
-        init(dataManager: HistoryDataSetter!) {
-            self.dataManager = dataManager
-        }
-
-        func fetchData() -> [Tennants.History] {
-            return []
-        }
-        
-        func persistHistoryData(with results: [Tennants.TenantPaymentData]?, completion: ([Tennants.History]) -> Void) {
-            //
-        }
-    }
 }
