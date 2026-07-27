@@ -1,32 +1,34 @@
 import Foundation
 
-class TenantManager {
-    let repository: SwiftDataRepository
-    let dataProvider: TenantDataProvider    
-    
-    init(repository: SwiftDataRepository) {
+protocol TenantManagerProtocol {
+    func fetchTenants() -> [Tennant]
+    func fetchTenantBy(_ id: String) -> Tennant?
+    func addTenant(propertyID: String,
+                   unitID: String,
+                   tenant: Tennant) async throws
+    func deleteTenants(from tenantId: String) async throws
+    func deleteTenants(with propertyId: String) async throws 
+}
+
+class TenantManager: TenantManagerProtocol {
+    let repository: DataSource
+
+    init(repository: DataSource) {
         self.repository = repository
-        self.dataProvider = TenantDataProvider(repository: repository)
     }
 
-    func fetchAll() -> [Tennant] {
-        dataProvider.fetchData()
-    }
-
-    func fetchTenant(from unitID: String) -> Tennant? {
-        let tenants = dataProvider.fetchData()
-        let unitTenants = tenants.first(where: { $0.unitID == unitID } )
-        return unitTenants
+    func fetchTenants() -> [Tennant] {
+        repository.readAll(Tennant.self)
     }
     
     func fetchTenantBy(_ id: String) -> Tennant? {
-        return dataProvider.fetchData(by: id)
+        let tenants = repository.readAll(Tennant.self)
+        return tenants.first(where: { $0.id == id })
     }
     
     func addTenant(propertyID: String,
                    unitID: String,
-                   tenant: Tennant,
-                   completion: @escaping (String) -> Void) {
+                   tenant: Tennant) async throws {
         let newTenantId = UUID().uuidString
         let newTenant = Tennant(id: newTenantId,
                                 propertyID: propertyID,
@@ -44,16 +46,14 @@ class TenantManager {
                                 startDate: tenant.startDate,
                                 endDate: tenant.endDate)
         
-        dataProvider.create(newTenant)
-        completion(newTenantId)
+        try repository.create(newTenant)
     }
     
-    func deleteTenants(from unitIds: [String]) {
-        let data = dataProvider.fetchData()
-        let tenantsToDelete = data.filter { unitIds.contains($0.unitID) }
-        
-        for tenant in tenantsToDelete {
-            dataProvider.delete(tenant.id)
-        }
+    func deleteTenants(from tenantId: String) async throws {
+        try repository.delete(tenantId, ofType: Tennant.self)
+    }
+
+    func deleteTenants(with propertyId: String) async throws {
+        try repository.delete(propertyId, ofType: Tennant.self)
     }
 }

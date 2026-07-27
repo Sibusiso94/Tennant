@@ -5,10 +5,13 @@ output = "../TennantsTests/Mocks/GeneratedMocks.swift"
 imports = ["Foundation"]
 testableImports = ["Tennants"]
 sources = [
-    "Networking/NetworkServiceProtocol.swift",
     "History/Data/Supabase/SupabaseNetworkingProtocol.swift",
     "History/Data/APIManagers/APIManager.swift",
     "History/Domain/TennantPayment/TenantPaymentProtocol.swift",
+    "History/Domain/HistoryManager/HistoryManagable.swift",
+    "History/Domain/ReferenceManager/ReferencesManagable.swift",
+    "Networking/NetworkServiceProtocol.swift",
+    "Persistance/SwiftDataRepository/DataSource.swift"
 ]
 # Or filter by name with a regex instead of listing everything:
 # regex = "Protocol$"

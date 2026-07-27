@@ -2,8 +2,8 @@ import SwiftUI
 import MyLibrary
 
 struct UnitDetailViewContainer: View {
-    @ObservedObject var propertyViewModel: PropertiesViewModel
-    @ObservedObject var viewModel: PropertyDetailViewModel
+    @Bindable var propertyViewModel: PropertiesViewModel
+    @Bindable var viewModel: PropertyDetailViewModel
     @State var showAddTenantView = false
     @State var showAlert = false
     @State var showEditingView = false
@@ -83,18 +83,13 @@ struct UnitDetailViewContainer: View {
         .navigationDestination(isPresented: $showAddTenantView) {
             AddTenantView() { tenantToAdd in
                 viewModel.addTenant(tenantToAdd, propertyID: buildingId, unitId: unit.id)
-                propertyViewModel.getTenant(with: unit.id) { tenantToReturn in
-//                    tenant = tenantToReturn
-                }
+                propertyViewModel.getTenant(with: unit.id)
             }
         }
         .sheet(isPresented: $showEditingView) {
             AddPropertyView(viewModel: propertyViewModel, isEditing: true) {
-                viewModel.updateUnit(id: unit.id,
-                                     tenantId: tenant?.id,
-                                     beds: Int(propertyViewModel.newData.numberOfBedrooms),
-                                     baths: Int(propertyViewModel.newData.numberOfBathrooms),
-                                     size: Int(propertyViewModel.newData.size))
+                viewModel.updateUnit(unitId: unit.id,
+                                     tenantId: tenant?.id ?? "")
             }
         }
         .alert("Are you sure you want to delete?", isPresented: $showAlert) {

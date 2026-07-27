@@ -6,7 +6,7 @@ struct AddPropertyView: View {
     @FocusState private var focusedField: Field?
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject var viewModel: PropertiesViewModel
+    @Bindable var viewModel: PropertiesViewModel
     @State var showErrorMessage: Bool
     var isEditing: Bool
 

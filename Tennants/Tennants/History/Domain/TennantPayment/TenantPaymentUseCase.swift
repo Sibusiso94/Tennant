@@ -9,9 +9,11 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
     private var fileSoragePath: String?
     var errorMessage: String = ""
 
-    init(apiManager: APIManager,
-         historManager: HistoryManagable,
-         supabase: SupabaseNetworkingProtocol) {
+    init(
+        apiManager: APIManager,
+        historManager: HistoryManagable,
+        supabase: SupabaseNetworkingProtocol
+    ) {
         self.apiManager = apiManager
         self.historManager = historManager
         self.supabase = supabase
@@ -29,7 +31,7 @@ class TenantPaymentUseCase: TenantPaymentProtocol {
                 storagePath: storagePath
             )
 
-            historManager.persistHistoryData(with: tenantPaymentData)
+            try await historManager.persistHistoryData(with: tenantPaymentData)
             print("Data: \(tenantPaymentData)")
             return tenantPaymentData
         } catch {

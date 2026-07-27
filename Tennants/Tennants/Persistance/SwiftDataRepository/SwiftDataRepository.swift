@@ -1,40 +1,13 @@
 import Foundation
 import SwiftData
 
-protocol DataSource: CreateObject, ReadObject, DeleteObject { }
-
-protocol CreateObject {
-    associatedtype T: PersistableModel
-    func create(_ object: T)
-}
-
-protocol MultipleObjectsCreatable {
-    associatedtype T:  PersistableModel
-    func createMultiple(_ insertions: [T])
-}
-
-protocol ReadObject {
-    associatedtype T: PersistableModel
-    func fetchData() -> [T]
-}
-
-protocol UpdateObject {
-    associatedtype T: AnyObject
-    func update(deletingSpecifically: T, insertions: T)
-}
-
-protocol DeleteObject {
-    associatedtype T: PersistableModel
-    func delete(_ id: String)
-}
-
 /// A SwiftData-backed model that exposes its primary key as a `String` so the
 /// repository can offer generic, key-based reads and deletes.
 protocol PersistableModel: PersistentModel {
     var primaryKey: String { get }
 }
 
-class SwiftDataRepository {
+class SwiftDataRepository: DataSource {
     /// All persisted model types live in a single shared container so that every
     /// repository instance reads and writes the same underlying store.
     static let sharedContainer: ModelContainer = {
@@ -71,10 +44,6 @@ class SwiftDataRepository {
             context.insert(insertion)
         }
         try context.save()
-    }
-
-    public func read<T: PersistableModel>(_ type: T.Type) -> T? {
-        return readAll(type).first
     }
 
     public func readAll<T: PersistableModel>(_ type: T.Type) -> [T] {

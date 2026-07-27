@@ -1,35 +1,29 @@
 import Foundation
 
-protocol HistoryManagable {
-    func fetchHistoryData() -> [History]
-    func persistHistoryData(with results: [TenantPaymentData]?)
-}
-
 class HistoryManager: HistoryManagable {
-    let repository: SwiftDataRepository
-    let dataProvider: HistoryDataProvider
-    let tenantPaymentDataProvider: TenantPaymentDataProvider
+    let repository: DataSource
 
-    init(repository: SwiftDataRepository) {
+    init(repository: DataSource) {
         self.repository = repository
-        self.dataProvider = HistoryDataProvider(repository: repository)
-        self.tenantPaymentDataProvider = TenantPaymentDataProvider(repository: repository)
     }
     
     func fetchHistoryData() -> [History] {
-        dataProvider.fetchData()
+        repository.readAll(History.self)
     }
 
-    func persistHistoryData(with results: [TenantPaymentData]?) {
+    func persistHistoryData(with results: [TenantPaymentData]?) async throws {
         let historyId = UUID().uuidString
         let data = setUpApiData(with: results, id: historyId)
         let history = setUpHistoryData(with: data, id: historyId)
-        dataProvider.create(history)
+        
+        do {
+            try repository.create(history)
+        } catch {
+            throw error
+        }
     }
 
-    
-
-    func getIds(_ data: [TenantData]) -> [String] {
+    private func getIds(_ data: [TenantData]) -> [String] {
         return data.map({ $0.id })
     }
 

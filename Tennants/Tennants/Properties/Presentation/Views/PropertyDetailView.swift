@@ -3,19 +3,15 @@ import MyLibrary
 
 struct PropertyDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: PropertiesViewModel
-    @StateObject var detailViewModel: PropertyDetailViewModel
+    @Bindable var viewModel: PropertiesViewModel
+    @State var detailViewModel = PropertyDetailViewModel()
 
-    @State var showDetailView: Bool
     @State var showAlert = false
-    @State var selectedTenant: Tennant?
     @State var unitImage = ""
     @State private var searchText = ""
     
     init(viewModel: PropertiesViewModel) {
-        _showDetailView = State(initialValue: false)
         self.viewModel = viewModel
-        _detailViewModel = StateObject(wrappedValue: PropertyDetailViewModel(unitManager: viewModel.manager.unitManager, tenantManager: viewModel.manager.tenantManager))
     }
     
     var body: some View {
@@ -24,13 +20,15 @@ struct PropertyDetailView: View {
                 Color("PastelGrey")
                     .ignoresSafeArea()
                 
-                if viewModel.selectedProperty.isSingleUnit {
+                if viewModel.selectedProperty.isSingleUnit, let unit = detailViewModel.unit {
                     UnitDetailViewContainer(propertyViewModel: viewModel, viewModel: detailViewModel,
-                                            unit: detailViewModel.unit,
+                                            unit: unit,
                                             complexName: viewModel.selectedProperty.buildingName,
                                             buildingId: viewModel.selectedProperty.buildingID,
-                                            address: viewModel.selectedProperty.buildingAddress,
-                                            tenant: viewModel.selectedTenant)
+                                            address: viewModel.selectedProperty.buildingAddress
+//                                            ,
+//                                            tenant: viewModel.selectedTenant
+                    )
                 } else {
                     VStack {
                         HStack {
@@ -49,7 +47,7 @@ struct PropertyDetailView: View {
                                                 address: viewModel.selectedProperty.buildingAddress,
                                                 isOccupied: unitModel.isOccupied)
                                 .onTapGesture {
-                                    setUpCardDetail(with: unitModel)
+                                    viewModel.setUpCardDetail(with: unitModel)
                                     detailViewModel.fetchUnit(unitModel.unitId)
                                 }
                                 .padding(.horizontal)
@@ -68,14 +66,19 @@ struct PropertyDetailView: View {
 
                         }
                     }
-                    .navigationDestination(isPresented: $showDetailView) {
-                        UnitDetailViewContainer(propertyViewModel: viewModel, viewModel: detailViewModel,
-                                                unit: detailViewModel.unit,
-                                                complexName: viewModel.selectedProperty.buildingName,
-                                                buildingId: viewModel.selectedProperty.buildingID,
-                                                address: viewModel.selectedProperty.buildingAddress,
-                                                tenant: viewModel.selectedTenant,
-                                                unitImage: Image(unitImage))
+                    .navigationDestination(isPresented: $viewModel.showUnitDetailView) {
+                        if let unit = detailViewModel.unit {
+                            UnitDetailViewContainer(
+                                propertyViewModel: viewModel,
+                                viewModel: detailViewModel,
+                                unit: unit,
+                                complexName: viewModel.selectedProperty.buildingName,
+                                buildingId: viewModel.selectedProperty.buildingID,
+                                address: viewModel.selectedProperty.buildingAddress,
+                                tenant: viewModel.selectedTenant,
+                                unitImage: Image(unitImage)
+                            )
+                        }
                     }
                     .alert("Are you sure you want to delete?", isPresented: $showAlert) {
                         Button("Yes", role: .cancel) {
@@ -92,26 +95,11 @@ struct PropertyDetailView: View {
             }
         }
     }
-    
-    func setUpCardDetail(with tenant: UnitCardModel) {
-        unitImage = "room\(tenant.unitNumber)"
-        if tenant.isOccupied {
-            viewModel.getTenant(with: tenant.unitId) { tenantToReturn in
-                viewModel.selectedTenant = tenantToReturn
-                viewModel.selectedUnit.unitNumber = detailViewModel.safeStringToInt(tenant.unitNumber)
-                showDetailView.toggle()
-            }
-        } else {
-            showDetailView.toggle()
-        }
-    }
 
     func setUpSingleUnit() {
         if viewModel.selectedProperty.isSingleUnit {
             detailViewModel.fetchUnit(viewModel.selectedProperty.unitIDs.first ?? "")
-            viewModel.getTenant(with: detailViewModel.unit.id) { tenantToReturn in
-                viewModel.selectedTenant = tenantToReturn
-            }
+            viewModel.selectedTenant = viewModel.getTenant(with: detailViewModel.unit?.tenantID ?? "")
         }
     }
 }

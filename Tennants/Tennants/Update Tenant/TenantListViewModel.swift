@@ -1,21 +1,25 @@
 import Foundation
 
-class TenantListViewModel: ObservableObject {
-    let repository: SwiftDataRepository
-    let manager: TenantManager
+@Observable
+class TenantListViewModel {
+    let manager: TenantManagerProtocol
 
-    @Published var allTenants = [Tennant]()
-    @Published var selectedTenant = Tennant()
-    @Published var searchText = ""
-    @Published var showDetailView = false
+    var allTenants = [Tennant]()
+    var selectedTenant = Tennant()
+    var searchText = ""
+    var showDetailView = false
 
-    init() {
-        self.repository = SwiftDataRepository()
-        self.manager = TenantManager(repository: repository)
+    init(manager: TenantManagerProtocol) {
+        self.manager = manager
         fetch()
     }
 
+    convenience init() {
+        let manager = DIContainer.shared.resolve(TenantManagerProtocol.self)
+        self.init(manager: manager)
+    }
+
     func fetch() {
-        allTenants = manager.fetchAll()
+        allTenants = manager.fetchTenants()
     }
 }

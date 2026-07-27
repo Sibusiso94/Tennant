@@ -8,8 +8,17 @@ final class AppAssembly: Assembly {
         }
         .inObjectScope(.container)
 
-        container.register(HistoryManagable.self) { _ in
-            HistoryManager(repository: SwiftDataRepository())
+        container.register(DataSource.self) { _ in
+            SwiftDataRepository()
+        }
+        .inObjectScope(.container)
+
+        container.register(HistoryManagable.self) { resolver in
+            guard let dataSource = resolver.resolve(DataSource.self) else {
+                preconditionFailure("Failed to register DataSource")
+            }
+
+            return HistoryManager(repository: dataSource)
         }
         .inObjectScope(.container)
 
@@ -17,6 +26,14 @@ final class AppAssembly: Assembly {
             SupabaseNetworking()
         }
         .inObjectScope(.container)
+
+        container.register(ReferencesManagable.self) { resolver in
+            guard let supabase = resolver.resolve(SupabaseNetworkingProtocol.self) else {
+                preconditionFailure("Failed to register SupabaseNetworkingProtocol")
+            }
+
+            return ReferencesManager(supabaseRepository: supabase)
+        }
 
         container.register(APIManager.self) { resolver in
             guard let networkService = resolver.resolve(NetworkServiceProtocol.self) else {
@@ -41,6 +58,42 @@ final class AppAssembly: Assembly {
                 apiManager: apiManager,
                 historManager: historyManager,
                 supabase: supabase
+            )
+        }
+
+        container.register(UnitMangerProtocol.self) { resolver in
+            guard let dataSource = resolver.resolve(DataSource.self) else {
+                preconditionFailure("Failed to register DataSource")
+            }
+
+            return UnitManager(repository: dataSource)
+        }
+
+        container.register(TenantManagerProtocol.self) { resolver in
+            guard let dataSource = resolver.resolve(DataSource.self) else {
+                preconditionFailure("Failed to register DataSource")
+            }
+
+            return TenantManager(repository: dataSource)
+        }
+
+        container.register(PropertyUseCaseProtocol.self) { resolver in
+            guard let dataSource = resolver.resolve(DataSource.self) else {
+                preconditionFailure("Failed to register DataSource")
+            }
+
+            guard let unitManager = resolver.resolve(UnitMangerProtocol.self) else {
+                preconditionFailure("Failed to register UnitMangerProtocol")
+            }
+
+            guard let tenantManager = resolver.resolve(TenantManagerProtocol.self) else {
+                preconditionFailure("Failed to register TenantManagerProtocol")
+            }
+
+            return PropertyUseCase(
+                repository: dataSource,
+                unitManager: unitManager,
+                tenantManager: tenantManager
             )
         }
     }

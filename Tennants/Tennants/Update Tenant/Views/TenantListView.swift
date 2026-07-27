@@ -1,11 +1,8 @@
 import SwiftUI
 
 struct TenantListView: View {
-    @StateObject var viewModel: TenantListViewModel
+    @State var viewModel = TenantListViewModel()
 
-    init() {
-        _viewModel = StateObject(wrappedValue: TenantListViewModel())
-    }
     var body: some View {
         NavigationStack {
             ZStack {
@@ -33,8 +30,4 @@ struct TenantListView: View {
             }
         }
     }
-}
-
-#Preview {
-    TenantListView()
 }

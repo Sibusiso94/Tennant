@@ -15,13 +15,13 @@ class SingleUnit: Identifiable, PersistableModel {
     var primaryKey: String { id }
 
     init(id: String = UUID().uuidString,
-         unitNumber: Int = 0,
-         propertyId: String = "",
-         tenantID: String = "",
-         numberOfBedrooms: Int = 1,
-         numberOfBathrooms: Int = 1,
-         size: Int = 0,
-         isOccupied: Bool = false) {
+         unitNumber: Int,
+         propertyId: String,
+         tenantID: String,
+         numberOfBedrooms: Int,
+         numberOfBathrooms: Int,
+         size: Int,
+         isOccupied: Bool) {
         self.id = id
         self.unitNumber = unitNumber
         self.propertyId = propertyId

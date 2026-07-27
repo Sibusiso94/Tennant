@@ -3,12 +3,11 @@ import MyLibrary
 
 struct PropertiesView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel: PropertiesViewModel
+    @State var viewModel = PropertiesViewModel()
     @State private var path: NavigationPath
     @State var mockProperies = ["Telesto"]
     
     init() {
-        _viewModel = StateObject(wrappedValue: PropertiesViewModel())
         _path = State(initialValue: NavigationPath())
     }
     
@@ -77,8 +76,7 @@ struct PropertiesView: View {
                     }
                     .alert("Property successfully added", isPresented: $viewModel.showAlert) {
                         Button("OK", role: .cancel) {
-                            viewModel.selectedProperty = viewModel.manager.newProperty
-                            viewModel.properties = viewModel.manager.fetchProperties()
+                            viewModel.properties = viewModel.fetchProperties()
                             viewModel.showPropertyDetailView = true
                         }
                     }

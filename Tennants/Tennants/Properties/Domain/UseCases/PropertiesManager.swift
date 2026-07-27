@@ -16,25 +16,19 @@ enum ErrorMessage: String, Hashable {
     case tenantIDError = "Invalid ID number"
 }
 
-protocol NewPropertyManager {
-    var dataProvider: PropertiesDataProvider { get }
-    var unitManager: UnitManager { get }
-    func createProperty(newData: NewDataModel, propertyType: PropertyOptions, completion: @escaping (Bool) -> Void)
-}
-
-class PropertiesManager: NewPropertyManager {
-    let repository: SwiftDataRepository
-    let dataProvider: PropertiesDataProvider
-    let unitManager: UnitManager
-    let tenantManager: TenantManager
+class PropertyUseCase: PropertyUseCaseProtocol {
+    let repository: DataSource
+    let unitManager: UnitMangerProtocol
+    let tenantManager: TenantManagerProtocol
     
-    var newProperty = Property()
-    
-    init(repository: SwiftDataRepository) {
+    init(
+        repository: DataSource,
+        unitManager: UnitMangerProtocol,
+        tenantManager: TenantManagerProtocol
+    ) {
         self.repository = repository
-        self.dataProvider = PropertiesDataProvider(repository: repository)
-        self.unitManager = UnitManager(repository: repository)
-        self.tenantManager = TenantManager(repository: repository)
+        self.unitManager = unitManager
+        self.tenantManager = tenantManager
     }
     
     let columns: [GridItem] = [
@@ -43,59 +37,59 @@ class PropertiesManager: NewPropertyManager {
     ]
     
     func fetchProperties() -> [Property] {
-        return dataProvider.fetchData()
+        return repository.readAll(Property.self)
     }
     
     func fetchPropertyUnits(_ selectedPropertyID: String) -> [SingleUnit] {
         return unitManager.fetchUnitsBy(propertyId: selectedPropertyID)
     }
     
-    func createProperty(newData: NewDataModel, propertyType: PropertyOptions, completion: @escaping (Bool) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        print(propertyType)
-        newProperty = Property()
+    func createProperty(newData: NewDataModel, propertyType: PropertyOptions) async throws {
         let id = UUID().uuidString
-        newProperty = Property(buildingID: id,
-                               buildingName: newData.name,
-                               buildingAddress: newData.address,
-                               numberOfUnits: newData.numberOfUnits,
-                               isSingleUnit: propertyType == .singleUnit ? true : false)
+        let newProperty = Property(
+            buildingID: id,
+            buildingName: newData.name,
+            buildingAddress: newData.address,
+            numberOfUnits: newData.numberOfUnits,
+            isSingleUnit: propertyType == .singleUnit ? true : false
+        )
 
-        dispatchGroup.enter()
+        #warning("Update unit number and tenantID")
+        #warning("Refactor to get separate units for property")
         let numberOfUnits = Int(newData.numberOfUnits) ?? 1
-        unitManager.generatePropertyUnits(propertyId: newProperty.buildingID, 
-                                          numberOfUnits: numberOfUnits,
-                                          numberOfBeds: Int(newData.numberOfBedrooms),
-                                          numberOfBaths: Int(newData.numberOfBathrooms),
-                                          size: Int(newData.size)) { unitIds in
-            self.newProperty.unitIDs.append(contentsOf: unitIds)
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            self.dataProvider.create(self.newProperty)
-            completion(true)
-        }
+        let unitId = try await unitManager.addPropertyUnit(
+            unit: SingleUnit(
+                unitNumber: 1,
+                propertyId: newProperty.buildingID,
+                tenantID: "",
+                numberOfBedrooms: Int(newData.numberOfBedrooms) ?? 1,
+                numberOfBathrooms: Int(newData.numberOfBathrooms) ?? 1,
+                size: Int(newData.size) ?? 0,
+                isOccupied: false
+            )
+        )
+        newProperty.unitIDs.append(unitId)
+
+        try self.repository.create(newProperty)
     }
-    
-    func updateProperty(_ property: Property, completion: @escaping () -> Void) {
-        dataProvider.update(property)
-        completion()
-    }
-    
-    func deleteProperty(_ propertyId: String) {
-        dataProvider.delete(propertyId)
-        unitManager.deleteUnits(with: propertyId) { unitIds in
-            tenantManager.deleteTenants(from: unitIds)
-        }
+
+    #warning("Cannot be returning on delete")
+    func deleteProperty(_ propertyId: String) async throws {
+        try repository.delete(propertyId, ofType: Property.self)
+        try await unitManager.deleteUnits(with: propertyId)
+        try await tenantManager.deleteTenants(with: propertyId)
     }
     
     func getTenantCardData(units: [SingleUnit]) -> [UnitCardModel] {
-        let tenants = tenantManager.dataProvider.fetchData()
+        let tenants = repository.readAll(Tennant.self)
         let tenantCardData = sortTenantCardData(tenants: tenants, units: units)
         return tenantCardData
     }
-    
+
+    private func updateProperty(_ property: Property) async throws {
+        try repository.update(property)
+    }
+
     private func sortTenantCardData(tenants: [Tennant],
                        units: [SingleUnit]) -> [UnitCardModel] {
         var tenantData: [UnitCardModel] = []
