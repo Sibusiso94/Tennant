@@ -83,6 +83,7 @@
 		F99F093F301214E6006B5A9A /* ReferencesManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F093E301214E4006B5A9A /* ReferencesManagable.swift */; };
 		F99F0944301346F0006B5A9A /* UnitMangerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F0943301346EE006B5A9A /* UnitMangerProtocol.swift */; };
 		F99F0946301364D2006B5A9A /* PropertyUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F0945301364D0006B5A9A /* PropertyUseCaseProtocol.swift */; };
+		F9A2F71F30177DBB009BAA86 /* TenantManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */; };
 		F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = F9B5C2202FEA7D300043452B /* MyLibrary */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +195,7 @@
 		F99F093E301214E4006B5A9A /* ReferencesManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesManagable.swift; sourceTree = "<group>"; };
 		F99F0943301346EE006B5A9A /* UnitMangerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitMangerProtocol.swift; sourceTree = "<group>"; };
 		F99F0945301364D0006B5A9A /* PropertyUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyUseCaseProtocol.swift; sourceTree = "<group>"; };
+		F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,8 @@
 		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
 			isa = PBXGroup;
 			children = (
+				F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */,
+				5C9B30AA2C760C9A001669E9 /* TenantManager.swift */,
 				5C0F300D2C67703C00B7630E /* Views */,
 				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
 				5CCAC53A2D1E8C2000965A33 /* TenantListViewModel.swift */,
@@ -473,7 +477,6 @@
 				5C0089DC2BF345330061C00B /* PropertiesManager.swift */,
 				F99F0943301346EE006B5A9A /* UnitMangerProtocol.swift */,
 				5CD215FF2BF4F1840035F729 /* UnitManager.swift */,
-				5C9B30AA2C760C9A001669E9 /* TenantManager.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				F92B529A30079ECE0099112B /* LoadingIndicator.swift in Sources */,
 				F99F093A3011EDCB006B5A9A /* DataSource.swift in Sources */,
 				F921EA2C2FFFCDE000719D2E /* TenantPaymentUseCase.swift in Sources */,
+				F9A2F71F30177DBB009BAA86 /* TenantManagerProtocol.swift in Sources */,
 				F92B529730078A610099112B /* DIContainer.swift in Sources */,
 				5CB785842C9C025900C2FF43 /* UnitCardModel.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,

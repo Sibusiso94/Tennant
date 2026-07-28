@@ -4,8 +4,8 @@ import MyLibrary
 struct TenantDetailView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState var isInputActive: Bool
-    @StateObject var viewModel: UpdateTennantViewModel
-    
+    @State var viewModel = UpdateTennantViewModel()
+
     @State var paymentHistoryPercentage = 0.0
     @State var showEditView: Bool = false
     @State var isEditingTenant: Bool = false
@@ -16,7 +16,6 @@ struct TenantDetailView: View {
     init(tenant: Tennant, unitNumber: String) {
         self.tenant = tenant
         self.unitNumber = unitNumber
-        _viewModel = StateObject(wrappedValue: UpdateTennantViewModel(tenant: tenant, unitNumber: unitNumber))
     }
     
     var body: some View {

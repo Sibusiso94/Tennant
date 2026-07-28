@@ -1,20 +1,17 @@
 import Foundation
 
-class UpdateTennantViewModel: ObservableObject {
-    var tenant: Tennant
-    var unitNumber: String
+@Observable
+class UpdateTennantViewModel {
     var newTennants = [Tennant]()
     var rentAmount: Int = 1500
     
-    @Published var amountAdded: String = ""
-    @Published var selectedTennant = Tennant()
-    @Published var numberOfMonthsPassed: Int = 0
-    @Published var endDate: Date
+    var amountAdded: String = ""
+    var selectedTennant = Tennant()
+    var numberOfMonthsPassed: Int = 0
+    var endDate: Date
     
-    init(tenant: Tennant, unitNumber: String) {
+    init() {
         self.endDate = Date.now
-        self.tenant = tenant
-        self.unitNumber = unitNumber
 //        mapTennantsToArray()
 //        getTennantByMostDebt()
     }
