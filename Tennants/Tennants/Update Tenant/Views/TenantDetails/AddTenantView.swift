@@ -20,10 +20,9 @@ struct AddTenantView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color("PastelGrey")
-                    .ignoresSafeArea()
+        ZStack {
+            Color("PastelGrey")
+                .ignoresSafeArea()
                 
                 ScrollView {
                     VStack(spacing: 25) {
@@ -97,8 +96,7 @@ struct AddTenantView: View {
                     }
                 }
             }
-            .foregroundStyle(.black.opacity(0.8))
-        }
+        .foregroundStyle(.black.opacity(0.8))
     }
     
     func checkIDNumber(text: String) -> Bool {

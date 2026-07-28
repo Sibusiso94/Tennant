@@ -22,10 +22,9 @@ struct AddPropertyView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color("PastelGrey")
-                    .ignoresSafeArea()
+        ZStack {
+            Color("PastelGrey")
+                .ignoresSafeArea()
                 
                 ScrollView {
                     VStack(spacing: 25) {
@@ -72,6 +71,5 @@ struct AddPropertyView: View {
                     }
                 }
             }
-        }
     }
 }

@@ -4,10 +4,7 @@ import MyLibrary
 struct UnitDetailViewContainer: View {
     @Bindable var propertyViewModel: PropertiesViewModel
     @Bindable var viewModel: PropertyDetailViewModel
-    @State var showAddTenantView = false
     @State var showAlert = false
-    @State var showEditingView = false
-//    @State var newTenant = Tennant()
 
     var unit: SingleUnit
     var complexName: String
@@ -59,7 +56,9 @@ struct UnitDetailViewContainer: View {
                                        endDate: tenant.endDate.formatted(date: .abbreviated, time: .omitted))
                         .padding()
                     } else {
-                        EmptyTenantStateView($showAddTenantView)
+                        EmptyTenantStateView {
+                            propertyViewModel.showAddTenant()
+                        }
                         .padding()
                     }
 
@@ -72,24 +71,11 @@ struct UnitDetailViewContainer: View {
                 CustomMenuButton(title1: "Edit Unit",
                                  title2: "Delete Tenant",
                                  isOccupied: unit.isOccupied) {
-                    propertyViewModel.propertyType = PropertyOptions.singleUnit
-                    showEditingView = true
+                    propertyViewModel.editUnit()
                 } option2Action: {
                     showAlert = true
                 }
 
-            }
-        }
-        .navigationDestination(isPresented: $showAddTenantView) {
-            AddTenantView() { tenantToAdd in
-                viewModel.addTenant(tenantToAdd, propertyID: buildingId, unitId: unit.id)
-                propertyViewModel.getTenant(with: unit.id)
-            }
-        }
-        .sheet(isPresented: $showEditingView) {
-            AddPropertyView(viewModel: propertyViewModel, isEditing: true) {
-                viewModel.updateUnit(unitId: unit.id,
-                                     tenantId: tenant?.id ?? "")
             }
         }
         .alert("Are you sure you want to delete?", isPresented: $showAlert) {
@@ -149,10 +135,10 @@ struct TenantInfoView: View {
 }
 
 struct EmptyTenantStateView: View {
-    @Binding var showAddTenantView: Bool
+    private let action: () -> Void
 
-    init(_ showAddTenantView: Binding<Bool>) {
-        self._showAddTenantView = showAddTenantView
+    init(action: @escaping () -> Void) {
+        self.action = action
     }
 
     var body: some View {
@@ -160,7 +146,7 @@ struct EmptyTenantStateView: View {
             Text("This unit is not occupied. Add a tenant below.")
                 .multilineTextAlignment(.center)
             CustomTextButton(title: "Add tenant") {
-                showAddTenantView = true
+                action()
             }
         }
     }

@@ -19,88 +19,61 @@ struct TenantDetailView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                UpdateTennantTopCardView(unitNumber: unitNumber,
-                                         name: tenant.name,
-                                         surname: tenant.surname,
-                                         balance: "\(tenant.balance)",
-                                         amountDue: "\(tenant.amountDue)",
-                                         isOccupied: true)
-                    .padding(.horizontal)
-                
-                CircularProgressView(progress: 0.7,
-                                     percentageString: viewModel.getPercentage(percentageDouble: paymentHistoryPercentage), lineWidth: 20)
-                    .frame(width: 150, height: 150)
-                    .padding(.vertical)
-                
-                if isEditingTenant {
-                    TextField("Amount paid", text: $viewModel.amountAdded)
-                        .numberTextField()
-                        .focused($isInputActive)
-                        .toolbar {
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()
+        VStack {
+            UpdateTennantTopCardView(unitNumber: unitNumber,
+                                     name: tenant.name,
+                                     surname: tenant.surname,
+                                     balance: "\(tenant.balance)",
+                                     amountDue: "\(tenant.amountDue)",
+                                     isOccupied: true)
+                .padding(.horizontal)
 
-                                Button("Done") {
-                                    isInputActive = false
-                                }
+            CircularProgressView(progress: 0.7,
+                                 percentageString: viewModel.getPercentage(percentageDouble: paymentHistoryPercentage), lineWidth: 20)
+                .frame(width: 150, height: 150)
+                .padding(.vertical)
+
+            if isEditingTenant {
+                TextField("Amount paid", text: $viewModel.amountAdded)
+                    .numberTextField()
+                    .focused($isInputActive)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+
+                            Button("Done") {
+                                isInputActive = false
                             }
                         }
-
-                    CustomTextButton(title: "Paid in full") {
-                        //
                     }
 
-                    Button {
-
-                    } label: {
-                        Text("Add payment")
-                            .padding()
-                    }
-                    .customHorizontalPadding(isButton: true)
-                    .disabled(viewModel.amountAdded == "")
-                }
-
-                Spacer()
-            }
-            .background {
-                Color("PastelGrey")
-                    .ignoresSafeArea()
-            }
-//            .navigationBarBackButtonHidden(true)
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        HStack {
-//                            Image(systemName: "chevron.left")
-//                            Text("Back")
-//                        }
-//                    }
-//                }
-//            }
-            .toolbar {
-                CustomMenuButton {
-                    // show add Tennant
-                } option2Action: {
+                CustomTextButton(title: "Paid in full") {
                     //
                 }
 
+                Button {
+
+                } label: {
+                    Text("Add payment")
+                        .padding()
+                }
+                .customHorizontalPadding(isButton: true)
+                .disabled(viewModel.amountAdded == "")
             }
-            .onAppear {
-//                viewModel.getNumberOfMonthsPassed(startDate: viewModel.selectedTennant.startDate, endDate: Date.now)
-//                paymentHistoryPercentage = viewModel.getPaymentHistoryPercentage(numberOfMonthsPassed: viewModel.numberOfMonthsPassed,
-//                                                                                 numberOfFullPayments: Int(viewModel.selectedTennant.fullPayments) ?? 0)
+
+            Spacer()
+        }
+        .background {
+            Color("PastelGrey")
+                .ignoresSafeArea()
+        }
+        .toolbar {
+            CustomMenuButton {
+                // show add Tennant
+            } option2Action: {
+                //
             }
-//            .navigationDestination(isPresented: $showEditView) {
-//                withAnimation {
-//                    AddTenantView {
-//                        //
-//                    }
-//                }
-//            }
+
         }
     }
 }

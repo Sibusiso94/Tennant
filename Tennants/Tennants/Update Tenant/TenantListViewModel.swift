@@ -4,10 +4,11 @@ import Foundation
 class TenantListViewModel {
     let manager: TenantManagerProtocol
 
+    @ObservationIgnored weak var coordinator: (any Coordinator<TenantsRoute>)?
+
     var allTenants = [Tennant]()
     var selectedTenant = Tennant()
     var searchText = ""
-    var showDetailView = false
 
     init(manager: TenantManagerProtocol) {
         self.manager = manager
@@ -21,5 +22,12 @@ class TenantListViewModel {
 
     func fetch() {
         allTenants = manager.fetchTenants()
+    }
+
+    func didSelectTenant(_ tenant: Tennant) {
+        selectedTenant = tenant
+        Task { [weak self] in
+            try? await self?.coordinator?.route(to: .tenantDetail)
+        }
     }
 }

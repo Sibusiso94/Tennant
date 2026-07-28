@@ -6,11 +6,12 @@ import OSLog
 class FileUploaderViewModel {
     private let tenantPaymentUseCase: TenantPaymentProtocol
 
+    @ObservationIgnored weak var coordinator: (any Coordinator<HistoryRoute>)?
+
     var fileStoragePath: String?
     let bankTypes: [String] = ["Standard", "FNB", "Capitec"]
 
     var selectedBankType = "Standard"
-    var shouldShowResultView: Bool = false
     var tenantHistoryData: [TenantHistory] = []
 
     var showPDFImporter: Bool = false
@@ -83,9 +84,10 @@ class FileUploaderViewModel {
         return resolvedURL
     }
 
-    func setUpResultView() {
-//        getTenantData()
-        shouldShowResultView = true
+    func showHistory() {
+        Task { [weak self] in
+            try? await self?.coordinator?.route(to: .paymentHistory)
+        }
     }
 
     func fetchTenantDataBy(_ ids: [String], allTenantData: [TenantData]) -> [TenantData] {

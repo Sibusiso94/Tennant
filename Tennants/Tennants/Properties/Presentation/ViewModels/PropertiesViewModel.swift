@@ -5,6 +5,11 @@ import SwiftUI
 class PropertiesViewModel {
     private let manager: PropertyUseCaseProtocol
     private let tenantManager: TenantManagerProtocol
+
+    /// Navigation is delegated upward to the coordinator. `weak` avoids a retain
+    /// cycle since the coordinator strongly owns this view model.
+    @ObservationIgnored weak var coordinator: (any Coordinator<PropertiesRoute>)?
+
     var propertyType: PropertyOptions = .multipleUnits
     
     var newData: NewDataModel = NewDataModel()
@@ -13,18 +18,13 @@ class PropertiesViewModel {
 
     var selectedTenant: Tennant?
     var selectedUnit: SingleUnit?
+    var selectedUnitCard: UnitCardModel?
     var unitCardModel: [UnitCardModel] = []
 
     var unitImage: String?
-    var shouldShowAddProperty: Bool = false
-    var shouldAddPropertyOptions: Bool = false
-//    @Published var showTennantView: Bool = false
-    
+
     var uploadStatus: String = ""
     var showUploadStatus: Bool = false
-    var showPropertyDetailView: Bool = false
-
-    var showUnitDetailView: Bool = false
     var showAlert: Bool = false
     
     init(
@@ -71,17 +71,45 @@ class PropertiesViewModel {
         selectedProperty = property
         let units = manager.fetchPropertyUnits(property.buildingID)
         unitCardModel = manager.getTenantCardData(units: units)
-        showPropertyDetailView = true
+        navigate(to: .propertyDetail)
     }
-    
+
+    func showPropertyOptions() {
+        navigate(to: .propertyOptions)
+    }
+
     func managePropertyOptions(_ selectedOption: Int) {
         if selectedOption == 1 {
             propertyType = .singleUnit
         } else {
             propertyType = .multipleUnits
         }
-        
-        shouldShowAddProperty = true
+
+        navigate(to: .addProperty)
+    }
+
+    func showAddTenant() {
+        navigate(to: .addTenant)
+    }
+
+    func editUnit() {
+        propertyType = .singleUnit
+        navigate(to: .editUnit)
+    }
+
+    /// Called from the "Property successfully added" alert. Refreshes the grid
+    /// and returns to the root of the flow so the new property is visible.
+    func didConfirmPropertyAdded() {
+        refreshData()
+        navigate(to: .popToRoot)
+    }
+
+    /// Forwards a navigation intent to the coordinator. The view never talks to
+    /// the coordinator directly — it only calls the intent methods above.
+    private func navigate(to route: PropertiesRoute) {
+        Task { [weak self] in
+            try? await self?.coordinator?.route(to: route)
+        }
     }
     
     private func setUpStatus(message: String) {
@@ -110,13 +138,13 @@ class PropertiesViewModel {
     }
 
     func setUpCardDetail(with tenant: UnitCardModel) {
+        selectedUnitCard = tenant
         unitImage = "room\(tenant.unitNumber)"
         if tenant.isOccupied {
             selectedTenant = getTenant(with: tenant.unitId)
             selectedUnit?.unitNumber = Int(tenant.unitNumber) ?? 0
-            showUnitDetailView.toggle()
-        } else {
-            showUnitDetailView.toggle()
         }
+
+        navigate(to: .unitDetail)
     }
 }

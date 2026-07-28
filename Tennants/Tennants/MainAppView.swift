@@ -2,7 +2,8 @@ import SwiftUI
 
 struct MainAppView: View {
     @StateObject private var session: SessionManager
-    
+    private let factory = AppFactory()
+
     init() {
         _session = StateObject(wrappedValue: SessionManager())
     }
@@ -14,7 +15,7 @@ struct MainAppView: View {
                 OnboardingView(action: session.completeOnboarding)
                 .transition(.opacity)
             case .homeView:
-                TenantTabView()
+                factory.makeMainTabView()
                     .transition(.opacity)
             default:
                 // Splash Screen

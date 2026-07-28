@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		208B9D0AE1C2513C14BF592B /* TenantsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9659059D0AB871657D1C2 /* TenantsCoordinator.swift */; };
+		41DDE9889282D153BEA0F3E7 /* HistoryCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67C8E8EBD480CF0A8AE9040 /* HistoryCoordinatorView.swift */; };
+		504B0ADAC0540CDD301B950C /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF90688BCECDDAF9C9A57B0 /* AppFactory.swift */; };
 		5C0089D02BF330FC0061C00B /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089CF2BF330FC0061C00B /* PropertiesView.swift */; };
 		5C0089DD2BF345330061C00B /* PropertiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DC2BF345330061C00B /* PropertiesManager.swift */; };
 		5C0089E32BF34A4D0061C00B /* NewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0089DE2BF34A4D0061C00B /* NewDataModel.swift */; };
@@ -63,6 +66,12 @@
 		5CE845392CEE533300361431 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5CE845382CEE533300361431 /* Supabase */; };
 		5CF646072C7F5E290031B2B0 /* SwiftDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF646062C7F5E290031B2B0 /* SwiftDataRepository.swift */; };
 		5CF89BFC2CC136C300FDA874 /* HistoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */; };
+		729179DC16E2FFA8AA64F923 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E1049138906F312F7D9A1 /* Coordinator.swift */; };
+		98F41C8DEC637F00DDC57771 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED54C3BC9E317CF57BD9536B /* HistoryCoordinator.swift */; };
+		A1A8D6C4D4B33A4B7A876066 /* TenantsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004BF45934A085C4E55EDD3 /* TenantsCoordinatorView.swift */; };
+		AFFF774A37E3C9BF2F6B64DC /* PaymentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC8908936A64F90620EF5E /* PaymentHistoryView.swift */; };
+		E247BBB989AECE48299D3A48 /* PropertiesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391C4BE2243A1BA6FE4E8F0 /* PropertiesCoordinatorView.swift */; };
+		EC139E2C35E9DFCE27EF0CF9 /* PropertiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB366A8A17AAA3DA1DC097 /* PropertiesCoordinator.swift */; };
 		F921EA2A2FFFCDD000719D2E /* TenantPaymentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA292FFFCDC900719D2E /* TenantPaymentProtocol.swift */; };
 		F921EA2C2FFFCDE000719D2E /* TenantPaymentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA2B2FFFCDD400719D2E /* TenantPaymentUseCase.swift */; };
 		F921EA39300119DD00719D2E /* FileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F921EA37300119DD00719D2E /* FileDataManager.swift */; };
@@ -177,6 +186,15 @@
 		5CE845362CEE526A00361431 /* SupabaseNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseNetworking.swift; sourceTree = "<group>"; };
 		5CF646062C7F5E290031B2B0 /* SwiftDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataRepository.swift; sourceTree = "<group>"; };
 		5CF89BFB2CC136C300FDA874 /* HistoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerTests.swift; sourceTree = "<group>"; };
+		806E1049138906F312F7D9A1 /* Coordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8391C4BE2243A1BA6FE4E8F0 /* PropertiesCoordinatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PropertiesCoordinatorView.swift; sourceTree = "<group>"; };
+		9004BF45934A085C4E55EDD3 /* TenantsCoordinatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TenantsCoordinatorView.swift; sourceTree = "<group>"; };
+		9BF90688BCECDDAF9C9A57B0 /* AppFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
+		9EA9659059D0AB871657D1C2 /* TenantsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TenantsCoordinator.swift; sourceTree = "<group>"; };
+		B67C8E8EBD480CF0A8AE9040 /* HistoryCoordinatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryCoordinatorView.swift; sourceTree = "<group>"; };
+		D0BC8908936A64F90620EF5E /* PaymentHistoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaymentHistoryView.swift; sourceTree = "<group>"; };
+		D4FB366A8A17AAA3DA1DC097 /* PropertiesCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PropertiesCoordinator.swift; sourceTree = "<group>"; };
+		ED54C3BC9E317CF57BD9536B /* HistoryCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		F921EA292FFFCDC900719D2E /* TenantPaymentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentProtocol.swift; sourceTree = "<group>"; };
 		F921EA2B2FFFCDD400719D2E /* TenantPaymentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantPaymentUseCase.swift; sourceTree = "<group>"; };
 		F921EA37300119DD00719D2E /* FileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDataManager.swift; sourceTree = "<group>"; };
@@ -227,6 +245,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		296AEBA1EBC27546D131CD96 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9EA9659059D0AB871657D1C2 /* TenantsCoordinator.swift */,
+				9004BF45934A085C4E55EDD3 /* TenantsCoordinatorView.swift */,
+			);
+			name = Navigation;
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		5C0089D22BF331120061C00B /* Properties */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +333,7 @@
 				5C0F300D2C67703C00B7630E /* Views */,
 				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
 				5CCAC53A2D1E8C2000965A33 /* TenantListViewModel.swift */,
+				296AEBA1EBC27546D131CD96 /* Navigation */,
 			);
 			path = "Update Tenant";
 			sourceTree = "<group>";
@@ -331,6 +360,7 @@
 				F92B529830079EBD0099112B /* Components */,
 				5C1F469D2C1B23D000F1482B /* FileUploaderView.swift */,
 				5C3E31942C3BDE1100321EB3 /* HistoryView.swift */,
+				D0BC8908936A64F90620EF5E /* PaymentHistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -401,6 +431,7 @@
 				5C4734292B6261C40040A0AA /* Preview Content */,
 				5CB29C442C49634600BC8220 /* Launch Screen.storyboard */,
 				5CE845312CEE4FCB00361431 /* Secrets.swift */,
+				F0F31C143876D920E9E12DA3 /* Navigation */,
 			);
 			path = Tennants;
 			sourceTree = "<group>";
@@ -510,6 +541,36 @@
 			path = Supabase;
 			sourceTree = "<group>";
 		};
+		79959B14CC31E555E3DEC13A /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB366A8A17AAA3DA1DC097 /* PropertiesCoordinator.swift */,
+				8391C4BE2243A1BA6FE4E8F0 /* PropertiesCoordinatorView.swift */,
+			);
+			name = Navigation;
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		D7515164B6FA0E0C82DD2309 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				ED54C3BC9E317CF57BD9536B /* HistoryCoordinator.swift */,
+				B67C8E8EBD480CF0A8AE9040 /* HistoryCoordinatorView.swift */,
+			);
+			name = Navigation;
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F0F31C143876D920E9E12DA3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				806E1049138906F312F7D9A1 /* Coordinator.swift */,
+				9BF90688BCECDDAF9C9A57B0 /* AppFactory.swift */,
+			);
+			name = Navigation;
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		F921EA252FFF7DF500719D2E /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +634,7 @@
 			children = (
 				5C3E31962C3E66BC00321EB3 /* Views */,
 				5C05CB102BFF550900BF7297 /* ViewModels */,
+				D7515164B6FA0E0C82DD2309 /* Navigation */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -635,6 +697,7 @@
 			children = (
 				5C0089D62BF344260061C00B /* ViewModels */,
 				5C0089D52BF344170061C00B /* Views */,
+				79959B14CC31E555E3DEC13A /* Navigation */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -847,6 +910,15 @@
 				F92B53B83009F9CB0099112B /* NetworkServiceProtocol.swift in Sources */,
 				F92B52D53008C2930099112B /* APIManager.swift in Sources */,
 				5CE4426F2CEE3D50000D62CC /* OnboardingView.swift in Sources */,
+				729179DC16E2FFA8AA64F923 /* Coordinator.swift in Sources */,
+				504B0ADAC0540CDD301B950C /* AppFactory.swift in Sources */,
+				EC139E2C35E9DFCE27EF0CF9 /* PropertiesCoordinator.swift in Sources */,
+				E247BBB989AECE48299D3A48 /* PropertiesCoordinatorView.swift in Sources */,
+				208B9D0AE1C2513C14BF592B /* TenantsCoordinator.swift in Sources */,
+				A1A8D6C4D4B33A4B7A876066 /* TenantsCoordinatorView.swift in Sources */,
+				98F41C8DEC637F00DDC57771 /* HistoryCoordinator.swift in Sources */,
+				41DDE9889282D153BEA0F3E7 /* HistoryCoordinatorView.swift in Sources */,
+				AFFF774A37E3C9BF2F6B64DC /* PaymentHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

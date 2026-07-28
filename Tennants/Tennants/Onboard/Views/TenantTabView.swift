@@ -1,25 +1,30 @@
 import SwiftUI
 
 struct TenantTabView: View {
-    @State var selectedTab = TenantTabItem.home
+    @State private var selectedTab = TenantTabItem.home
+    private let factory: AppFactory
+
+    init(factory: AppFactory) {
+        self.factory = factory
+    }
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            PropertiesView()
+            factory.makePropertiesCoordinatorView()
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Flats")
                 }
                 .tag(TenantTabItem.home)
 
-            TenantListView()
+            factory.makeTenantsCoordinatorView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Tenants")
                 }
                 .tag(TenantTabItem.tenants)
 
-            FileUploaderView()
+            factory.makeHistoryCoordinatorView()
                 .tabItem {
                     Image(systemName: "folder.fill")
                     Text("Update")
@@ -27,8 +32,4 @@ struct TenantTabView: View {
                 .tag(TenantTabItem.update)
         }
     }
-}
-
-#Preview {
-    TenantTabView()
 }
