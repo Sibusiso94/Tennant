@@ -15,7 +15,12 @@ class TenantManager: TenantManagerProtocol {
         let tenants = repository.readAll(Tennant.self)
         return tenants.first(where: { $0.id == id })
     }
-    
+
+    func fetchTenantBy(property: String, and unit: String) -> Tennant? {
+        let tenants = repository.readAll(Tennant.self)
+        return tenants.first(where: { $0.propertyID == property && $0.unitID == unit} )
+    }
+
     func addTenant(propertyID: String,
                    unitID: String,
                    tenant: Tennant) async throws {

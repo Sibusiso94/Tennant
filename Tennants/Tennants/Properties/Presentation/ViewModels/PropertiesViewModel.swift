@@ -4,7 +4,6 @@ import SwiftUI
 @Observable
 class PropertiesViewModel {
     private let manager: PropertyUseCaseProtocol
-    private let tenantManager: TenantManagerProtocol
 
     /// Navigation is delegated upward to the coordinator. `weak` avoids a retain
     /// cycle since the coordinator strongly owns this view model.
@@ -27,20 +26,14 @@ class PropertiesViewModel {
     var showUploadStatus: Bool = false
     var showAlert: Bool = false
     
-    init(
-        manager: PropertyUseCaseProtocol,
-        tenantManager: TenantManagerProtocol
-    ) {
+    init(manager: PropertyUseCaseProtocol) {
         self.manager = manager
-        self.tenantManager = tenantManager
-        self.refreshData()
     }
 
     convenience init() {
         let manager = DIContainer.shared.resolve(PropertyUseCaseProtocol.self)
-        let tenantManager = DIContainer.shared.resolve(TenantManagerProtocol.self)
 
-        self.init(manager: manager, tenantManager: tenantManager)
+        self.init(manager: manager)
     }
 
     let columns: [GridItem] = [
@@ -132,16 +125,11 @@ class PropertiesViewModel {
             properties.removeAll(where: { $0.buildingID == propertyId })
         }
     }
-    
-    func getTenant(with id: String)  -> Tennant? {
-        tenantManager.fetchTenantBy(id)
-    }
 
     func setUpCardDetail(with tenant: UnitCardModel) {
         selectedUnitCard = tenant
         unitImage = "room\(tenant.unitNumber)"
         if tenant.isOccupied {
-            selectedTenant = getTenant(with: tenant.unitId)
             selectedUnit?.unitNumber = Int(tenant.unitNumber) ?? 0
         }
 

@@ -41,7 +41,6 @@
 		5C58ADA42CBE8DB400495D11 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA32CBE8DB400495D11 /* HistoryManager.swift */; };
 		5C58ADA62CBE8E9800495D11 /* ReferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */; };
 		5C58ADA82CBEA4FE00495D11 /* FileUploaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */; };
-		5C620CF12C722BA7001F54E6 /* AddTenantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */; };
 		5C9B30AB2C760C9A001669E9 /* TenantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B30AA2C760C9A001669E9 /* TenantManager.swift */; };
 		5CAB08DF2BFCAF5500603758 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */; };
 		5CB29C452C49634600BC8220 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB29C442C49634600BC8220 /* Launch Screen.storyboard */; };
@@ -93,6 +92,7 @@
 		F99F0944301346F0006B5A9A /* UnitMangerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F0943301346EE006B5A9A /* UnitMangerProtocol.swift */; };
 		F99F0946301364D2006B5A9A /* PropertyUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F0945301364D0006B5A9A /* PropertyUseCaseProtocol.swift */; };
 		F9A2F71F30177DBB009BAA86 /* TenantManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */; };
+		F9A2F74C3018D3C9009BAA86 /* AddTenantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2F74B3018D3C2009BAA86 /* AddTenantViewModel.swift */; };
 		F9B5C2212FEA7D300043452B /* MyLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = F9B5C2202FEA7D300043452B /* MyLibrary */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +162,6 @@
 		5C58ADA32CBE8DB400495D11 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		5C58ADA52CBE8E9800495D11 /* ReferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesManager.swift; sourceTree = "<group>"; };
 		5C58ADA72CBEA4FE00495D11 /* FileUploaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderViewModel.swift; sourceTree = "<group>"; };
-		5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantViewModel.swift; sourceTree = "<group>"; };
 		5C9B30AA2C760C9A001669E9 /* TenantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantManager.swift; sourceTree = "<group>"; };
 		5CAB08DE2BFCAF5500603758 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
 		5CB29C442C49634600BC8220 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -214,6 +213,7 @@
 		F99F0943301346EE006B5A9A /* UnitMangerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitMangerProtocol.swift; sourceTree = "<group>"; };
 		F99F0945301364D0006B5A9A /* PropertyUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyUseCaseProtocol.swift; sourceTree = "<group>"; };
 		F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantManagerProtocol.swift; sourceTree = "<group>"; };
+		F9A2F74B3018D3C2009BAA86 /* AddTenantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTenantViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +251,6 @@
 				9EA9659059D0AB871657D1C2 /* TenantsCoordinator.swift */,
 				9004BF45934A085C4E55EDD3 /* TenantsCoordinatorView.swift */,
 			);
-			name = Navigation;
 			path = Navigation;
 			sourceTree = "<group>";
 		};
@@ -283,7 +282,6 @@
 			children = (
 				5CDA50D12C4636920040E268 /* PropertiesViewModel.swift */,
 				5C0B9B642C60F28D00362893 /* PropertyDetailViewModel.swift */,
-				5C620CF02C722BA7001F54E6 /* AddTenantViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -328,11 +326,8 @@
 		5C1A63FE2BFB6CE4007CAEBF /* Update Tenant */ = {
 			isa = PBXGroup;
 			children = (
-				F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */,
-				5C9B30AA2C760C9A001669E9 /* TenantManager.swift */,
-				5C0F300D2C67703C00B7630E /* Views */,
-				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
-				5CCAC53A2D1E8C2000965A33 /* TenantListViewModel.swift */,
+				F9A2F7483018D372009BAA86 /* Domain */,
+				F9A2F74A3018D3AF009BAA86 /* Presentation */,
 				296AEBA1EBC27546D131CD96 /* Navigation */,
 			);
 			path = "Update Tenant";
@@ -547,7 +542,6 @@
 				D4FB366A8A17AAA3DA1DC097 /* PropertiesCoordinator.swift */,
 				8391C4BE2243A1BA6FE4E8F0 /* PropertiesCoordinatorView.swift */,
 			);
-			name = Navigation;
 			path = Navigation;
 			sourceTree = "<group>";
 		};
@@ -557,7 +551,6 @@
 				ED54C3BC9E317CF57BD9536B /* HistoryCoordinator.swift */,
 				B67C8E8EBD480CF0A8AE9040 /* HistoryCoordinatorView.swift */,
 			);
-			name = Navigation;
 			path = Navigation;
 			sourceTree = "<group>";
 		};
@@ -567,7 +560,6 @@
 				806E1049138906F312F7D9A1 /* Coordinator.swift */,
 				9BF90688BCECDDAF9C9A57B0 /* AppFactory.swift */,
 			);
-			name = Navigation;
 			path = Navigation;
 			sourceTree = "<group>";
 		};
@@ -698,6 +690,34 @@
 				5C0089D62BF344260061C00B /* ViewModels */,
 				5C0089D52BF344170061C00B /* Views */,
 				79959B14CC31E555E3DEC13A /* Navigation */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		F9A2F7483018D372009BAA86 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				F9A2F71E30177DA9009BAA86 /* TenantManagerProtocol.swift */,
+				5C9B30AA2C760C9A001669E9 /* TenantManager.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		F9A2F7493018D3A4009BAA86 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F9A2F74B3018D3C2009BAA86 /* AddTenantViewModel.swift */,
+				5C1A63FF2BFB6D92007CAEBF /* UpdateTennantViewModel.swift */,
+				5CCAC53A2D1E8C2000965A33 /* TenantListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F9A2F74A3018D3AF009BAA86 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				5C0F300D2C67703C00B7630E /* Views */,
+				F9A2F7493018D3A4009BAA86 /* ViewModels */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -855,6 +875,7 @@
 				F99F093A3011EDCB006B5A9A /* DataSource.swift in Sources */,
 				F921EA2C2FFFCDE000719D2E /* TenantPaymentUseCase.swift in Sources */,
 				F9A2F71F30177DBB009BAA86 /* TenantManagerProtocol.swift in Sources */,
+				F9A2F74C3018D3C9009BAA86 /* AddTenantViewModel.swift in Sources */,
 				F92B529730078A610099112B /* DIContainer.swift in Sources */,
 				5CB785842C9C025900C2FF43 /* UnitCardModel.swift in Sources */,
 				5C1F46A02C1C589E00F1482B /* History.swift in Sources */,
@@ -875,7 +896,6 @@
 				5CE442752CEE3EBA000D62CC /* TenantTabView.swift in Sources */,
 				5C4734262B6261C10040A0AA /* ContentView.swift in Sources */,
 				5C3E319D2C400DFF00321EB3 /* ApiDataManager.swift in Sources */,
-				5C620CF12C722BA7001F54E6 /* AddTenantViewModel.swift in Sources */,
 				5C0B9B652C60F28D00362893 /* PropertyDetailViewModel.swift in Sources */,
 				5CE442712CEE3D93000D62CC /* SessionManager.swift in Sources */,
 				5CDA50D22C4636920040E268 /* PropertiesViewModel.swift in Sources */,

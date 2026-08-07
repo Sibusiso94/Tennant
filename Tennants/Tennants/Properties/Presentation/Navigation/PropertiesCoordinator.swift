@@ -146,14 +146,17 @@ extension AppFactory {
     func makeAddTenantView(coordinator: PropertiesCoordinator) -> some View {
         let propertyViewModel = coordinator.viewModel!
         let detailViewModel = coordinator.detailViewModel
-        AddTenantView { tenant in
-            guard let unit = detailViewModel.unit else { return }
-            detailViewModel.addTenant(
-                tenant,
-                propertyID: propertyViewModel.selectedProperty.buildingID,
-                unitId: unit.id
-            )
+        if let unit = detailViewModel.unit {
+            AddTenantView(propertyId: propertyViewModel.selectedProperty.buildingID, unitId: unit.id)
         }
+//        { tenant in
+//            guard let unit = detailViewModel.unit else { return }
+//            detailViewModel.addTenant(
+//                tenant,
+//                propertyID: propertyViewModel.selectedProperty.buildingID,
+//                unitId: unit.id
+//            )
+//        }
     }
 
     @ViewBuilder
@@ -163,13 +166,13 @@ extension AppFactory {
         // Presented as a sheet: a sheet is its own presentation context, so it
         // needs its own NavigationStack to render the title / Cancel toolbar.
         NavigationStack {
-            AddPropertyView(viewModel: propertyViewModel, isEditing: true) {
-                guard let unit = detailViewModel.unit else { return }
-                detailViewModel.updateUnit(
-                    unitId: unit.id,
-                    tenantId: propertyViewModel.selectedTenant?.id ?? ""
-                )
-            }
+//            AddPropertyView(viewModel: propertyViewModel) {
+//                guard let unit = detailViewModel.unit else { return }
+//                detailViewModel.updateUnit(
+//                    unitId: unit.id,
+//                    tenantId: propertyViewModel.selectedTenant?.id ?? ""
+//                )
+//            }
         }
     }
 }

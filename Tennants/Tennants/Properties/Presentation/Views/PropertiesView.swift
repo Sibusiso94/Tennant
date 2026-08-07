@@ -60,6 +60,9 @@ struct PropertiesView: View {
                             viewModel.didConfirmPropertyAdded()
                         }
                     }
+                    .onAppear {
+                        viewModel.refreshData()
+                    }
                 }
             }
     }

@@ -19,7 +19,7 @@ struct UnitDetailViewContainer: View {
          complexName: String,
          buildingId: String,
          address: String,
-         tenant: Tennant? = nil,
+         tenant: Tennant?,
          unitImage: Image? = nil) {
         self.propertyViewModel = propertyViewModel
         self.viewModel = viewModel

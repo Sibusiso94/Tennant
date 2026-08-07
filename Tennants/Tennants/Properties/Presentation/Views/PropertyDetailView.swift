@@ -24,7 +24,8 @@ struct PropertyDetailView: View {
                                         unit: unit,
                                         complexName: viewModel.selectedProperty.buildingName,
                                         buildingId: viewModel.selectedProperty.buildingID,
-                                        address: viewModel.selectedProperty.buildingAddress
+                                        address: viewModel.selectedProperty.buildingAddress,
+                                        tenant: detailViewModel.tenant
                 )
             } else {
                 VStack {
@@ -73,14 +74,9 @@ struct PropertyDetailView: View {
             }
         }
         .onAppear {
-            setUpSingleUnit()
-        }
-    }
-
-    func setUpSingleUnit() {
-        if viewModel.selectedProperty.isSingleUnit {
-            detailViewModel.fetchUnit(viewModel.selectedProperty.unitIDs.first ?? "")
-            viewModel.selectedTenant = viewModel.getTenant(with: detailViewModel.unit?.tenantID ?? "")
+            if let unit = detailViewModel.unit {
+                detailViewModel.setUpSingleUnit(propertyId: viewModel.selectedProperty.buildingID, unitId: unit.primaryKey)
+            }
         }
     }
 }
