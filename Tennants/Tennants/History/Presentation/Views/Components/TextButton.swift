@@ -20,6 +20,9 @@ public struct TextButton: View {
             }
             .padding()
         }
-        .customHorizontalPadding(isButton: true)
+        .frame(maxWidth: .infinity)
+        .background(Color("DarkPastelBlue"))
+        .foregroundStyle(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }

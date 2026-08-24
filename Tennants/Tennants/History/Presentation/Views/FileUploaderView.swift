@@ -13,38 +13,7 @@ struct FileUploaderView: View {
         ZStack {
             Color("PastelGrey")
                 .ignoresSafeArea()
-            VStack {
-                DocumentSelectionView(
-                    image: Image("\(viewModel.selectedBankType.lowercased())"),
-                                      imageWidth: viewModel.selectedBankType == "Capitec" ? 300 : 200,
-                                      bankTypes: viewModel.bankTypes,
-                                      selectedBankType: $viewModel.selectedBankType
-                )
-
-                TextButton(title: "Select a document") {
-                    viewModel.showPDFImporter.toggle()
-                }
-            }
-            .fileImporter(
-                isPresented: $viewModel.showPDFImporter,
-                allowedContentTypes: [.pdf],
-                allowsMultipleSelection: false
-            ) { result in
-                switch result {
-                case .success(let urls):
-                    guard let url = urls.first else { return }
-                    viewModel.isLoading = true
-                    viewModel.handleImportedFile(url: url)
-                case .failure(let error):
-                    viewModel.errorMessage = error.localizedDescription
-                    viewModel.showErrorMessage = true
-                }
-            }
-        }
-        .overlay {
-            if viewModel.isLoading {
-                LoadingIndicator()
-            }
+            content()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,8 +25,50 @@ struct FileUploaderView: View {
                 }
             }
         }
-        .alert(viewModel.errorMessage, isPresented: $viewModel.showErrorMessage) {
-            Button("OK", role: .cancel) { }
+    }
+
+    @ViewBuilder
+    private func content() -> some View {
+        switch viewModel.state {
+        case .loading:
+            self
+                .overlay {
+                    LoadingIndicator()
+                }
+        case .loaded:
+            VStack {
+                DocumentSelectionView(
+                    image: Image("\(viewModel.selectedBankType.lowercased())"),
+                    imageWidth: viewModel.selectedBankType == "Capitec" ? 300 : 200,
+                    bankTypes: viewModel.bankTypes,
+                    selectedBankType: $viewModel.selectedBankType
+                )
+
+                TextButton(title: "Select a document") {
+                    viewModel.showPDFImporter.toggle()
+                }
+                .padding(.horizontal)
+            }
+            .fileImporter(
+                isPresented: $viewModel.showPDFImporter,
+                allowedContentTypes: [.pdf],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    guard let url = urls.first else { return }
+                    viewModel.handleImportedFile(url: url)
+                    viewModel.state = .loaded
+                case .failure(let error):
+                    viewModel.state = .error(message: error.localizedDescription)
+                    viewModel.showErrorMessage = true
+                }
+            }
+        case .error(let message):
+            self
+                .alert(message, isPresented: $viewModel.showErrorMessage) {
+                    Button("OK", role: .cancel) { }
+                }
         }
     }
 }

@@ -124,11 +124,10 @@ struct TenantInfoView: View {
             }
 
             VStack {
-                Image(systemName: "ellipsis.message")
+                Image(systemName: "chevron.right")
                     .padding()
             }
-            .background(Color("PastelLightBlue"))
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .foregroundStyle(Color("DarkPastelBlue"))
             .padding(.leading)
         }
     }

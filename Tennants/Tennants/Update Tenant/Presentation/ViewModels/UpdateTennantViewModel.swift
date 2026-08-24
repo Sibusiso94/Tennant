@@ -9,7 +9,8 @@ class UpdateTennantViewModel {
     var selectedTennant = Tennant()
     var numberOfMonthsPassed: Int = 0
     var endDate: Date
-    
+
+
     init() {
         self.endDate = Date.now
 //        mapTennantsToArray()

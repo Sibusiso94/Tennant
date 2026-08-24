@@ -1,10 +1,17 @@
 import Foundation
 import OSLog
 
+enum ViewState {
+    case loading
+    case loaded
+    case error(message: String)
+}
+
 @MainActor
 @Observable
 class FileUploaderViewModel {
     private let tenantPaymentUseCase: TenantPaymentProtocol
+    var state: ViewState = .loaded
 
     @ObservationIgnored weak var coordinator: (any Coordinator<HistoryRoute>)?
 
@@ -15,14 +22,11 @@ class FileUploaderViewModel {
     var tenantHistoryData: [TenantHistory] = []
 
     var showPDFImporter: Bool = false
-    var isLoading = false
     var isCompleteUploading = false
 
     var showErrorMessage = false
-    var errorMessage = ""
 
     init(tenantPaymentUseCase: TenantPaymentProtocol) {
-//        self.getTenantData()
         self.tenantPaymentUseCase = tenantPaymentUseCase
     }
 
@@ -32,8 +36,9 @@ class FileUploaderViewModel {
     }
 
     func handleImportedFile(url: URL) {
+        state = .loading
         guard let readURL = resolveSecurityScopedURL(url) else {
-            isLoading = false
+            state = .error(message: "Something went wrong\nPlease try again later")
             return
         }
 
@@ -47,21 +52,18 @@ class FileUploaderViewModel {
                 isCompleteUploading = true
 
                 try await getTenantPaymentInfo()
+                state = .loaded
             } catch {
-                errorMessage = ""
+                state = .error(message: "Something went wrong\nPlease try again later")
             }
         }
     }
 
     private func getTenantPaymentInfo() async throws {
-            do {
-                try await tenantPaymentUseCase.getPaymentData(
-                    selectedBankType: selectedBankType,
-                    userId: ""
-                )
-            } catch {
-                errorMessage = ""
-            }
+        try await tenantPaymentUseCase.getPaymentData(
+            selectedBankType: selectedBankType,
+            userId: ""
+        )
     }
 
     private func resolveSecurityScopedURL(_ url: URL) -> URL? {
