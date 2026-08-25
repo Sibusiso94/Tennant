@@ -8,3 +8,8 @@ protocol TenantManagerProtocol {
     func deleteTenants(from tenantId: String) async throws
     func deleteTenants(with propertyId: String) async throws
 }
+
+protocol TenantProprtyDetailsProtocol {
+    func getPropertyName(propertyId: String) -> String
+    func getUnitName(tenantId: String) -> String
+}

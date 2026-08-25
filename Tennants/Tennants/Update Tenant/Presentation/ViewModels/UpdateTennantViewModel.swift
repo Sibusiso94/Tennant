@@ -2,6 +2,8 @@ import Foundation
 
 @Observable
 class UpdateTennantViewModel {
+    private let useCase: TenantProprtyDetailsProtocol
+
     var newTennants = [Tennant]()
     var rentAmount: Int = 1500
     
@@ -11,12 +13,46 @@ class UpdateTennantViewModel {
     var endDate: Date
 
 
-    init() {
+    init(useCase: TenantProprtyDetailsProtocol) {
+        self.useCase = useCase
         self.endDate = Date.now
 //        mapTennantsToArray()
 //        getTennantByMostDebt()
     }
-    
+
+    convenience init() {
+        let useCase = DIContainer.shared.resolve(TenantProprtyDetailsProtocol.self)
+
+        self.init(useCase: useCase)
+    }
+
+    func getInitials(name: String, surname: String) -> String {
+        guard let firstLetter = name.first else { return "" }
+        guard let secondLetter = surname.first else { return "" }
+
+        return "\(String(describing: firstLetter))\(String(describing: secondLetter))"
+    }
+
+    func getPropertyName(from propertyId: String) -> String {
+        useCase.getPropertyName(propertyId: propertyId)
+    }
+
+    func getUnitNumber(from tenantId: String) -> String {
+        useCase.getUnitName(tenantId: tenantId)
+    }
+
+    func formatDate(with date: Date) -> String {
+        return date.formatted(date: .abbreviated, time: .omitted)
+    }
+
+    func isTenantActive(date: Date) -> Bool {
+        if date > Date.now {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func getNumberOfMonthsPassed(startDate: String, endDate: Date) {
         let calandar = Calendar.current
         #warning("Make sure start date is not ahead of current date")

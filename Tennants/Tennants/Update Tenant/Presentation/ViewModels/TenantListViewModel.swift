@@ -22,6 +22,7 @@ class TenantListViewModel {
 
     func fetch() {
         allTenants = manager.fetchTenants()
+        print(allTenants[0].name)
     }
 
     func didSelectTenant(_ tenant: Tennant) {

@@ -26,5 +26,7 @@ struct TenantStrings {
         case mainTitle = "Tenancy Period"
         case startDate = "Start Date"
         case endDate = "End Date"
+        case isActive = "Active"
+        case isNotActive = "Inactive"
     }
 }

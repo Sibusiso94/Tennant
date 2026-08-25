@@ -77,6 +77,14 @@ final class AppAssembly: Assembly {
             return TenantManager(repository: dataSource)
         }
 
+        container.register(TenantProprtyDetailsProtocol.self) { resolver in
+            guard let dataSource = resolver.resolve(DataSource.self) else {
+                preconditionFailure("Failed to register DataSource")
+            }
+
+            return TenantManager(repository: dataSource)
+        }
+
         container.register(PropertyUseCaseProtocol.self) { resolver in
             guard let dataSource = resolver.resolve(DataSource.self) else {
                 preconditionFailure("Failed to register DataSource")

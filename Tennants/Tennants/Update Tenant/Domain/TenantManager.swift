@@ -1,6 +1,6 @@
 import Foundation
 
-class TenantManager: TenantManagerProtocol {
+class TenantManager: TenantManagerProtocol, TenantProprtyDetailsProtocol {
     let repository: DataSource
 
     init(repository: DataSource) {
@@ -19,6 +19,18 @@ class TenantManager: TenantManagerProtocol {
     func fetchTenantBy(property: String, and unit: String) -> Tennant? {
         let tenants = repository.readAll(Tennant.self)
         return tenants.first(where: { $0.propertyID == property && $0.unitID == unit} )
+    }
+
+    func getPropertyName(propertyId: String) -> String {
+        let properties = repository.readAll(Property.self)
+        guard let selectedProperty = properties.first(where: { $0.buildingID == propertyId } ) else { return "" }
+        return selectedProperty.buildingName
+    }
+
+    func getUnitName(tenantId: String) -> String {
+        let units = repository.readAll(SingleUnit.self)
+        guard let selectedUnit = units.first(where: { $0.tenantID == tenantId }) else { return "" }
+        return String(selectedUnit.unitNumber)
     }
 
     func addTenant(propertyID: String,
